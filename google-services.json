@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "576214331558",
+    "project_id": "wetok-d045d",
+    "storage_bucket": "wetok-d045d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576214331558:android:e38620dbf6368473a50467",
+        "android_client_info": {
+          "package_name": "com.example.wetok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576214331558-kufc4j7236h8tq0in43e6d66i99ijkbb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFhS4KL-5BIupaiYCl-EW2JBD_nJV50HY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576214331558-kufc4j7236h8tq0in43e6d66i99ijkbb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
