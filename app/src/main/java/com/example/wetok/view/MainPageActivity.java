@@ -1,14 +1,16 @@
-package com.example.wetok;
+package com.example.wetok.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class FunctionActivity extends AppCompatActivity {
+import com.example.wetok.R;
+
+public class MainPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_function);
+        setContentView(R.layout.activity_mainpage);
     }
 }
