@@ -2,4 +2,15 @@
     <string name="app_name">WeTok</string>
     <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
+    <string name="greeting">WeTok Login</string>
+    <string name="etEmail">Email</string>
+    <string name="etPassword">Password</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnRegister">Register</string>
+    <string name="btnGuestMode">Guest login</string>
+    <string name="newUser">New user register</string>
+    <string name="etRePassword">Re-enter password</string>
+    <string name="btnVerifyEmail">Verify email</string>
+    <string name="btnBack">Back</string>
+    <string name="btnLogout">Log out</string>
 </resources>

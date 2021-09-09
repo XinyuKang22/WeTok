@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeTok">
         <activity
+            android:name=".view.RegisterActivity"
+            android:exported="true"  />
+        <activity
             android:name=".view.MainPageActivity"
             android:exported="true" />
         <activity
