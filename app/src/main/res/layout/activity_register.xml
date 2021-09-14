@@ -61,12 +61,12 @@
         android:text="@string/btnVerifyEmail" />
 
     <Button
-        android:id="@+id/btn_loginReg"
+        android:id="@+id/btn_next"
         android:layout_width="270dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="15dp"
-        android:text="@string/btnLogin" />
+        android:text="@string/btnNext" />
 
     <Button
         android:id="@+id/btn_back"

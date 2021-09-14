@@ -13,4 +13,10 @@
     <string name="btnVerifyEmail">Verify email</string>
     <string name="btnBack">Back</string>
     <string name="btnLogout">Log out</string>
+    <string name="userName">*User Name:</string>
+    <string name="gender">Gender:</string>
+    <string name="age">*Age:</string>
+    <string name="btnLoginAftReg">Start your Journey</string>
+    <string name="btnNext">Next</string>
+    <string name="phoneNumber">Phone Number:</string>
 </resources>

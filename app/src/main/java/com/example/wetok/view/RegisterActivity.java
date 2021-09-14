@@ -21,7 +21,7 @@ public class RegisterActivity extends AppCompatActivity{
     private static final String TAG = "Register";
     private Context context;
     private Button btn_verifyEmail;
-    private Button btn_loginReg;
+    private Button btn_next;
     private Button btn_back;
     private EditText et_emailReg;
     private EditText et_passwordReg;
@@ -34,9 +34,8 @@ public class RegisterActivity extends AppCompatActivity{
         setContentView(R.layout.activity_register);
         context = RegisterActivity.this;
 
-        setContentView(R.layout.activity_register);
         btn_verifyEmail = findViewById(R.id.btn_verifyEmail);
-        btn_loginReg = findViewById(R.id.btn_loginReg);
+        btn_next = findViewById(R.id.btn_next);
         btn_back = findViewById(R.id.btn_back);
         et_emailReg = findViewById(R.id.et_emailReg);
         et_passwordReg = findViewById(R.id.et_passwordReg);
@@ -64,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity{
             }
         });
 
-        btn_loginReg.setOnClickListener(new View.OnClickListener() {
+        btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (currentUser == null){
@@ -81,9 +80,7 @@ public class RegisterActivity extends AppCompatActivity{
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 Log.d(TAG, "signInWithEmail:success");
-                                Toast.makeText(context, "Successfully logged in.",
-                                        Toast.LENGTH_SHORT).show();
-                                toMainPage(currentUser);
+                                toRegisterNextPage(currentUser);
                             }
                         } else {
                             Log.d(TAG, "ReloadUser:fail");
@@ -147,8 +144,8 @@ public class RegisterActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    private void toMainPage(FirebaseUser user) {
-        Intent intent = new Intent(context, MainPageActivity.class);
+    private void toRegisterNextPage(FirebaseUser currentUser) {
+        Intent intent = new Intent(context, RegisterNextActivity.class);
         startActivity(intent);
     }
 
