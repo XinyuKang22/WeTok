@@ -80,7 +80,7 @@ public class RegisterNextActivity extends AppCompatActivity {
                 if (isAgeForm(charSequence.toString())){
                     age = Integer.parseInt(charSequence.toString());
                 }else {
-                    Toast.makeText(context,"Please enter the age in right form.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"Please enter correct age.", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -137,7 +137,7 @@ public class RegisterNextActivity extends AppCompatActivity {
                 // Check User Name (mandatory field):
                 String name_draft = et_userName.getText().toString().trim();
                 if (name_draft.isEmpty()){
-                    Toast.makeText(context,"Please enter user name.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"Please create an user name to continue.", Toast.LENGTH_LONG).show();
                     return;
                 }else {
                     name = name_draft;
@@ -146,7 +146,7 @@ public class RegisterNextActivity extends AppCompatActivity {
                 // Check Age (optional field):
                 if (age != 0){
                     if (!isAgeForm(et_age.getText().toString())){
-                        Toast.makeText(context,"Please enter the age in right form.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"Please enter correct age.", Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -181,7 +181,7 @@ public class RegisterNextActivity extends AppCompatActivity {
     }
 
     private void createNewUser(String name, int age, String gender, String phoneNumber, String location) {
-        Toast.makeText(context,"UserName:"+name+" Gender:"+gender+" Age:"+age+" Phone:"+phoneNumber+" Location:"+location, Toast.LENGTH_LONG).show();
+        Toast.makeText(context,"UserName: "+name+"\nGender: "+gender+"\nAge: "+age+"\nPhone: "+phoneNumber+"\nLocation: "+location, Toast.LENGTH_LONG).show();
     }
 
     public String loadJSONFromAsset() {

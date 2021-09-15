@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity{
                     return;
                 }
                 if (!rePassword.equals(password)){
-                    Toast.makeText(context, "Please check your password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Passwords don't match. Please check your password", Toast.LENGTH_LONG).show();
                     return;
                 }
                 createAccount(email,password);
@@ -76,16 +76,16 @@ public class RegisterActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()) {
                             if(!currentUser.isEmailVerified()){
-                                Toast.makeText(context, "Please verify your email.",
-                                        Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Please verify your email first.",
+                                        Toast.LENGTH_LONG).show();
                             } else {
-                                Log.d(TAG, "signInWithEmail:success");
+                                Log.d(TAG, "signInWithEmail: SUCCESS");
                                 toRegisterNextPage(currentUser);
                             }
                         } else {
-                            Log.d(TAG, "ReloadUser:fail");
-                            Toast.makeText(context, "Failed to reload the state of your account",
-                                    Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "ReloadUser: FAIL");
+                            Toast.makeText(context, "Failed to reload the state of your account.",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -107,13 +107,13 @@ public class RegisterActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmail:success");
+                            Log.d(TAG, "createUserWithEmail: SUCCESS");
                             FirebaseUser user = fbAuth.getCurrentUser();
                             sendEmailVerification(user);
                         } else {
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(context, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            Log.w(TAG, "createUserWithEmail: FAIL", task.getException());
+                            Toast.makeText(context, "Registration failed, the account might exist. Please try to log in.",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -126,14 +126,14 @@ public class RegisterActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Email sent.");
-                            Toast.makeText(context, "Email has been sent, please verify your account.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Verification email sent. Please verify your email to continue.",
+                                    Toast.LENGTH_LONG).show();
                             currentUser = user;
                         }else {
                             user.delete();
-                            Log.d(TAG, "Failed to send email.");
-                            Toast.makeText(context, "Failed to send email, please check your email address.",
-                                    Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "Failed to send verification email.");
+                            Toast.makeText(context, "Failed to send verification email. Please check your email address.",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
