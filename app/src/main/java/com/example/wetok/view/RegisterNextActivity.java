@@ -1,26 +1,22 @@
 package com.example.wetok.view;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.wetok.R;
-import com.google.android.gms.common.api.Status;
-import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hbb20.CountryCodePicker;
@@ -29,99 +25,69 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 
 public class RegisterNextActivity extends AppCompatActivity {
     private static final String TAG = "RegisterNext";
+    private static final String FILE_NAME = "location.json";
+    private final Context context = this;
 
-    private Context context;
-    private Button btn_loginAftReg;
-    private RadioGroup btnG_gender;
     private EditText et_userName;
     private EditText et_age;
-    private CountryCodePicker ccp;
+    private RadioGroup btnG_gender;
+    private CountryCodePicker ccp_code;
     private EditText et_phoneNumber;
-    private AutocompleteSupportFragment autocompleteFragment;
+    private CountryCodePicker ccp_country;
+    private AutoCompleteTextView act_city;
+    private Button btn_loginAftReg;
 
     private String name;
-    // Initialize optional fields
     private int age = 0;
     private String gender= "Not Applicable";
     private String phoneNumber = "";
     private String location = "";
+    private ArrayList<String> cityArrayList;
+    private ArrayAdapter adapter;
+    private String countryCode = "AU";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_next);
-        context = RegisterNextActivity.this;
-        btn_loginAftReg = findViewById(R.id.btn_loginAftReg);
         et_userName = findViewById(R.id.et_userName);
         et_age = findViewById(R.id.et_age);
         btnG_gender = findViewById(R.id.btnG_gender);
-        ccp = (CountryCodePicker) findViewById(R.id.ccp);
+        ccp_code = (CountryCodePicker) findViewById(R.id.ccp_code);
         et_phoneNumber = (EditText) findViewById(R.id.et_phoneNumber);
-        ccp.registerCarrierNumberEditText(et_phoneNumber);
-        autocompleteFragment = (AutocompleteSupportFragment) getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-        autocompleteFragment.setTypeFilter(TypeFilter.CITIES);
+        ccp_country = (CountryCodePicker) findViewById(R.id.ccp_country);
+        act_city =(AutoCompleteTextView) findViewById(R.id.act_city);
+        btn_loginAftReg = findViewById(R.id.btn_loginAftReg);
 
-        // Input user name
-        et_userName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        ccp_code.registerCarrierNumberEditText(et_phoneNumber);
+        initArrayAdapter("AU");
+        act_city.setAdapter(adapter);
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                name = charSequence.toString().trim();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-
-        // Input age
         et_age.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                int ageInt;
-                try{
-                    ageInt = Integer.parseInt(charSequence.toString());
-                }
-                catch (NumberFormatException ex){
+                if (isAgeForm(charSequence.toString())){
+                    age = Integer.parseInt(charSequence.toString());
+                }else {
                     Toast.makeText(context,"Please enter the age in right form.", Toast.LENGTH_LONG).show();
-                    return;
                 }
-                if (ageInt<0 || ageInt>120){
-                    Toast.makeText(context,"Please enter the right age.", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                age = ageInt;
             }
 
             @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
+            public void afterTextChanged(Editable editable) {}
         });
 
-        // Input gender
         btnG_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -133,40 +99,74 @@ public class RegisterNextActivity extends AppCompatActivity {
             }
         });
 
-        // Input phone number
-        ccp.setPhoneNumberValidityChangeListener(new CountryCodePicker.PhoneNumberValidityChangeListener() {
+        ccp_code.setPhoneNumberValidityChangeListener(new CountryCodePicker.PhoneNumberValidityChangeListener() {
             @Override
             public void onValidityChanged(boolean isValidNumber) {
-                if (!isValidNumber){
-                    Toast.makeText(context,"Please enter valid phone number.", Toast.LENGTH_LONG).show();
-                }else {
-                    phoneNumber = ccp.getFullNumberWithPlus();
+                String phoneNumber_draft = et_phoneNumber.getText().toString();
+                if (!phoneNumber_draft.isEmpty()){
+                    if (!isValidNumber){
+                        Toast.makeText(context,"Please enter valid phone number.", Toast.LENGTH_LONG).show();
+                    }else {
+                        phoneNumber = ccp_code.getFullNumberWithPlus();
+                    }
                 }
             }
         });
 
-        // Input location
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+        ccp_country.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
-            public void onPlaceSelected(@NonNull Place place) {
-                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
-                location = place.getName();
-            }
-
-            @Override
-            public void onError(@NonNull Status status) {
-                Log.i(TAG, "An error occurred: " + status);
+            public void onCountrySelected() {
+                countryCode = ccp_country.getSelectedCountryNameCode();
+                updateArrayAdapter(countryCode);
+                act_city.getText().clear();
             }
         });
+
+        act_city.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                location = act_city.getText().toString();
+            }
+        });
+
 
         btn_loginAftReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Check mandatory field User Name
-                if (name.isEmpty()){
+
+                // Check User Name (mandatory field):
+                String name_draft = et_userName.getText().toString().trim();
+                if (name_draft.isEmpty()){
                     Toast.makeText(context,"Please enter user name.", Toast.LENGTH_LONG).show();
                     return;
+                }else {
+                    name = name_draft;
                 }
+
+                // Check Age (optional field):
+                if (age != 0){
+                    if (!isAgeForm(et_age.getText().toString())){
+                        Toast.makeText(context,"Please enter the age in right form.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+
+                // Check phone number (optional field):
+                if (!phoneNumber.isEmpty()){
+                    if (!ccp_code.isValidFullNumber()){
+                        Toast.makeText(context,"Please enter valid phone number.", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                }
+
+                // Check location (optional field):
+                if (!location.isEmpty()){
+                    // If the location is not selected from auto-filler, label it as "Other: XXX"
+                    if (!cityArrayList.contains(location)){
+                        location = "Other: "+location;
+                    }
+                }
+
                 createNewUser(name,age,gender,phoneNumber,location);
                 FirebaseAuth fbAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = fbAuth.getCurrentUser();
@@ -181,7 +181,68 @@ public class RegisterNextActivity extends AppCompatActivity {
     }
 
     private void createNewUser(String name, int age, String gender, String phoneNumber, String location) {
-        Toast.makeText(context,"UserName:"+name+" Gender:"+gender+" Age:"+age, Toast.LENGTH_LONG).show();
+        Toast.makeText(context,"UserName:"+name+" Gender:"+gender+" Age:"+age+" Phone:"+phoneNumber+" Location:"+location, Toast.LENGTH_LONG).show();
     }
 
+    public String loadJSONFromAsset() {
+        String json = null;
+        try {
+            InputStream is = getAssets().open(FILE_NAME);
+            Log.d(TAG, "Open "+FILE_NAME+": SUCCESS");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            Log.d(TAG, "Open "+FILE_NAME+": FAIL");
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+    public ArrayList<String> getCityList(String countryCode){
+        ArrayList<String> cities = new ArrayList<String>();
+        try {
+            JSONObject obj = new JSONObject(loadJSONFromAsset());
+            JSONArray j_cities = obj.getJSONArray(countryCode);
+            Log.d(TAG, "Read "+FILE_NAME+": "+j_cities.length()+" cities from "+countryCode);
+            for (int i = 0; i < j_cities.length(); i++){
+                cities.add(j_cities.getString(i));
+            }
+            Log.d(TAG,"Generate city list of "+countryCode+": SUCCESS");
+        } catch (JSONException e) {
+            Log.d(TAG,"Generate city list of "+countryCode+": FAIL");
+            e.printStackTrace();
+        }
+        return cities;
+    }
+
+    public void initArrayAdapter(String countryCode){
+        cityArrayList = getCityList(countryCode);
+        adapter = new ArrayAdapter(context,android.R.layout.simple_dropdown_item_1line,cityArrayList);
+    }
+
+    public void updateArrayAdapter(String countryCode){
+        try {
+            cityArrayList = getCityList(countryCode);
+            adapter.clear();
+            adapter.addAll(cityArrayList);
+            adapter.notifyDataSetChanged();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public boolean isAgeForm(String ageInput){
+        int ageInt;
+        try{
+            ageInt = Integer.parseInt(ageInput);
+        }
+        catch (NumberFormatException ex){
+            return false;
+        }
+        return ageInt >= 0 && ageInt <= 120;
+    }
 }

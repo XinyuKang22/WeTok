@@ -12,84 +12,98 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="300dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="@string/userName"
-                android:textSize="16sp" />
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/et_userName"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:minHeight="48dp"
-                android:textSize="16sp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/userName"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/age"
-                android:layout_width="300dp"
+                <EditText
+                    android:id="@+id/et_userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:minHeight="48dp"
+                    android:textSize="16sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="@string/age"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/et_age"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ems="10"
-                android:inputType="numberSigned"
-                android:minHeight="48dp"
-                android:textSize="16sp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                <TextView
+                    android:id="@+id/age"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/age"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/gender"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                <EditText
+                    android:id="@+id/et_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="numberSigned"
+                    android:minHeight="48dp"
+                    android:textSize="16sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
-                android:text="@string/gender"
-                android:textSize="16sp" />
+                android:orientation="horizontal">
 
-            <RadioGroup
-                android:id="@+id/btnG_gender"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <RadioButton
-                    android:id="@+id/btn_genderFemale"
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/gender"
+                    android:layout_width="90dp"
                     android:layout_height="wrap_content"
-                    android:text="Female"
-                    android:textAlignment="viewStart" />
+                    android:layout_gravity="start"
+                    android:text="@string/gender"
+                    android:textSize="16sp" />
 
-                <RadioButton
-                    android:id="@+id/btn_genderMale"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Male" />
+                <RadioGroup
+                    android:id="@+id/btnG_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/btn_genderNotApp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Not applicable" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/btn_genderFemale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Female"
+                        android:textAlignment="viewStart" />
+
+                    <RadioButton
+                        android:id="@+id/btn_genderMale"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/btn_genderNotApp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Not applicable" />
+                </RadioGroup>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/phoneNumber"
@@ -100,51 +114,84 @@
                 android:text="@string/phoneNumber"
                 android:textSize="16sp" />
 
-            <com.hbb20.CountryCodePicker
-                android:id="@+id/ccp"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                app:ccp_countryPreference="AU,CN,IN,KR"
-                app:ccp_defaultNameCode="AU"
-                app:ccp_textSize="16sp"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/et_phoneNumber"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:inputType="phone"
-                android:minHeight="48dp"
-                android:singleLine="true"
-                android:textSize="16sp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp_code"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center_vertical"
+                    app:ccp_autoDetectCountry="false"
+                    app:ccp_autoFormatNumber="true"
+                    app:ccp_countryPreference="AU,CN,IN,KR"
+                    app:ccp_defaultNameCode="AU"
+                    app:ccp_showNameCode="false"
+                    app:ccp_textSize="14sp">
+
+                </com.hbb20.CountryCodePicker>
+
+                <EditText
+                    android:id="@+id/et_phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:inputType="phone"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:singleLine="true"
+                    android:textSize="16sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/location"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="@string/location"
                 android:textSize="16sp" />
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="300dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center">
+                android:orientation="horizontal">
 
-                <fragment
-                    android:id="@+id/autocomplete_fragment"
-                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp_country"
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    app:ccp_autoDetectCountry="false"
+                    app:ccp_countryPreference="AU,CN,IN,KR"
+                    app:ccp_defaultNameCode="AU"
+                    app:ccp_showFlag="false"
+                    app:ccp_showFullName="true"
+                    app:ccp_showNameCode="false"
+                    app:ccp_showPhoneCode="false"
+                    app:ccp_textGravity="LEFT"
+                    app:ccp_textSize="14dp" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/act_city"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:hint="@string/locationHint"
+                    android:minHeight="48dp"
+                    android:textSize="14sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_loginAftReg"
-                android:layout_width="300dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
