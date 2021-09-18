@@ -1,5 +1,8 @@
 package com.example.wetok.bean;
 
-public class User {
+import com.example.wetok.R;
 
+public class User {
+    public int photo = R.drawable.photo;
+    public String name;
 }
