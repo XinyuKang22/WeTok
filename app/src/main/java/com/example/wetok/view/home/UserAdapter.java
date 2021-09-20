@@ -46,6 +46,7 @@ public class UserAdapter extends ArrayAdapter<User> {
         view.setPadding(0,40,0,0);
         return view;
     }
+
     class ViewHolder{
         ImageView photo;
         TextView username;

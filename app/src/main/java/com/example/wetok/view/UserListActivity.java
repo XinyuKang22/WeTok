@@ -1,11 +1,15 @@
 package com.example.wetok.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,12 +25,6 @@ public class UserListActivity extends AppCompatActivity {
 
     private static final String TAG = "EmailPassword";
     private Context context;
-    private Button btn_login;
-    private Button btn_register;
-    private Button btn_guestLogin;
-    private EditText et_emailLogin;
-    private EditText et_passwordLogin;
-    private FirebaseAuth fbAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +51,16 @@ public class UserListActivity extends AppCompatActivity {
         }
 
         list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                User user = users.get(position);
+                Intent intent = new Intent(context, ProfileActivity.class);
+                intent.putExtra("user", user);
+                startActivity(intent);
+            }
+        });
+        setTitle(getIntent().getStringExtra("title"));
     }
 
     @Override

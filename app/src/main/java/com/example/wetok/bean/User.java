@@ -2,7 +2,9 @@ package com.example.wetok.bean;
 
 import com.example.wetok.R;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     public int photo = R.drawable.photo;
     public String name;
     public String id = "123456";
