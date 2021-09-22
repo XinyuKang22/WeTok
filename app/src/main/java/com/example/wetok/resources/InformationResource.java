@@ -1,10 +1,11 @@
 package com.example.wetok.resources;
 
+import android.util.JsonReader;
+
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -86,7 +87,7 @@ public class InformationResource {
         Gson gson = new Gson();
         try {
             reader = new JsonReader(new InputStreamReader(file));
-            List<User> users = gson.fromJson(reader, classType);
+            List<User> users = gson.fromJson(String.valueOf(reader), classType);
 
             for(User u: users){
                 followers.addAll(u.getFollowers());
