@@ -1,4 +1,4 @@
-package com.example.wetok.resouce;
+package com.example.wetok.resources;
 
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;

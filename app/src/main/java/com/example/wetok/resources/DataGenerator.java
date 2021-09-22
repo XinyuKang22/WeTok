@@ -1,4 +1,4 @@
-package com.example.wetok.resouce;
+package com.example.wetok.resources;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -152,7 +152,7 @@ public class DataGenerator {
         file.delete();//Ensure the file is unique
         ArrayList<User> userlist = new ArrayList<User>();
         Map<String,String> userInfo = generateUserInfo(1100);
-        List<String> statu = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/Statu.txt");
+        List<String> statu = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/Post.txt");
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         //add a object to Json
         int i = 0;
