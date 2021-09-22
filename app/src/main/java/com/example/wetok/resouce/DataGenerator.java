@@ -56,9 +56,9 @@ public class DataGenerator {
     public static Map<String,String> generateUserInfo(int size){
         Map<String,String> userinfo = new HashMap<>();
         try {
-            List<String> firstName =  readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/firstName.txt");
-            List<String> lastName = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/lastName.txt");
-            List<String> gender = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/gender.txt");
+            List<String> firstName =  readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/FirstName.txt");
+            List<String> lastName = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/LastName.txt");
+            List<String> gender = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/Gender.txt");
             userinfo = generateNameSex(firstName, lastName,gender,size);
             return userinfo;
         } catch (Exception e) {
