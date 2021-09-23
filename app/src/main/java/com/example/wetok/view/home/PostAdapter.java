@@ -37,7 +37,15 @@ public class PostAdapter extends ArrayAdapter<Post> {
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
             TextView likeButton = view.findViewById(R.id.list_post_like);
+            likeButton.setOnClickListener(e -> {
+                paddingPicture(likeButton, R.drawable.ic_like_gray);
+                likeButton.setText("122");
+            });
             TextView subButton = view.findViewById(R.id.list_post_btn_sub);
+            subButton.setOnClickListener(e -> {
+                paddingPicture(subButton, R.drawable.ic_subscribe_gray);
+                subButton.setText("22");
+            });
             paddingPicture(likeButton, R.drawable.ic_like);
             paddingPicture(subButton, R.drawable.ic_subscribe);
             viewHolder = new ViewHolder();
@@ -60,13 +68,16 @@ public class PostAdapter extends ArrayAdapter<Post> {
             viewHolder.username.setText(post.user.name);
             viewHolder.content.setText(post.content);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            TextView tv = new TextView(getContext());
-            tv.setPadding(28, 10, 28, 10);
-            tv.setText("Java");
-            tv.setMaxEms(10);
-            tv.setSingleLine();
-            tv.setLayoutParams(layoutParams);
-            viewHolder.tags.addView(tv, layoutParams);
+            for(int i=0; i<5; i++) {
+                TextView tv = new TextView(getContext(), null);
+                tv.setPadding(28, 0, 28, 5);
+                tv.setHeight(32);
+                tv.setText("Java Programming");
+                tv.setSingleLine();
+                tv.setBackgroundResource(R.drawable.round_corner);
+                tv.setLayoutParams(layoutParams);
+                viewHolder.tags.addView(tv, layoutParams);
+            }
             view.setPadding(0, 40, 0, 0);
         } else {
             view = convertView;
@@ -78,12 +89,13 @@ public class PostAdapter extends ArrayAdapter<Post> {
     class ViewHolder {
         TextView username;
         TextView content;
-        FlowLayout tags;
+        MyLinearLayout tags;
         ImageView photo;
     }
 
     private void paddingPicture(TextView tv, int pic) {
         Drawable drawable1 = getContext().getResources().getDrawable(pic);
+
         drawable1.setBounds(10, 0, 60, 60);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
         tv.setCompoundDrawables(drawable1, null, null, null);//只放左边
     }

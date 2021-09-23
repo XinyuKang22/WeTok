@@ -28,7 +28,6 @@ import java.util.Random;
 
 public class MyFragment extends Fragment {
 
-    private MyViewModel myViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
