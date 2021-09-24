@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,6 +46,26 @@ public class HomeFragment extends Fragment {
 
         PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
         lv.setAdapter(adapter);
+        lv.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int state) {
+                if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
+                        Post post = new Post();
+                        post.user = new User();
+                        post.user.name = "Jack";
+                        post.content = "Hello\nWorld";
+                        posts.add(post);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+
+            }
+        });
         return view;
     }
 
@@ -64,4 +85,6 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
     }
+
+
 }

@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.view.ProfileActivity;
+import com.example.wetok.view.SearchActivity;
 
 import java.util.List;
 
@@ -34,55 +35,64 @@ public class PostAdapter extends ArrayAdapter<Post> {
         Post post = getItem(position);
         View view;
         ViewHolder viewHolder;
-        if (convertView == null) {
-            view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
-            TextView likeButton = view.findViewById(R.id.list_post_like);
-            likeButton.setOnClickListener(e -> {
-                paddingPicture(likeButton, R.drawable.ic_like_gray);
-                likeButton.setText("122");
-            });
-            TextView subButton = view.findViewById(R.id.list_post_btn_sub);
-            subButton.setOnClickListener(e -> {
-                paddingPicture(subButton, R.drawable.ic_subscribe_gray);
-                subButton.setText("22");
-            });
-            paddingPicture(likeButton, R.drawable.ic_like);
-            paddingPicture(subButton, R.drawable.ic_subscribe);
-            viewHolder = new ViewHolder();
-            viewHolder.photo = view.findViewById(R.id.list_post_user_image);
-            viewHolder.username = view.findViewById(R.id.list_post_user_name);
-            viewHolder.content = view.findViewById(R.id.list_post_content);
-            viewHolder.content.setPadding(15, 15, 15, 15);
-            viewHolder.tags = view.findViewById(R.id.list_post_tags);
-            view.setTag(viewHolder);
-            viewHolder.username.setOnClickListener(e -> {
-                Intent intent = new Intent(getContext(), ProfileActivity.class);
-                intent.putExtra("user", post.user);
+        // if (convertView == null) {
+        view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+        TextView likeButton = view.findViewById(R.id.list_post_like);
+        likeButton.setOnClickListener(e -> {
+            paddingPicture(likeButton, R.drawable.ic_like_gray);
+            likeButton.setText("1" + position);
+        });
+        TextView subButton = view.findViewById(R.id.list_post_btn_sub);
+        subButton.setOnClickListener(e -> {
+            paddingPicture(subButton, R.drawable.ic_subscribe_gray);
+            subButton.setText("1" + position);
+        });
+        subButton.setText("" + position);
+        likeButton.setText("" + position);
+        paddingPicture(likeButton, R.drawable.ic_like);
+        paddingPicture(subButton, R.drawable.ic_subscribe);
+        viewHolder = new ViewHolder();
+        viewHolder.photo = view.findViewById(R.id.list_post_user_image);
+        viewHolder.username = view.findViewById(R.id.list_post_user_name);
+        viewHolder.content = view.findViewById(R.id.list_post_content);
+        viewHolder.content.setPadding(15, 15, 15, 15);
+        viewHolder.tags = view.findViewById(R.id.list_post_tags);
+        view.setTag(viewHolder);
+        viewHolder.username.setOnClickListener(e -> {
+            Intent intent = new Intent(getContext(), ProfileActivity.class);
+            intent.putExtra("user", post.user);
+            getContext().startActivity(intent);
+        });
+        viewHolder.photo.setOnClickListener(e -> {
+            Intent intent = new Intent(getContext(), ProfileActivity.class);
+            intent.putExtra("user", post.user);
+            getContext().startActivity(intent);
+        });
+        viewHolder.username.setText(post.user.name);
+        viewHolder.content.setText(post.content);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        for (int i = 0; i < 5; i++) {
+            TextView tv = new TextView(getContext(), null);
+            tv.setPadding(28, 0, 28, 5);
+            tv.setHeight(32);
+            tv.setText("Java Programming");
+            tv.setSingleLine();
+            tv.setBackgroundResource(R.drawable.round_corner);
+            tv.setLayoutParams(layoutParams);
+
+            tv.setOnClickListener(e -> {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtra("tag", tv.getText());
                 getContext().startActivity(intent);
             });
-            viewHolder.photo.setOnClickListener(e -> {
-                Intent intent = new Intent(getContext(), ProfileActivity.class);
-                intent.putExtra("user", post.user);
-                getContext().startActivity(intent);
-            });
-            viewHolder.username.setText(post.user.name);
-            viewHolder.content.setText(post.content);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            for(int i=0; i<5; i++) {
-                TextView tv = new TextView(getContext(), null);
-                tv.setPadding(28, 0, 28, 5);
-                tv.setHeight(32);
-                tv.setText("Java Programming");
-                tv.setSingleLine();
-                tv.setBackgroundResource(R.drawable.round_corner);
-                tv.setLayoutParams(layoutParams);
-                viewHolder.tags.addView(tv, layoutParams);
-            }
-            view.setPadding(0, 40, 0, 0);
-        } else {
-            view = convertView;
-            viewHolder = (ViewHolder) view.getTag();
+            viewHolder.tags.addView(tv, layoutParams);
         }
+        view.setPadding(0, 40, 0, 0);
+//    } else {
+//            view = convertView;
+//            viewHolder = (ViewHolder) view.getTag();
+//        }
+//
         return view;
     }
 
