@@ -40,8 +40,8 @@ public class UserAdapter extends ArrayAdapter<User> {
             view = convertView;
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.username.setText(user.name);
-        viewHolder.userid.setText(user.id);
+        viewHolder.username.setText(user.getName());
+        viewHolder.userid.setText(""+user.getId());
         viewHolder.photo.setImageResource(user.photo);
         view.setPadding(0,40,0,0);
         return view;

@@ -35,14 +35,14 @@ public class SearchActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.profile_post_list);
         ArrayList<Post> posts = new ArrayList<>();
         Post post = new Post();
-        post.user = new User();
-        post.user.name = "Jack";
-        post.content = "Hello\nWorld";
+        post.user = new User("Jack", 123);
+        post.setContent( "Hello\nWorld");
         posts.add(post);
         posts.add(post);
         posts.add(post);
         posts.add(post);
         posts.add(post);
+
 
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, posts);

@@ -34,13 +34,13 @@ public class UserListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_userlist);
         ListView list = findViewById(R.id.user_list);
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User("ABC", "dfdsf"));
-        users.add(new User("DDD", "123343"));
-        users.add(new User("FDFDFDF", "fdsfds"));
-        users.add(new User("DFDFDFDFDF", "123343"));
-        users.add(new User("RRRRRRRR", "fdsfds"));
-        users.add(new User("ABdDDFdfdC", "gfdgfdgfd"));
-        users.add(new User("AffdsfdBC", "123hffdgfd343"));
+        users.add(new User("ABC", 11111));
+        users.add(new User("DDD", 333333));
+        users.add(new User("FDFDFDF", 4444444));
+        users.add(new User("DFDFDFDFDF", 555555555));
+        users.add(new User("RRRRRRRR", 666666));
+        users.add(new User("ABdDDFdfdC", 777777));
+        users.add(new User("AffdsfdBC", 888888888));
 
         UserAdapter adapter = new UserAdapter(this, R.layout.user_list_view, users);
 

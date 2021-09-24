@@ -1,8 +1,12 @@
 package com.example.wetok.bean;
 
+import com.example.wetok.R;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
+    public int photo = R.drawable.photo;
     private int id;
     private String name;
     private String password;
@@ -16,6 +20,10 @@ public class User {
     private String phone;
     private String imgloc;
 
+    public User(String name, int id){
+        this.name = name;
+        this.id = id;
+    }
 
     public User(int id, String name, String password, String gender, int age, List<User> followers, List<User> subscribers, List<Post> posts,
                 String address, String emial, String phone, String imgloc) {

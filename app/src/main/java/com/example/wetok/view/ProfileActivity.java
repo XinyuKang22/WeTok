@@ -39,21 +39,21 @@ public class ProfileActivity extends AppCompatActivity {
         TextView username = findViewById(R.id.profile_username);
         TextView userid = findViewById(R.id.profile_userid);
         ImageView photo = findViewById(R.id.profile_photo);
-        username.setText(user.name);
-        userid.setText(user.id);
+        username.setText(user.getName());
+        userid.setText(""+user.getId());
         photo.setImageResource(user.photo);
 
         ListView lv = findViewById(R.id.profile_post_list);
         ArrayList<Post> posts = new ArrayList<>();
         Post post = new Post();
-        post.user = new User();
-        post.user.name = "Jack";
-        post.content = "Hello\nWorld";
+        post.user = new User("Jack", 123);
+        post.setContent( "Hello\nWorld");
         posts.add(post);
         posts.add(post);
         posts.add(post);
         posts.add(post);
         posts.add(post);
+
 
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, posts);
@@ -79,7 +79,7 @@ public class ProfileActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        setTitle(user.name);
+        setTitle(user.getName());
     }
 
     @Override

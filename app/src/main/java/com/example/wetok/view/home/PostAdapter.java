@@ -68,8 +68,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
             intent.putExtra("user", post.user);
             getContext().startActivity(intent);
         });
-        viewHolder.username.setText(post.user.name);
-        viewHolder.content.setText(post.content);
+        viewHolder.username.setText(post.user.getName());
+        viewHolder.content.setText(post.getContent());
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         for (int i = 0; i < 5; i++) {
             TextView tv = new TextView(getContext(), null);

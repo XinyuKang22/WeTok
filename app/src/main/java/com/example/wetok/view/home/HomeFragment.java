@@ -34,9 +34,8 @@ public class HomeFragment extends Fragment {
         ListView lv = view.findViewById(R.id.post_list);
         ArrayList<Post> posts = new ArrayList<>();
         Post post = new Post();
-        post.user = new User();
-        post.user.name = "Jack";
-        post.content = "Hello\nWorld";
+        post.user = new User("Jack", 123);
+        post.setContent( "Hello\nWorld");
         posts.add(post);
         posts.add(post);
         posts.add(post);
@@ -52,9 +51,8 @@ public class HomeFragment extends Fragment {
                 if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
                         Post post = new Post();
-                        post.user = new User();
-                        post.user.name = "Jack";
-                        post.content = "Hello\nWorld";
+                        post.user = new User("Jack", 123);
+                        post.setContent( "Hello\nWorld");
                         posts.add(post);
                         adapter.notifyDataSetChanged();
                     }

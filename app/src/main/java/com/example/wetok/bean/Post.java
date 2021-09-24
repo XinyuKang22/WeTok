@@ -10,6 +10,9 @@ public class Post {
     private int repost;
     private String content;
     String imgloc;
+    public User user;
+
+    public Post(){}
 
     public Post(int p_id, int u_id, String name, String u_img, String comments, int likes, int repost,
                 String content, String imgloc) {
