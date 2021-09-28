@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-
+import com.bumptech.glide.Glide;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
@@ -20,8 +20,10 @@ import java.util.List;
 
 public class UserAdapter extends ArrayAdapter<User> {
     private int resourceId;
+    private Context context;
     public UserAdapter(@NonNull Context context, int resource, @NonNull List<User> objects) {
         super(context, resource, objects);
+        this.context = context;
         resourceId=resource;
     }
     @Override
@@ -41,8 +43,15 @@ public class UserAdapter extends ArrayAdapter<User> {
             viewHolder = (ViewHolder) view.getTag();
         }
         viewHolder.username.setText(user.getName());
-        viewHolder.userid.setText(""+user.getId());
-        viewHolder.photo.setImageResource(user.photo);
+        viewHolder.userid.setText(user.getId());
+        //TODO 更新了头像展示方式
+        if(user.getImgloc().equals("default")){
+            viewHolder.photo.setImageResource(R.mipmap.ic_launcher);
+        }else{
+            Glide.with(context)
+                    .load(user.getImgloc())
+                    .into(viewHolder.photo);
+        }
         view.setPadding(0,40,0,0);
         return view;
     }

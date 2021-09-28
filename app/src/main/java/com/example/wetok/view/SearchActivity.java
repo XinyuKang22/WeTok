@@ -15,9 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.home.PostAdapter;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -33,15 +36,21 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         ListView lv = findViewById(R.id.profile_post_list);
-        ArrayList<Post> posts = new ArrayList<>();
-        Post post = new Post();
-        post.user = new User("Jack", 123);
-        post.setContent( "Hello\nWorld");
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
+        List<Post> posts;
+        List<Post> posts1 = null;
+        // TODO read data from Firebase
+        InformationResource info = new InformationResource();
+        InputStream input;
+        try{
+            input = getResources().getAssets().open("infoResource.json");
+            info.readFromJson(input);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        posts1.addAll(info.getPosts());
+        posts = posts1.subList(0,5);
+
+
 
 
 

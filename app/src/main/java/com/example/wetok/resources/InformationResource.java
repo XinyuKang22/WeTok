@@ -18,6 +18,8 @@ public class InformationResource {
     List<User> followers;
     List<User> subscribers;
 
+    public InformationResource(){};
+
     public InformationResource(List<User> users, List<Post> posts, List<User> followers, List<User> subscribers) {
         this.users = users;
         this.posts = posts;
@@ -106,9 +108,5 @@ public class InformationResource {
 
     }
 
-    //TODO data needs to be read from Json file
-    public static void main(String[] args) {
-
-    }
 
 }
