@@ -17,8 +17,8 @@ collaboration:
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external code)
 code:
-  - comment:
-    url:
+  - comment: Tokenizer and Parser part is based on lab07's file, but with our own explaination of token and method.
+    url: https://gitlab.cecs.anu.edu.au/u1064702/comp2100-6442-2021.s2/-/tree/master/Lab_07_Tok_Parser
     licence:
 
 

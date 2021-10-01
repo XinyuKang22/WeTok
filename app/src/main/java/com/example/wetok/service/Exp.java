@@ -1,0 +1,16 @@
+package com.example.wetok.service;
+
+/**
+ * Abstract class Exp to represent expressions
+ * @author dongwookim
+ * @author xuyangshen
+ *
+ * You are not required to implement any function inside this class.
+ * Please do not change anything inside this class as well.
+ */
+public abstract class Exp {
+
+	public abstract String show();
+	public abstract Boolean evaluate(); //TODO: 改变返回数据类型
+
+}
