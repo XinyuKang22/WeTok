@@ -19,10 +19,9 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.resources.InformationResource;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -84,8 +83,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add) {
             User user = (User) getIntent().getSerializableExtra("user");
+
+
             Intent intent = new Intent(this, SendPostActivity.class);
-            intent.putExtra("user", user);
+            intent.putExtra("user", CurrentUser.current_user);
 
             launcher.launch(new Intent(this, SendPostActivity.class));
 

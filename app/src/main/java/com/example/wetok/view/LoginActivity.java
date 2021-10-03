@@ -89,8 +89,7 @@ public class LoginActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //TODO: 如果邮箱密码验证正确, 找到User, set CurrentUser
-                            // start
+                            //TODO: 如果邮箱密码验证正确, 找到User, set CurrentUser(已完成待测试)
                             User u = UserDao.findUserByEmail(email); // 改成从数据库读取
                             if (u == null) {
                                 Toast.makeText(context, "User not in database.",
