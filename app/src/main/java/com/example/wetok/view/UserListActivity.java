@@ -26,7 +26,7 @@ import java.util.List;
 
 public class UserListActivity extends AppCompatActivity {
 
-    private static final String TAG = "EmailPassword";
+    //private static String TAG = null;
     private Context context;
 
     @Override
@@ -37,12 +37,12 @@ public class UserListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_userlist);
         ListView list = findViewById(R.id.user_list);
         List<User> users;
-        ArrayList<User> users1 = null;
-        //TODO read data from Firebase
+        ArrayList<User> users1 = new ArrayList<>();
+        //TODO 展示除了自己以外的好友
         InformationResource info = new InformationResource();
         InputStream input;
         try{
-            input = getResources().getAssets().open("infoResource.json");
+            input = getResources().getAssets().open("src/main/java/com/example/wetok/resources/infoResource.json");
             info.readFromJson(input);
         }catch (Exception e){
             System.out.println(e);

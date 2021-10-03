@@ -170,13 +170,14 @@ public class RegisterNextActivity extends AppCompatActivity {
                 createNewUser(name,age,gender,phoneNumber,location);
                 FirebaseAuth fbAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = fbAuth.getCurrentUser();
+
                 toMainPage(user);
             }
         });
     }
 
     private void toMainPage(FirebaseUser user) {
-        Intent intent = new Intent(context, MainPageActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         startActivity(intent);
     }
 

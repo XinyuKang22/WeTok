@@ -29,7 +29,7 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private static final String TAG = "EmailPassword";
+    //private static final String TAG = "EmailPassword";
     private Context context;
 
     @Override
@@ -46,20 +46,11 @@ public class ProfileActivity extends AppCompatActivity {
         userid.setText(user.getId());
 
         ListView lv = findViewById(R.id.profile_post_list);
-        List<Post> posts;
-        List<Post> posts1 = null;
-        // TODO read data from Firebase
-        InformationResource info = new InformationResource();
-        InputStream input;
-        try{
-            input = getResources().getAssets().open("infoResource.json");
-            info.readFromJson(input);
-        }catch (Exception e){
-            System.out.println(e);
+        //TODO 读取user的posts
+        List<Post> posts = user.getPosts();
+        for(Post p: posts){
+            p.user = user;
         }
-        posts1.addAll(info.getPosts());
-        posts = posts1.subList(0,5);
-
 
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, posts);

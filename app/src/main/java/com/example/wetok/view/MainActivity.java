@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import android.support.v4.app.*;
 
 public class MainActivity extends AppCompatActivity {
      ActivityResultLauncher<Intent> launcher;
@@ -34,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 int resultCode = result.getResultCode();
             }
         });
+
 
     }
 
@@ -82,10 +83,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add) {
+            User user = (User) getIntent().getSerializableExtra("user");
             Intent intent = new Intent(this, SendPostActivity.class);
             intent.putExtra("user", user);
 
-           launcher.launch(new Intent(this, SendPostActivity.class));
+            launcher.launch(new Intent(this, SendPostActivity.class));
 
             return true;
         }

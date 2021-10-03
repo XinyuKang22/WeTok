@@ -36,21 +36,20 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         ListView lv = findViewById(R.id.profile_post_list);
+        //TODO search for posts that have the tag on it Hint:post.getTag()
+        // this code need to be modified!
+        List<Post> li = new ArrayList<>();
         List<Post> posts;
-        List<Post> posts1 = null;
-        // TODO read data from Firebase
         InformationResource info = new InformationResource();
         InputStream input;
         try{
-            input = getResources().getAssets().open("infoResource.json");
+            input = getResources().getAssets().open("src/main/java/com/example/wetok/resources/infoResource.json");
             info.readFromJson(input);
         }catch (Exception e){
             System.out.println(e);
         }
-        posts1.addAll(info.getPosts());
-        posts = posts1.subList(0,5);
-
-
+        li.addAll(info.getPosts());
+        posts = li.subList(0,5);
 
 
 

@@ -38,11 +38,13 @@ public class MyFragment extends Fragment {
         ListView lv = view.findViewById(R.id.profile_post_list);
         List<Post> posts;
         List<Post> posts1 = null;
-        //TODO read data from Firebase
+
+        //TODO 展示自己的post(need to get the user instance)
+        // this code need to be modified!
         InformationResource info = new InformationResource();
         InputStream input;
         try{
-            input = getResources().getAssets().open("infoResource.json");
+            input = getResources().getAssets().open("src/main/java/com/example/wetok/resources/infoResource.json");
             info.readFromJson(input);
         }catch (Exception e){
             System.out.println(e);

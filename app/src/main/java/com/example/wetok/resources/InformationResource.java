@@ -1,24 +1,22 @@
 package com.example.wetok.resources;
 
-import android.util.JsonReader;
-
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonToken;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 
 public class InformationResource {
-    List<User> users;
-    List<Post> posts;
-    List<User> followers;
-    List<User> subscribers;
-
-    public InformationResource(){};
+    List<User> users = new ArrayList<>();
+    List<Post> posts = new ArrayList<>();
+    List<User> followers = new ArrayList<>();
+    List<User> subscribers = new ArrayList<>();
+    public InformationResource(){}
 
     public InformationResource(List<User> users, List<Post> posts, List<User> followers, List<User> subscribers) {
         this.users = users;
@@ -57,7 +55,7 @@ public class InformationResource {
     }
 
     public void setSubscribers(List<User> subscribers) {
-        this.subscribers = subscribers;
+        subscribers = subscribers;
     }
 
     public String userlistSize(){
@@ -81,32 +79,120 @@ public class InformationResource {
      * @param file
      */
     public void readFromJson(InputStream file){
-        JsonReader reader;
-        ArrayList<User> followers = new ArrayList<User>();
-        ArrayList<User> subscribers = new ArrayList<User>();
-        ArrayList<Post> posts = new ArrayList<Post>();
         final Type classType = new TypeToken<List<User>>(){}.getType();
         Gson gson = new Gson();
         try {
-            reader = new JsonReader(new InputStreamReader(file));
-            List<User> users = gson.fromJson(String.valueOf(reader), classType);
-
+            JsonReader  reader = new JsonReader(new InputStreamReader(file));
+            this.users.addAll(gson.fromJson(reader, classType));
             for(User u: users){
-                followers.addAll(u.getFollowers());
-                subscribers.addAll(u.getSubscribers());
-                posts.addAll(u.getPosts());
+                this.posts.addAll(u.getPosts());
+                this.subscribers.addAll(u.getSubscribers());
+                this.followers.addAll(u.getFollowers());
             }
-            this.users.addAll(users);
-            this.followers.addAll(followers);
-            this.subscribers.addAll(subscribers);
-            this.posts.addAll(posts);
 
-            System.out.println("successfully read from json file!");
-            }catch (Exception e){
-            System.out.println("cannot read from json file!");
+        }catch (Exception e){
+            System.out.println(e);
         }
 
     }
+/*
+    public List<User> readUserList(JsonReader reader) throws IOException {
+        List<User> users = new ArrayList<>();
+        reader.beginArray();
+        while (reader.hasNext()) {
+            users.add(readUser(reader));
+        }
+        reader.endArray();
+        return users;
+    }
 
+    public User readUser(JsonReader reader) throws IOException {
+        String id = null;
+        String name = null;
+        String gender = null;
+        String password = null;
+        int age = 0;
+        List<User> followers = null;
+        List<User> Subscribers = null;
+        List<Post> posts = null;
+        String address = null;
+        String email = null;
+        String phone = null;
+        String imgloc = null;
+
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String str = reader.nextName();
+            if (str.equals("id")) {
+                id = reader.nextString();
+            } else if (str.equals("name")) {
+                name = reader.nextString();
+            } else if (str.equals("password")) {
+                password = reader.nextString();
+            } else if (str.equals("gender")) {
+                gender = reader.nextString();
+            } else if (str.equals("age")){
+                age = reader.nextInt();
+            } else if (str.equals("posts") && reader.peek() != JsonToken.NULL){
+                posts = readPostList(reader);
+            } else if (str.equals("address")){
+                address = reader.nextString();
+            } else if (str.equals("email")){
+                email = reader.nextString();
+            } else if (str.equals("phone")){
+                phone = reader.nextString();
+            } else if (str.equals("imgloc")){
+                imgloc = reader.nextString();
+            }
+        }
+        reader.endObject();
+        return new User(id,name,gender,password,age,followers,
+                Subscribers,posts,address,email,phone,imgloc);
+    }
+
+    public List<Post> readPostList(JsonReader reader) throws IOException {
+        List<Post> posts = new ArrayList<>();
+
+        reader.beginArray();
+        while (reader.hasNext()) {
+            posts.add(readPost(reader));
+        }
+        reader.endArray();
+        return posts;
+    }
+
+    public Post readPost(JsonReader reader) throws IOException {
+        String u_id = null;
+        String author = null;
+        String u_img = null;
+        String tag = null;
+        String comments = null;
+        int likes = 0;
+        int repost = 0;
+        String content = null;
+        String imgloc = null;
+
+        reader.beginObject();
+        while (reader.hasNext()) {
+            String name = reader.nextName();
+            switch (name) {
+                case "u_id" -> u_id = reader.nextString();
+                case "author" -> author = reader.nextString();
+                case "u_img" -> u_img = reader.nextString();
+                case "tag" -> tag = reader.nextString();
+                case "comments" -> comments = reader.nextString();
+                case "likes" -> likes = reader.nextInt();
+                case "repost" -> repost = reader.nextInt();
+                case "content" -> content = reader.nextString();
+                case "imgloc" -> imgloc = reader.nextString();
+            }
+        }
+        reader.endObject();
+        return new Post(u_id,author,u_img,tag,
+                comments,likes,repost,content,imgloc);
+    }
+
+
+ */
 
 }
