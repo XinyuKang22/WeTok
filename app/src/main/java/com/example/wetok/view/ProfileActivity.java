@@ -18,15 +18,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.home.PostAdapter;
 import com.example.wetok.view.home.UserAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private static final String TAG = "EmailPassword";
+    //private static final String TAG = "EmailPassword";
     private Context context;
 
     @Override
@@ -40,20 +43,14 @@ public class ProfileActivity extends AppCompatActivity {
         TextView userid = findViewById(R.id.profile_userid);
         ImageView photo = findViewById(R.id.profile_photo);
         username.setText(user.getName());
-        userid.setText(""+user.getId());
-        photo.setImageResource(user.photo);
+        userid.setText(user.getId());
 
         ListView lv = findViewById(R.id.profile_post_list);
-        ArrayList<Post> posts = new ArrayList<>();
-        Post post = new Post();
-        post.user = new User("Jack", 123);
-        post.setContent( "Hello\nWorld");
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
-
+        //TODO 读取user的posts
+        List<Post> posts = user.getPosts();
+        for(Post p: posts){
+            p.user = user;
+        }
 
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, posts);

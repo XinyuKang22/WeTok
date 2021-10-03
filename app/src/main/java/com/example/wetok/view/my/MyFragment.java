@@ -18,11 +18,14 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.LoginActivity;
 import com.example.wetok.view.UserListActivity;
 import com.example.wetok.view.home.PostAdapter;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -33,15 +36,22 @@ public class MyFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_my, container, false);
         ListView lv = view.findViewById(R.id.profile_post_list);
-        ArrayList<Post> posts = new ArrayList<>();
-        Post post = new Post();
-        post.user = new User("Jack", 123);
-        post.setContent( "Hello\nWorld");
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
-        posts.add(post);
+        List<Post> posts;
+        List<Post> posts1 = null;
+
+        //TODO 展示自己的post(need to get the user instance)
+        // this code need to be modified!
+        InformationResource info = new InformationResource();
+        InputStream input;
+        try{
+            input = getResources().getAssets().open("src/main/java/com/example/wetok/resources/infoResource.json");
+            info.readFromJson(input);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        posts1.addAll(info.getPosts());
+        posts = posts1.subList(0,5);
+
 
 
 

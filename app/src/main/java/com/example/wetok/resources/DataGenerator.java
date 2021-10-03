@@ -16,6 +16,14 @@ public class DataGenerator {
     public DataGenerator() throws Exception {
     }
 
+    public void create() {
+        try {
+            createJsonFile();
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
     public static List<String> readFromFile(String path) throws Exception {
         FileReader fileReader =new FileReader(path);
         BufferedReader bufferedReader =new BufferedReader(fileReader);
@@ -56,9 +64,9 @@ public class DataGenerator {
     public static Map<String,String> generateUserInfo(int size){
         Map<String,String> userinfo = new HashMap<>();
         try {
-            List<String> firstName =  readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/FirstName.txt");
-            List<String> lastName = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/LastName.txt");
-            List<String> gender = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/Gender.txt");
+            List<String> firstName =  readFromFile("src/FirstName.txt");
+            List<String> lastName = readFromFile("src/LastName.txt");
+            List<String> gender = readFromFile("src/Gender.txt");
             userinfo = generateNameSex(firstName, lastName,gender,size);
             return userinfo;
         } catch (Exception e) {
@@ -88,11 +96,9 @@ public class DataGenerator {
 
 
     // generate posts
-    public static List<Post> generatePosts(int uid,String name,String u_img,List<String> statu){
+    public static List<Post> generatePosts(String id,String name,String u_img,List<String> statu){
         List<Post> pos = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
-                //pid
-                int pid = i;
                 //Comments
                 String comment = "";
                 //likes
@@ -101,10 +107,13 @@ public class DataGenerator {
                 int repost = 0;
                 //content
                 int index = (int)(Math.random()*statu.size());
-                String content = statu.get(index);
+                String str = statu.get(index);
+                String[] split = str.split("#");
+                String content = split[0];
+                String tag = "#"+split[1];
                 //img
                 String imgPath = "";
-                Post currentpost = new Post(pid,uid, name, u_img, comment,like,repost,content,imgPath);
+                Post currentpost = new Post(id, name, u_img, tag, comment,like,repost,content,imgPath);
                 pos.add(currentpost);
             }
         return pos;
@@ -136,11 +145,11 @@ public class DataGenerator {
 
     public static String generatePhone(){
         String first = "4";
-        int count = 1;
+        int count = 0;
         StringBuilder sb = new StringBuilder();
         sb.append(first);
-        while(count<9){
-            int i = (int)(Math.random()*10)+1;
+        while(count<8){
+            int i = (int)(Math.random()*9)+1;
             sb.append(i);
             count++;
         }
@@ -148,17 +157,17 @@ public class DataGenerator {
     }
 
     public static void createJsonFile() throws Exception {
-        File file = new File("src/main/java/com/example/wetok/Resouce/infoResource.json");
+        File file = new File("src/infoResource.json");
         file.delete();//Ensure the file is unique
-        ArrayList<User> userlist = new ArrayList<User>();
+        ArrayList<User> userlist = new ArrayList<>();
         Map<String,String> userInfo = generateUserInfo(1100);
-        List<String> statu = readFromFile("src/main/java/com/example/wetok/Resouce/SourceFile/Post.txt");
+        List<String> statu = readFromFile("src/Post.txt");
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         //add a object to Json
         int i = 0;
         for(Map.Entry<String,String> entry : userInfo.entrySet()){
             //ID
-            int id = i++;
+            String id = String.valueOf(i++);
             //name
             String name = entry.getKey();
             //sex
@@ -178,7 +187,7 @@ public class DataGenerator {
             //phone
             String phone = generatePhone();
             //image
-            String imgPath = "image"+Integer.toString(i+1)+".jpg";
+            String imgPath = "default";
             //Posts
             List<Post> posts = generatePosts(id,name,imgPath,statu);
             //write into a User object
@@ -192,7 +201,5 @@ public class DataGenerator {
             System.out.println("cannot write json file!");
         }
     }
-
-
 
 }

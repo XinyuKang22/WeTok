@@ -1,13 +1,12 @@
 package com.example.wetok.bean;
 
-import com.example.wetok.R;
-
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class User implements Serializable {
-    public int photo = R.drawable.photo;
-    private int id;
+    private String id;
     private String name;
     private String password;
     private String gender;
@@ -16,17 +15,14 @@ public class User implements Serializable {
     private List<User> Subscribers;
     private List<Post> posts;
     private String address;
-    private String emial;
+    private String email;
     private String phone;
     private String imgloc;
 
-    public User(String name, int id){
-        this.name = name;
-        this.id = id;
-    }
+    public User(){}
 
-    public User(int id, String name, String password, String gender, int age, List<User> followers, List<User> subscribers, List<Post> posts,
-                String address, String emial, String phone, String imgloc) {
+    public User(String id, String name, String password, String gender, int age, List<User> followers, List<User> subscribers, List<Post> posts,
+                String address, String email, String phone, String imgloc) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -36,12 +32,14 @@ public class User implements Serializable {
         this.Subscribers = subscribers;
         this.posts = posts;
         this.address = address;
-        this.emial = emial;
+        this.email = email;
         this.phone = phone;
         this.imgloc = imgloc;
     }
 
-    public int getId() {
+    public void setId(String id){this.id = id;}
+
+    public String getId() {
         return id;
     }
 
@@ -105,12 +103,12 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public String getEmial() {
-        return emial;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmial(String emial) {
-        this.emial = emial;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhone() {
@@ -127,5 +125,23 @@ public class User implements Serializable {
 
     public void setImgloc(String imgloc) {
         this.imgloc = imgloc;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("name", name);
+        result.put("password", password);
+        result.put("gender", gender);
+        result.put("age", age);
+        result.put("followers", followers);
+        result.put("subscribers",Subscribers);
+        result.put("posts",posts);
+        result.put("address",address);
+        result.put("email",email);
+        result.put("phone",phone);
+        result.put("imgloc",imgloc);
+
+        return result;
     }
 }

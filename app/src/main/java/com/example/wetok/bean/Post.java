@@ -1,10 +1,14 @@
 package com.example.wetok.bean;
 
-public class Post {
-    private int p_id;
-    private int u_id;
-    private String name;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Post implements Serializable {
+    private String u_id;
+    private String author;
     private String u_img;
+    private String tag;
     private String comments;
     private int likes;
     private int repost;
@@ -14,12 +18,12 @@ public class Post {
 
     public Post(){}
 
-    public Post(int p_id, int u_id, String name, String u_img, String comments, int likes, int repost,
+    public Post(String u_id, String author, String u_img, String tag, String comments, int likes, int repost,
                 String content, String imgloc) {
-        this.p_id = p_id;
         this.u_id = u_id;
-        this.name = name;
+        this.author = author;
         this.u_img = u_img;
+        this.tag = tag;
         this.comments = comments;
         this.likes = likes;
         this.repost = repost;
@@ -27,12 +31,20 @@ public class Post {
         this.imgloc = imgloc;
     }
 
-    public String getName() {
-        return name;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public String getU_img() {
@@ -43,19 +55,11 @@ public class Post {
         this.u_img = u_img;
     }
 
-    public int getP_id() {
-        return p_id;
-    }
-
-    public void setP_id(int p_id) {
-        this.p_id = p_id;
-    }
-
-    public int getU_id() {
+    public String getU_id() {
         return u_id;
     }
 
-    public void setU_id(int u_id) {
+    public void setU_id(String u_id) {
         this.u_id = u_id;
     }
 
@@ -99,5 +103,19 @@ public class Post {
         this.imgloc = imgloc;
     }
 
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("uid", u_id);
+        result.put("author", author);
+        result.put("uimg", u_img);
+        result.put("tag", tag);
+        result.put("comments", comments);
+        result.put("likes", likes);
+        result.put("reposts", repost);
+        result.put("content", content);
+        result.put("imgloc",imgloc );
+
+        return result;
+    }
 
 }

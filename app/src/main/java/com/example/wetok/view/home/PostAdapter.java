@@ -1,5 +1,6 @@
 package com.example.wetok.view.home;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -30,6 +31,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         resourceId = resource;
     }
 
+    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
@@ -40,7 +42,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
         TextView likeButton = view.findViewById(R.id.list_post_like);
         likeButton.setOnClickListener(e -> {
             paddingPicture(likeButton, R.drawable.ic_like_gray);
-            likeButton.setText("1" + position);
+            post.setLikes(1);
+            likeButton.setText("1"+position);
         });
         TextView subButton = view.findViewById(R.id.list_post_btn_sub);
         subButton.setOnClickListener(e -> {
@@ -48,7 +51,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             subButton.setText("1" + position);
         });
         subButton.setText("" + position);
-        likeButton.setText("" + position);
+        likeButton.setText(String.valueOf(post.getLikes()) + position);
         paddingPicture(likeButton, R.drawable.ic_like);
         paddingPicture(subButton, R.drawable.ic_subscribe);
         viewHolder = new ViewHolder();
@@ -75,7 +78,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             TextView tv = new TextView(getContext(), null);
             tv.setPadding(28, 0, 28, 5);
             tv.setHeight(32);
-            tv.setText("Java Programming");
+            tv.setText(post.getTag());
             tv.setSingleLine();
             tv.setBackgroundResource(R.drawable.round_corner);
             tv.setLayoutParams(layoutParams);

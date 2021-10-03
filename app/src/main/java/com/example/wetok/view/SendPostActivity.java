@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SendPostActivity extends AppCompatActivity {
-
+    //TODO tag 需要修改
     private static final String TAG = "EmailPassword";
     private Context context;
 
