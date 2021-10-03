@@ -16,7 +16,28 @@ public class InformationResource {
     List<Post> posts = new ArrayList<>();
     List<User> followers = new ArrayList<>();
     List<User> subscribers = new ArrayList<>();
-    public InformationResource(){}
+
+    public InformationResource(){
+        InputStream file = null;
+        try {
+            file = new FileInputStream("src/main/java/com/example/wetok/resources/infoResource.json");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        final Type classType = new TypeToken<List<User>>(){}.getType();
+        Gson gson = new Gson();
+        try {
+            JsonReader  reader = new JsonReader(new InputStreamReader(file));
+            this.users.addAll(gson.fromJson(reader, classType));
+            for(User u: users){
+                this.posts.addAll(u.getPosts());
+                this.subscribers.addAll(u.getSubscribers());
+                this.followers.addAll(u.getFollowers());
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
     public InformationResource(List<User> users, List<Post> posts, List<User> followers, List<User> subscribers) {
         this.users = users;
@@ -26,9 +47,7 @@ public class InformationResource {
     }
 
 
-    public List<User> getUsers() {
-        return users;
-    }
+    public List<User> getUsers() {return users;}
 
     public void setUsers(List<User> users) {
         this.users = users;
@@ -93,7 +112,6 @@ public class InformationResource {
         }catch (Exception e){
             System.out.println(e);
         }
-
     }
 /*
     public List<User> readUserList(JsonReader reader) throws IOException {

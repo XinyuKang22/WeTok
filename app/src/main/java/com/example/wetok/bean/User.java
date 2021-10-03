@@ -21,6 +21,10 @@ public class User implements Serializable {
 
     public User(){}
 
+    public User(String name){
+        this.name = name;
+    }
+
     public User(String id, String name, String password, String gender, int age, List<User> followers, List<User> subscribers, List<Post> posts,
                 String address, String email, String phone, String imgloc) {
         this.id = id;

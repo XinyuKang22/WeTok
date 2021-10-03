@@ -13,21 +13,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.wetok.R;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.bean.User;
+import com.example.wetok.dao.UserDao;
 import com.example.wetok.resources.InformationResource;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.io.InputStream;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -95,6 +89,16 @@ public class LoginActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            //TODO: 如果邮箱密码验证正确, 找到User, set CurrentUser
+                            // start
+                            User u = UserDao.findUserByEmail(email); // 改成从数据库读取
+                            if (u == null) {
+                                Toast.makeText(context, "User not in database.",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                CurrentUser.login(u);
+                            }
+                            // end
                             FirebaseUser user = fbAuth.getCurrentUser();
                             Log.d(TAG, "signInWithEmail:success");
                             Toast.makeText(context, "Successfully logged in.",
