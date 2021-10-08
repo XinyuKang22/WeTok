@@ -9,6 +9,7 @@ public class UserDao {
     public static InformationResource info = new InformationResource();
     public static List<User> users = info.getUsers();
 
+
     //TODO: 新用户注册addUser方法
     public static void addUser(User u){
         users.add(u);
@@ -22,7 +23,6 @@ public class UserDao {
         }
         return null;
     }
-
 }
 
 

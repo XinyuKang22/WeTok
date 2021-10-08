@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Post implements Serializable {
-    private String u_id;
+    private String uid;
     private String author;
     private String u_img;
     private String tag;
@@ -18,9 +18,9 @@ public class Post implements Serializable {
 
     public Post(){}
 
-    public Post(String u_id, String author, String u_img, String tag, String comments, int likes, int repost,
+    public Post(String uid, String author, String u_img, String tag, String comments, int likes, int repost,
                 String content, String imgloc) {
-        this.u_id = u_id;
+        this.uid = uid;
         this.author = author;
         this.u_img = u_img;
         this.tag = tag;
@@ -55,12 +55,12 @@ public class Post implements Serializable {
         this.u_img = u_img;
     }
 
-    public String getU_id() {
-        return u_id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setU_id(String u_id) {
-        this.u_id = u_id;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getComments() {
@@ -105,7 +105,7 @@ public class Post implements Serializable {
 
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
-        result.put("uid", u_id);
+        result.put("uid", uid);
         result.put("author", author);
         result.put("uimg", u_img);
         result.put("tag", tag);

@@ -34,6 +34,10 @@ public class InformationResource {
                 this.subscribers.addAll(u.getSubscribers());
                 this.followers.addAll(u.getFollowers());
             }
+            //TODO: 在此手动添加真人用户
+            User yuxin = new User("joyhongyuxin@gmail.com","123456");
+            users.add(yuxin);
+            //end
         }catch (Exception e){
             System.out.println(e);
         }

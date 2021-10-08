@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.LoginActivity;
 import com.example.wetok.view.UserListActivity;
@@ -36,24 +37,7 @@ public class MyFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_my, container, false);
         ListView lv = view.findViewById(R.id.profile_post_list);
-        List<Post> posts;
-        List<Post> posts1 = null;
-
-        //TODO 展示自己的post(need to get the user instance)
-        // this code need to be modified!
-        InformationResource info = new InformationResource();
-        InputStream input;
-        try{
-            input = getResources().getAssets().open("src/main/java/com/example/wetok/resources/infoResource.json");
-            info.readFromJson(input);
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        posts1.addAll(info.getPosts());
-        posts = posts1.subList(0,5);
-
-
-
+        ArrayList<Post> posts = new ArrayList<>(CurrentUser.current_user.getPosts());
 
         PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
         lv.setAdapter(adapter);

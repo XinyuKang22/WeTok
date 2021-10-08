@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.wetok.R;
@@ -128,4 +130,25 @@ public class LoginActivity extends AppCompatActivity{
         super.onDestroy();
         fbAuth.signOut();
     }
+
+    //TODO: 是否需要在login的时候Set View
+    private void setView(User u) {
+        // profile page的信息
+        TextView name = findViewById(R.id.userlist_username);
+        name.setText(u.getName());
+
+        TextView id = findViewById(R.id.userlist_userid);
+        name.setText(u.getId());
+
+        //TODO: 如果不是default/null, 更新头像
+        ImageView photo = findViewById(R.id.userlist_photo);
+        if (u.getImgloc() == "default" || u.getImgloc() == "null") {
+            photo.setImageResource(R.drawable.photo);
+        }
+
+        //
+
+
+    }
+
 }
