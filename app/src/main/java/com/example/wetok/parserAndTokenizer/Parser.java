@@ -1,4 +1,4 @@
-package com.example.wetok.service;
+package com.example.wetok.parserAndTokenizer;
 
 /**
  * Grammar rule:

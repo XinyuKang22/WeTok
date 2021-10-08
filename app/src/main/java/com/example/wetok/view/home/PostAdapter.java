@@ -40,17 +40,21 @@ public class PostAdapter extends ArrayAdapter<Post> {
         // if (convertView == null) {
         view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
         TextView likeButton = view.findViewById(R.id.list_post_like);
+        // 点赞listener
         likeButton.setOnClickListener(e -> {
             paddingPicture(likeButton, R.drawable.ic_like_gray);
             post.setLikes(1);
-            likeButton.setText("1"+position);
+            likeButton.setText(1+position);
+            //TODO: 点赞后更新post属性
         });
+        // 订阅listener
         TextView subButton = view.findViewById(R.id.list_post_btn_sub);
         subButton.setOnClickListener(e -> {
             paddingPicture(subButton, R.drawable.ic_subscribe_gray);
-            subButton.setText("1" + position);
+            subButton.setText(1 + position);
+            //TODO: 订阅后更新post属性
         });
-        subButton.setText("" + position);
+        subButton.setText(position);
         likeButton.setText(String.valueOf(post.getLikes()) + position);
         paddingPicture(likeButton, R.drawable.ic_like);
         paddingPicture(subButton, R.drawable.ic_subscribe);

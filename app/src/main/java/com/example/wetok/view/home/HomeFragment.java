@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.dao.PostDao;
 import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.MainActivity;
 
@@ -33,29 +34,14 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_home, container, false);
-//        paddingPicture(view.findViewById(R.id.edt_search), R.drawable.ic_find);
-        //TODO Post 广场(这段代码需要更改)
-        // 从本地文件读取post然后将设置每个post的user
-        List<Post> posts = new ArrayList<>();
-        List<User> users;
-        List<User> users1 = new ArrayList<>();
         ListView lv = view.findViewById(R.id.post_list);
-        InformationResource info = new InformationResource();
-        InputStream input;
-        try{
-            input = getResources().getAssets().open("src/main/java/com/example/wetok/resources/infoResource.json");
-            info.readFromJson(input);
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        users1.addAll(info.getUsers());
-        users = users1.subList(0,5);
+
+        List<Post> post_list = new ArrayList<>(PostDao.posts);
+
+        //TODO:设置主页信息(广场)
 
 
-
-
-
-        PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
+        PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, post_list);
         lv.setAdapter(adapter);
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -67,7 +53,7 @@ public class HomeFragment extends Fragment {
                         post.user = new User();
                         post.user.setName("Jack");
                         post.setContent( "Hello\nWorld");
-                        posts.add(post);
+                        post_list.add(post);
                         adapter.notifyDataSetChanged();
                     }
                 }

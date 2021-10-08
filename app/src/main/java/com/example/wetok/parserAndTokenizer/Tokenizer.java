@@ -1,4 +1,4 @@
-package com.example.wetok.service;
+package com.example.wetok.parserAndTokenizer;
 
 public class Tokenizer {
     private String buffer;          // String to be transformed into tokens each time next() is called.

@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if (currentUser == null){
-                    Toast.makeText(context, "Please create an account first.",
+                    Toast.makeText(context, "Please finish creating an account first.",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
