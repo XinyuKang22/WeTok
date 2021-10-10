@@ -82,7 +82,6 @@ public class LoginActivity extends AppCompatActivity{
         btn_guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setView();
                 toMainPage(null);
             }
         });
@@ -122,7 +121,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     private void toMainPage(FirebaseUser user) {
-        setView();
+//        setView();
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra("user",user);
         startActivity(intent);
