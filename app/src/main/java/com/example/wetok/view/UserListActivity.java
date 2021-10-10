@@ -6,23 +6,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.User;
-import com.example.wetok.resources.InformationResource;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.view.home.UserAdapter;
-import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UserListActivity extends AppCompatActivity {
 
@@ -36,21 +30,8 @@ public class UserListActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_userlist);
         ListView list = findViewById(R.id.user_list);
-        List<User> users;
-        ArrayList<User> users1 = new ArrayList<>();
-        //TODO 展示除了自己以外的好友
-        InformationResource info = new InformationResource();
-        InputStream input;
-        try{
-            input = getResources().getAssets().open("src/main/java/com/example/wetok/resources/infoResource.json");
-            info.readFromJson(input);
-        }catch (Exception e){
-            System.out.println(e);
-        }
-        users1.addAll(info.getUsers());
-        users = users1.subList(0,5);
-
-
+        //TODO: 不知道是不是要展示订阅者的post
+        ArrayList<User> users = new ArrayList<>(CurrentUser.current_user.getSubscribers());
 
         UserAdapter adapter = new UserAdapter(this, R.layout.user_list_view, users);
 

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.home.PostAdapter;
 import com.example.wetok.view.home.UserAdapter;
@@ -36,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = ProfileActivity.this;
-        User user = (User) getIntent().getSerializableExtra("user");
+        User user = CurrentUser.current_user;
 
         setContentView(R.layout.activity_profile);
         TextView username = findViewById(R.id.profile_username);
@@ -46,12 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         userid.setText(user.getId());
 
         ListView lv = findViewById(R.id.profile_post_list);
-        //TODO 读取user的posts
         List<Post> posts = user.getPosts();
-        for(Post p: posts){
-            p.user = user;
-        }
-
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, posts);
         lv.setAdapter(adapter);

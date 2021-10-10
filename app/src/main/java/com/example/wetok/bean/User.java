@@ -25,6 +25,11 @@ public class User implements Serializable {
         this.name = name;
     }
 
+    public User(String email, String password){
+        this.email = email;
+        this.password = password;
+    }
+    
     public User(String id, String name, String password, String gender, int age, List<User> followers, List<User> subscribers, List<Post> posts,
                 String address, String email, String phone, String imgloc) {
         this.id = id;
@@ -65,6 +70,10 @@ public class User implements Serializable {
 
     public String getGender() {
         return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {

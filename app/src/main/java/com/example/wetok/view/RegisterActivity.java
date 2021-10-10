@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.wetok.dao.CurrentUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,6 +29,9 @@ public class RegisterActivity extends AppCompatActivity{
     private EditText et_passwordReg;
     private EditText et_rePassword;
     private FirebaseUser currentUser;
+    private String password;
+    private String email;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if (currentUser == null){
-                    Toast.makeText(context, "Please create an account first.",
+                    Toast.makeText(context, "Please finish creating an account first.",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -101,6 +106,8 @@ public class RegisterActivity extends AppCompatActivity{
     }
 
     private void createAccount(String email, String password) {
+        this.email = email;
+        this.password = password;
         FirebaseAuth fbAuth = FirebaseAuth.getInstance();
         fbAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -145,6 +152,10 @@ public class RegisterActivity extends AppCompatActivity{
     }
 
     private void toRegisterNextPage(FirebaseUser currentUser) {
+        //TODO: 把新注册的用户登记为currerntUser(已完成待检验)
+        //新建一个CurrentUser, set Email & Password
+        CurrentUser.register(email, password);
+        //end
         Intent intent = new Intent(context, RegisterNextActivity.class);
         startActivity(intent);
     }

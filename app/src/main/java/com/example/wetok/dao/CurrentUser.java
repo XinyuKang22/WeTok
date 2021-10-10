@@ -21,6 +21,15 @@ public class CurrentUser {
     }
 
     // 加更多
+    public static void register(String email, String password){
+        if (instance == null) {
+            instance = new CurrentUser();
+            current_user = new User();
+            current_user.setEmail(email);
+            current_user.setPassword(password);
+        }
+    }
+
     public static void login(User u){
         if (instance == null) {
             instance = new CurrentUser();

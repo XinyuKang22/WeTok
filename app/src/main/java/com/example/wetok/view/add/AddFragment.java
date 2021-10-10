@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.wetok.R;
 import com.example.wetok.view.home.HomeFragment;
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.Random;
 

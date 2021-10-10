@@ -17,6 +17,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.wetok.R;
+import com.example.wetok.dao.CurrentUser;
+import com.example.wetok.dao.UserDao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hbb20.CountryCodePicker;
@@ -168,9 +170,9 @@ public class RegisterNextActivity extends AppCompatActivity {
                 }
 
                 createNewUser(name,age,gender,phoneNumber,location);
+
                 FirebaseAuth fbAuth = FirebaseAuth.getInstance();
                 FirebaseUser user = fbAuth.getCurrentUser();
-
                 toMainPage(user);
             }
         });
@@ -182,7 +184,16 @@ public class RegisterNextActivity extends AppCompatActivity {
     }
 
     private void createNewUser(String name, int age, String gender, String phoneNumber, String location) {
-        Toast.makeText(context,"UserName: "+name+"\nGender: "+gender+"\nAge: "+age+"\nPhone: "+phoneNumber+"\nLocation: "+location, Toast.LENGTH_LONG).show();
+        //TODO: 把新用户放进userDao(已完成未检验)
+        //update currentUser by registerNextActivity info
+        CurrentUser.current_user.setName(name);
+        CurrentUser.current_user.setAge(age);
+        CurrentUser.current_user.setGender(gender);
+        CurrentUser.current_user.setPhone(phoneNumber);
+        CurrentUser.current_user.setAddress(location);
+        //update UserDao
+        UserDao.addUser(CurrentUser.current_user);
+        //end
     }
 
     public String loadJSONFromAsset() {
@@ -220,12 +231,12 @@ public class RegisterNextActivity extends AppCompatActivity {
         return cities;
     }
 
-    public void initArrayAdapter(String countryCode){
+    private void initArrayAdapter(String countryCode){
         cityArrayList = getCityList(countryCode);
         adapter = new ArrayAdapter(context,android.R.layout.simple_dropdown_item_1line,cityArrayList);
     }
 
-    public void updateArrayAdapter(String countryCode){
+    private void updateArrayAdapter(String countryCode){
         try {
             cityArrayList = getCityList(countryCode);
             adapter.clear();
@@ -236,7 +247,7 @@ public class RegisterNextActivity extends AppCompatActivity {
         }
     }
 
-    public boolean isAgeForm(String ageInput){
+    private boolean isAgeForm(String ageInput){
         int ageInt;
         try{
             ageInt = Integer.parseInt(ageInput);
