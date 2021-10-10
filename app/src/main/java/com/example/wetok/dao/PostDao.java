@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PostDao {
     public static InformationResource info = new InformationResource();
-    List<Post> posts = info.getPosts();
+    public static List<Post> posts = info.getPosts();
 
     public void addPost(Post p){
            posts.add(p);
