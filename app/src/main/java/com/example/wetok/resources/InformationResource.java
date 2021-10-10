@@ -25,6 +25,7 @@ public class InformationResource {
 
         final Type classType = new TypeToken<List<User>>(){}.getType();
         Gson gson = new Gson();
+        try {
             JsonReader  reader = new JsonReader(new InputStreamReader(file));
             this.users.addAll(gson.fromJson(reader, classType));
             for(User u: users){
@@ -32,13 +33,9 @@ public class InformationResource {
                 this.subscribers.addAll(u.getSubscribers());
                 this.followers.addAll(u.getFollowers());
             }
-            //TODO: 在此手动添加真人用户
-            User yuxin = users.get(0);
-//            yuxin.setEmail("joyhongyuxin@gmail.com");
-            yuxin.setEmail("u6684233@anu.edu.au");
-            yuxin.setPassword("123456");
-            users.set(0,yuxin);
-            //end
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public InformationResource(List<User> users, List<Post> posts, List<User> followers, List<User> subscribers) {
