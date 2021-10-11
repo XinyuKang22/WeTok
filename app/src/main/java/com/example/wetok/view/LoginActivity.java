@@ -30,6 +30,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -41,6 +51,10 @@ public class LoginActivity extends AppCompatActivity{
     private EditText et_emailLogin;
     private EditText et_passwordLogin;
     private FirebaseAuth fbAuth;
+    public InformationResource info = null;
+
+    public LoginActivity() throws IOException {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +68,12 @@ public class LoginActivity extends AppCompatActivity{
         et_emailLogin = findViewById(R.id.et_emailLogin);
         et_passwordLogin = findViewById(R.id.et_passwordLogin);
         fbAuth = FirebaseAuth.getInstance();
+        try {
+            info = getInformationResource();
+            System.out.println("info size: "+info.userlistSize());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +118,8 @@ public class LoginActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //TODO: 如果邮箱密码验证正确, 找到User, set CurrentUser(已完成待测试)
-                            User u = UserDao.findUserByEmail(email); // 改成从数据库读取
+                            User u = findUserByEmail(info,email);
+//                                    UserDao.findUserByEmail(email); // 改成从数据库读取
                             if (u == null) {
                                 Toast.makeText(context, "User not in database."+UserDao.users.size(),
                                         Toast.LENGTH_SHORT).show();
@@ -165,11 +186,43 @@ public class LoginActivity extends AppCompatActivity{
 
             //
         }
+    }
 
+    public InformationResource getInformationResource() throws IOException {
+        List<User> users = new ArrayList<>();
+        List<Post> posts = new ArrayList<>();
+        List<User> followers = new ArrayList<>();
+        List<User> subscribers = new ArrayList<>();
+        InputStream file;
 
+        System.out.println("trying to open infoResource.json");
+        file = getAssets().open("infoResource.json");
+        System.out.println("file size: "+file.toString());
+        final Type classType = new TypeToken<List<User>>(){}.getType();
+        Gson gson = new Gson();
+        try {
+            JsonReader reader = new JsonReader(new InputStreamReader(file));
+            users.addAll(gson.fromJson(reader, classType));
+            for(User u: users){
+                posts.addAll(u.getPosts());
+                subscribers.addAll(u.getSubscribers());
+                followers.addAll(u.getFollowers());
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return new InformationResource(users,posts,followers,subscribers);
+    }
 
-
-
+    public User findUserByEmail(InformationResource info,String email) {
+        List<User> users = info.getUsers();
+        System.out.println("info.getUsers().size = "+users.size());
+        for (User u: users) {
+            if (u.getEmail().equals(email)) {
+                return u;
+            }
+        }
+        return null;
     }
 
 }

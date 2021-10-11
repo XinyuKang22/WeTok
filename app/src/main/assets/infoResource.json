@@ -2,7 +2,7 @@
   {
     "id": "0",
     "name": "Lily Gonzales",
-    "password": "ixsws8",
+    "password": "123456",
     "gender": "female",
     "age": 45,
     "posts": [
@@ -41,7 +41,7 @@
       }
     ],
     "address": "Perth",
-    "email": "558486538@163.com",
+    "email": "bikinikang@gmail.com",
     "phone": "426893587",
     "imgloc": "default"
   },
