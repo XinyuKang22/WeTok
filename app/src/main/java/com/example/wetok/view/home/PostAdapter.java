@@ -35,6 +35,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
+        System.out.println(post.getAuthor());
         View view;
         ViewHolder viewHolder;
         // if (convertView == null) {
@@ -54,7 +55,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
             subButton.setText(1 + position);
             //TODO: 订阅后更新post属性
         });
-        subButton.setText(position);
+        subButton.setText(""+position);
         likeButton.setText(String.valueOf(post.getLikes()) + position);
         paddingPicture(likeButton, R.drawable.ic_like);
         paddingPicture(subButton, R.drawable.ic_subscribe);

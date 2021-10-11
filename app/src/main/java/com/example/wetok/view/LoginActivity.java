@@ -37,6 +37,7 @@ import com.google.gson.stream.JsonReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity{
         btn_guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toMainPage(null);
+                toMainPage();
             }
         });
         // upload data to Firebase
@@ -124,12 +125,14 @@ public class LoginActivity extends AppCompatActivity{
                                 Toast.makeText(context, "User not in database."+UserDao.users.size(),
                                         Toast.LENGTH_SHORT).show();
                             } else {
+                                CurrentUser.current_user = null;
                                 CurrentUser.login(u);
-                                FirebaseUser user = fbAuth.getCurrentUser();
+                                System.out.println("name:"+CurrentUser.current_user.getName());
+//                                FirebaseUser user = fbAuth.getCurrentUser();
                                 Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(context, "Successfully logged in.",
                                         Toast.LENGTH_SHORT).show();
-                                toMainPage(user);
+                                toMainPage();
                             }
 
                         } else {
@@ -141,10 +144,11 @@ public class LoginActivity extends AppCompatActivity{
                 });
     }
 
-    private void toMainPage(FirebaseUser user) {
+    private void toMainPage() {     //传递CurrentUser和info
 //        setView();
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("user",user);
+//        intent.putExtra("user",CurrentUser.current_user);
+//        intent.putExtra("info", info);
         startActivity(intent);
     }
 
@@ -165,7 +169,7 @@ public class LoginActivity extends AppCompatActivity{
         // main page的信息
         View mainPage = findViewById(R.id.nav_host_fragment_activity_main);
         ListView mainPost = findViewById(R.id.post_list);
-        mainPost.setAdapter(new PostAdapter(context, R.id.post_list, PostDao.posts));
+        mainPost.setAdapter(new PostAdapter(context, R.id.post_list, info.getPosts()));
 
         if (u != null) {
             // profile page的信息
@@ -186,6 +190,7 @@ public class LoginActivity extends AppCompatActivity{
 
             //
         }
+        System.out.println("setView success");
     }
 
     public InformationResource getInformationResource() throws IOException {

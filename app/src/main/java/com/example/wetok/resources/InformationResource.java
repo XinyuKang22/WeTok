@@ -12,7 +12,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 
-public class InformationResource {
+public class InformationResource implements Serializable{
     List<User> users = new ArrayList<>();
     List<Post> posts = new ArrayList<>();
     List<User> followers = new ArrayList<>();
