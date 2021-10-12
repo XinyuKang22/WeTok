@@ -119,10 +119,52 @@ public class LoginActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //TODO: 如果邮箱密码验证正确, 找到User, set CurrentUser(已完成待测试)
-                            User u = findUserByEmail(info,email);
+                            List<User> users = new ArrayList<>();
+                            List<Post> posts = new ArrayList<>();
+
+                            InformationResource informationResource = new InformationResource();
+                            InputStream input = null;
+                            try {
+                                input = getResources().getAssets().open("infoResource.json");
+                                informationResource.readFromJson(input);
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            users = informationResource.getUsers();
+                            posts = informationResource.getPosts();
+
+                            // TODO: 把数据可里前几个数据改成真实邮箱密码
+                            int i = 0;
+                            User human = users.get(i);
+                            human.setEmail("joyhongyuxin@gmail.com");
+                            human.setPassword("123456");
+                            i++;
+
+                            human = users.get(i);
+                            human.setEmail("u6684233@anu.edu.au");
+                            human.setPassword("123456");
+                            i++;
+
+                            human = users.get(i);
+                            human.setEmail("bikinikang@gmail.com");
+                            human.setPassword("123456");
+                            i++;
+
+                            human = users.get(i);
+                            human.setEmail("421686577@qq.com");
+                            human.setPassword("123456");
+                            i++;
+
+                            human = users.get(i);
+                            human.setEmail("1044159268@qq.com");
+                            human.setPassword("123456");
+
+
+                            User u = findUserByEmail(informationResource,email);
 //                                    UserDao.findUserByEmail(email); // 改成从数据库读取
                             if (u == null) {
-                                Toast.makeText(context, "User not in database."+UserDao.users.size(),
+                                Toast.makeText(context, "User not in database."+users.size(),
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 CurrentUser.current_user = null;
