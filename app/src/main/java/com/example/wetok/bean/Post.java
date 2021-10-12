@@ -11,7 +11,8 @@ public class Post implements Serializable {
     private String u_img;
     private String tag;
     private String comments;
-    private int likes;
+    private int likes = 0;
+    private int star = 0;
     private int repost;
 
     @Override
@@ -38,6 +39,13 @@ public class Post implements Serializable {
         this.imgloc = imgloc;
     }
 
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
+    }
 
     public String getEmail() {
         return email;
