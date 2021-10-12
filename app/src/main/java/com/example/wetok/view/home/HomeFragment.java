@@ -38,7 +38,6 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
     InformationResource info = null;
-    int i = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,15 +49,16 @@ public class HomeFragment extends Fragment {
 
         List<Post> posts = new ArrayList<>();
 //        info = getInformationResource();
-        info = readData();
+        info = getInformationResource();
         UserDao userDao = new UserDao(info.getUsers());
-        PostDao postDao = new PostDao(info.getPosts());
+        PostDao postDao = new PostDao(UserDao.getPosts());
 
-        posts.add(postDao.posts.get(i));
-        i++;
-        posts.add(postDao.posts.get(i));
-        i++;
-        posts.add(postDao.posts.get(i));
+        int num = (int)(Math.random()*3132);
+        posts.add(postDao.posts.get(num));
+        num = (int)(Math.random()*3132);
+        posts.add(postDao.posts.get(num));
+        num = (int)(Math.random()*3132);
+        posts.add(postDao.posts.get(num));
 
 
         ListView lv = view.findViewById(R.id.post_list);
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
             public void onScrollStateChanged(AbsListView absListView, int state) {
                 if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
-                        int num = (int)(Math.random()*10)+1;
+                        int num = (int)(Math.random()*3132);
                         Post post = PostDao.posts.get(num);
                         posts.add(post);
                         adapter.notifyDataSetChanged();
@@ -105,9 +105,9 @@ public class HomeFragment extends Fragment {
 
     public InformationResource getInformationResource(){
         List<User> users = new ArrayList<>();
-        List<Post> posts = new ArrayList<>();
-        List<User> followers = new ArrayList<>();
-        List<User> subscribers = new ArrayList<>();
+//        List<Post> posts = new ArrayList<>();
+//        List<User> followers = new ArrayList<>();
+//        List<User> subscribers = new ArrayList<>();
         InputStream file;
 
         System.out.println("trying to open infoResource.json");
@@ -124,34 +124,16 @@ public class HomeFragment extends Fragment {
         try {
             JsonReader reader = new JsonReader(new InputStreamReader(file));
             users.addAll(gson.fromJson(reader, classType));
-            for(User u: users){
-                posts.addAll(u.getPosts());
-//                subscribers.addAll(u.getSubscribers());
-//                followers.addAll(u.getFollowers());
-            }
+//            for(User u: users){
+//                posts.addAll(u.getPosts());
+////                subscribers.addAll(u.getSubscribers());
+////                followers.addAll(u.getFollowers());
+//            }
             System.out.println("turn to users done");
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("turn to users fail");
         }
-        return new InformationResource(users,posts,followers,subscribers);
-    }
-
-    public InformationResource readData() {
-        List<User> users = new ArrayList<>();
-        List<Post> posts = new ArrayList<>();
-
-        InformationResource informationResource = new InformationResource();
-        InputStream input = null;
-        try {
-            input = getResources().getAssets().open("infoResource.json");
-            informationResource.readFromJson(input);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        users = informationResource.getUsers();
-        posts = informationResource.getPosts();
 
         // 把数据可里前几个数据改成真实邮箱密码
         int i = 0;
@@ -179,7 +161,9 @@ public class HomeFragment extends Fragment {
         human.setEmail("1044159268@qq.com");
         human.setPassword("123456");
 
-        return informationResource;
+        return new InformationResource(users);
+//        return new InformationResource(users,posts,followers,subscribers);
     }
+
 
 }

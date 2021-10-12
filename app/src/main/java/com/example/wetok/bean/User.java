@@ -12,7 +12,7 @@ public class User implements Serializable {
     private String gender;
     private int age;
     private List<User> followers;
-    private List<User> Subscribers;
+    private List<User> subscribers;
     private List<Post> posts;
     private String address;
     private String email;
@@ -38,7 +38,7 @@ public class User implements Serializable {
         this.gender = gender;
         this.age = age;
         this.followers = followers;
-        this.Subscribers = subscribers;
+        this.subscribers = subscribers;
         this.posts = posts;
         this.address = address;
         this.email = email;
@@ -101,11 +101,11 @@ public class User implements Serializable {
     }
 
     public List<User> getSubscribers() {
-        return Subscribers;
+        return subscribers;
     }
 
     public void setSubscribers(User subscriber) {
-        this.Subscribers.add(subscriber);
+        this.subscribers.add(subscriber);
     }
 
     public String getAddress() {
@@ -148,7 +148,7 @@ public class User implements Serializable {
         result.put("gender", gender);
         result.put("age", age);
         result.put("followers", followers);
-        result.put("subscribers",Subscribers);
+        result.put("subscribers", subscribers);
         result.put("posts",posts);
         result.put("address",address);
         result.put("email",email);
@@ -176,7 +176,7 @@ public class User implements Serializable {
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
                 ", followers=" + followers +
-                ", Subscribers=" + Subscribers +
+                ", Subscribers=" + subscribers +
                 ", posts=" + toString(posts) +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +

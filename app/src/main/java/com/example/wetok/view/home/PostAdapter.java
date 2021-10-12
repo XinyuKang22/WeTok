@@ -44,19 +44,18 @@ public class PostAdapter extends ArrayAdapter<Post> {
         // 点赞listener
         likeButton.setOnClickListener(e -> {
             paddingPicture(likeButton, R.drawable.ic_like_gray);
-            post.setLikes(1);
-            likeButton.setText(1+position);
-            //TODO: 点赞后更新post属性
+            post.setLikes(post.getLikes() + 1);
+            likeButton.setText(post.getLikes());
         });
         // 订阅listener
         TextView subButton = view.findViewById(R.id.list_post_btn_sub);
         subButton.setOnClickListener(e -> {
             paddingPicture(subButton, R.drawable.ic_subscribe_gray);
-            subButton.setText(1 + position);
-            //TODO: 订阅后更新post属性
+            post.setStar(post.getStar()+1);
+            subButton.setText(post.getStar());
         });
-        subButton.setText(""+position);
-        likeButton.setText(String.valueOf(post.getLikes()) + position);
+        subButton.setText(""+post.getStar());
+        likeButton.setText(""+post.getLikes());
         paddingPicture(likeButton, R.drawable.ic_like);
         paddingPicture(subButton, R.drawable.ic_subscribe);
         viewHolder = new ViewHolder();
@@ -76,10 +75,11 @@ public class PostAdapter extends ArrayAdapter<Post> {
             intent.putExtra("user", post.user);
             getContext().startActivity(intent);
         });
-        viewHolder.username.setText(post.user.getName());
+        viewHolder.username.setText(post.getAuthor());
         viewHolder.content.setText(post.getContent());
+
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        for (int i = 0; i < 5; i++) {
+//        for (int i = 0; i < 5; i++) {
             TextView tv = new TextView(getContext(), null);
             tv.setPadding(28, 0, 28, 5);
             tv.setHeight(32);
@@ -94,7 +94,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
                 getContext().startActivity(intent);
             });
             viewHolder.tags.addView(tv, layoutParams);
-        }
+//        }
+
         view.setPadding(0, 40, 0, 0);
 //    } else {
 //            view = convertView;
