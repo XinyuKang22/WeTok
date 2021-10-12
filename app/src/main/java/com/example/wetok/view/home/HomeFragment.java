@@ -20,6 +20,7 @@ import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.PostDao;
+import com.example.wetok.dao.UserDao;
 import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.LoginActivity;
 import com.example.wetok.view.MainActivity;
@@ -37,6 +38,8 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
     InformationResource info = null;
+    int i = 0;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -46,12 +49,18 @@ public class HomeFragment extends Fragment {
         // 从本地文件读取post然后将设置每个post的user
 
         List<Post> posts = new ArrayList<>();
-        info = getInformationResource();
-        posts.add(info.getPosts().get(0));
-        
+//        info = getInformationResource();
+        info = readData();
+        UserDao userDao = new UserDao(info.getUsers());
+        PostDao postDao = new PostDao(info.getPosts());
+
+        posts.add(postDao.posts.get(i));
+        i++;
+        posts.add(postDao.posts.get(i));
+        i++;
+        posts.add(postDao.posts.get(i));
 
 
-        
         ListView lv = view.findViewById(R.id.post_list);
 
         PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
@@ -127,4 +136,50 @@ public class HomeFragment extends Fragment {
         }
         return new InformationResource(users,posts,followers,subscribers);
     }
+
+    public InformationResource readData() {
+        List<User> users = new ArrayList<>();
+        List<Post> posts = new ArrayList<>();
+
+        InformationResource informationResource = new InformationResource();
+        InputStream input = null;
+        try {
+            input = getResources().getAssets().open("infoResource.json");
+            informationResource.readFromJson(input);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        users = informationResource.getUsers();
+        posts = informationResource.getPosts();
+
+        // 把数据可里前几个数据改成真实邮箱密码
+        int i = 0;
+        User human = users.get(i);
+        human.setEmail("joyhongyuxin@gmail.com");
+        human.setPassword("123456");
+        i++;
+
+        human = users.get(i);
+        human.setEmail("u6684233@anu.edu.au");
+        human.setPassword("123456");
+        i++;
+
+        human = users.get(i);
+        human.setEmail("bikinikang@gmail.com");
+        human.setPassword("123456");
+        i++;
+
+        human = users.get(i);
+        human.setEmail("421686577@qq.com");
+        human.setPassword("123456");
+        i++;
+
+        human = users.get(i);
+        human.setEmail("1044159268@qq.com");
+        human.setPassword("123456");
+
+        return informationResource;
+    }
+
 }

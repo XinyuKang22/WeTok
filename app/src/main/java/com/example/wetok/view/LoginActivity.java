@@ -64,9 +64,16 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         context = LoginActivity.this;
 
-        InformationResource informationResource = readData();
+        InformationResource informationResource = null;
+        try {
+            informationResource = getInformationResource();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         UserDao userDao = new UserDao(informationResource.getUsers());
         PostDao postDao = new PostDao(informationResource.getPosts());
+        Toast.makeText(context, "Login page: size of postDao is " + postDao.posts.size(),
+                Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.activity_login);
         btn_login = findViewById(R.id.btn_login);

@@ -19,6 +19,10 @@ public class PostDao implements Serializable {
         posts = p;
     }
 
+    public static List<Post> getPosts() {
+        return posts;
+    }
+
     public void addPost(Post p){
            posts.add(p);
     }

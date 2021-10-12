@@ -18,6 +18,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -68,20 +68,26 @@ public class MainActivity extends AppCompatActivity {
         userDao = (UserDao) getIntent().getSerializableExtra("userDao");
         postDao = (PostDao) getIntent().getSerializableExtra("postDao");
 
-        // TODO: set view
-        // 如果是guest只设置main page, 其他两个都不让跳转, Toast显示需要登录
-
-
+        // check data size
         Toast.makeText(context, "Main pade: size of userDao is" + userDao.users.size(),
                 Toast.LENGTH_SHORT).show();
 
-        setContentView(R.layout.activity_main);
+        Toast.makeText(context, "Main pade: size of postDao is" + postDao.posts.size(),
+                Toast.LENGTH_SHORT).show();
+
+//        // TODO: set view
+//        // 如果是guest只设置main page, 其他两个都不让跳转, Toast显示需要登录
+//        View postView = findViewById(R.id.nav_host_fragment_activity_main);
+//        PostAdapter postAdapter = new PostAdapter(context, R.layout.post_list_view, PostDao.posts);
+//        ListView mainPost = postView.findViewById(R.id.post_list);
+//        mainPost.setAdapter(postAdapter);
+
 
 
 
 
 //        info = getInformationResource();
-        System.out.println("userlist size: "+userDao.users.size());
+//        System.out.println("userlist size: "+userDao.users.size());
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -92,11 +98,11 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        ListView mainPost = findViewById(R.id.post_list);
-        PostAdapter postAdapter = new PostAdapter(context, R.id.post_list, PostDao.posts);
-        System.out.println("postAdapter:"+postAdapter.getCount());
-        mainPost.setAdapter(postAdapter);
-        System.out.println("setView success");
+//        ListView mainPost = findViewById(R.id.post_list);
+//        PostAdapter postAdapter = new PostAdapter(context, R.id.post_list, PostDao.posts);
+//        System.out.println("postAdapter:"+postAdapter.getCount());
+//        mainPost.setAdapter(postAdapter);
+//        System.out.println("setView success");
 
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
