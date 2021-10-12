@@ -38,7 +38,6 @@ import java.util.Random;
 
 public class HomeFragment extends Fragment {
     InformationResource info = null;
-    int i = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -54,11 +53,12 @@ public class HomeFragment extends Fragment {
         UserDao userDao = new UserDao(info.getUsers());
         PostDao postDao = new PostDao(UserDao.getPosts());
 
-        posts.add(postDao.posts.get(i));
-        i++;
-        posts.add(postDao.posts.get(i));
-        i++;
-        posts.add(postDao.posts.get(i));
+        int num = (int)(Math.random()*3132);
+        posts.add(postDao.posts.get(num));
+        num = (int)(Math.random()*3132);
+        posts.add(postDao.posts.get(num));
+        num = (int)(Math.random()*3132);
+        posts.add(postDao.posts.get(num));
 
 
         ListView lv = view.findViewById(R.id.post_list);
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment {
             public void onScrollStateChanged(AbsListView absListView, int state) {
                 if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
-                        int num = (int)(Math.random()*10)+1;
+                        int num = (int)(Math.random()*3132);
                         Post post = PostDao.posts.get(num);
                         posts.add(post);
                         adapter.notifyDataSetChanged();
