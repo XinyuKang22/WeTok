@@ -54,9 +54,7 @@ public class LoginActivity extends AppCompatActivity{
     private EditText et_passwordLogin;
     private FirebaseAuth fbAuth;
     public InformationResource info = null;
-    public InformationResource informationResource = readData();
-    public UserDao userDAO = new UserDao(informationResource.getUsers());
-    public PostDao postDAO = new PostDao(informationResource.getPosts());
+
 
     public LoginActivity() throws IOException {
     }
@@ -65,6 +63,10 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = LoginActivity.this;
+
+        InformationResource informationResource = readData();
+        UserDao userDao = new UserDao(informationResource.getUsers());
+        PostDao postDao = new PostDao(informationResource.getPosts());
 
         setContentView(R.layout.activity_login);
         btn_login = findViewById(R.id.btn_login);
@@ -93,7 +95,7 @@ public class LoginActivity extends AppCompatActivity{
                     Toast.makeText(context, "Please enter password", Toast.LENGTH_LONG).show();
                     return;
                 }
-                signIn(email,password);
+                signIn(email,password, userDao, postDao);
             }
         });
 
@@ -107,14 +109,14 @@ public class LoginActivity extends AppCompatActivity{
         btn_guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toMainPage(null);
+                toMainPage(null, userDao, postDao);
             }
         });
         // upload data to Firebase
 
     }
 
-    private void signIn(String email, String password) {
+    private void signIn(String email, String password, UserDao userDao, PostDao postDao) {
         fbAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -126,14 +128,13 @@ public class LoginActivity extends AppCompatActivity{
                                 Toast.makeText(context, "User not in database.",
                                         Toast.LENGTH_SHORT).show();
                             } else {
-                                CurrentUser.current_user = null;
                                 CurrentUser.login(u);
                                 System.out.println("name:"+CurrentUser.current_user.getName());
 //                                FirebaseUser user = fbAuth.getCurrentUser();
                                 Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(context, "Successfully logged in.",
                                         Toast.LENGTH_SHORT).show();
-                                toMainPage(u);
+                                toMainPage(CurrentUser.current_user, userDao, postDao);
                             }
 
                         } else {
@@ -145,14 +146,18 @@ public class LoginActivity extends AppCompatActivity{
                 });
     }
 
-    private void toMainPage(User u) {     //传递CurrentUser和info
+    private void toMainPage(User u, UserDao userDao, PostDao postDao) {     //传递CurrentUser和info
 //        setView(u);
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("user",u);
-
-        intent.putExtra("userDao", userDAO);
-        intent.putExtra("postDao", postDAO);
-//        intent.putExtra("info", info);
+        if (u == null){
+            intent.putExtra("isGuest",true);
+        } else {
+            intent.putExtra("isGuest",false);
+            intent.putExtra("user",u);
+            intent.putExtra("userDao", userDao);
+            intent.putExtra("postDao", postDao);
+            //        intent.putExtra("info", info);
+        }
         startActivity(intent);
     }
 

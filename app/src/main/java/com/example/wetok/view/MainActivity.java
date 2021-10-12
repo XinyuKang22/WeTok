@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -25,6 +26,8 @@ import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
+import com.example.wetok.dao.PostDao;
+import com.example.wetok.dao.UserDao;
 import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.home.PostAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,28 +46,54 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcher;
     Context context = MainActivity.this;
-    InformationResource info = null;
+//    InformationResource info = null;
+    User currentUser = null;
+    UserDao userDao = null;
+    PostDao postDao = null;
+
+
+    // Mainpage element
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // 接收参数
+        Boolean isGuest = getIntent().getBooleanExtra("isGuest", true);
+        if (!isGuest) {
+            currentUser = (User) getIntent().getSerializableExtra("user");
+        }
+        userDao = (UserDao) getIntent().getSerializableExtra("userDao");
+        postDao = (PostDao) getIntent().getSerializableExtra("postDao");
+
+        // TODO: set view
+        // 如果是guest只设置main page, 其他两个都不让跳转, Toast显示需要登录
+
+
+        Toast.makeText(context, "Main pade: size of userDao is" + userDao.users.size(),
+                Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.activity_main);
 
-        info = getInformationResource();
-        System.out.println("info size: "+info.userlistSize());
+
+
+
+//        info = getInformationResource();
+        System.out.println("userlist size: "+userDao.users.size());
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_add, R.id.navigation_my)
                 .build();
+        BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
         NavigationUI.setupWithNavController(navView, navController);
 
         ListView mainPost = findViewById(R.id.post_list);
-        PostAdapter postAdapter = new PostAdapter(context, R.id.post_list, info.getPosts());
+        PostAdapter postAdapter = new PostAdapter(context, R.id.post_list, PostDao.posts);
         System.out.println("postAdapter:"+postAdapter.getCount());
         mainPost.setAdapter(postAdapter);
         System.out.println("setView success");
@@ -132,8 +161,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         System.out.println("running onOptionsItemSelected");
         if (item.getItemId() == R.id.action_add) {
-            User user = (User) getIntent().getSerializableExtra("user");
-
+//            User user = (User) getIntent().getSerializableExtra("user");
 
             Intent intent = new Intent(this, SendPostActivity.class);
             intent.putExtra("user", CurrentUser.current_user);
