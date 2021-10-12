@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity{
     private EditText et_passwordLogin;
     private FirebaseAuth fbAuth;
     public InformationResource info = null;
+    public InformationResource informationResource = readData();
 
     public LoginActivity() throws IOException {
     }
@@ -103,7 +104,7 @@ public class LoginActivity extends AppCompatActivity{
         btn_guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toMainPage();
+                toMainPage(null);
             }
         });
         // upload data to Firebase
@@ -119,52 +120,10 @@ public class LoginActivity extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //TODO: 如果邮箱密码验证正确, 找到User, set CurrentUser(已完成待测试)
-                            List<User> users = new ArrayList<>();
-                            List<Post> posts = new ArrayList<>();
-
-                            InformationResource informationResource = new InformationResource();
-                            InputStream input = null;
-                            try {
-                                input = getResources().getAssets().open("infoResource.json");
-                                informationResource.readFromJson(input);
-
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            users = informationResource.getUsers();
-                            posts = informationResource.getPosts();
-
-                            // TODO: 把数据可里前几个数据改成真实邮箱密码
-                            int i = 0;
-                            User human = users.get(i);
-                            human.setEmail("joyhongyuxin@gmail.com");
-                            human.setPassword("123456");
-                            i++;
-
-                            human = users.get(i);
-                            human.setEmail("u6684233@anu.edu.au");
-                            human.setPassword("123456");
-                            i++;
-
-                            human = users.get(i);
-                            human.setEmail("bikinikang@gmail.com");
-                            human.setPassword("123456");
-                            i++;
-
-                            human = users.get(i);
-                            human.setEmail("421686577@qq.com");
-                            human.setPassword("123456");
-                            i++;
-
-                            human = users.get(i);
-                            human.setEmail("1044159268@qq.com");
-                            human.setPassword("123456");
-
-
                             User u = findUserByEmail(informationResource,email);
 //                                    UserDao.findUserByEmail(email); // 改成从数据库读取
                             if (u == null) {
-                                Toast.makeText(context, "User not in database."+users.size(),
+                                Toast.makeText(context, "User not in database.",
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 CurrentUser.current_user = null;
@@ -174,7 +133,7 @@ public class LoginActivity extends AppCompatActivity{
                                 Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(context, "Successfully logged in.",
                                         Toast.LENGTH_SHORT).show();
-                                toMainPage();
+                                toMainPage(u);
                             }
 
                         } else {
@@ -186,10 +145,10 @@ public class LoginActivity extends AppCompatActivity{
                 });
     }
 
-    private void toMainPage() {     //传递CurrentUser和info
-//        setView();
+    private void toMainPage(User u) {     //传递CurrentUser和info
+        setView(u);
         Intent intent = new Intent(context, MainActivity.class);
-//        intent.putExtra("user",CurrentUser.current_user);
+        intent.putExtra("user",u);
 //        intent.putExtra("info", info);
         startActivity(intent);
     }
@@ -206,8 +165,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     //TODO: 是否需要在login的时候Set View (待修改..?)
-    private void setView() {
-        User u = CurrentUser.current_user;
+    private void setView(User u) {
         // main page的信息
         View mainPage = findViewById(R.id.nav_host_fragment_activity_main);
         ListView mainPost = findViewById(R.id.post_list);
@@ -270,6 +228,51 @@ public class LoginActivity extends AppCompatActivity{
             }
         }
         return null;
+    }
+
+    public InformationResource readData() {
+        List<User> users = new ArrayList<>();
+        List<Post> posts = new ArrayList<>();
+
+        InformationResource informationResource = new InformationResource();
+        InputStream input = null;
+        try {
+            input = getResources().getAssets().open("infoResource.json");
+            informationResource.readFromJson(input);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        users = informationResource.getUsers();
+        posts = informationResource.getPosts();
+
+        // TODO: 把数据可里前几个数据改成真实邮箱密码
+        int i = 0;
+        User human = users.get(i);
+        human.setEmail("joyhongyuxin@gmail.com");
+        human.setPassword("123456");
+        i++;
+
+        human = users.get(i);
+        human.setEmail("u6684233@anu.edu.au");
+        human.setPassword("123456");
+        i++;
+
+        human = users.get(i);
+        human.setEmail("bikinikang@gmail.com");
+        human.setPassword("123456");
+        i++;
+
+        human = users.get(i);
+        human.setEmail("421686577@qq.com");
+        human.setPassword("123456");
+        i++;
+
+        human = users.get(i);
+        human.setEmail("1044159268@qq.com");
+        human.setPassword("123456");
+
+        return informationResource;
     }
 
 }
