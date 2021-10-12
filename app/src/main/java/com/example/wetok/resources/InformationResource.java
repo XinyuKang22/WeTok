@@ -13,29 +13,35 @@ import java.lang.reflect.Type;
 import java.util.*;
 
 public class InformationResource implements Serializable{
-    List<User> users = new ArrayList<>();
-    List<Post> posts = new ArrayList<>();
-    List<User> followers = new ArrayList<>();
-    List<User> subscribers = new ArrayList<>();
+    List<User> users = null;
+    List<Post> posts = null;
+    List<User> followers = null;
+    List<User> subscribers = null;
 
-    public InformationResource(){
-        InputStream file;
-        //TODO need to modified
-        file = InformationResource.class.getResourceAsStream("src/main/assets/infoResource.json");
+    public InformationResource() {}
+//    public InformationResource(){
+//        InputStream file;
+//        //TODO need to modified
+//        file = InformationResource.class.getResourceAsStream("src/main/assets/infoResource.json");
+//
+//        final Type classType = new TypeToken<List<User>>(){}.getType();
+//        Gson gson = new Gson();
+//        try {
+//            JsonReader  reader = new JsonReader(new InputStreamReader(file));
+//            this.users.addAll(gson.fromJson(reader, classType));
+//            for(User u: users){
+//                this.posts.addAll(u.getPosts());
+//                this.subscribers.addAll(u.getSubscribers());
+//                this.followers.addAll(u.getFollowers());
+//            }
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+//    }
 
-        final Type classType = new TypeToken<List<User>>(){}.getType();
-        Gson gson = new Gson();
-        try {
-            JsonReader  reader = new JsonReader(new InputStreamReader(file));
-            this.users.addAll(gson.fromJson(reader, classType));
-            for(User u: users){
-                this.posts.addAll(u.getPosts());
-                this.subscribers.addAll(u.getSubscribers());
-                this.followers.addAll(u.getFollowers());
-            }
-        }catch (Exception e){
-            System.out.println(e);
-        }
+    public InformationResource(List<User> users, List<Post> posts) {
+        this.users = users;
+        this.posts = posts;
     }
 
     public InformationResource(List<User> users, List<Post> posts, List<User> followers, List<User> subscribers) {
@@ -103,7 +109,19 @@ public class InformationResource implements Serializable{
             JsonReader  reader = new JsonReader(new InputStreamReader(file));
             this.users.addAll(gson.fromJson(reader, classType));
             for(User u: users){
-                this.posts.addAll(u.getPosts());
+                String author = u.getName();
+                String email = u.getEmail();
+                String id = u.getId();
+
+                List<Post> postList = u.getPosts();
+                this.posts.addAll(postList);
+
+                for (Post p : postList) {
+                    p.setAuthor(author);
+                    p.setUid(id);
+                    p.setEmail(email);
+                }
+
                 this.subscribers.addAll(u.getSubscribers());
                 this.followers.addAll(u.getFollowers());
             }

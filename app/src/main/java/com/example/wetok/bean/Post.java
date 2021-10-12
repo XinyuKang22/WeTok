@@ -7,6 +7,7 @@ import java.util.Map;
 public class Post implements Serializable {
     private String uid;
     private String author;
+    private String email;
     private String u_img;
     private String tag;
     private String comments;
@@ -29,6 +30,15 @@ public class Post implements Serializable {
         this.repost = repost;
         this.content = content;
         this.imgloc = imgloc;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAuthor() {

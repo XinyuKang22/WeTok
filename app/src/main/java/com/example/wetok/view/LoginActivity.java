@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity{
         }
         UserDao userDao = new UserDao(informationResource.getUsers());
         PostDao postDao = new PostDao(informationResource.getPosts());
-        Toast.makeText(context, "Login page: size of postDao is " + postDao.posts.size(),
+        Toast.makeText(context, "Login page: size of postDao is " + informationResource.getPosts().size(),
                 Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.activity_login);
@@ -233,6 +233,7 @@ public class LoginActivity extends AppCompatActivity{
         }
         return new InformationResource(users,posts,followers,subscribers);
     }
+//                for(Post p: u.getPosts())
 //
 //    public User findUserByEmail(InformationResource info,String email) {
 //        List<User> users = info.getUsers();
