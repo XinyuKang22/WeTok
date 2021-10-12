@@ -109,16 +109,7 @@ public class InformationResource implements Serializable{
             JsonReader  reader = new JsonReader(new InputStreamReader(file));
             this.users.addAll(gson.fromJson(reader, classType));
             for(User u: users){
-                String author = u.getName();
-                String email = u.getEmail();
-                String id = u.getId();
-
-                List<Post> postList = u.getPosts();
-                for (Post p : postList) {
-                    p.setAuthor(author);
-                    p.setUid(id);
-                    p.setEmail(email);
-                }
+                List<Post> postList = setPostInfo(u);
                 this.posts.addAll(postList);
 
                 this.subscribers.addAll(u.getSubscribers());
@@ -128,6 +119,19 @@ public class InformationResource implements Serializable{
         }catch (Exception e){
             System.out.println(e);
         }
+    }
+    public List<Post> setPostInfo(User u) {
+        String author = u.getName();
+        String email = u.getEmail();
+        String id = u.getId();
+
+        List<Post> postList = u.getPosts();
+        for (Post p : postList) {
+            p.setAuthor(author);
+            p.setUid(id);
+            p.setEmail(email);
+        }
+        return postList;
     }
 
 }

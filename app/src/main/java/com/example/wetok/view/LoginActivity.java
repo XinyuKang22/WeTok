@@ -72,8 +72,33 @@ public class LoginActivity extends AppCompatActivity{
         }
         UserDao userDao = new UserDao(informationResource.getUsers());
         PostDao postDao = new PostDao(informationResource.getPosts());
-        Toast.makeText(context, "Login page: size of postDao is " + informationResource.getPosts().size(),
+
+        Toast.makeText(context, "Login page: first user info is: " + userDao.users.get(1),
                 Toast.LENGTH_SHORT).show();
+//        List<Post> posts = null;
+//        for(User u: userDao.users){
+//            String author = u.getName();
+//            String email = u.getEmail();
+//            String id = u.getId();
+//
+//            List<Post> postList = u.getPosts();
+//            for (Post p : postList) {
+//                p.setAuthor(author);
+//                p.setUid(id);
+//                p.setEmail(email);
+//            }
+//            posts.addAll(postList);
+//
+//        }
+//        PostDao postDao = new PostDao(posts);
+
+
+//        Toast.makeText(context, "Login page: size of postDao is " + postDao.posts.size(),
+//                Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(context, "Login page: size of Follower is " + informationResource.getFollowers().size(),
+                Toast.LENGTH_SHORT).show();
+
 
         setContentView(R.layout.activity_login);
         btn_login = findViewById(R.id.btn_login);
@@ -224,43 +249,14 @@ public class LoginActivity extends AppCompatActivity{
             JsonReader reader = new JsonReader(new InputStreamReader(file));
             users.addAll(gson.fromJson(reader, classType));
             for(User u: users){
-                posts.addAll(u.getPosts());
+                List<Post> postList = setPostInfo(u);
+                posts.addAll(postList);
                 subscribers.addAll(u.getSubscribers());
                 followers.addAll(u.getFollowers());
             }
         }catch (Exception e){
             System.out.println(e);
         }
-        return new InformationResource(users,posts,followers,subscribers);
-    }
-//                for(Post p: u.getPosts())
-//
-//    public User findUserByEmail(InformationResource info,String email) {
-//        List<User> users = info.getUsers();
-//        System.out.println("info.getUsers().size = "+users.size());
-//        for (User u: users) {
-//            if (u.getEmail().equals(email)) {
-//                return u;
-//            }
-//        }
-//        return null;
-//    }
-
-    public InformationResource readData() {
-        List<User> users = new ArrayList<>();
-        List<Post> posts = new ArrayList<>();
-
-        InformationResource informationResource = new InformationResource();
-        InputStream input = null;
-        try {
-            input = getResources().getAssets().open("infoResource.json");
-            informationResource.readFromJson(input);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        users = informationResource.getUsers();
-        posts = informationResource.getPosts();
 
         // 把数据可里前几个数据改成真实邮箱密码
         int i = 0;
@@ -288,7 +284,21 @@ public class LoginActivity extends AppCompatActivity{
         human.setEmail("1044159268@qq.com");
         human.setPassword("123456");
 
-        return informationResource;
+
+        return new InformationResource(users,posts,followers,subscribers);
     }
 
+    public List<Post> setPostInfo(User u) {
+        String author = u.getName();
+        String email = u.getEmail();
+        String id = u.getId();
+
+        List<Post> postList = u.getPosts();
+        for (Post p : postList) {
+            p.setAuthor(author);
+            p.setUid(id);
+            p.setEmail(email);
+        }
+        return postList;
+    }
 }

@@ -157,4 +157,31 @@ public class User implements Serializable {
 
         return result;
     }
+
+    public String toString(List<Post> posts) {
+        String res = "size = " + posts.size() +"; content = {";
+        for (Post p : posts) {
+            res += p;
+            res += ", ";
+        }
+        return res+="}";
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", followers=" + followers +
+                ", Subscribers=" + Subscribers +
+                ", posts=" + toString(posts) +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", imgloc='" + imgloc + '\'' +
+                '}';
+    }
 }

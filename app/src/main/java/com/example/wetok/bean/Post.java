@@ -13,6 +13,12 @@ public class Post implements Serializable {
     private String comments;
     private int likes;
     private int repost;
+
+    @Override
+    public String toString() {
+        return content;
+    }
+
     private String content;
     String imgloc;
     public User user;
