@@ -19,6 +19,9 @@ public class InformationResource implements Serializable{
     List<User> subscribers = null;
 
     public InformationResource() {}
+    public InformationResource(List<User> users) {
+        this.users = users;
+    }
 //    public InformationResource(){
 //        InputStream file;
 //        //TODO need to modified

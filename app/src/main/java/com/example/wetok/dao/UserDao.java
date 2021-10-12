@@ -1,9 +1,11 @@
 package com.example.wetok.dao;
 
+import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.resources.InformationResource;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements Serializable {
@@ -26,6 +28,27 @@ public class UserDao implements Serializable {
             }
         }
         return null;
+    }
+
+    public static List<Post> getPosts() { //
+        List<Post> posts = new ArrayList<>();
+        for (User u : users) {
+            setPostInfo(u);
+            posts.addAll(u.getPosts());
+        }
+        return posts;
+    }
+
+    public static void setPostInfo(User u) {
+        String author = u.getName();
+        String email = u.getEmail();
+        String id = u.getId();
+        List<Post> postList = u.getPosts();
+        for (Post p : postList) {
+            p.setAuthor(author);
+            p.setUid(id);
+            p.setEmail(email);
+        }
     }
 
 }

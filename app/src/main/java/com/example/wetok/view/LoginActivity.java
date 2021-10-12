@@ -71,10 +71,12 @@ public class LoginActivity extends AppCompatActivity{
             e.printStackTrace();
         }
         UserDao userDao = new UserDao(informationResource.getUsers());
-        PostDao postDao = new PostDao(informationResource.getPosts());
+        PostDao postDao = new PostDao(UserDao.getPosts());
 
-        Toast.makeText(context, "Login page: first user info is: " + userDao.users.get(1),
+        Toast.makeText(context, "Login page: postDao size: " + postDao.posts.size(),
                 Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Login page: first user info is: " + userDao.users.get(1),
+//                Toast.LENGTH_SHORT).show();
 //        List<Post> posts = null;
 //        for(User u: userDao.users){
 //            String author = u.getName();
@@ -95,9 +97,6 @@ public class LoginActivity extends AppCompatActivity{
 
 //        Toast.makeText(context, "Login page: size of postDao is " + postDao.posts.size(),
 //                Toast.LENGTH_SHORT).show();
-
-        Toast.makeText(context, "Login page: size of Follower is " + informationResource.getFollowers().size(),
-                Toast.LENGTH_SHORT).show();
 
 
         setContentView(R.layout.activity_login);
@@ -235,9 +234,9 @@ public class LoginActivity extends AppCompatActivity{
 
     public InformationResource getInformationResource() throws IOException {
         List<User> users = new ArrayList<>();
-        List<Post> posts = new ArrayList<>();
-        List<User> followers = new ArrayList<>();
-        List<User> subscribers = new ArrayList<>();
+//        List<Post> posts = new ArrayList<>();
+//        List<User> followers = new ArrayList<>();
+//        List<User> subscribers = new ArrayList<>();
         InputStream file;
 
         System.out.println("trying to open infoResource.json");
@@ -248,12 +247,11 @@ public class LoginActivity extends AppCompatActivity{
         try {
             JsonReader reader = new JsonReader(new InputStreamReader(file));
             users.addAll(gson.fromJson(reader, classType));
-            for(User u: users){
-                List<Post> postList = setPostInfo(u);
-                posts.addAll(postList);
-                subscribers.addAll(u.getSubscribers());
-                followers.addAll(u.getFollowers());
-            }
+//            for(User u: users){
+//                posts.addAll(u.getPosts());
+//                subscribers.addAll(u.getSubscribers());
+//                followers.addAll(u.getFollowers());
+//            }
         }catch (Exception e){
             System.out.println(e);
         }
@@ -283,22 +281,9 @@ public class LoginActivity extends AppCompatActivity{
         human = users.get(i);
         human.setEmail("1044159268@qq.com");
         human.setPassword("123456");
+        return new InformationResource(users);
 
-
-        return new InformationResource(users,posts,followers,subscribers);
+//        return new InformationResource(users,posts,followers,subscribers);
     }
 
-    public List<Post> setPostInfo(User u) {
-        String author = u.getName();
-        String email = u.getEmail();
-        String id = u.getId();
-
-        List<Post> postList = u.getPosts();
-        for (Post p : postList) {
-            p.setAuthor(author);
-            p.setUid(id);
-            p.setEmail(email);
-        }
-        return postList;
-    }
 }
