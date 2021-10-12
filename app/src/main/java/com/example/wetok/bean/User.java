@@ -13,6 +13,7 @@ public class User implements Serializable {
     private int age;
     private List<User> followers;
     private List<User> subscribers;
+    private List<User> friends;
     private List<Post> posts;
     private String address;
     private String email;
@@ -44,6 +45,14 @@ public class User implements Serializable {
         this.email = email;
         this.phone = phone;
         this.imgloc = imgloc;
+    }
+
+    public List<User> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<User> friends) {
+        this.friends = friends;
     }
 
     public void setId(String id){this.id = id;}

@@ -30,6 +30,28 @@ public class UserDao implements Serializable {
         return null;
     }
 
+    public static User findUserById(String id){
+        for(User u: users){
+            if(u.getId().equals(id)){
+                return u;
+            }
+        }
+        return null;
+    }
+
+
+    public static void setFriends(User u){
+        int id = (int)(Math.random()*100);
+        List<User> friends = new ArrayList<>();
+        for(int i=0; i<5;i++){
+            while(u.getId().equals(String.valueOf(id)) ){
+                id = (int)(Math.random()*100);
+            }
+            friends.add(findUserById(String.valueOf(id)));
+        }
+        u.setFriends(friends);
+    }
+
     public static List<Post> getPosts() { //
         List<Post> posts = new ArrayList<>();
         for (User u : users) {
