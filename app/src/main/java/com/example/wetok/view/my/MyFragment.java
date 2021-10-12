@@ -39,6 +39,14 @@ public class MyFragment extends Fragment {
         ListView lv = view.findViewById(R.id.profile_post_list);
         ArrayList<Post> posts = new ArrayList<>(CurrentUser.current_user.getPosts());
 
+        // set username and id
+        TextView tv_name = view.findViewById(R.id.profile_username);
+        tv_name.setText(CurrentUser.current_user.getName());
+        TextView tv_id = view.findViewById(R.id.profile_userid);
+        tv_id.setText("User Id: " + CurrentUser.current_user.getId());
+
+        // TODO: 设置头像
+
         PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
         lv.setAdapter(adapter);
 
