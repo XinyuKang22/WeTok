@@ -8,6 +8,7 @@ public class Post implements Serializable {
     private String uid;
     private String author;
     private String email;
+    private String time;
     private String u_img;
     private String tag;
     private String comments;
@@ -25,11 +26,12 @@ public class Post implements Serializable {
 
     public Post(){}
 
-    public Post(String uid, String author, String u_img, String tag, String comments, int likes, int repost,
+    public Post(String uid, String author, String u_img, String time, String tag, String comments, int likes, int repost,
                 String content, String imgloc) {
         this.uid = uid;
         this.author = author;
         this.u_img = u_img;
+        this.time = time;
         this.tag = tag;
         this.comments = comments;
         this.likes = likes;
@@ -38,6 +40,13 @@ public class Post implements Serializable {
         this.imgloc = imgloc;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getEmail() {
         return email;
