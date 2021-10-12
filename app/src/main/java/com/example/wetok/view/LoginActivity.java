@@ -246,7 +246,7 @@ public class LoginActivity extends AppCompatActivity{
         users = informationResource.getUsers();
         posts = informationResource.getPosts();
 
-        // TODO: 把数据可里前几个数据改成真实邮箱密码
+        // 把数据可里前几个数据改成真实邮箱密码
         int i = 0;
         User human = users.get(i);
         human.setEmail("joyhongyuxin@gmail.com");
