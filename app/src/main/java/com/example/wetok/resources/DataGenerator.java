@@ -16,14 +16,6 @@ public class DataGenerator {
     public DataGenerator() throws Exception {
     }
 
-    public void create() {
-        try {
-            createJsonFile();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    }
-
     public static List<String> readFromFile(String path) throws Exception {
         FileReader fileReader =new FileReader(path);
         BufferedReader bufferedReader =new BufferedReader(fileReader);
@@ -102,21 +94,29 @@ public class DataGenerator {
                 //Comments
                 String comment = "";
                 //likes
-                int like = 0;
+                int like = (int)(Math.random()*10)+1;
                 //reposts
                 int repost = 0;
                 //content
                 int index = (int)(Math.random()*statu.size());
+                String time = timeGenerate();
                 String str = statu.get(index);
                 String[] split = str.split("#");
                 String content = split[0];
                 String tag = "#"+split[1];
                 //img
                 String imgPath = "";
-                Post currentpost = new Post(id, name, u_img, tag, comment,like,repost,content,imgPath);
+                Post currentpost = new Post(id, name, u_img, time, tag, comment,like,repost,content,imgPath);
                 pos.add(currentpost);
             }
         return pos;
+    }
+
+    public static String timeGenerate() {
+        int hour=(int)(Math.random()*23)+1;
+        int minute= (int)(Math.random()*6);
+
+        return Integer.toString(hour)+":"+Integer.toString(minute)+"0";
     }
 
     public static String generateAdress(){
@@ -201,5 +201,9 @@ public class DataGenerator {
             System.out.println("cannot write json file!");
         }
     }
+
+
+
+
 
 }
