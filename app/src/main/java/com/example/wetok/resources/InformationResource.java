@@ -114,13 +114,12 @@ public class InformationResource implements Serializable{
                 String id = u.getId();
 
                 List<Post> postList = u.getPosts();
-                this.posts.addAll(postList);
-
                 for (Post p : postList) {
                     p.setAuthor(author);
                     p.setUid(id);
                     p.setEmail(email);
                 }
+                this.posts.addAll(postList);
 
                 this.subscribers.addAll(u.getSubscribers());
                 this.followers.addAll(u.getFollowers());
