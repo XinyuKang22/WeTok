@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
                 if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
                         int num = (int)(Math.random()*10)+1;
-                        Post post = PostDao.info.getPosts().get(num);
+                        Post post = PostDao.posts.get(num);
                         posts.add(post);
                         adapter.notifyDataSetChanged();
                     }

@@ -4,15 +4,20 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.resources.InformationResource;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import java.util.HashMap;
 
 import java.util.List;
 
-public class PostDao {
-    public static InformationResource info = new InformationResource();
-    public static List<Post> posts = info.getPosts();
+public class PostDao implements Serializable {
+//    public static InformationResource info = new InformationResource();
+    public static List<Post> posts = null;
+
+    public PostDao(List<Post> p) {
+        posts = p;
+    }
 
     public void addPost(Post p){
            posts.add(p);
