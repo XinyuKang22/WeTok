@@ -64,40 +64,14 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         context = LoginActivity.this;
 
-        InformationResource informationResource = null;
         try {
-            informationResource = getInformationResource();
+            info = getInformationResource();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        UserDao userDao = new UserDao(informationResource.getUsers());
-        PostDao postDao = new PostDao(UserDao.getPosts());
 
-        Toast.makeText(context, "Login page: postDao size: " + postDao.posts.size(),
-                Toast.LENGTH_SHORT).show();
-//        Toast.makeText(context, "Login page: first user info is: " + userDao.users.get(1),
-//                Toast.LENGTH_SHORT).show();
-//        List<Post> posts = null;
-//        for(User u: userDao.users){
-//            String author = u.getName();
-//            String email = u.getEmail();
-//            String id = u.getId();
-//
-//            List<Post> postList = u.getPosts();
-//            for (Post p : postList) {
-//                p.setAuthor(author);
-//                p.setUid(id);
-//                p.setEmail(email);
-//            }
-//            posts.addAll(postList);
-//
-//        }
-//        PostDao postDao = new PostDao(posts);
-
-
-//        Toast.makeText(context, "Login page: size of postDao is " + postDao.posts.size(),
-//                Toast.LENGTH_SHORT).show();
-
+        UserDao.users = info.getUsers();
+        PostDao.posts = UserDao.getPosts();
 
         setContentView(R.layout.activity_login);
         btn_login = findViewById(R.id.btn_login);
@@ -106,12 +80,6 @@ public class LoginActivity extends AppCompatActivity{
         et_emailLogin = findViewById(R.id.et_emailLogin);
         et_passwordLogin = findViewById(R.id.et_passwordLogin);
         fbAuth = FirebaseAuth.getInstance();
-        try {
-            info = getInformationResource();
-            System.out.println("info size: "+info.userlistSize());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +94,7 @@ public class LoginActivity extends AppCompatActivity{
                     Toast.makeText(context, "Please enter password", Toast.LENGTH_LONG).show();
                     return;
                 }
-                signIn(email,password, userDao, postDao);
+                signIn(email,password);
             }
         });
 
@@ -140,14 +108,14 @@ public class LoginActivity extends AppCompatActivity{
         btn_guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toMainPage(null, userDao, postDao);
+                toMainPage(null);
             }
         });
         // upload data to Firebase
 
     }
 
-    private void signIn(String email, String password, UserDao userDao, PostDao postDao) {
+    private void signIn(String email, String password) {
         fbAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -165,7 +133,7 @@ public class LoginActivity extends AppCompatActivity{
                                 Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(context, "Successfully logged in.",
                                         Toast.LENGTH_SHORT).show();
-                                toMainPage(CurrentUser.current_user, userDao, postDao);
+                                toMainPage(u);
                             }
 
                         } else {
@@ -177,17 +145,13 @@ public class LoginActivity extends AppCompatActivity{
                 });
     }
 
-    private void toMainPage(User u, UserDao userDao, PostDao postDao) {     //传递CurrentUser和info
+    private void toMainPage(User u) {     //传递CurrentUser和info
 //        setView(u);
         Intent intent = new Intent(context, MainActivity.class);
         if (u == null){
             intent.putExtra("isGuest",true);
         } else {
             intent.putExtra("isGuest",false);
-            intent.putExtra("user",u);
-            intent.putExtra("userDao", userDao);
-            intent.putExtra("postDao", postDao);
-            //        intent.putExtra("info", info);
         }
         startActivity(intent);
     }
@@ -203,40 +167,8 @@ public class LoginActivity extends AppCompatActivity{
         fbAuth.signOut();
     }
 
-    //TODO: 是否需要在login的时候Set View (待修改..?)
-    private void setView(User u) {
-        // main page的信息
-        View mainPage = findViewById(R.id.nav_host_fragment_activity_main);
-        ListView mainPost = findViewById(R.id.post_list);
-        mainPost.setAdapter(new PostAdapter(context, R.id.post_list, info.getPosts()));
-
-        if (u != null) {
-            // profile page的信息
-            TextView name = findViewById(R.id.profile_username);
-            name.setText(u.getName());
-
-            TextView userid = findViewById(R.id.userlist_userid);
-            userid.setText(u.getId());
-
-            //TODO: 如果不是default/null, 更新头像
-            ImageView photo = findViewById(R.id.profile_photo);
-            if (u.getImgloc() == "default" || u.getImgloc() == "null") {
-                photo.setImageResource(R.drawable.photo);
-            }
-
-            ListView post_list = findViewById(R.id.profile_post_list);
-            post_list.setAdapter(new PostAdapter(context, R.id.post_list, PostDao.posts));
-
-            //
-        }
-        System.out.println("setView success");
-    }
-
     public InformationResource getInformationResource() throws IOException {
         List<User> users = new ArrayList<>();
-//        List<Post> posts = new ArrayList<>();
-//        List<User> followers = new ArrayList<>();
-//        List<User> subscribers = new ArrayList<>();
         InputStream file;
 
         System.out.println("trying to open infoResource.json");
@@ -247,11 +179,6 @@ public class LoginActivity extends AppCompatActivity{
         try {
             JsonReader reader = new JsonReader(new InputStreamReader(file));
             users.addAll(gson.fromJson(reader, classType));
-//            for(User u: users){
-//                posts.addAll(u.getPosts());
-//                subscribers.addAll(u.getSubscribers());
-//                followers.addAll(u.getFollowers());
-//            }
         }catch (Exception e){
             System.out.println(e);
         }
@@ -283,7 +210,6 @@ public class LoginActivity extends AppCompatActivity{
         human.setPassword("123456");
         return new InformationResource(users);
 
-//        return new InformationResource(users,posts,followers,subscribers);
     }
 
 }

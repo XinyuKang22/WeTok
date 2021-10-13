@@ -49,9 +49,6 @@ public class MainActivity extends AppCompatActivity {
     Context context = MainActivity.this;
 //    InformationResource info = null;
     User currentUser = null;
-    UserDao userDao = null;
-    PostDao postDao = null;
-
 
     // Mainpage element
 
@@ -65,14 +62,12 @@ public class MainActivity extends AppCompatActivity {
         if (!isGuest) {
             currentUser = (User) getIntent().getSerializableExtra("user");
         }
-        userDao = (UserDao) getIntent().getSerializableExtra("userDao");
-        postDao = (PostDao) getIntent().getSerializableExtra("postDao");
 
         // check data size
-        Toast.makeText(context, "Main pade: size of userDao is" + userDao.users.size(),
+        Toast.makeText(context, "Main pade: size of userDao is" + UserDao.users.size(),
                 Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(context, "Main pade: size of postDao is" + postDao.posts.size(),
+        Toast.makeText(context, "Main pade: size of postDao is" + PostDao.posts.size(),
                 Toast.LENGTH_SHORT).show();
 
 //        // TODO: set view

@@ -13,6 +13,7 @@ public class Post implements Serializable {
     private String tag;
     private String comments;
     private int likes;
+    private int star=0;
     private int repost;
 
     @Override
@@ -38,6 +39,14 @@ public class Post implements Serializable {
         this.repost = repost;
         this.content = content;
         this.imgloc = imgloc;
+    }
+
+    public int getStar() {
+        return star;
+    }
+
+    public void setStar(int star) {
+        this.star = star;
     }
 
     public String getTime() {

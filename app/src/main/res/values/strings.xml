@@ -24,7 +24,7 @@
     <string name="registerNextProm"> (Fields without * are optional) </string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_home">Home</string>
-    <string name="title_add">Friends</string>
+    <string name="title_add">Focus</string>
     <string name="title_my">Profile</string>
     <string name="search">Search</string>
     <string name="action_add">Post</string>
