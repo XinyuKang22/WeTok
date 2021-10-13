@@ -30,7 +30,6 @@ import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
 import com.example.wetok.dao.UserDao;
 import com.example.wetok.resources.InformationResource;
-import com.example.wetok.view.home.PostAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -70,34 +69,16 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(context, "Main pade: size of postDao is" + PostDao.posts.size(),
                 Toast.LENGTH_SHORT).show();
 
-//        // TODO: set view
-//        // 如果是guest只设置main page, 其他两个都不让跳转, Toast显示需要登录
-//        View postView = findViewById(R.id.nav_host_fragment_activity_main);
-//        PostAdapter postAdapter = new PostAdapter(context, R.layout.post_list_view, PostDao.posts);
-//        ListView mainPost = postView.findViewById(R.id.post_list);
-//        mainPost.setAdapter(postAdapter);
-
-
-
-
-
-//        info = getInformationResource();
-//        System.out.println("userlist size: "+userDao.users.size());
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_add, R.id.navigation_my)
+                R.id.navigation_home, R.id.navigation_friend, R.id.navigation_my)
                 .build();
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-//        ListView mainPost = findViewById(R.id.post_list);
-//        PostAdapter postAdapter = new PostAdapter(context, R.id.post_list, PostDao.posts);
-//        System.out.println("postAdapter:"+postAdapter.getCount());
-//        mainPost.setAdapter(postAdapter);
-//        System.out.println("setView success");
 
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -107,30 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 int resultCode = result.getResultCode();
             }
         });
-//
-//        User u = CurrentUser.current_user;
-//        if (u != null) {
-//            setContentView(R.layout.user_list_view);
-//            TextView userid = findViewById(R.id.userlist_userid);
-//            userid.setText(u.getId());
-//            System.out.println("userid: "+userid.getText().toString());
-//
-//            setContentView(R.layout.activity_profile);
-//            // profile page的信息
-//            TextView name = findViewById(R.id.profile_username);
-//            name.setText(u.getName());
-//            System.out.println("name: "+name.getText().toString());
-//
-//            //TODO: 如果不是default/null, 更新头像
-//            ImageView photo = findViewById(R.id.profile_photo);
-//            if (u.getImgloc() == "default" || u.getImgloc() == "null") {
-//                photo.setImageResource(R.drawable.photo);
-//            }
-//            ListView post_list = findViewById(R.id.profile_post_list);
-//            post_list.setAdapter(new PostAdapter(context, R.id.post_list, u.getPosts()));
-//        }
-//        System.out.println("setView success");
-
 
     }
 

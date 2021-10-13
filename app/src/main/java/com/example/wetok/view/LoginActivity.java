@@ -71,6 +71,13 @@ public class LoginActivity extends AppCompatActivity{
         }
 
         UserDao.users = info.getUsers();
+        UserDao.users_size = UserDao.users.size();
+        for (User u : UserDao.users) {
+            UserDao.setFriends(u);
+            UserDao.setFollowers(u);
+            UserDao.setSubscribers(u);
+        }
+
         PostDao.posts = UserDao.getPosts();
 
         setContentView(R.layout.activity_login);
@@ -80,6 +87,13 @@ public class LoginActivity extends AppCompatActivity{
         et_emailLogin = findViewById(R.id.et_emailLogin);
         et_passwordLogin = findViewById(R.id.et_passwordLogin);
         fbAuth = FirebaseAuth.getInstance();
+
+        String friend = "";
+        for (User i : UserDao.users.get(0).getFriends()) {
+            friend += i.getName();
+        }
+
+        Toast.makeText(context,"User data check" + friend, Toast.LENGTH_LONG).show();
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -7,7 +7,7 @@
     >
 
     <ListView
-        android:id="@+id/post_list_home"
+        android:id="@+id/post_list_friend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"

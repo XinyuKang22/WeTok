@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,34 +17,38 @@ import androidx.fragment.app.Fragment;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
-import com.example.wetok.dao.PostDao;
+import com.example.wetok.bean.User;
+import com.example.wetok.dao.CurrentUser;
+import com.example.wetok.dao.UserDao;
 import com.example.wetok.resources.InformationResource;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
-    InformationResource info = null;
+public class FriendFragment extends Fragment {
+    int pindex = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = getLayoutInflater().inflate(R.layout.fragment_home, container, false);
+        View view = getLayoutInflater().inflate(R.layout.fragment_friend, container, false);
 
-        List<Post> pdata = PostDao.posts;
+
+        // TODO: 读取所有订阅者的post (不知道读friend还是subs)
+        List<Post> post_data = new ArrayList<>();
+        for (User friend : CurrentUser.current_user.getFriends()) {
+            post_data.addAll(friend.getPosts());
+        }
 
         List<Post> posts = new ArrayList<>();
+        posts.add(post_data.get(pindex));
+        pindex ++;
+        posts.add(post_data.get(pindex));
+        pindex ++;
+        posts.add(post_data.get(pindex));
+        pindex ++;
 
-
-        int num = (int)(Math.random()*3132);
-        posts.add(pdata.get(num));
-        num = (int)(Math.random()*3132);
-        posts.add(pdata.get(num));
-        num = (int)(Math.random()*3132);
-        posts.add(pdata.get(num));
-
-
-        ListView lv = view.findViewById(R.id.post_list_home);
+        ListView lv = view.findViewById(R.id.post_list_friend);
 
         PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
         lv.setAdapter(adapter);
@@ -52,10 +57,12 @@ public class HomeFragment extends Fragment {
             public void onScrollStateChanged(AbsListView absListView, int state) {
                 if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
-                        int num = (int)(Math.random()*3132);
-                        Post post = pdata.get(num);
-                        posts.add(post);
-                        adapter.notifyDataSetChanged();
+                        if (pindex < post_data.size()) {
+                            Post post = post_data.get(pindex);
+                            pindex ++;
+                            posts.add(post);
+                            adapter.notifyDataSetChanged();
+                        }
                     }
                 }
             }

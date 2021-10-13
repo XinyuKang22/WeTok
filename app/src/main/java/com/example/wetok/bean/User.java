@@ -105,17 +105,13 @@ public class User implements Serializable {
         return followers;
     }
 
-    public void setFollowers(User follower) {
-        this.followers.add(follower);
-    }
+    public void setFollowers(List<User> followers) { this.followers = followers;}
 
     public List<User> getSubscribers() {
         return subscribers;
     }
 
-    public void setSubscribers(User subscriber) {
-        this.subscribers.add(subscriber);
-    }
+    public void setSubscribers(List<User> subscribers) {this.subscribers = subscribers;}
 
     public String getAddress() {
         return address;

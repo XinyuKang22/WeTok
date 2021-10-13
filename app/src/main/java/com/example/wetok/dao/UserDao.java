@@ -11,6 +11,7 @@ import java.util.List;
 public class UserDao implements Serializable {
 //    public static InformationResource info = null;
     public static List<User> users = null;
+    public static int users_size = 0;
 
     public UserDao(List<User> u) {
         users = u;
@@ -31,25 +32,50 @@ public class UserDao implements Serializable {
     }
 
     public static User findUserById(String id){
-        for(User u: users){
-            if(u.getId().equals(id)){
-                return u;
-            }
+        int index = Integer.parseInt(id);
+        if (index < users_size) {
+            return users.get(index);
+        } else {
+            return null;
         }
-        return null;
     }
 
+    public static User findUserById(int id){
+        if (id < users_size) {
+            return users.get(id);
+        } else {
+            return null;
+        }
+    }
 
     public static void setFriends(User u){
-        int id = (int)(Math.random()*100);
+        int id = (int)(Math.random()*users_size);
         List<User> friends = new ArrayList<>();
         for(int i=0; i<5;i++){
-            while(u.getId().equals(String.valueOf(id)) ){
-                id = (int)(Math.random()*100);
-            }
-            friends.add(findUserById(String.valueOf(id)));
+            id = (int)(Math.random()*users_size);
+            friends.add(findUserById(id));
         }
         u.setFriends(friends);
+    }
+
+    public static void setFollowers(User u){
+        int id = (int)(Math.random()*users_size);
+        List<User> followers = new ArrayList<>();
+        for(int i=0; i<5;i++){
+            id = (int)(Math.random()*users_size);
+            followers.add(findUserById(id));
+        }
+        u.setFollowers(followers);
+    }
+
+    public static void setSubscribers(User u){
+        int id = (int)(Math.random()*users_size);
+        List<User> subscribers = new ArrayList<>();
+        for(int i=0; i<5;i++){
+            id = (int)(Math.random()*users_size);
+            subscribers.add(findUserById(id));
+        }
+        u.setSubscribers(subscribers);
     }
 
     public static List<Post> getPosts() { //
