@@ -41,6 +41,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
         // if (convertView == null) {
         view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
         TextView likeButton = view.findViewById(R.id.list_post_like);
+        TextView Time = view.findViewById(R.id.list_post_time);
+        Time.setText(post.getTime());
         // 点赞listener
         likeButton.setOnClickListener(e -> {
             paddingPicture(likeButton, R.drawable.ic_like_gray);
