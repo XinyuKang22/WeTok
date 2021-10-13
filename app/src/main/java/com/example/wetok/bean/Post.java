@@ -155,6 +155,8 @@ public class Post implements Comparable, Serializable {
 
     @Override
     public int compareTo(Object o) {
-        return (((Post) o).getTime()).compareTo(this.getTime());
+        String o_time = ((Post) o).getTime().replace(":","");
+        String this_time = this.getTime().replace(":","");
+        return Integer.parseInt(o_time) - Integer.parseInt(this_time);
     }
 }
