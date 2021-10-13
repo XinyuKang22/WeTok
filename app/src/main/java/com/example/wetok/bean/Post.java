@@ -1,10 +1,11 @@
 package com.example.wetok.bean;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Post implements Serializable {
+public class Post implements Comparable, Serializable {
     private String uid;
     private String author;
     private String email;
@@ -152,4 +153,8 @@ public class Post implements Serializable {
         return result;
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return (((Post) o).getTime()).compareTo(this.getTime());
+    }
 }

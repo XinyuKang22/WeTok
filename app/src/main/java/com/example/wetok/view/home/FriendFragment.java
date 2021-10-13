@@ -23,6 +23,7 @@ import com.example.wetok.dao.UserDao;
 import com.example.wetok.resources.InformationResource;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FriendFragment extends Fragment {
@@ -39,6 +40,7 @@ public class FriendFragment extends Fragment {
         for (User friend : CurrentUser.current_user.getFriends()) {
             post_data.addAll(friend.getPosts());
         }
+        Collections.sort(post_data);
 
         List<Post> posts = new ArrayList<>();
         posts.add(post_data.get(pindex));

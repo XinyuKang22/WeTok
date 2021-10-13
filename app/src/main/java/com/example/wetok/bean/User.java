@@ -1,6 +1,8 @@
 package com.example.wetok.bean;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +47,12 @@ public class User implements Serializable {
         this.email = email;
         this.phone = phone;
         this.imgloc = imgloc;
+    }
+
+    public SimpleDateFormat readTime(String time) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        sdf.parse(time);
+        return sdf;
     }
 
     public List<User> getFriends() {
