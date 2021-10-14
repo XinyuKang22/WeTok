@@ -63,6 +63,7 @@ public class LoginActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        CurrentUser.current_user = null;
         super.onCreate(savedInstanceState);
         context = LoginActivity.this;
 
@@ -83,6 +84,9 @@ public class LoginActivity extends AppCompatActivity{
         PostDao.posts = UserDao.getPosts();
         Collections.sort(PostDao.posts);
         PostDao.post_size = PostDao.posts.size();
+
+        // 假装新用户注册
+        fakeRegisterUser();
 
         setContentView(R.layout.activity_login);
         btn_login = findViewById(R.id.btn_login);
@@ -205,11 +209,6 @@ public class LoginActivity extends AppCompatActivity{
         // 把数据可里前几个数据改成真实邮箱密码
         int i = 0;
         User human = users.get(i);
-        human.setEmail("joyhongyuxin@gmail.com");
-        human.setPassword("123456");
-        i++;
-
-        human = users.get(i);
         human.setEmail("u6684233@anu.edu.au");
         human.setPassword("123456");
         i++;
@@ -227,8 +226,36 @@ public class LoginActivity extends AppCompatActivity{
         human = users.get(i);
         human.setEmail("1044159268@qq.com");
         human.setPassword("123456");
-        return new InformationResource(users);
 
+        return new InformationResource(users);
+    }
+
+    public void fakeRegisterUser() {
+        User u = new User();
+        u.setEmail("joyhongyuxin@gmail.com");
+        u.setPassword("123456");
+        UserDao.users_size += 1;
+        u.setId(""+UserDao.users_size);
+        u.setName("Yuxin Hong");
+        u.setGender("Female");
+        u.setAge(21);
+
+
+        List<User> empty_user = new ArrayList<>();
+        u.setFollowers(empty_user);
+        u.setSubscribers(empty_user);
+        u.setFriends(empty_user);
+
+        List<Post> empty_post = new ArrayList<>();
+        u.setPosts(empty_post);
+
+        u.setAddress("Canberra");
+        u.setPhone("450541675");
+        u.setImgloc("default");
+
+        //update UserDao
+        UserDao.addUser(u);
+        //end
     }
 
 }

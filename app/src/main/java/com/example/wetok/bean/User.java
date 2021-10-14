@@ -33,7 +33,8 @@ public class User implements Serializable {
         this.password = password;
     }
     
-    public User(String id, String name, String password, String gender, int age, List<User> followers, List<User> subscribers, List<Post> posts,
+    public User(String id, String name, String password, String gender, int age,
+                List<User> followers, List<User> subscribers, List<Post> posts,
                 String address, String email, String phone, String imgloc) {
         this.id = id;
         this.name = name;
@@ -104,8 +105,12 @@ public class User implements Serializable {
     public List<Post> getPosts() {
         return posts;
     }
+
+    public void setPosts(List<Post> posts) { this.posts = posts;
+    }
+
     //add post
-    public void setPosts(Post pos) {
+    public void addPosts(Post pos) {
         posts.add(pos);
     }
 

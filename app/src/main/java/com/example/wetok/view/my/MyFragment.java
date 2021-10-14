@@ -41,20 +41,24 @@ public class MyFragment extends Fragment {
         ArrayList<Post> posts = new ArrayList<>(CurrentUser.current_user.getPosts());
 
         // resort post by current time
-        int index = PostDao.findInsertIndex(posts);
-        List<Post> reposts = posts.subList(index, posts.size());
-        reposts.addAll(posts.subList(0,index));
+        if (! posts.isEmpty() && (posts != null)) {
+            int index = PostDao.findInsertIndex(posts);
+            List<Post> reposts = posts.subList(index, posts.size());
+            reposts.addAll(posts.subList(0,index));
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, reposts);
+            lv.setAdapter(adapter);
+        } else {
+            List<Post> empty = new ArrayList<>();
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, empty);
+            lv.setAdapter(adapter);
+        }
 
         // set username and id
         TextView tv_name = view.findViewById(R.id.profile_username);
         tv_name.setText(CurrentUser.current_user.getName());
         TextView tv_id = view.findViewById(R.id.profile_userid);
         tv_id.setText("User Id: " + CurrentUser.current_user.getId());
-
         // TODO: 设置头像
-
-        PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, reposts);
-        lv.setAdapter(adapter);
 
         Button btnSub = view.findViewById(R.id.profile_subscriber);
 

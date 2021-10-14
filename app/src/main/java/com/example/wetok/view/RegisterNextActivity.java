@@ -17,6 +17,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.wetok.R;
+import com.example.wetok.bean.Post;
+import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.UserDao;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +32,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterNextActivity extends AppCompatActivity {
     private static final String TAG = "RegisterNext";
@@ -184,13 +187,25 @@ public class RegisterNextActivity extends AppCompatActivity {
     }
 
     private void createNewUser(String name, int age, String gender, String phoneNumber, String location) {
-        //TODO: 把新用户放进userDao(已完成未检验)
-        //update currentUser by registerNextActivity info
+        // update currentUser by registerNextActivity info
+        UserDao.users_size += 1;
+        CurrentUser.current_user.setId(""+UserDao.users_size);
         CurrentUser.current_user.setName(name);
-        CurrentUser.current_user.setAge(age);
         CurrentUser.current_user.setGender(gender);
-        CurrentUser.current_user.setPhone(phoneNumber);
+        CurrentUser.current_user.setAge(age);
+
+        List<User> empty_user = new ArrayList<>();
+        CurrentUser.current_user.setFollowers(empty_user);
+        CurrentUser.current_user.setSubscribers(empty_user);
+        CurrentUser.current_user.setFriends(empty_user);
+
+        List<Post> empty_post = new ArrayList<>();
+        CurrentUser.current_user.setPosts(empty_post);
+
         CurrentUser.current_user.setAddress(location);
+        CurrentUser.current_user.setPhone(phoneNumber);
+        CurrentUser.current_user.setImgloc("default");
+
         //update UserDao
         UserDao.addUser(CurrentUser.current_user);
         //end
