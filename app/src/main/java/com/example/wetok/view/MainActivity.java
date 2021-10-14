@@ -160,8 +160,8 @@ public class MainActivity extends AppCompatActivity {
             users.addAll(gson.fromJson(reader, classType));
             for(User u: users){
                 posts.addAll(u.getPosts());
-//                subscribers.addAll(u.getSubscribers());
-//                followers.addAll(u.getFollowers());
+                subscribers.addAll(u.getSubscribers());
+                followers.addAll(u.getFollowers());
             }
             System.out.println("turn to users done");
         }catch (Exception e){
