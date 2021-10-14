@@ -1,4 +1,4 @@
-package com.example.wetok.view.home;
+package com.example.wetok.view.fragment;
 
 import android.content.Context;
 import android.util.AttributeSet;

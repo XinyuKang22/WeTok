@@ -1,4 +1,4 @@
-package com.example.wetok.view.my;
+package com.example.wetok.view.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,25 +10,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
-import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
-import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.LoginActivity;
 import com.example.wetok.view.UserListActivity;
-import com.example.wetok.view.home.PostAdapter;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class MyFragment extends Fragment {

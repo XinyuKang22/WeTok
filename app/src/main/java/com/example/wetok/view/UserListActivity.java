@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wetok.R;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
-import com.example.wetok.view.home.UserAdapter;
+import com.example.wetok.view.fragment.UserAdapter;
 
 import java.util.ArrayList;
 

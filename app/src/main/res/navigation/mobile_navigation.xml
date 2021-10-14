@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.wetok.view.home.HomeFragment"
+        android:name="com.example.wetok.view.fragment.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
@@ -19,13 +19,13 @@
 
     <fragment
         android:id="@+id/navigation_my"
-        android:name="com.example.wetok.view.my.MyFragment"
+        android:name="com.example.wetok.view.fragment.MyFragment"
         android:label="@string/title_my"
         tools:layout="@layout/fragment_my" />
 
     <fragment
         android:id="@+id/navigation_friend"
-        android:name="com.example.wetok.view.home.FriendFragment"
+        android:name="com.example.wetok.view.fragment.FriendFragment"
         android:label="@string/title_friend"
         tools:layout="@layout/fragment_friend"/>
 

@@ -1,4 +1,4 @@
-package com.example.wetok.view.home;
+package com.example.wetok.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
@@ -17,9 +17,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
-import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
-import com.example.wetok.resources.InformationResource;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

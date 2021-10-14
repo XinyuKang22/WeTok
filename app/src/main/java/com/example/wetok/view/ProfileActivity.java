@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,17 +18,9 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
-import com.example.wetok.resources.InformationResource;
-import com.example.wetok.view.home.PostAdapter;
-import com.example.wetok.view.home.UserAdapter;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.wetok.view.fragment.PostAdapter;
 
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity {
 

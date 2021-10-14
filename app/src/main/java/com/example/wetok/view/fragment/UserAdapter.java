@@ -1,19 +1,16 @@
-package com.example.wetok.view.home;
+package com.example.wetok.view.fragment;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import com.bumptech.glide.Glide;
+
 import com.example.wetok.R;
-import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 
 import java.util.List;

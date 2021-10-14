@@ -1,8 +1,7 @@
-package com.example.wetok.view.home;
+package com.example.wetok.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,17 +20,13 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
-import com.example.wetok.dao.UserDao;
-import com.example.wetok.resources.InformationResource;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 public class FriendFragment extends Fragment {
     int pindex = 0;
