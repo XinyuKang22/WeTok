@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,6 +58,9 @@ public class ProfileActivity extends AppCompatActivity {
         int index = PostDao.findInsertIndex(posts);
         List<Post> reposts = posts.subList(index, posts.size());
         reposts.addAll(posts.subList(0,index));
+
+        Toast.makeText(context, "post: "+ posts, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "repost: "+ reposts, Toast.LENGTH_LONG).show();
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, reposts);
         lv.setAdapter(adapter);

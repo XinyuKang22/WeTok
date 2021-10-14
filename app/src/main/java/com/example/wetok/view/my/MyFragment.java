@@ -19,6 +19,7 @@ import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
+import com.example.wetok.dao.PostDao;
 import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.LoginActivity;
 import com.example.wetok.view.UserListActivity;
@@ -39,6 +40,11 @@ public class MyFragment extends Fragment {
         ListView lv = view.findViewById(R.id.profile_post_list);
         ArrayList<Post> posts = new ArrayList<>(CurrentUser.current_user.getPosts());
 
+        // resort post by current time
+        int index = PostDao.findInsertIndex(posts);
+        List<Post> reposts = posts.subList(index, posts.size());
+        reposts.addAll(posts.subList(0,index));
+
         // set username and id
         TextView tv_name = view.findViewById(R.id.profile_username);
         tv_name.setText(CurrentUser.current_user.getName());
@@ -47,7 +53,7 @@ public class MyFragment extends Fragment {
 
         // TODO: 设置头像
 
-        PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
+        PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, reposts);
         lv.setAdapter(adapter);
 
         Button btnSub = view.findViewById(R.id.profile_subscriber);

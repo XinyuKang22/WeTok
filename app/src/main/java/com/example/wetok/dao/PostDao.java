@@ -107,6 +107,14 @@ public class PostDao implements Serializable {
         return post_size;
     }
 
+    @Override
+    public String toString() {
+        String res = "";
+        for (Post p : posts) {
+            res += p.getContent();
+        }
+        return res;
+    }
 }
 
 
