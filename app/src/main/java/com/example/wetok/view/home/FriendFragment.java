@@ -2,6 +2,7 @@ package com.example.wetok.view.home;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,12 +20,18 @@ import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
+import com.example.wetok.dao.PostDao;
 import com.example.wetok.dao.UserDao;
 import com.example.wetok.resources.InformationResource;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class FriendFragment extends Fragment {
     int pindex = 0;
@@ -34,13 +41,27 @@ public class FriendFragment extends Fragment {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_friend, container, false);
 
-
-        // TODO: 读取所有订阅者的post (不知道读friend还是subs)
         List<Post> post_data = new ArrayList<>();
         for (User friend : CurrentUser.current_user.getFriends()) {
             post_data.addAll(friend.getPosts());
         }
+        post_data.addAll(CurrentUser.current_user.getPosts());
         Collections.sort(post_data);
+
+        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+        Toast.makeText(getContext(),"Current time:" + time, Toast.LENGTH_LONG).show();
+
+        // indexing newest post according to current time
+        Post p;
+        for (int i = 0; i < post_data.size(); i++) {
+            p = post_data.get(i);
+            if (Integer.parseInt(p.getTime().replace(":","")) <
+                    Integer.parseInt(time.replace(":",""))) {
+                break;
+            }
+            pindex = i + 1;
+        }
+
 
         List<Post> posts = new ArrayList<>();
         posts.add(post_data.get(pindex));
@@ -59,12 +80,14 @@ public class FriendFragment extends Fragment {
             public void onScrollStateChanged(AbsListView absListView, int state) {
                 if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
-                        if (pindex < post_data.size()) {
-                            Post post = post_data.get(pindex);
-                            pindex ++;
-                            posts.add(post);
-                            adapter.notifyDataSetChanged();
+                        // end of the list, start again
+                        if (pindex >= post_data.size()) {
+                            pindex = 0;
                         }
+                        Post post = post_data.get(pindex);
+                        pindex ++;
+                        posts.add(post);
+                        adapter.notifyDataSetChanged();
                     }
                 }
             }

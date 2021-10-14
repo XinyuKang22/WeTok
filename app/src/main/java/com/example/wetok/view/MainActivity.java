@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // check data size
-        Toast.makeText(context, "Main pade: size of userDao is" + UserDao.users.size(),
-                Toast.LENGTH_SHORT).show();
-
-        Toast.makeText(context, "Main pade: size of postDao is" + PostDao.posts.size(),
-                Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "Main pade: size of userDao is" + UserDao.users.size(),
+//                Toast.LENGTH_SHORT).show();
+//
+//        Toast.makeText(context, "Main pade: size of postDao is" + PostDao.posts.size(),
+//                Toast.LENGTH_SHORT).show();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

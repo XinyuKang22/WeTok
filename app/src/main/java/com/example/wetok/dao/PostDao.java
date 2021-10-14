@@ -5,16 +5,22 @@ import com.example.wetok.bean.User;
 import com.example.wetok.resources.InformationResource;
 
 import java.io.Serializable;
+import java.net.PortUnreachableException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 
 import java.util.List;
+import java.util.Locale;
 
 public class PostDao implements Serializable {
 //    public static InformationResource info = new InformationResource();
     public static List<Post> posts = null;
+    public static int post_size = 0;
 
     public PostDao(List<Post> p) {
         posts = p;
@@ -47,6 +53,30 @@ public class PostDao implements Serializable {
         }
         return null;
     }
+
+    public static void addPost(String content) {
+        User u = CurrentUser.current_user;
+
+        String uid = u.getId();
+        String author = u.getName();
+        String email = u.getEmail();
+        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+        String u_img = u.getImgloc();
+        List<String> content_list = Arrays.asList(content.split("#"));
+        String tag;
+        if (content_list.size() > 1) {
+            //多个tag要改这里
+            tag = "#" + content_list.get(1);
+        } else {
+            tag = "#no_tag";
+        }
+        tag = tag.trim();
+
+        Post p = new Post(content, uid, author, email, u_img, time, tag, "", 0, 0, 0);
+
+        posts.add(p);
+    }
+
     /*
     public static List<Post> posts = info.getPosts();
     // TODO:post根据tag做map, 去InfoRes写然后过来读

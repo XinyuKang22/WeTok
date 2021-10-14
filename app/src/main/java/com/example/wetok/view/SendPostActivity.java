@@ -15,6 +15,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.wetok.R;
+import com.example.wetok.bean.Post;
+import com.example.wetok.dao.PostDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -41,6 +43,10 @@ public class SendPostActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // 点击发送
+                String postContent = content.getText().toString();
+                PostDao.addPost(postContent);
+
                 setResult(0, new Intent());
                 finish();
             }

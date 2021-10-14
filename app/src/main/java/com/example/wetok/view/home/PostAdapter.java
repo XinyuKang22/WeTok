@@ -31,7 +31,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         resourceId = resource;
     }
 
-    @SuppressLint("ViewHolder")
+//    @SuppressLint("ViewHolder")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
@@ -40,16 +40,15 @@ public class PostAdapter extends ArrayAdapter<Post> {
         ViewHolder viewHolder;
         // if (convertView == null) {
         view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+
+        // like
         TextView likeButton = view.findViewById(R.id.list_post_like);
-        TextView Time = view.findViewById(R.id.list_post_time);
-        Time.setText(post.getTime());
-        // 点赞listener
         likeButton.setOnClickListener(e -> {
             paddingPicture(likeButton, R.drawable.ic_like_gray);
             post.setLikes(post.getLikes() + 1);
             likeButton.setText(post.getLikes());
         });
-        // 订阅listener
+        // subscript
         TextView subButton = view.findViewById(R.id.list_post_btn_sub);
         subButton.setOnClickListener(e -> {
             paddingPicture(subButton, R.drawable.ic_subscribe_gray);
@@ -60,6 +59,11 @@ public class PostAdapter extends ArrayAdapter<Post> {
         likeButton.setText(""+post.getLikes());
         paddingPicture(likeButton, R.drawable.ic_like);
         paddingPicture(subButton, R.drawable.ic_subscribe);
+
+        // time
+        TextView Time = view.findViewById(R.id.list_post_time);
+        Time.setText(post.getTime());
+
         viewHolder = new ViewHolder();
         viewHolder.photo = view.findViewById(R.id.list_post_user_image);
         viewHolder.username = view.findViewById(R.id.list_post_user_name);

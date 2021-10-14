@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,32 +17,47 @@ import androidx.fragment.app.Fragment;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
 import com.example.wetok.resources.InformationResource;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class HomeFragment extends Fragment {
-    InformationResource info = null;
+    int pindex = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_home, container, false);
 
-        List<Post> pdata = PostDao.posts;
+        List<Post> post_data = PostDao.posts;
+
+        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+        Toast.makeText(getContext(),"Current time:" + time, Toast.LENGTH_LONG).show();
+
+        // indexing newest post according to current time
+        Post p;
+        for (int i = 0; i < PostDao.post_size; i++) {
+            p = post_data.get(i);
+            if (Integer.parseInt(p.getTime().replace(":","")) <
+                    Integer.parseInt(time.replace(":",""))) {
+                break;
+            }
+            pindex = i + 1;
+        }
 
         List<Post> posts = new ArrayList<>();
-
-
-        int num = (int)(Math.random()*3132);
-        posts.add(pdata.get(num));
-        num = (int)(Math.random()*3132);
-        posts.add(pdata.get(num));
-        num = (int)(Math.random()*3132);
-        posts.add(pdata.get(num));
-
+        posts.add(post_data.get(pindex));
+        pindex++;
+        posts.add(post_data.get(pindex));
+        pindex++;
+        posts.add(post_data.get(pindex));
+        pindex++;
 
         ListView lv = view.findViewById(R.id.post_list_home);
 
@@ -52,8 +68,12 @@ public class HomeFragment extends Fragment {
             public void onScrollStateChanged(AbsListView absListView, int state) {
                 if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
-                        int num = (int)(Math.random()*3132);
-                        Post post = pdata.get(num);
+                        // end of the list, start again
+                        if (pindex >= PostDao.post_size) {
+                            pindex = 0;
+                        }
+                        Post post = post_data.get(pindex);
+                        pindex++;
                         posts.add(post);
                         adapter.notifyDataSetChanged();
                     }

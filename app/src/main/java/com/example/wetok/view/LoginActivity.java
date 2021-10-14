@@ -41,6 +41,8 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class LoginActivity extends AppCompatActivity{
@@ -79,6 +81,8 @@ public class LoginActivity extends AppCompatActivity{
         }
 
         PostDao.posts = UserDao.getPosts();
+        Collections.sort(PostDao.posts);
+        PostDao.post_size = PostDao.posts.size();
 
         setContentView(R.layout.activity_login);
         btn_login = findViewById(R.id.btn_login);

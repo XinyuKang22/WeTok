@@ -1,30 +1,45 @@
 package com.example.wetok.bean;
 
+import com.example.wetok.dao.CurrentUser;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Post implements Comparable, Serializable {
+    private String content;
+    // user info
     private String uid;
     private String author;
     private String email;
-    private String time;
     private String u_img;
+
+    // post info
+    private String time;
     private String tag;
     private String comments;
+
+    // post property
     private int likes;
-    private int star=0;
+    private int star = 0;
     private int repost;
+
+    String imgloc;
+    public User user;
+
+
 
     @Override
     public String toString() {
         return content;
     }
-
-    private String content;
-    String imgloc;
-    public User user;
 
     public Post(){}
 
@@ -40,6 +55,22 @@ public class Post implements Comparable, Serializable {
         this.repost = repost;
         this.content = content;
         this.imgloc = imgloc;
+    }
+
+
+
+    public Post(String content, String uid, String author, String email, String u_img, String time, String tag, String comments, int likes, int star, int repost) {
+        this.content = content;
+        this.uid = uid;
+        this.author = author;
+        this.email = email;
+        this.u_img = u_img;
+        this.time = time;
+        this.tag = tag;
+        this.comments = comments;
+        this.likes = likes;
+        this.star = star;
+        this.repost = repost;
     }
 
     public int getStar() {
