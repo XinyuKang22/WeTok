@@ -99,7 +99,8 @@ public class PostDao implements Serializable {
         posts.remove(p);
     }
 
-    public static int findInsertIndex(List<Post> posts ) {
+    public static int findInsertIndex(List<Post> posts) {
+        if (posts == null) return -1;
         String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
         Post p;
         for (int i = 0; i < posts.size(); i++) {

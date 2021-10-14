@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,12 +28,16 @@ public class UserListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = UserListActivity.this;
+        String type = getIntent().getStringExtra("title");
+        ArrayList<User> users = new ArrayList<>();
+        if (type.equals("Subscriber")) {
+            users.addAll(CurrentUser.current_user.getSubscribers());
+        } else if (type.equals("Follower")) {
+            users.addAll(CurrentUser.current_user.getFollowers());
+        }
 
         setContentView(R.layout.activity_userlist);
         ListView list = findViewById(R.id.user_list);
-        //TODO: 不知道是不是要展示订阅者的post
-        ArrayList<User> users = new ArrayList<>(CurrentUser.current_user.getSubscribers());
-
         UserAdapter adapter = new UserAdapter(this, R.layout.user_list_view, users);
 
         ActionBar actionBar = getSupportActionBar();
@@ -46,8 +51,9 @@ public class UserListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 User user = users.get(position);
+                Toast.makeText(context, "user: "+user.getName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, ProfileActivity.class);
-                intent.putExtra("user", user);
+                CurrentUser.current_visitor = user;
                 startActivity(intent);
             }
         });

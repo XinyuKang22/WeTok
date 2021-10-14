@@ -38,7 +38,7 @@ public class FriendFragment extends Fragment {
 
         if (CurrentUser.current_user != null) {
             List<Post> post_data = new ArrayList<>();
-            for (User friend : CurrentUser.current_user.getFriends()) {
+            for (User friend : CurrentUser.current_user.getSubscribers()) {
                 post_data.addAll(friend.getPosts());
             }
             post_data.addAll(CurrentUser.current_user.getPosts());

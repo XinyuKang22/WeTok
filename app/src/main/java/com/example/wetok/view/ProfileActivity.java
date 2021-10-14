@@ -2,6 +2,7 @@ package com.example.wetok.view;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -31,8 +32,9 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = ProfileActivity.this;
-        User user = CurrentUser.current_user;
-
+//        User user = (User) getIntent().getSerializableExtra("user");
+        User user = CurrentUser.current_visitor;
+        Toast.makeText(context, "user:" +user.getName(), Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_profile);
         TextView username = findViewById(R.id.profile_username);
         TextView userid = findViewById(R.id.profile_userid);
@@ -48,26 +50,25 @@ public class ProfileActivity extends AppCompatActivity {
         List<Post> reposts = posts.subList(index, posts.size());
         reposts.addAll(posts.subList(0,index));
 
-        Toast.makeText(context, "post: "+ posts, Toast.LENGTH_LONG).show();
-        Toast.makeText(context, "repost: "+ reposts, Toast.LENGTH_LONG).show();
+//        Toast.makeText(context, "post: "+ posts, Toast.LENGTH_LONG).show();
+//        Toast.makeText(context, "repost: "+ reposts, Toast.LENGTH_LONG).show();
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, reposts);
         lv.setAdapter(adapter);
 
-        Button btnSub = findViewById(R.id.profile_subscriber);
-
-        btnSub.setOnClickListener(e -> {
-            Intent intent = new Intent(this, UserListActivity.class);
-            intent.putExtra("title", "Subscriber");
-            startActivity(intent);
-        });
-
-        Button btnFol = findViewById(R.id.profile_follower);
-        btnFol.setOnClickListener(e -> {
-            Intent intent = new Intent(this, UserListActivity.class);
-            intent.putExtra("title", "Follower");
-            startActivity(intent);
-        });
+        Button btnSub = findViewById(R.id.profile_subscribe);
+        Boolean isSub = CurrentUser.current_user.isSubscriber(user);
+        if (isSub) {
+            btnSub.setBackgroundColor(Color.GRAY);
+            btnSub.setText("subscribe!");
+            btnSub.invalidate();
+        } else {
+            btnSub.setOnClickListener(e -> {
+                CurrentUser.current_user.addSubscribers(user);
+                btnSub.setBackgroundColor(Color.GRAY);
+                btnSub.setText("subscribe!");
+            });
+        }
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

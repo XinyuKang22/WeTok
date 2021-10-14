@@ -11,11 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
+import com.example.wetok.dao.CurrentUser;
+import com.example.wetok.dao.UserDao;
 import com.example.wetok.view.ProfileActivity;
 import com.example.wetok.view.SearchActivity;
 
@@ -43,21 +46,21 @@ public class PostAdapter extends ArrayAdapter<Post> {
         // like
         TextView likeButton = view.findViewById(R.id.list_post_like);
         likeButton.setOnClickListener(e -> {
-            paddingPicture(likeButton, R.drawable.ic_like);
+            paddingPicture(likeButton, R.drawable.ic_like,60);
             post.setLikes(post.getLikes() + 1);
             likeButton.setText(String.valueOf(post.getLikes()));
         });
         // subscript
         TextView subButton = view.findViewById(R.id.list_post_btn_sub);
         subButton.setOnClickListener(e -> {
-            paddingPicture(subButton, R.drawable.ic_subscribe);
+            paddingPicture(subButton, R.drawable.ic_subscribe,100);
             post.setStar(post.getStar()+1);
             subButton.setText(String.valueOf(post.getStar()));
         });
         subButton.setText(""+post.getStar());
         likeButton.setText(""+post.getLikes());
-        paddingPicture(likeButton, R.drawable.ic_like_gray);
-        paddingPicture(subButton, R.drawable.ic_subscribe_gray);
+        paddingPicture(likeButton, R.drawable.ic_like_gray,60);
+        paddingPicture(subButton, R.drawable.ic_subscribe_gray,100);
 
         // time
         TextView Time = view.findViewById(R.id.list_post_time);
@@ -72,12 +75,13 @@ public class PostAdapter extends ArrayAdapter<Post> {
         view.setTag(viewHolder);
         viewHolder.username.setOnClickListener(e -> {
             Intent intent = new Intent(getContext(), ProfileActivity.class);
-            intent.putExtra("user", post.user);
+            Toast.makeText(getContext(), "post", Toast.LENGTH_SHORT).show();
+            CurrentUser.current_visitor = UserDao.findUserById(post.getUid());
             getContext().startActivity(intent);
         });
         viewHolder.photo.setOnClickListener(e -> {
             Intent intent = new Intent(getContext(), ProfileActivity.class);
-            intent.putExtra("user", post.user);
+            CurrentUser.current_visitor = UserDao.findUserById(post.getEmail());
             getContext().startActivity(intent);
         });
         viewHolder.username.setText(post.getAuthor());
@@ -117,10 +121,10 @@ public class PostAdapter extends ArrayAdapter<Post> {
         ImageView photo;
     }
 
-    private void paddingPicture(TextView tv, int pic) {
+    private void paddingPicture(TextView tv, int pic, int size) {
         @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable1 = getContext().getResources().getDrawable(pic);
 
-        drawable1.setBounds(10, 0, 60, 60);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
+        drawable1.setBounds(10, 0, size, size);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
         tv.setCompoundDrawables(drawable1, null, null, null);//只放左边
     }
 

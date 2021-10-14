@@ -41,41 +41,42 @@ public class HomeFragment extends Fragment {
         // indexing newest post according to current time
 //        if (post_data != null && post_data.size() != 0)
         pindex = PostDao.findInsertIndex(post_data);
+        if (pindex != -1) {
+            List<Post> posts = new ArrayList<>();
+            posts.add(post_data.get(pindex));
+            pindex++;
+            posts.add(post_data.get(pindex));
+            pindex++;
+            posts.add(post_data.get(pindex));
+            pindex++;
 
-        List<Post> posts = new ArrayList<>();
-        posts.add(post_data.get(pindex));
-        pindex++;
-        posts.add(post_data.get(pindex));
-        pindex++;
-        posts.add(post_data.get(pindex));
-        pindex++;
+            ListView lv = view.findViewById(R.id.post_list_home);
 
-        ListView lv = view.findViewById(R.id.post_list_home);
-
-        PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
-        lv.setAdapter(adapter);
-        lv.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView absListView, int state) {
-                if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                    if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
-                        // end of the list, start again
-                        if (pindex >= PostDao.post_size) {
-                            pindex = 0;
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
+            lv.setAdapter(adapter);
+            lv.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView absListView, int state) {
+                    if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                        if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
+                            // end of the list, start again
+                            if (pindex >= PostDao.post_size) {
+                                pindex = 0;
+                            }
+                            Post post = post_data.get(pindex);
+                            pindex++;
+                            posts.add(post);
+                            adapter.notifyDataSetChanged();
                         }
-                        Post post = post_data.get(pindex);
-                        pindex++;
-                        posts.add(post);
-                        adapter.notifyDataSetChanged();
                     }
                 }
-            }
 
-            @Override
-            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                @Override
+                public void onScroll(AbsListView absListView, int i, int i1, int i2) {
 
-            }
-        });
+                }
+            });
+        }
         return view;
     }
 
