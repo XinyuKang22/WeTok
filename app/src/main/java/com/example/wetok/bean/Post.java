@@ -142,7 +142,7 @@ public class Post implements Comparable, Serializable {
     }
     //add likes
     public void setLikes(int likes) {
-        this.likes += likes;
+        this.likes = likes;
     }
 
     public int getRepost() {

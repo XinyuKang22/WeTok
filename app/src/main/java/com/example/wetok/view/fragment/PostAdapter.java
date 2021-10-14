@@ -1,5 +1,6 @@
 package com.example.wetok.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -29,6 +30,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
     }
 
 //    @SuppressLint("ViewHolder")
+    @SuppressLint({"SetTextI18n", "ViewHolder"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
@@ -41,21 +43,21 @@ public class PostAdapter extends ArrayAdapter<Post> {
         // like
         TextView likeButton = view.findViewById(R.id.list_post_like);
         likeButton.setOnClickListener(e -> {
-            paddingPicture(likeButton, R.drawable.ic_like_gray);
+            paddingPicture(likeButton, R.drawable.ic_like);
             post.setLikes(post.getLikes() + 1);
-            likeButton.setText(post.getLikes());
+            likeButton.setText(String.valueOf(post.getLikes()));
         });
         // subscript
         TextView subButton = view.findViewById(R.id.list_post_btn_sub);
         subButton.setOnClickListener(e -> {
-            paddingPicture(subButton, R.drawable.ic_subscribe_gray);
+            paddingPicture(subButton, R.drawable.ic_subscribe);
             post.setStar(post.getStar()+1);
-            subButton.setText(post.getStar());
+            subButton.setText(String.valueOf(post.getStar()));
         });
         subButton.setText(""+post.getStar());
         likeButton.setText(""+post.getLikes());
-        paddingPicture(likeButton, R.drawable.ic_like);
-        paddingPicture(subButton, R.drawable.ic_subscribe);
+        paddingPicture(likeButton, R.drawable.ic_like_gray);
+        paddingPicture(subButton, R.drawable.ic_subscribe_gray);
 
         // time
         TextView Time = view.findViewById(R.id.list_post_time);
@@ -116,7 +118,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
     }
 
     private void paddingPicture(TextView tv, int pic) {
-        Drawable drawable1 = getContext().getResources().getDrawable(pic);
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable1 = getContext().getResources().getDrawable(pic);
 
         drawable1.setBounds(10, 0, 60, 60);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
         tv.setCompoundDrawables(drawable1, null, null, null);//只放左边
