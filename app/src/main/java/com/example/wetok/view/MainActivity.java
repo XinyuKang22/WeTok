@@ -136,4 +136,38 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("running onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    public InformationResource getInformationResource(){
+        List<User> users = new ArrayList<>();
+        List<Post> posts = new ArrayList<>();
+        List<User> followers = new ArrayList<>();
+        List<User> subscribers = new ArrayList<>();
+        InputStream file;
+
+        System.out.println("trying to open infoResource.json");
+        file = null;
+        try {
+            file = getAssets().open("infoResource.json");
+            System.out.println("load info done");
+        } catch (IOException e) {
+            System.out.println("load info fail");
+            e.printStackTrace();
+        }
+        final Type classType = new TypeToken<List<User>>(){}.getType();
+        Gson gson = new Gson();
+        try {
+            JsonReader reader = new JsonReader(new InputStreamReader(file));
+            users.addAll(gson.fromJson(reader, classType));
+            for(User u: users){
+                posts.addAll(u.getPosts());
+//                subscribers.addAll(u.getSubscribers());
+//                followers.addAll(u.getFollowers());
+            }
+            System.out.println("turn to users done");
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("turn to users fail");
+        }
+        return new InformationResource(users,posts,followers,subscribers);
+    }
 }

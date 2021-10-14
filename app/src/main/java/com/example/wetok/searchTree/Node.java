@@ -42,15 +42,17 @@ public class Node<K extends Comparable, T> implements Serializable {
         if (this.key == null){
             return "leaf";
         }
-        //StringBuilder space = new StringBuilder();
-        //space.append("        ".repeat(Math.max(0, depthFromRoot+1)));
+        String space = "";
+        for (int i = 0; i < depthFromRoot; i++){
+            space = space + "        ";
+        }
         String sLeft = "";
         String sRight = "";
         if (left!= null){
-            sLeft = "\n"+"Left: "+left.toString(depthFromRoot+1);
+            sLeft = "\n"+space+"Left: "+left.toString(depthFromRoot+1);
         }
         if (right!=null){
-            sRight = "\n"+"Right: "+right.toString(depthFromRoot+1);
+            sRight = "\n"+space+"Right: "+right.toString(depthFromRoot+1);
         }
         return "{Key:"+key+", Value:"+value+", Height:"+height+sLeft+sRight+"}";
     }
