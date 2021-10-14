@@ -45,6 +45,8 @@ public class SendPostActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // 点击发送
                 String postContent = content.getText().toString();
+                Toast.makeText(context,"content is: " + postContent, Toast.LENGTH_LONG).show();
+
                 PostDao.addPost(postContent);
 
                 setResult(0, new Intent());

@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -72,9 +73,14 @@ public class PostDao implements Serializable {
         }
         tag = tag.trim();
 
-        Post p = new Post(content, uid, author, email, u_img, time, tag, "", 0, 0, 0);
+        Post po = new Post(content, uid, author, email, u_img, time, tag, "", 0, 0, 0);
+        // User: add new post to user
+        List<Post> user_post = CurrentUser.current_user.getPosts();
+        user_post.add(findInsertIndex(time, user_post), po);
 
-        posts.add(p);
+        // database: add new post, update post size
+        posts.add(findInsertIndex(time, posts), po);
+        post_size += 1;
     }
 
     /*
@@ -86,6 +92,18 @@ public class PostDao implements Serializable {
 
     public void deletePost(Post p){
         posts.remove(p);
+    }
+
+    public static int findInsertIndex(String time, List<Post> posts ) {
+        Post p;
+        for (int i = 0; i < post_size; i++) {
+            p = posts.get(i);
+            if (Integer.parseInt(p.getTime().replace(":","")) <
+                    Integer.parseInt(time.replace(":",""))) {
+                return i;
+            }
+        }
+        return post_size;
     }
 
 }

@@ -6,6 +6,7 @@ import com.example.wetok.resources.InformationResource;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class UserDao implements Serializable {
@@ -92,6 +93,7 @@ public class UserDao implements Serializable {
         String email = u.getEmail();
         String id = u.getId();
         List<Post> postList = u.getPosts();
+        Collections.sort(postList);
         for (Post p : postList) {
             p.setAuthor(author);
             p.setUid(id);
