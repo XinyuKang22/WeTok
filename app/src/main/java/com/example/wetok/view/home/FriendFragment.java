@@ -41,61 +41,64 @@ public class FriendFragment extends Fragment {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_friend, container, false);
 
-        List<Post> post_data = new ArrayList<>();
-        for (User friend : CurrentUser.current_user.getFriends()) {
-            post_data.addAll(friend.getPosts());
-        }
-        post_data.addAll(CurrentUser.current_user.getPosts());
-
-
-        if (!post_data.isEmpty() && (post_data != null)) {
-            Collections.sort(post_data);
-
-            String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
-            Toast.makeText(getContext(),"Current time:" + time, Toast.LENGTH_LONG).show();
-
-            // indexing newest post according to current time
-            pindex = PostDao.findInsertIndex(post_data);
-
-            List<Post> posts = new ArrayList<>();
-            posts.add(post_data.get(pindex));
-            pindex ++;
-            posts.add(post_data.get(pindex));
-            pindex ++;
-            posts.add(post_data.get(pindex));
-            pindex ++;
-
-            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
-            ListView lv = view.findViewById(R.id.post_list_friend);
-            lv.setAdapter(adapter);
-            lv.setOnScrollListener(new AbsListView.OnScrollListener() {
-                @Override
-                public void onScrollStateChanged(AbsListView absListView, int state) {
-                    if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-                        if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
-                            // end of the list, start again
-                            if (pindex >= post_data.size()) {
-                                pindex = 0;
-                            }
-                            Post post = post_data.get(pindex);
-                            pindex ++;
-                            posts.add(post);
-                            adapter.notifyDataSetChanged();
-                        }
-                    }
-                }
-
-                @Override
-                public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-
-                }
-            });
+        if (CurrentUser.current_user == null) {
 
         } else {
-            List<Post> empty = new ArrayList<>();
-            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, empty);
-            ListView lv = view.findViewById(R.id.post_list_friend);
-            lv.setAdapter(adapter);
+            List<Post> post_data = new ArrayList<>();
+            for (User friend : CurrentUser.current_user.getFriends()) {
+                post_data.addAll(friend.getPosts());
+            }
+            post_data.addAll(CurrentUser.current_user.getPosts());
+            if (!post_data.isEmpty()) {
+                Collections.sort(post_data);
+
+                String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+                Toast.makeText(getContext(),"Current time:" + time, Toast.LENGTH_LONG).show();
+
+                // indexing newest post according to current time
+                pindex = PostDao.findInsertIndex(post_data);
+
+                List<Post> posts = new ArrayList<>();
+                posts.add(post_data.get(pindex));
+                pindex ++;
+                posts.add(post_data.get(pindex));
+                pindex ++;
+                posts.add(post_data.get(pindex));
+                pindex ++;
+
+                PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
+                ListView lv = view.findViewById(R.id.post_list_friend);
+                lv.setAdapter(adapter);
+                lv.setOnScrollListener(new AbsListView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(AbsListView absListView, int state) {
+                        if (state == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                            if (absListView.getLastVisiblePosition() == (absListView.getCount()) - 1) {
+                                // end of the list, start again
+                                if (pindex >= post_data.size()) {
+                                    pindex = 0;
+                                }
+                                Post post = post_data.get(pindex);
+                                pindex ++;
+                                posts.add(post);
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+
+                    }
+                });
+
+            } else {
+                List<Post> empty = new ArrayList<>();
+                PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, empty);
+                ListView lv = view.findViewById(R.id.post_list_friend);
+                lv.setAdapter(adapter);
+            }
+
         }
 
         return view;

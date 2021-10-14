@@ -38,47 +38,57 @@ public class MyFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View view = getLayoutInflater().inflate(R.layout.fragment_my, container, false);
         ListView lv = view.findViewById(R.id.profile_post_list);
-        ArrayList<Post> posts = new ArrayList<>(CurrentUser.current_user.getPosts());
-
-        // resort post by current time
-        if (! posts.isEmpty() && (posts != null)) {
-            int index = PostDao.findInsertIndex(posts);
-            List<Post> reposts = posts.subList(index, posts.size());
-            reposts.addAll(posts.subList(0,index));
-            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, reposts);
-            lv.setAdapter(adapter);
-        } else {
-            List<Post> empty = new ArrayList<>();
-            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, empty);
-            lv.setAdapter(adapter);
-        }
 
         // set username and id
         TextView tv_name = view.findViewById(R.id.profile_username);
-        tv_name.setText(CurrentUser.current_user.getName());
         TextView tv_id = view.findViewById(R.id.profile_userid);
-        tv_id.setText("User Id: " + CurrentUser.current_user.getId());
-        // TODO: 设置头像
+        if (CurrentUser.current_user == null) {
+            Button sub = view.findViewById(R.id.profile_subscriber);
+            Button follower = view.findViewById(R.id.profile_follower);
+            sub.invalidate();
+            follower.invalidate();
 
-        Button btnSub = view.findViewById(R.id.profile_subscriber);
+            tv_name.setText("Guest");
+            tv_id.setText("no id");
+        } else {
 
-        btnSub.setOnClickListener(e -> {
-            Intent intent = new Intent(getContext(), UserListActivity.class);
-            startActivity(intent);
-        });
+            ArrayList<Post> posts = new ArrayList<>(CurrentUser.current_user.getPosts());
+            // resort post by current time
+            if (! posts.isEmpty()) {
+                int index = PostDao.findInsertIndex(posts);
+                List<Post> reposts = posts.subList(index, posts.size());
+                reposts.addAll(posts.subList(0,index));
+                PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, reposts);
+                lv.setAdapter(adapter);
+            } else {
+                List<Post> empty = new ArrayList<>();
+                PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, empty);
+                lv.setAdapter(adapter);
+            }
 
-        Button btnFol = view.findViewById(R.id.profile_follower);
-        btnFol.setOnClickListener(e -> {
-            Intent intent = new Intent(getContext(), UserListActivity.class);
-            startActivity(intent);
-        });
+            tv_name.setText(CurrentUser.current_user.getName());
+            tv_id.setText("User Id: " + CurrentUser.current_user.getId());
+            // TODO: 设置头像
 
-        Button btnOut = view.findViewById(R.id.profile_logout);
-        btnOut.setOnClickListener(e -> {
-            Intent intent = new Intent(getContext(), LoginActivity.class);
-            startActivity(intent);
-        });
+            Button btnSub = view.findViewById(R.id.profile_subscriber);
 
+            btnSub.setOnClickListener(e -> {
+                Intent intent = new Intent(getContext(), UserListActivity.class);
+                startActivity(intent);
+            });
+
+            Button btnFol = view.findViewById(R.id.profile_follower);
+            btnFol.setOnClickListener(e -> {
+                Intent intent = new Intent(getContext(), UserListActivity.class);
+                startActivity(intent);
+            });
+
+            Button btnOut = view.findViewById(R.id.profile_logout);
+            btnOut.setOnClickListener(e -> {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            });
+        }
 
         //btnOut.setVisibility(View.GONE);
         view.setPadding(40, 0, 40, 0);

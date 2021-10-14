@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity{
         btn_guestLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CurrentUser.current_user = null;
                 toMainPage(null);
             }
         });
