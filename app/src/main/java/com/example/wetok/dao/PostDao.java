@@ -76,10 +76,10 @@ public class PostDao implements Serializable {
         Post po = new Post(content, uid, author, email, u_img, time, tag, "", 0, 0, 0);
         // User: add new post to user
         List<Post> user_post = CurrentUser.current_user.getPosts();
-        user_post.add(findInsertIndex(time, user_post), po);
+        user_post.add(findInsertIndex(user_post), po);
 
         // database: add new post, update post size
-        posts.add(findInsertIndex(time, posts), po);
+        posts.add(findInsertIndex(posts), po);
         post_size += 1;
     }
 
@@ -94,11 +94,12 @@ public class PostDao implements Serializable {
         posts.remove(p);
     }
 
-    public static int findInsertIndex(String time, List<Post> posts ) {
+    public static int findInsertIndex(List<Post> posts ) {
+        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
         Post p;
-        for (int i = 0; i < post_size; i++) {
+        for (int i = 0; i < posts.size(); i++) {
             p = posts.get(i);
-            if (Integer.parseInt(p.getTime().replace(":","")) <
+            if (Integer.parseInt(p.getTime().replace(":","")) <=
                     Integer.parseInt(time.replace(":",""))) {
                 return i;
             }
