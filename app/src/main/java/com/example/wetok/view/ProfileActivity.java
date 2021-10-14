@@ -19,14 +19,18 @@ import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
+import com.example.wetok.dao.PostDao;
 import com.example.wetok.resources.InformationResource;
 import com.example.wetok.view.home.PostAdapter;
 import com.example.wetok.view.home.UserAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -49,7 +53,12 @@ public class ProfileActivity extends AppCompatActivity {
         ListView lv = findViewById(R.id.profile_post_list);
         List<Post> posts = user.getPosts();
 
-        PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, posts);
+        // resort post by current time
+        int index = PostDao.findInsertIndex(posts);
+        List<Post> reposts = posts.subList(index, posts.size());
+        reposts.addAll(posts.subList(0,index));
+
+        PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, reposts);
         lv.setAdapter(adapter);
 
         Button btnSub = findViewById(R.id.profile_subscriber);
