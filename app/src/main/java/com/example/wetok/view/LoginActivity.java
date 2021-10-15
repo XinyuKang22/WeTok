@@ -179,6 +179,7 @@ public class LoginActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         fbAuth.signOut();
+        CurrentUser.current_user = null;
     }
 
     public InformationResource getInformationResource() throws IOException {
