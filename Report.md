@@ -1,4 +1,4 @@
-# [Team Name] Report
+# [WeTok] Report
 
 The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
 
@@ -16,15 +16,17 @@ The following is a report template to help your team successfully provide all th
 
 ## Table of Contents
 
-1. [Team Members and Roles](#team-members-and-roles)
-2. [Conflict Resolution Protocol](#conflict-resolution-protocol)
-2. [Application Description](#application-description)
-3. [Application UML](#application-uml)
-3. [Application Design and Decisions](#application-design-and-decisions)
-4. [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
-5. [Testing Summary](#testing-summary)
-6. [Implemented Features](#implemented-features)
-7. [Team Meetings](#team-meetings)
+- [[WeTok] Report](#we-report)
+  - [Table of Contents](#table-of-contents)
+  - [Team Members and Roles](#team-members-and-roles)
+  - [Conflict Resolution Protocol](#conflict-resolution-protocol)
+  - [Application Description](#application-description)
+  - [Application UML](#application-uml)
+  - [Application Design and Decisions](#application-design-and-decisions)
+  - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
+  - [Testing Summary](#testing-summary)
+  - [Implemented Features](#implemented-features)
+  - [Team Meetings](#team-meetings)
 
 ## Team Members and Roles
 
@@ -114,17 +116,22 @@ The following is a report template to help your team successfully provide all th
 
 *Search Engine*
 <br> *Production Rules* <br>
-\<Non-Terminal> ::= \<some output>
+\<exp> ::= \<term> | \<term> '|' \<exp>
 <br>
-\<Non-Terminal> ::= \<some output>
+\<term> ::= \<factor> | \<factor> '&' \<term>
+<br>
+\<factor> ::= \<tag> | '(' \<exp> ')'
 
 *[How do you design the grammar? What are the advantages of your designs?]*
+Generally speaking, the advantages of our design is we to search multiple tags at once and this is also the design approach of our gramma. Operations *AND* and *OR* can be aplied on multiple tags search, that is, the intersection and union of single search result. By search *#tag1&#tag2*, the intersection of individual search result of *#tag1* and *#tag2* will be returned. By search *#tag1|#tag2*, the union of of individual search result of *#tag1* and *#tag2* will be returned. And of course the operators can be freely used to create more expressions. By default, and  precedence of *AND* operation is greater then *OR* operation. And precedence can be changed parentheses.
 
-*If there are several grammars, list them all under this section and what they relate to.*
+*[If there are several grammars, list them all under this section and what they relate to.]*
 
 **Tokenizer and Parsers**
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
+
+How are they built Session
 
 **Surpise Item**
 
@@ -187,7 +194,9 @@ The following is a report template to help your team successfully provide all th
 
 *Here is an example:*
 
-- *[Team Meeting 1](./MeetingTemplate.md)*
+- *[Team Meeting 1](./Meeting1.md)*
+- *[Team Meeting 2](./Meeting2.md)*
+- *[Team Meeting 3](./Meeting3.md)*
 - ...
 
 *Either write your meeting minutes here or link to documents that contain them. There must be at least 3 team meetings.*
