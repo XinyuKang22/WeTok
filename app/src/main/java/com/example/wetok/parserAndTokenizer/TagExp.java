@@ -1,5 +1,10 @@
 package com.example.wetok.parserAndTokenizer;
 
+import com.example.wetok.bean.Post;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * LitExp: it is extended from the abstract class Exp,
  * 		   This class is used to represented the expression of 32-bit unsigned integer
@@ -22,8 +27,8 @@ public class TagExp extends Exp {
 	}
 
 	@Override
-	public Boolean evaluate() {
-		return false;
-//		return value;
-	} //TODO: 改变返回数据类型
+	public List<Post> evaluate() {
+		List<Post> result = new ArrayList<>();
+		return result;
+	} //TODO: TAG EVALUATION
 }

@@ -20,7 +20,7 @@ public class TokenizerTest {
 
     private static Tokenizer tokenizer;
     private static final String MID = "#weekend | #time";
-    private static final String ADVANCED = "(#weekend & #mood) | #time";
+    private static final String ADVANCED = "(#weekend | #mood) & #time";
     private static final String AND_AND_OR = "&|";
 
     @Test(timeout=1000)
@@ -88,7 +88,7 @@ public class TokenizerTest {
 
         // test third token &
         tokenizer.next();
-        assertEquals(new Token("&", Token.Type.AND), tokenizer.current());
+        assertEquals(new Token("|", Token.Type.OR), tokenizer.current());
 
         // test forth token TAG(#mood)
         tokenizer.next();
@@ -100,7 +100,7 @@ public class TokenizerTest {
 
         // test sixth token |
         tokenizer.next();
-        assertEquals(new Token("|", Token.Type.OR), tokenizer.current());
+        assertEquals(new Token("&", Token.Type.AND), tokenizer.current());
 
         // test seventh token TAG(#time)
         tokenizer.next();

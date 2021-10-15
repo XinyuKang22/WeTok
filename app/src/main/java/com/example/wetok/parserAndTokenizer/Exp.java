@@ -1,5 +1,9 @@
 package com.example.wetok.parserAndTokenizer;
 
+import com.example.wetok.bean.Post;
+
+import java.util.List;
+
 /**
  * Abstract class Exp to represent expressions
  * @author dongwookim
@@ -9,8 +13,6 @@ package com.example.wetok.parserAndTokenizer;
  * Please do not change anything inside this class as well.
  */
 public abstract class Exp {
-
 	public abstract String show();
-	public abstract Boolean evaluate(); //TODO: 改变返回数据类型
-
+	public abstract List<Post> evaluate();
 }

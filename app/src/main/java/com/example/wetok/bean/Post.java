@@ -190,4 +190,12 @@ public class Post implements Comparable, Serializable {
         String this_time = this.getTime().replace(":","");
         return Integer.parseInt(o_time) - Integer.parseInt(this_time);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        Post p = (Post) o;
+        boolean b1 = content.equals(p.getContent());
+        boolean b2 = uid.equals(p.getUid());
+        return (b1 && b2);
+    }
 }

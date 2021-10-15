@@ -1,5 +1,10 @@
 package com.example.wetok.parserAndTokenizer;
 
+import com.example.wetok.bean.Post;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * SubExp: it is extended from the abstract class Exp,
  * 		    This class is used to represent the expression of subtraction
@@ -23,7 +28,9 @@ public class OrExp extends Exp {
 	}
 
 	@Override
-	public Boolean evaluate() {
-		return (term.evaluate() || exp.evaluate());
-	} //TODO: 改变返回数据类型
+	public List<Post> evaluate() {
+		List<Post> result = new ArrayList<>(term.evaluate());
+		result.addAll(exp.evaluate());
+		return result;
+	}
 }

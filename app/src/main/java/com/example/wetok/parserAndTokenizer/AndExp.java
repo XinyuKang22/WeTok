@@ -1,5 +1,11 @@
 package com.example.wetok.parserAndTokenizer;
 
+import com.example.wetok.bean.Post;
+import com.example.wetok.dao.PostDao;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * AddExp: it is extended from the abstract class Exp.
  *         This class is used to represent the expression of addition
@@ -18,13 +24,26 @@ public class AndExp extends Exp {
 		this.exp = exp;
 	}
 
+	public List<Post> postIntersection(List<Post> a, List<Post> b) {
+		List<Post> result = new ArrayList<>();
+		for (int i = 0; i < a.size(); i++) {
+			for (int j = 0; j < b.size(); j++) {
+				if (a.get(i).equals(b.get(j))) {
+					result.add(a.get(i));
+				}
+			}
+		}
+		return result;
+	}
+
 	@Override
 	public String show() {
 		return "(" + term.show() + " && " + exp.show() + ")";
 	}
 
 	@Override
-	public Boolean evaluate() {
-		return (term.evaluate() && exp.evaluate());
-	} //TODO: 改变返回数据类型
+	public List<Post> evaluate() {
+		List<Post> result = postIntersection(term.evaluate(), exp.evaluate());
+		return result;
+	}
 }
