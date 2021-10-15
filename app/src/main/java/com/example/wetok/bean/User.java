@@ -56,6 +56,11 @@ public class User implements Serializable {
         return sdf;
     }
 
+    public Boolean isSubscriber(User u) {
+        return subscribers.contains(u);
+    }
+
+
     public List<User> getFriends() {
         return friends;
     }
@@ -125,6 +130,8 @@ public class User implements Serializable {
     }
 
     public void setSubscribers(List<User> subscribers) {this.subscribers = subscribers;}
+
+    public void addSubscribers(User subscriber) {subscribers.add(subscriber);}
 
     public String getAddress() {
         return address;

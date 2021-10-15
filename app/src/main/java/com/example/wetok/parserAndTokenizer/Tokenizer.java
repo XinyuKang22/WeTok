@@ -21,27 +21,23 @@ public class Tokenizer {
         buffer = buffer.trim();     // remove whitespace
         char firstChar = buffer.charAt(0);
         if (firstChar == '&')
-            currentToken = new Token("+", Token.Type.AND);
+            currentToken = new Token("&", Token.Type.AND);
         else if (firstChar == '|')
-            currentToken = new Token("-", Token.Type.OR);
-        else if (firstChar == '_')
-            currentToken = new Token("*", Token.Type.UNDERLINE);
-        else if (firstChar == '#')
-            currentToken = new Token("/", Token.Type.HASH);
+            currentToken = new Token("|", Token.Type.OR);
         else if (firstChar == '(')
             currentToken = new Token("(", Token.Type.LBRA);
         else if (firstChar == ')')
             currentToken = new Token(")", Token.Type.RBRA);
-        else if (Character.isLetter(firstChar)) {
+        else if (firstChar == '#') {
             String res = "" + firstChar;
             for (int i = 1; i < buffer.length(); i++) {
-                if (Character.isLetter(buffer.charAt(i))) {
+                if (Character.isLetter(buffer.charAt(i)) || buffer.charAt(i) == '_') {
                     res += buffer.charAt(i);
                 } else {
                     break;
                 }
             }
-            currentToken = new Token(res, Token.Type.WORD);
+            currentToken = new Token(res, Token.Type.TAG);
         }
         else throw new Token.IllegalTokenException("Illegal Token");
         int tokenLen = currentToken.getToken().length();

@@ -25,13 +25,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class HomeFragment extends Fragment {
+public class CityFragment extends Fragment {
     int pindex = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = getLayoutInflater().inflate(R.layout.fragment_home, container, false);
+        View view = getLayoutInflater().inflate(R.layout.fragment_city, container, false);
 
         List<Post> post_data = PostDao.posts;
 
@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
             posts.add(post_data.get(pindex));
             pindex++;
 
-            ListView lv = view.findViewById(R.id.post_list_home);
+            ListView lv = view.findViewById(R.id.post_list_city);
 
             PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
             lv.setAdapter(adapter);

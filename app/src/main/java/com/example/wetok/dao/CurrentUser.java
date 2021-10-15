@@ -7,7 +7,8 @@ import java.util.Date;
 public class CurrentUser {
     public static CurrentUser instance = null;
     public static User current_user = null;
-    Date current_time = Calendar.getInstance().getTime();
+    public static User current_visitor = null;
+
 
     private CurrentUser() {
     }

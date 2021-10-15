@@ -40,6 +40,13 @@ public class MyFragment extends Fragment {
             sub.invalidate();
             follower.invalidate();
 
+            Button btnOut = view.findViewById(R.id.profile_logout);
+            btnOut.setOnClickListener(e -> {
+                CurrentUser.logout();
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            });
+
             tv_name.setText("Guest");
             tv_id.setText("no id");
         } else {
@@ -66,17 +73,20 @@ public class MyFragment extends Fragment {
 
             btnSub.setOnClickListener(e -> {
                 Intent intent = new Intent(getContext(), UserListActivity.class);
+                intent.putExtra("title", "Subscriber");
                 startActivity(intent);
             });
 
             Button btnFol = view.findViewById(R.id.profile_follower);
             btnFol.setOnClickListener(e -> {
                 Intent intent = new Intent(getContext(), UserListActivity.class);
+                intent.putExtra("title", "Follower");
                 startActivity(intent);
             });
 
             Button btnOut = view.findViewById(R.id.profile_logout);
             btnOut.setOnClickListener(e -> {
+                CurrentUser.logout();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             });

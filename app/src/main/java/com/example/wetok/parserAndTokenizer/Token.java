@@ -16,7 +16,7 @@ import java.util.Objects;
  * RBRA: )
  */
 public class Token {
-    public enum Type {HASH, WORD, UNDERLINE, AND, OR, LBRA, RBRA}
+    public enum Type {TAG, AND, OR, LBRA, RBRA}
 
     private final String token;
     private final Type type;

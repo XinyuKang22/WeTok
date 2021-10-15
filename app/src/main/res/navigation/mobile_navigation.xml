@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_add"
-        android:name="com.example.wetok.view.add.AddFragment"
-        android:label="@string/title_add"
-        tools:layout="@layout/fragment_add" />
+        android:id="@+id/navigation_city"
+        android:name="com.example.wetok.view.fragment.CityFragment"
+        android:label="@string/title_city"
+        tools:layout="@layout/fragment_city" />
 
     <fragment
         android:id="@+id/navigation_my"
