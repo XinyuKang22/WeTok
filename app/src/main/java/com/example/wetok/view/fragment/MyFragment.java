@@ -40,6 +40,12 @@ public class MyFragment extends Fragment {
             sub.invalidate();
             follower.invalidate();
 
+            Button btnOut = view.findViewById(R.id.profile_logout);
+            btnOut.setOnClickListener(e -> {
+                Intent intent = new Intent(getContext(), LoginActivity.class);
+                startActivity(intent);
+            });
+
             tv_name.setText("Guest");
             tv_id.setText("no id");
         } else {
