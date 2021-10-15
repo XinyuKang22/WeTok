@@ -8,11 +8,11 @@ package com.example.wetok.parserAndTokenizer;
  * Please do not change any thing inside this class as well.
  */
 
-public class StringExp extends Exp {
+public class TagExp extends Exp {
 	
 	private String value;
 
-	public StringExp(String value) {
+	public TagExp(String value) {
 		this.value = value;
 	}
 
