@@ -10,11 +10,11 @@ import java.util.HashSet;
 
 public class Node<K extends Comparable, T> implements Serializable {
 
-    K key; 				// Node key
-    HashSet<T> value;
-    Node parent; 		// Parent node
-    Node left, right;// Children nodes
-    int height;
+    public K key; 				// Node key
+    public HashSet<T> value;
+    public Node parent; 		// Parent node
+    public Node left, right;// Children nodes
+    public int height;
 
     public Node(K key, HashSet<T> value) {
         this.key  = key;
