@@ -88,7 +88,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         viewHolder.content.setText(post.getContent());
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//        for (int i = 0; i < 5; i++) {
+
             TextView tv = new TextView(getContext(), null);
             tv.setPadding(28, 0, 28, 5);
             tv.setHeight(32);

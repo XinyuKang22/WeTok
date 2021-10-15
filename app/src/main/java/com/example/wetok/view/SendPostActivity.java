@@ -47,7 +47,7 @@ public class SendPostActivity extends AppCompatActivity {
                 String postContent = content.getText().toString();
                 Toast.makeText(context,"content is: " + postContent, Toast.LENGTH_LONG).show();
 
-                PostDao.addPost(postContent);
+                PostDao.addPost(postContent,context);
 
                 setResult(0, new Intent());
                 finish();
