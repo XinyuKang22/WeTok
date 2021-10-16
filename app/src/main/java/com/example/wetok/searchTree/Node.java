@@ -16,9 +16,10 @@ public class Node<K extends Comparable, T> implements Serializable {
     public Node left, right;// Children nodes
     public int height;
 
-    public Node(K key, HashSet<T> value) {
+    public Node(K key, T value) {
         this.key  = key;
-        this.value = value;
+        this.value = new HashSet<>();
+        this.value.add(value);
         this.parent = null;
         // Initialise children leaf nodes
         this.left 			= new Node<>();  //leaf node

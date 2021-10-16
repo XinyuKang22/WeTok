@@ -29,8 +29,11 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
         return node.height;
     }
 
-    public void insert(Node node) {
-        root = insert(this.root, node);
+    public void insert(K key, T value) {
+        if(key != null) {
+            Node node = new Node(key, value);
+            root = insert(this.root, node);
+        }
     }
 
     public void delete(K key) {
