@@ -16,7 +16,6 @@ public class Search {
 
     private AVLTree<String, Post> tagIndexPostTree = new AVLTree<>();
 
-
     /**
      * Build the search tree
      * @param posts
