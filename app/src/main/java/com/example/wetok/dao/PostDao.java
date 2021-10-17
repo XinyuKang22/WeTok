@@ -98,7 +98,7 @@ public class PostDao implements Serializable {
     }
 
     public static int findInsertIndex(List<Post> posts ) {
-        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
         Post p;
         for (int i = 0; i < posts.size(); i++) {
             p = posts.get(i);
