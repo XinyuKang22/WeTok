@@ -10,6 +10,7 @@ public class RelevanceScore {
     ArrayList<String> searchResults;
 
     // TODO: 搜索的tag放在一个list里
+    // Assume all query words are in lower case
     ArrayList<String> query;
 
     // TODO: 所有posts
@@ -17,7 +18,7 @@ public class RelevanceScore {
 
 
     public static int getTermFrequency(String tag, String post){
-        return post.length() - post.toLowerCase().replaceAll(tag.toLowerCase(),"").length();
+        return post.length() - post.toLowerCase().replaceAll(tag,"").length();
     }
 
     /**
@@ -35,7 +36,7 @@ public class RelevanceScore {
 
         for (String post : allPosts){
             for (String s : query){
-                if (post.contains(s)) documentFrequencies.replace(s,documentFrequencies.get(s) + 1);
+                if (post.toLowerCase().contains(s)) documentFrequencies.replace(s,documentFrequencies.get(s) + 1);
             }
         }
         return documentFrequencies;
