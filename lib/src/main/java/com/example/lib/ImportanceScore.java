@@ -1,14 +1,17 @@
 package com.example.lib;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Map;
 
 public class ImportanceScore {
-    // TODO: 连接搜索结果（posts)
-    ArrayList<String> searchResults;
 
-    // TODO: 搜索的tag放在一个list里
-    // Assume all query words are in lower case
+
+    // TODO: 连接搜索结果
+    Map<Integer, Post> posts;
+    ArrayList<String> allPosts;
     ArrayList<String> query;
 
     // importance部分思路：
@@ -16,15 +19,28 @@ public class ImportanceScore {
     // 发帖者粉丝更多的更重要
     // 帖子赞数更多的更重要
 
-    public static void main(String[] args) {
+    public float timeScore(Post post){
+        LocalDate postTime = LocalDate.parse(post.getTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        LocalDate currentTime = LocalDate.now();
+        int days = (int) ChronoUnit.DAYS.between(postTime, currentTime);
+        return 1f / (1 + days);
+    }
 
-//        for (int i = 0; i < 20; i ++){
-//            int hour=(int)(Math.random()*23)+1;
-//            int minute= (int)(Math.random()*6);
-//            int month = ThreadLocalRandom.current().nextInt(1, 13);
-//            int date = ThreadLocalRandom.current().nextInt(1, 29);
-//
-//            System.out.println(month + "." + date + " " + hour + ":" + minute + "0");
-//        }
+    public float followerScore(Post post){
+        User user = UserDao.findUserById(post.getUid());
+        assert user != null;
+        if (user.getFollowers().isEmpty()){
+            return 0f;
+        }
+        return user.getFollowers().size();
+    }
+
+    public float likeScore(Post post){
+        return post.getLikes();
+    }
+
+    public Map<Integer, Float> getScore(){
+        // TODO:
+        return null;
     }
 }

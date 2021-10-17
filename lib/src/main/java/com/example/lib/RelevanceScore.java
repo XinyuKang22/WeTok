@@ -6,15 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RelevanceScore {
-    // TODO: 连接搜索结果（posts)
-    ArrayList<String> searchResults;
 
-    // TODO: 搜索的tag放在一个list里
-    // Assume all query words are in lower case
-    ArrayList<String> query;
-
-    // TODO: 所有posts
+    // TODO: 连接搜索结果
+    Map<Integer, Post> posts;
     ArrayList<String> allPosts;
+    ArrayList<String> query;
 
 
     public static int getTermFrequency(String tag, String post){
