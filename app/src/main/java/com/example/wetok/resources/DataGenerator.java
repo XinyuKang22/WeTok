@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
@@ -115,8 +116,9 @@ public class DataGenerator {
     public static String timeGenerate() {
         int hour=(int)(Math.random()*23)+1;
         int minute= (int)(Math.random()*6);
-
-        return Integer.toString(hour)+":"+Integer.toString(minute)+"0";
+        int month = ThreadLocalRandom.current().nextInt(1, 13);
+        int date = ThreadLocalRandom.current().nextInt(1, 29);
+        return month + "." + date + " " + hour + ":" + minute + "0";
     }
 
     public static String generateAdress(){
@@ -201,9 +203,5 @@ public class DataGenerator {
             System.out.println("cannot write json file!");
         }
     }
-
-
-
-
 
 }
