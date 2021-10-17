@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.sql.Timestamp;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
@@ -114,11 +114,11 @@ public class DataGenerator {
     }
 
     public static String timeGenerate() {
-        int hour=(int)(Math.random()*23)+1;
-        int minute= (int)(Math.random()*6);
-        int month = ThreadLocalRandom.current().nextInt(1, 13);
-        int date = ThreadLocalRandom.current().nextInt(1, 29);
-        return month + "." + date + " " + hour + ":" + minute + "0";
+        long offset = Timestamp.valueOf("2020-01-01 00:00:00").getTime();
+        long end = Timestamp.valueOf("2021-10-23 00:00:00").getTime();
+        long diff = end - offset + 1;
+        Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
+        return rand.toString().substring(0,19);
     }
 
     public static String generateAdress(){
