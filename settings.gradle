@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "WeTok"
 include ':app'
+include ':lib'
