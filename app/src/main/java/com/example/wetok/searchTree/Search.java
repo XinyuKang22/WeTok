@@ -22,7 +22,10 @@ public class Search {
      */
     public void buildIndexTrees(List<Post> posts){
         for(Post post:posts){
-            tagIndexPostTree.insert(post.getTag(),post);
+            List<String> tags= post.getTag();
+            for(String tag: tags){
+                tagIndexPostTree.insert(tag,post);
+            }
         }
     }
 
@@ -38,5 +41,6 @@ public class Search {
         }
         return result;
     }
+
 
 }

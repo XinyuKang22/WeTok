@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
@@ -90,6 +91,7 @@ public class DataGenerator {
     // generate posts
     public static List<Post> generatePosts(String id,String name,String u_img,List<String> statu){
         List<Post> pos = new ArrayList<>();
+        String[] tags = {"#state","#mood","#scenery","#weekend","#time","#trip","#plan"};
             for (int i = 0; i < 3; i++) {
                 //Comments
                 String comment = "";
@@ -99,14 +101,27 @@ public class DataGenerator {
                 int repost = 0;
                 //content
                 int index = (int)(Math.random()*statu.size());
+                //tags
+                List<String> list = new ArrayList<>();
                 String time = timeGenerate();
                 String str = statu.get(index);
                 String[] split = str.split("#");
                 String content = split[0];
                 String tag = "#"+split[1];
+                list.add(tag);
+
+                if(i==2){
+                    String sb = tags[(int)(Math.random()*7)];
+                    while(sb.equals(tag)){
+                        int j = (int)(Math.random()*7);
+                        sb = tags[j];
+                    }
+                    list.add(sb);
+                }
+
                 //img
                 String imgPath = "";
-                Post currentpost = new Post(id, name, u_img, time, tag, comment,like,repost,content,imgPath);
+                Post currentpost = new Post(id, name, u_img, time, list, comment,like,repost,content,imgPath);
                 pos.add(currentpost);
             }
         return pos;
@@ -115,8 +130,9 @@ public class DataGenerator {
     public static String timeGenerate() {
         int hour=(int)(Math.random()*23)+1;
         int minute= (int)(Math.random()*6);
-
-        return Integer.toString(hour)+":"+Integer.toString(minute)+"0";
+        int month = ThreadLocalRandom.current().nextInt(1, 13);
+        int date = ThreadLocalRandom.current().nextInt(1, 29);
+        return month + "." + date + " " + hour + ":" + minute + "0";
     }
 
     public static String generateAdress(){
@@ -201,9 +217,11 @@ public class DataGenerator {
             System.out.println("cannot write json file!");
         }
     }
+/*
+    public static void main(String[] args) throws Exception {
+        createJsonFile();
+    }
 
-
-
-
+ */
 
 }

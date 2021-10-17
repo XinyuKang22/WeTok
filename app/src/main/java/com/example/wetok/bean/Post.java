@@ -23,7 +23,7 @@ public class Post implements Comparable, Serializable {
 
     // post info
     private String time;
-    private String tag;
+    private List<String> tag;
     private String comments;
 
     // post property
@@ -43,7 +43,7 @@ public class Post implements Comparable, Serializable {
 
     public Post(){}
 
-    public Post(String uid, String author, String u_img, String time, String tag, String comments, int likes, int repost,
+    public Post(String uid, String author, String u_img, String time, List<String> tag, String comments, int likes, int repost,
                 String content, String imgloc) {
         this.uid = uid;
         this.author = author;
@@ -59,7 +59,7 @@ public class Post implements Comparable, Serializable {
 
 
 
-    public Post(String content, String uid, String author, String email, String u_img, String time, String tag, String comments, int likes, int star, int repost) {
+    public Post(String content, String uid, String author, String email, String u_img, String time, List<String> tag, String comments, int likes, int star, int repost) {
         this.content = content;
         this.uid = uid;
         this.author = author;
@@ -105,11 +105,11 @@ public class Post implements Comparable, Serializable {
         this.author = author;
     }
 
-    public String getTag() {
+    public List<String> getTag() {
         return tag;
     }
 
-    public void setTag(String tag) {
+    public void setTag(List<String> tag) {
         this.tag = tag;
     }
 

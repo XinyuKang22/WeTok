@@ -39,7 +39,6 @@ public class HomeFragment extends Fragment {
         Toast.makeText(getContext(),"Current time:" + time, Toast.LENGTH_LONG).show();
 
         // indexing newest post according to current time
-//        if (post_data != null && post_data.size() != 0)
         pindex = PostDao.findInsertIndex(post_data);
         if (pindex != -1) {
             List<Post> posts = new ArrayList<>();

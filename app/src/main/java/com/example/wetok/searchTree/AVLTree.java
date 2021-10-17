@@ -31,7 +31,7 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
 
     public void insert(K key, T value) {
         if(key != null) {
-            Node node = new Node(key, value);
+            Node<K,T> node = new Node<>(key, value);
             root = insert(this.root, node);
         }
     }
@@ -186,7 +186,7 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
         }else if(y.key.compareTo(theRoot.key) > 0){
             theRoot.right = insert(theRoot.right,y);
         }else {
-            throw new IllegalArgumentException("A node with key = "+y.key+" is already in the tree");
+            theRoot.value.addAll(y.value);
         }
         theRoot = balance(theRoot);
         theRoot.height = 1 + Math.max(getHeight(theRoot.left), getHeight(theRoot.right));
