@@ -68,7 +68,7 @@ public class PostDao implements Serializable {
             String uid = u.getId();
             String author = u.getName();
             String email = u.getEmail();
-            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
+            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
             String u_img = u.getImgloc();
             List<String> content_list = Arrays.asList(content.split("#"));
             List<String> tag = new ArrayList<>();
@@ -99,12 +99,12 @@ public class PostDao implements Serializable {
     }
 
     public static int findInsertIndex(List<Post> posts ) {
-        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
         Post p;
         for (int i = 0; i < posts.size(); i++) {
             p = posts.get(i);
-            if (Integer.parseInt(p.getTime().replaceAll("[-: ]","")) <=
-                    Integer.parseInt(time.replaceAll("[-: ]",""))) {
+            if (Long.parseLong(p.getTime().replaceAll("[-: ]","")) <=
+                    Long.parseLong(time.replaceAll("[-: ]",""))) {
                 return i;
             }
         }

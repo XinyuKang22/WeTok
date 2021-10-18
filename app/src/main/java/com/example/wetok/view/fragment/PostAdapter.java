@@ -64,7 +64,10 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         // time
         TextView Time = view.findViewById(R.id.list_post_time);
-        Time.setText(post.getTime().substring(2,16));
+        String theDate = post.getTime().substring(5,10);
+        String theYear = post.getTime().substring(2,4);
+        String theTime = post.getTime().substring(11,16);
+        Time.setText(theTime + " " + theDate);
 
         viewHolder = new ViewHolder();
         viewHolder.photo = view.findViewById(R.id.list_post_user_image);
@@ -92,7 +95,11 @@ public class PostAdapter extends ArrayAdapter<Post> {
             TextView tv = new TextView(getContext(), null);
             tv.setPadding(28, 0, 28, 5);
             tv.setHeight(32);
-            tv.setText(post.getTag());
+            String theTag = post.getTag().toString();
+            theTag = theTag.replace(",","");
+            theTag = theTag.replace("[","");
+            theTag = theTag.replace("]","");
+            tv.setText(theTag);
             tv.setSingleLine();
             tv.setBackgroundResource(R.drawable.round_corner);
             tv.setLayoutParams(layoutParams);

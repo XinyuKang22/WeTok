@@ -1,12 +1,7 @@
 package com.example.wetok.bean;
 
-import com.example.wetok.dao.CurrentUser;
-
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -186,9 +181,16 @@ public class Post implements Comparable, Serializable {
 
     @Override
     public int compareTo(Object o) {
-        String o_time = ((Post) o).getTime().replace(":","");
-        String this_time = this.getTime().replace(":","");
-        return Integer.parseInt(o_time) - Integer.parseInt(this_time);
+        String o_time = ((Post) o).getTime().replaceAll("[-: ]","");
+        String this_time = this.getTime().replaceAll("[-: ]","");
+        long diff = Long.parseLong(o_time) - Long.parseLong(this_time);
+        if (diff > 0){
+            return 1;
+        } else if (diff < 0){
+            return -1;
+        } else {
+            return 0;
+        }
     }
 
     @Override
