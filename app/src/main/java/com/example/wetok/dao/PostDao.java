@@ -68,17 +68,18 @@ public class PostDao implements Serializable {
             String uid = u.getId();
             String author = u.getName();
             String email = u.getEmail();
-            String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
             String u_img = u.getImgloc();
             List<String> content_list = Arrays.asList(content.split("#"));
-            String tag;
+            List<String> tag = new ArrayList<>();
             if (content_list.size() > 1) {
-                //多个tag要改这里
-                tag = "#" + content_list.get(1);
+                for(int i=1;i<content_list.size();i++){
+                    tag.add("#"+content_list.get(i).trim());
+                }
             } else {
-                tag = "#no_tag";
+                tag.add("#no_tag");
             }
-            tag = tag.trim();
+
 
             Post po = new Post(content, uid, author, email, u_img, time, tag, "", 0, 0, 0);
             // User: add new post to user
