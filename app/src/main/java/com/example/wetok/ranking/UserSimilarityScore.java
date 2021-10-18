@@ -6,6 +6,7 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -20,18 +21,20 @@ import java.util.Map;
 public class UserSimilarityScore extends ScoreTemplate{
 
     // the weights of user similarity factor: subscriber similarity, post similarity, location similarity
-    final float[] weights = {0.5f, 0.4f, 0.1f};
+    private final float[] weights;
+
+    public UserSimilarityScore(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts, float[] weights){
+        super(currentUser, query, retrievedPosts);
+        this.weights = weights;
+    }
 
     /**
      *
-     * @param currentUser the user who made the query
-     * @param query a list of searched tags
-     * @param retrievedPosts a list of retrieved posts
      * @return a map of the retrieved posts and the similarity score between their senders and the current user
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public Map<Post, Float> getScore(User currentUser, ArrayList<String> query, ArrayList<Post> retrievedPosts) {
+    public Map<Post, Float> getScore() {
         // create a <user, post list> map
         Map<User, ArrayList<Post>> userPostMap = new HashMap<>();
         for (Post post: retrievedPosts){
@@ -98,6 +101,7 @@ public class UserSimilarityScore extends ScoreTemplate{
      * @param user2 the user to compare
      * @return the post similarity = 1 / (1 + count of same tags between the posts of user1 and user2)
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public float postSimilarity(Map<String, Integer> tags1, User user2){
 
         // convert user2 to a map of tags

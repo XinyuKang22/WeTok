@@ -4,8 +4,10 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
-import java.util.ArrayList;
+import com.example.wetok.dao.PostDao;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,20 +16,22 @@ import java.util.Map;
  */
 public class RelevanceScore extends ScoreTemplate{
 
+    public RelevanceScore(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts){
+        super(currentUser, query, retrievedPosts);
+    }
+
     /**
      *
-     * @param currentUser the user who made the query
-     * @param query a list of searched tags
-     * @param retrievedPosts a list of retrieved posts
      * @return a map of the retrieved posts and their relevance scores
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public Map<Post, Float> getScore(User currentUser, ArrayList<String> query, ArrayList<Post> retrievedPosts) {
-        // TODO: allPosts need to modify
-        ArrayList<Post> allPosts = retrievedPosts;
-        int N = allPosts.size();
+    public Map<Post, Float> getScore() {
 
+        // get all posts as the corpus for document frequency
+        // suppose PostDao has been initiated
+        List<Post> allPosts = PostDao.getPosts();
+        int N = allPosts.size();
         Map<String, Integer> df_map = getDocumentFrequency(query, allPosts);
 
         Map<Post, Float> scores = new HashMap<>();
@@ -37,11 +41,13 @@ public class RelevanceScore extends ScoreTemplate{
             for (String tag : query){
                 int tf = getTermFrequency(tag, post.getContent());
                 // modified tf-idf, added 1 in document frequency to avoid invalid denominator problem, will NOT affect the ranking result
-                float tf_idf = (float) (tf * Math.log(N / (1.0+df_map.get(tag))));
+                float tf_idf = (float) (tf * Math.log(N / (1.0 + df_map.get(tag))));
                 score = score + tf_idf;
             }
             scores.put(post, score);
         }
+
+        // TODO: tf-idf scores need to be normalised
         return scores;
     }
 
@@ -57,12 +63,12 @@ public class RelevanceScore extends ScoreTemplate{
 
     /**
      *
-     * @param query: a list of query tokens
-     * @param allPosts: a list of all posts
+     * @param query : a list of query tokens
+     * @param allPosts : a list of all posts
      * @return a map of query tokens and their corresponding document frequencies
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static Map<String, Integer> getDocumentFrequency(ArrayList<String> query, ArrayList<Post> allPosts){
+    public static Map<String, Integer> getDocumentFrequency(HashSet<String> query, List<Post> allPosts){
 
         Map<String, Integer> documentFrequencies = new HashMap<>();
         for (String s : query){

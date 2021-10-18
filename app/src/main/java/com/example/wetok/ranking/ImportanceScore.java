@@ -4,12 +4,12 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.dao.UserDao;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -24,18 +24,23 @@ import java.util.Map;
 public class ImportanceScore extends ScoreTemplate {
 
     // the weights of importance factor: time, followers, likes
-    final float[] weights = {0.7f, 0.2f, 0.1f};
+    private final float[] weights;
+
+    public ImportanceScore(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts, float[] weights){
+        super(currentUser, query, retrievedPosts);
+        this.weights = weights;
+    }
+
+    // the weights of importance factor: time, followers, likes
+    //final float[] weights = {0.7f, 0.2f, 0.1f};
 
     /**
      *
-     * @param currentUser the user who made the query
-     * @param query a list of searched tags
-     * @param retrievedPosts a list of retrieved posts
      * @return a map of the retrieved posts and their importance scores
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public Map<Post, Float> getScore(User currentUser, ArrayList<String> query, ArrayList<Post> retrievedPosts) {
+    public Map<Post, Float> getScore() {
         Map<Post, Float> score_map = new HashMap<>();
         for (Post post : retrievedPosts){
             float time_score = timeScore(post);
@@ -66,18 +71,7 @@ public class ImportanceScore extends ScoreTemplate {
      * @return the follower score of the post; range = [0,1], if the sender's followers >= 10000 then score = 1, if the sender's followers <= 10 then score = 0
      */
     public float followerScore(Post post){
-        //User user = UserDao.findUserById(post.getUid());
-
-        // TODO: 临时建立的user，之后应该使用上面那句
-        User user = new User();
-        User a = new User();
-        User b = new User();
-        User c = new User();
-        List<User> fol = new ArrayList<>();
-        fol.add(a);
-        fol.add(b);
-        fol.add(c);
-        user.setFollowers(fol);
+        User user = UserDao.findUserById(post.getUid());
 
         assert user != null;
         if (user.getFollowers().isEmpty()){

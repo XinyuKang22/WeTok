@@ -2,7 +2,7 @@ package com.example.wetok.ranking;
 
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -10,15 +10,26 @@ import java.util.Map;
  * This is the abstract class in Template design pattern
  */
 public abstract class ScoreTemplate {
+    User currentUser;
+    HashSet<String> query;
+    HashSet<Post> retrievedPosts;
 
     /**
      *
      * @param currentUser the user who made the query
      * @param query a list of searched tags
-     * @param retrievedPosts a list of retrieved posts
+     * @param retrievedPosts a map of the retrieved posts and their scores
+     */
+    public ScoreTemplate(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts){
+        this.currentUser = currentUser;
+        this.query = query;
+        this.retrievedPosts = retrievedPosts;
+    }
+
+    /**
+     *
      * @return a map of the retrieved posts and their scores
      */
-    public abstract Map<Post, Float> getScore(User currentUser, ArrayList<String> query, ArrayList<Post> retrievedPosts);
-
+    public abstract Map<Post, Float> getScore();
 
 }
