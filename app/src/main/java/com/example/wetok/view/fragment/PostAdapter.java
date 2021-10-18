@@ -64,7 +64,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         // time
         TextView Time = view.findViewById(R.id.list_post_time);
-        Time.setText(post.getTime());
+        Time.setText(post.getTime().substring(2,16));
 
         viewHolder = new ViewHolder();
         viewHolder.photo = view.findViewById(R.id.list_post_user_image);

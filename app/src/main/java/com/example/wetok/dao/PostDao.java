@@ -1,5 +1,6 @@
 package com.example.wetok.dao;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -97,12 +98,12 @@ public class PostDao implements Serializable {
     }
 
     public static int findInsertIndex(List<Post> posts ) {
-        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
         Post p;
         for (int i = 0; i < posts.size(); i++) {
             p = posts.get(i);
-            if (Integer.parseInt(p.getTime().replace(":","")) <=
-                    Integer.parseInt(time.replace(":",""))) {
+            if (Integer.parseInt(p.getTime().replaceAll("[-: ]","")) <=
+                    Integer.parseInt(time.replaceAll("[-: ]",""))) {
                 return i;
             }
         }
