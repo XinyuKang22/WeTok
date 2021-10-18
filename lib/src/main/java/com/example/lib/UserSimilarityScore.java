@@ -1,0 +1,184 @@
+package com.example.lib;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+public class UserSimilarityScore {
+
+    /*
+     用户相似度衡量标准：
+     1. subscriber的相似度
+     2. 过往post的tag相似度
+     3. 所在地区的相似度
+     */
+
+
+    // TODO: 连接搜索结果
+    Map<Integer, Post> posts;
+    ArrayList<String> allPosts;
+    ArrayList<String> query;
+    static float[] weights = {0.5f, 0.4f, 0.1f};
+
+
+    /**
+     *
+     * @param subID1 a map of subscriber ids for user1, i.e., (id:-1)
+     * @param user2 the user to compare
+     * @return the subscriber similarity = 1 / (1 + count of same subscribers between user1 and user2)
+     */
+    public float subscriberSimilarity(Map<Integer, Integer> subID1, User user2){
+
+        // convert user2 to a collection of subscriber ids
+        Map<Integer, Integer> subID2 = getSubIds(user2);
+
+        // find the larger & the smaller subscriber maps
+        Map<Integer, Integer> max;
+        Map<Integer, Integer> min;
+        if (subID1.size() > subID2.size()){
+            max = subID1;
+            min = subID2;
+        }else {
+            max = subID2;
+            min = subID1;
+        }
+
+        // count the common subscribers
+        int count = 0;
+        for (int id : min.keySet()){
+            if (max.get(id) != null) count ++;
+        }
+
+        return 1f / (1+count);
+    }
+
+    /**
+     *
+     * @param tags1 a map of tags for user1's posts, i.e., (tag:-1)
+     * @param user2 the user to compare
+     * @return the post similarity = 1 / (1 + count of same tags between the posts of user1 and user2)
+     */
+    public float postSimilarity(Map<String, Integer> tags1, User user2){
+
+        // convert user2 to a map of tags
+        Map<String, Integer> tags2 = getTags(user2);
+
+        // find the larger & the smaller tag map
+        Map<String, Integer> max;
+        Map<String, Integer> min;
+        if (tags1.size() > tags2.size()){
+            max = tags1;
+            min = tags2;
+        }else {
+            max = tags2;
+            min = tags1;
+        }
+
+        // count the common tags
+        int count = 0;
+        for (String tag : min.keySet()){
+            if (max.get(tag) != null) count ++;
+        }
+        return 1f / (1 +count);
+    }
+
+    /**
+     *
+     * @param city1 the address of user1
+     * @param user2 the user to compare
+     * @return the location similarity = 1 if user1 and user2 are in same city and = 0 otherwise
+     */
+    public int locationSimilarity(String city1, User user2){
+        String city2 = user2.getAddress();
+
+        // find the longer & shorter city name
+        String max;
+        String min;
+        if (city1.length() > city2.length()){
+            max = city1;
+            min = city2;
+        }else {
+            max = city2;
+            min = city1;
+        }
+
+        // check if they have same part
+        if (max.toLowerCase().contains(min.toLowerCase())){
+            return 1;
+        }else {
+            return 0;
+        }
+    }
+
+    /**
+     *
+     * @param user the user
+     * @return a map of (subscriber id:-1)
+     */
+    public Map<Integer, Integer> getSubIds(User user){
+        Map<Integer, Integer> subIDs = new HashMap<>();
+        if (!user.getSubscribers().isEmpty()){
+            for (User sub: user.getSubscribers()){
+                subIDs.put(Integer.parseInt(sub.getId()), -1);
+            }
+        }
+        return subIDs;
+    }
+
+    /**
+     *
+     * @param user the user
+     * @return a map of (tag:-1)
+     */
+    public Map<String, Integer> getTags(User user){
+        Map<String, Integer> tags = new HashMap<>();
+        for (Post post : user.getPosts()){
+            for (String tag : post.getTag()){
+                tags.putIfAbsent(tag, -1);
+            }
+        }
+        return tags;
+    }
+
+    /**
+     *
+     * @param posts a list of retrieved posts
+     * @param currentUser the user who made the query
+     * @return a map of the retrieved posts and the similarity score between their senders and the current user
+     */
+    public Map<Post, Float> getScore(Map<Integer, Post> posts, User currentUser){
+
+        // create a <user, post list> map
+        Map<User, ArrayList<Post>> userPostMap = new HashMap<>();
+        for (Map.Entry<Integer, Post> entry: posts.entrySet()){
+            User user = entry.getValue().user;
+            if (!userPostMap.containsKey(user)) userPostMap.put(user, new ArrayList<>());
+            userPostMap.get(user).add(entry.getValue());
+        }
+
+        // process current user first to save runtime
+        Map<Integer, Integer> subIDs = getSubIds(currentUser);
+        Map<String, Integer> tags = getTags(currentUser);
+        String city = currentUser.getAddress();
+
+        // process every user in the <user, post list> map
+        // and calculate the similarity score between the user and the current user
+        Map<Post, Float> postScoreMap = new HashMap<>();
+        for (Map.Entry<User, ArrayList<Post>> entry : userPostMap.entrySet()){
+            User user = entry.getKey();
+            float subscriber_similarity = subscriberSimilarity(subIDs, user);
+            float post_similarity = postSimilarity(tags, user);
+            int location_similarity = locationSimilarity(city, user);
+            float score = weights[0] * subscriber_similarity + weights[1] * post_similarity + weights[2] * location_similarity;
+            for (Post post : entry.getValue()){
+                postScoreMap.put(post, score);
+            }
+        }
+        return postScoreMap;
+    }
+
+
+
+}
