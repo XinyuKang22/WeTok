@@ -1,25 +1,14 @@
 package com.example.wetok.dao;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
-
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
-import com.example.wetok.resources.InformationResource;
-import com.google.android.gms.common.internal.Objects;
-
 import java.io.Serializable;
-import java.net.PortUnreachableException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashMap;
-
 import java.util.List;
 import java.util.Locale;
 
@@ -104,8 +93,8 @@ public class PostDao implements Serializable {
         Post p;
         for (int i = 0; i < posts.size(); i++) {
             p = posts.get(i);
-            if (Integer.parseInt(p.getTime().replaceAll("[-: ]","")) <=
-                    Integer.parseInt(time.replaceAll("[-: ]",""))) {
+            if (Long.parseLong(p.getTime().replaceAll("[-: ]","")) <=
+                    Long.parseLong(time.replaceAll("[-: ]",""))) {
                 return i;
             }
         }

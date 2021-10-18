@@ -1,55 +1,28 @@
 package com.example.wetok.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.wetok.R;
-import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
-import com.example.wetok.dao.PostDao;
-import com.example.wetok.dao.UserDao;
-import com.example.wetok.resources.InformationResource;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcher;
-    Context context = MainActivity.this;
-//    InformationResource info = null;
     User currentUser = null;
-
-    // Mainpage element
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,37 +110,4 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public InformationResource getInformationResource(){
-        List<User> users = new ArrayList<>();
-        List<Post> posts = new ArrayList<>();
-        List<User> followers = new ArrayList<>();
-        List<User> subscribers = new ArrayList<>();
-        InputStream file;
-
-        System.out.println("trying to open infoResource.json");
-        file = null;
-        try {
-            file = getAssets().open("infoResource.json");
-            System.out.println("load info done");
-        } catch (IOException e) {
-            System.out.println("load info fail");
-            e.printStackTrace();
-        }
-        final Type classType = new TypeToken<List<User>>(){}.getType();
-        Gson gson = new Gson();
-        try {
-            JsonReader reader = new JsonReader(new InputStreamReader(file));
-            users.addAll(gson.fromJson(reader, classType));
-            for(User u: users){
-                posts.addAll(u.getPosts());
-                subscribers.addAll(u.getSubscribers());
-                followers.addAll(u.getFollowers());
-            }
-            System.out.println("turn to users done");
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println("turn to users fail");
-        }
-        return new InformationResource(users,posts,followers,subscribers);
-    }
 }
