@@ -91,6 +91,7 @@ public class DataGenerator {
     // generate posts
     public static List<Post> generatePosts(String id,String name,String u_img,List<String> statu){
         List<Post> pos = new ArrayList<>();
+        String[] tags = {"#state","#mood","#scenery","#weekend","#time","#trip","#plan"};
             for (int i = 0; i < 3; i++) {
                 //Comments
                 String comment = "";
@@ -100,14 +101,27 @@ public class DataGenerator {
                 int repost = 0;
                 //content
                 int index = (int)(Math.random()*statu.size());
+                //tags
+                List<String> list = new ArrayList<>();
                 String time = timeGenerate();
                 String str = statu.get(index);
                 String[] split = str.split("#");
                 String content = split[0];
                 String tag = "#"+split[1];
+                list.add(tag);
+
+                if(i==2){
+                    String sb = tags[(int)(Math.random()*7)];
+                    while(sb.equals(tag)){
+                        int j = (int)(Math.random()*7);
+                        sb = tags[j];
+                    }
+                    list.add(sb);
+                }
+
                 //img
                 String imgPath = "";
-                Post currentpost = new Post(id, name, u_img, time, tag, comment,like,repost,content,imgPath);
+                Post currentpost = new Post(id, name, u_img, time, list, comment,like,repost,content,imgPath);
                 pos.add(currentpost);
             }
         return pos;
@@ -203,5 +217,9 @@ public class DataGenerator {
             System.out.println("cannot write json file!");
         }
     }
+
+
+
+
 
 }

@@ -1,14 +1,25 @@
 package com.example.wetok.dao;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
+
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.resources.InformationResource;
+import com.google.android.gms.common.internal.Objects;
+
 import java.io.Serializable;
+import java.net.PortUnreachableException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -60,16 +71,15 @@ public class PostDao implements Serializable {
             String time = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(new Date());
             String u_img = u.getImgloc();
             List<String> content_list = Arrays.asList(content.split("#"));
-            String tag = "";
+            List<String> tag = new ArrayList<>();
             if (content_list.size() > 1) {
-                //多个tag要改这里
-                for (int i = 1; i < content_list.size(); i ++){
-                    tag = "#" + content_list.get(i).trim() + " ";
+                for(int i=1;i<content_list.size();i++){
+                    tag.add("#"+content_list.get(i).trim());
                 }
             } else {
-                tag = "#no_tag";
+                tag.add("#no_tag");
             }
-            //tag = tag.trim();
+
 
             Post po = new Post(content, uid, author, email, u_img, time, tag, "", 0, 0, 0);
             // User: add new post to user
@@ -93,8 +103,8 @@ public class PostDao implements Serializable {
         Post p;
         for (int i = 0; i < posts.size(); i++) {
             p = posts.get(i);
-            if (Long.parseLong(p.getTime().replaceAll("[-: ]","")) <=
-                    Long.parseLong(time.replaceAll("[-: ]",""))) {
+            if (Integer.parseInt(p.getTime().replaceAll("[-: ]","")) <=
+                    Integer.parseInt(time.replaceAll("[-: ]",""))) {
                 return i;
             }
         }
