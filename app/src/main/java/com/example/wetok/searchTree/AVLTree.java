@@ -6,6 +6,7 @@ package com.example.wetok.searchTree;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 
 public class AVLTree<K extends Comparable, T> implements Serializable {
     public Node root;
@@ -55,12 +56,12 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
             return node;
     }
 
-    public HashSet<T> find(K key) {
+    public List<T> find(K key) {
         Node node = getNode(key);
         return node == null ? null : node.value;
     }
 
-    public void set(K key, HashSet<T> newValue) {
+    public void set(K key, List<T> newValue) {
         Node node = getNode(key);
         if (node != null)
             node.value = newValue;

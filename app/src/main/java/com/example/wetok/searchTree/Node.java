@@ -5,20 +5,22 @@ package com.example.wetok.searchTree;
  */
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 
 public class Node<K extends Comparable, T> implements Serializable {
 
     public K key; 				// Node key
-    public HashSet<T> value;
+    public List<T> value;
     public Node parent; 		// Parent node
     public Node left, right;// Children nodes
     public int height;
 
     public Node(K key, T value) {
         this.key  = key;
-        this.value = new HashSet<>();
+        this.value = new ArrayList<>();
         this.value.add(value);
         this.parent = null;
         // Initialise children leaf nodes
@@ -32,7 +34,7 @@ public class Node<K extends Comparable, T> implements Serializable {
     // Leaf node
     public Node() {
         this.key 	= null;
-        this.value  = new HashSet<>();
+        this.value  = new ArrayList<>();
     }
 
     public K getKey() {

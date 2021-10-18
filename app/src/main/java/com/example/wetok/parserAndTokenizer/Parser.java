@@ -5,6 +5,8 @@ package com.example.wetok.parserAndTokenizer;
  * <exp>    ::=  <term> | <term> '|' <exp>
  * <term>   ::=  <factor> | <factor> '&' <term>
  * <factor> ::=  <tag> | '(' <exp> ')'
+ *
+ * @author Yuxin Hong
 
 
  * Parsing, within the context of this lab, is the process of taking a bunch of tokens and

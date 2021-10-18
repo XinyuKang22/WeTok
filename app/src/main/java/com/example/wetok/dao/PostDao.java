@@ -39,7 +39,7 @@ public class PostDao implements Serializable {
     public void addPost(Post p){
            posts.add(p);
     }
-
+    /*
     public List<Post> findPostByTag(String tag){
          List<Post> sameTag = new ArrayList<>();
           for(Post p: posts){
@@ -49,6 +49,16 @@ public class PostDao implements Serializable {
           }
         return sameTag;
     }
+
+     */
+    public static List<String> getTagList(List<Post> post){
+           List<String> tags = new ArrayList<>();
+           for(Post p:post){
+               tags.addAll(p.getTag());
+           }
+        return tags;
+    }
+
 
     public User findUserById(String id) {
         List<User> users = UserDao.users;

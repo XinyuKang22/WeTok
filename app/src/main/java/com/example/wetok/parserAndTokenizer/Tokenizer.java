@@ -1,5 +1,8 @@
 package com.example.wetok.parserAndTokenizer;
 
+/**
+ * @author Yuxin Hong
+ */
 public class Tokenizer {
     private String buffer;          // String to be transformed into tokens each time next() is called.
     private Token currentToken;     // The current token. The next token is extracted when next() is called.

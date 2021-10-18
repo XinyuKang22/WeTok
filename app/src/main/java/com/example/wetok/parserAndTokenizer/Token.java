@@ -4,6 +4,8 @@ import java.util.Objects;
 
 /**
  * Token class to save extracted token from tokenizer.
+ * @author Yuxin Hong
+ *
  * Each token has its surface form saved in {@code token}
  * and type saved in {@code type} which is one of the predefined type in Type enum.
  * The following are the different types of tokens:
@@ -14,6 +16,7 @@ import java.util.Objects;
  * OR: |
  * LBRA: (
  * RBRA: )
+ *
  */
 public class Token {
     public enum Type {TAG, AND, OR, LBRA, RBRA}

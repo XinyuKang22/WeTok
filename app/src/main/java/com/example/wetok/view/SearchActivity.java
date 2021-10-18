@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,37 +12,47 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.dao.PostDao;
+import com.example.wetok.parserAndTokenizer.Exp;
+import com.example.wetok.parserAndTokenizer.Parser;
+import com.example.wetok.parserAndTokenizer.Tokenizer;
+import com.example.wetok.searchTree.Query;
 import com.example.wetok.searchTree.Search;
 import com.example.wetok.view.fragment.PostAdapter;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = "EmailPassword";
     private Context context;
+    private Tokenizer Tokenizer;
+    private Exp condition; // store search condition
+    public Search s;
+    public static List<Post> posts; // store posts
+    public static List<String> tags;// store all post tags
+    public String tag; // store search information
+    public List<Post> plist; // store the searching results.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = SearchActivity.this;
-        //TODO the parameter needs to be modified
-        String tag = getIntent().getStringExtra("tag");
+        tag = getIntent().getStringExtra("tag");
 
         setContentView(R.layout.activity_search);
 
         ListView lv = findViewById(R.id.profile_post_list);
 
-        ArrayList<Post> posts = new ArrayList<>(PostDao.posts);
+        posts = new ArrayList<>(PostDao.posts);
+        tags = PostDao.getTagList(posts);
 
-        //TODO the method not complete yet
-        Search search = new Search();
-        search.buildIndexTrees(posts);
-        List<Post> result = (List<Post>)search.search(tag);
+        s = new Search();
+        s.buildIndexTrees(posts);
+        // searching in different conditions.
+        searchConditions();
 
-        PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, result);
+        PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, plist);
         lv.setAdapter(adapter);
 
         ActionBar actionBar = getSupportActionBar();
@@ -65,5 +76,17 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    /**
+     * Integration method to get the input, parse it and search it.
+     * The default results list are ranked by promote value.
+     */
+    private void searchConditions(){
+        //TODO method not complete yet
+        Tokenizer = new Tokenizer(tag);
+        condition = new Parser(Tokenizer).parseExp();
+        plist = Query.query(posts,s,condition);
+
     }
 }
