@@ -60,10 +60,6 @@ public class User implements Serializable {
         return subscribers.contains(u);
     }
 
-    public List<User> getFriends() {
-        return friends;
-    }
-
     public void setFriends(List<User> friends) {
         this.friends = friends;
     }
@@ -82,24 +78,12 @@ public class User implements Serializable {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
     }
 
     public void setAge(int age) {
@@ -110,13 +94,7 @@ public class User implements Serializable {
         return posts;
     }
 
-    public void setPosts(List<Post> posts) { this.posts = posts;
-    }
-
-    //add post
-    public void addPosts(Post pos) {
-        posts.add(pos);
-    }
+    public void setPosts(List<Post> posts) { this.posts = posts;}
 
     public List<User> getFollowers() {
         return followers;
@@ -146,10 +124,6 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
     }
 
     public void setPhone(String phone) {

@@ -24,7 +24,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SendPostActivity extends AppCompatActivity {
-    //TODO tag 需要修改
     private static final String TAG = "EmailPassword";
     private Context context;
 
@@ -43,7 +42,7 @@ public class SendPostActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 点击发送
+                // send post
                 String postContent = content.getText().toString();
                 Toast.makeText(context,"content is: " + postContent, Toast.LENGTH_LONG).show();
 
