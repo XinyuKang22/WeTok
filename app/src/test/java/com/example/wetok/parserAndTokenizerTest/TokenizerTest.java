@@ -1,4 +1,4 @@
-package com.example.wetok;
+package com.example.wetok.parserAndTokenizerTest;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;

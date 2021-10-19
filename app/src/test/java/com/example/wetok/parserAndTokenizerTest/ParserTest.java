@@ -1,4 +1,4 @@
-package com.example.wetok;
+package com.example.wetok.parserAndTokenizerTest;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

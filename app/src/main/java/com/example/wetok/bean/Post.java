@@ -37,20 +37,8 @@ public class Post implements Comparable, Serializable {
 
     public Post(){}
 
-    public Post(String uid, String author, String u_img, String time, List<String> tag, String comments, int likes, int repost,
-                String content, String imgloc) {
-        this.uid = uid;
-        this.author = author;
-        this.u_img = u_img;
-        this.time = time;
-        this.tag = tag;
-        this.likes = likes;
-        this.content = content;
-    }
-
-
-
-    public Post(String content, String uid, String author, String email, String u_img, String time, List<String> tag, String comments, int likes, int star, int repost) {
+    public Post(String content, String uid, String author, String email, String u_img, String time,
+                List<String> tag, int likes, int star) {
         this.content = content;
         this.uid = uid;
         this.author = author;
