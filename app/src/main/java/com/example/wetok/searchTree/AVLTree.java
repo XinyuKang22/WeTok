@@ -1,28 +1,21 @@
 package com.example.wetok.searchTree;
-/**
- * This is the AVL tree for search function
- * @Auther Xinyue Hu, Xinyu Kang
- */
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
 
+/**
+ * @author Xinyue Hu, Xinyu Kang
+ *
+ * This class implements AVL Tree data structure,
+ * mainly includes find, insert, and delete operations.
+ */
 public class AVLTree<K extends Comparable, T> implements Serializable {
     public Node root;
-    private int size;
+    public int size;
 
     public AVLTree(){
         root = null;
         size = 0;
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public boolean isEmpty(){
-        return size == 0;
     }
 
     public int getHeight(Node node){
@@ -30,6 +23,11 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
         return node.height;
     }
 
+    /**
+     * Find the node by key, insert new value into its value list. Create a new node if the key is not found.
+     * @param key the key
+     * @param value a single value
+     */
     public void insert(K key, T value) {
         if(key != null) {
             Node<K,T> node = new Node<>(key, value);
@@ -37,14 +35,29 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
         }
     }
 
+    /**
+     * Delete the node with the key. Throw IllegalInputException if the node does not exist
+     * @param key the key
+     */
     public void delete(K key) {
         root = delete(root, key);
     }
 
+    /**
+     * Get the node with the key, search in entire tree
+     * @param key the key
+     * @return the node searched by the key, return null if not found
+     */
     public Node getNode(K key) {
         return getNode(root, key);
     }
 
+    /**
+     * Get the node with the key, search the subtree from the given node to leaves
+     * @param node the start node (can be a root node or any other nodes)
+     * @param key the key
+     * @return the node searched by the key, return null if not found
+     */
     public Node getNode(Node node, K key) {
         if (node == null || node.key == null){
             return null;
@@ -58,19 +71,21 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
         }
     }
 
+    /**
+     * Find the node with the key, search in entire tree
+     * @param key the key
+     * @return the node searched by the key, return null if not found
+     */
     public List<T> find(K key) {
         Node node = getNode(key);
         return node == null ? null : node.value;
     }
 
-    public void set(K key, List<T> newValue) {
-        Node node = getNode(key);
-        if (node != null)
-            node.value = newValue;
-        else
-            throw new IllegalArgumentException(key + "doesn't exist");
-    }
-
+    /**
+     * Check whether the tree contains a node with the key
+     * @param key the key
+     * @return true if the tree contains a node with the key, and vise versa
+     */
     public boolean contains(K key) {
         return getNode(key) != null;
     }
@@ -87,18 +102,6 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
         return maximum(root);
     }
 
-    public void removeMinimum() {
-        if (size == 0 || root == null || root.key == null)
-            throw new IllegalArgumentException("The tree is empty, cannot remove any node");
-        removeMinimum(root);
-    }
-
-    public void removeMaximum() {
-        if (size == 0 || root == null || root.key == null)
-            throw new IllegalArgumentException("The tree is empty, cannot remove any node");
-        removeMaximum(root);
-    }
-
     private Node minimum(Node node) {
         if (node == null || node.key == null || node.left == null || node.left.key == null)
             return node;
@@ -111,18 +114,11 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
         return maximum(node.right);
     }
 
-    private Node removeMinimum(Node node) {
-        if (node.left == null || node.left.key == null) {
-            Node rightNode = node.right;
-            node.right = null;
-            size = size - 1;
-            return rightNode;
-        }
-        node.left = removeMinimum(node.left);
-        node.left = balance(node.left);
-        return node;
-    }
-
+    /**
+     * Remove the max node in the subtree from the node to leaves
+     * @param node the start node
+     * @return the root node of the subtree after deleting the max node
+     */
     private Node removeMaximum(Node node) {
         if (node.right == null || node.right.key == null) {
             Node leftNode = node.left;
