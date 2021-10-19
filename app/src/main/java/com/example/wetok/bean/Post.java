@@ -29,7 +29,11 @@ public class Post implements Comparable, Serializable {
     String imgloc;
     public User user;
 
-
+    public Post(List<String> tag, String content, String id) {
+        this.tag = tag;
+        this.content = content;
+        this.uid = id;
+    }
 
     @Override
     public String toString() {

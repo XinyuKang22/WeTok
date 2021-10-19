@@ -23,15 +23,23 @@ public class OrExp extends Exp {
 		this.exp = exp;
 	}
 
+	public static List<Post> postUnion(List<Post> a, List<Post> b) {
+		List<Post> result = new ArrayList<>();
+		result.addAll(a);
+		for (Post p : b) {
+			if (!a.contains(p)) result.add(p);
+		}
+		return result;
+	}
+
 	@Override
 	public String show() {
-		return "(" + term.show() + " - " + exp.show() + ")";
+		return "(" + term.show() + " | " + exp.show() + ")";
 	}
 
 	@Override
 	public List<Post> evaluate(Search s) {
-		List<Post> result = new ArrayList<>(term.evaluate(s));
-		result.addAll(exp.evaluate(s));
+		List<Post> result = postUnion(term.evaluate(s), exp.evaluate(s));
 		return result;
 	}
 }

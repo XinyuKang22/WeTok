@@ -2,7 +2,6 @@ package com.example.wetok.parserAndTokenizer;
 
 import com.example.wetok.bean.Post;
 import com.example.wetok.searchTree.Search;
-import com.example.wetok.view.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,10 +34,10 @@ public class TagExp extends Exp {
 	public List<Post> evaluate(Search s) {
 		List<Post> result = new ArrayList<>();
 
-		if(SearchActivity.tags.contains(value)){
+//		if(SearchActivity.tags.contains(value)){
 			result.addAll(s.search(value));
-		}
-
+//		}
+		System.out.println("tag is: " + value + "; result = " + result);
 		return result;
 	}
 }

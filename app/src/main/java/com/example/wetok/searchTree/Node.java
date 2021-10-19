@@ -14,7 +14,7 @@ public class Node<K extends Comparable, T> implements Serializable {
 
     public K key; 				// Node key
     public List<T> value;
-    public Node parent; 		// Parent node
+    public Node parent;	// Parent node
     public Node left, right;// Children nodes
     public int height;
 
