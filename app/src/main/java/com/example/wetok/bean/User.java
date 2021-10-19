@@ -60,7 +60,6 @@ public class User implements Serializable {
         return subscribers.contains(u);
     }
 
-
     public List<User> getFriends() {
         return friends;
     }

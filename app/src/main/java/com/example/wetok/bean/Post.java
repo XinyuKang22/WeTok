@@ -19,15 +19,10 @@ public class Post implements Comparable, Serializable {
     // post info
     private String time;
     private List<String> tag;
-    private String comments;
 
     // post property
     private int likes;
     private int star = 0;
-    private int repost;
-
-    String imgloc;
-    public User user;
 
     public Post(List<String> tag, String content, String id) {
         this.tag = tag;
@@ -49,11 +44,8 @@ public class Post implements Comparable, Serializable {
         this.u_img = u_img;
         this.time = time;
         this.tag = tag;
-        this.comments = comments;
         this.likes = likes;
-        this.repost = repost;
         this.content = content;
-        this.imgloc = imgloc;
     }
 
 
@@ -66,10 +58,8 @@ public class Post implements Comparable, Serializable {
         this.u_img = u_img;
         this.time = time;
         this.tag = tag;
-        this.comments = comments;
         this.likes = likes;
         this.star = star;
-        this.repost = repost;
     }
 
     public int getStar() {
@@ -128,28 +118,12 @@ public class Post implements Comparable, Serializable {
         this.uid = uid;
     }
 
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
-    }
-
     public int getLikes() {
         return likes;
     }
     //add likes
     public void setLikes(int likes) {
         this.likes = likes;
-    }
-
-    public int getRepost() {
-        return repost;
-    }
-    //add repost
-    public void setRepost(int repost) {
-        this.repost += repost;
     }
 
     public String getContent() {
@@ -160,26 +134,14 @@ public class Post implements Comparable, Serializable {
         this.content = content;
     }
 
-    public String getImgloc() {
-        return imgloc;
-    }
-
-    public void setImgloc(String imgloc) {
-        this.imgloc = imgloc;
-    }
-
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
         result.put("author", author);
         result.put("uimg", u_img);
         result.put("tag", tag);
-        result.put("comments", comments);
         result.put("likes", likes);
-        result.put("reposts", repost);
         result.put("content", content);
-        result.put("imgloc",imgloc );
-
         return result;
     }
 

@@ -4,6 +4,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.dao.UserDao;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +40,7 @@ public class UserSimilarityScore extends ScoreTemplate{
         // create a <user, post list> map
         Map<User, ArrayList<Post>> userPostMap = new HashMap<>();
         for (Post post: retrievedPosts){
-            User user = post.user;
+            User user = UserDao.findUserByEmail(post.getEmail());
             if (!userPostMap.containsKey(user)) userPostMap.put(user, new ArrayList<>());
             userPostMap.get(user).add(post);
         }

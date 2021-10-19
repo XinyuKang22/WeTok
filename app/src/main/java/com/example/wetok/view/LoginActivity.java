@@ -75,9 +75,6 @@ public class LoginActivity extends AppCompatActivity{
         Collections.sort(PostDao.posts);
         PostDao.post_size = PostDao.posts.size();
 
-        // 假装新用户注册
-        fakeRegisterUser();
-
         setContentView(R.layout.activity_login);
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
@@ -85,14 +82,6 @@ public class LoginActivity extends AppCompatActivity{
         et_emailLogin = findViewById(R.id.et_emailLogin);
         et_passwordLogin = findViewById(R.id.et_passwordLogin);
         fbAuth = FirebaseAuth.getInstance();
-
-//        String friend = "";
-//        for (User i : UserDao.users.get(0).getFriends()) {
-//            friend += i.getName();
-//        }
-//        Toast.makeText(context,"User data check" + friend, Toast.LENGTH_LONG).show();
-
-//        Toast.makeText(context,"Post data check" + UserDao.users.get(0).getPosts().get(0).getTime(), Toast.LENGTH_LONG).show();
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -221,33 +210,4 @@ public class LoginActivity extends AppCompatActivity{
 
         return new InformationResource(users);
     }
-
-    public void fakeRegisterUser() {
-        User u = new User();
-        u.setEmail("joyhongyuxin@gmail.com");
-        u.setPassword("123456");
-        UserDao.users_size += 1;
-        u.setId(""+UserDao.users_size);
-        u.setName("Yuxin Hong");
-        u.setGender("Female");
-        u.setAge(21);
-
-
-        List<User> empty_user = new ArrayList<>();
-        u.setFollowers(empty_user);
-        u.setSubscribers(empty_user);
-        u.setFriends(empty_user);
-
-        List<Post> empty_post = new ArrayList<>();
-        u.setPosts(empty_post);
-
-        u.setAddress("Canberra");
-        u.setPhone("450541675");
-        u.setImgloc("default");
-
-        //update UserDao
-        UserDao.addUser(u);
-        //end
-    }
-
 }
