@@ -87,7 +87,7 @@ public class SearchActivity extends AppCompatActivity {
      * Integration method to get the input, parse it and search it.
      */
     private void searchConditions(){
-        //plist.clear(); // clear last results.
+            //plist.clear(); // clear last results.
             Tokenizer = new Tokenizer(tag);
             condition = new Parser(Tokenizer).parseExp();
             plist = condition.evaluate(s);

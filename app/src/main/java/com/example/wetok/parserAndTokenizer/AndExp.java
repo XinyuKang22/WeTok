@@ -4,7 +4,7 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.searchTree.Search;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * AddExp: it is extended from the abstract class Exp.
