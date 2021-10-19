@@ -2,6 +2,7 @@ package com.example.wetok.parserAndTokenizer;
 
 import com.example.wetok.bean.Post;
 import com.example.wetok.dao.PostDao;
+import com.example.wetok.searchTree.Search;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +43,8 @@ public class AndExp extends Exp {
 	}
 
 	@Override
-	public List<Post> evaluate() {
-		List<Post> result = postIntersection(term.evaluate(), exp.evaluate());
+	public List<Post> evaluate(Search s) {
+		List<Post> result = postIntersection(term.evaluate(s), exp.evaluate(s));
 		return result;
 	}
 }

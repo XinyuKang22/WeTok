@@ -1,6 +1,7 @@
 package com.example.wetok.parserAndTokenizer;
 
 import com.example.wetok.bean.Post;
+import com.example.wetok.searchTree.Search;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +29,9 @@ public class OrExp extends Exp {
 	}
 
 	@Override
-	public List<Post> evaluate() {
-		List<Post> result = new ArrayList<>(term.evaluate());
-		result.addAll(exp.evaluate());
+	public List<Post> evaluate(Search s) {
+		List<Post> result = new ArrayList<>(term.evaluate(s));
+		result.addAll(exp.evaluate(s));
 		return result;
 	}
 }

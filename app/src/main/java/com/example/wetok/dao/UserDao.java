@@ -18,7 +18,6 @@ public class UserDao implements Serializable {
         users = u;
     }
 
-    //TODO: 新用户注册addUser方法
     public static void addUser(User u){
         users.add(u);
     }
