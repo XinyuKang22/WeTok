@@ -38,7 +38,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = SearchActivity.this;
         tag = getIntent().getStringExtra("tag");
-        //Toast.makeText(SearchActivity.this,tag,Toast.LENGTH_LONG).show();
+        Toast.makeText(SearchActivity.this,tag,Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_search);
 
