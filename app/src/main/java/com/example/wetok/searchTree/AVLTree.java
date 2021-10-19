@@ -46,14 +46,16 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
     }
 
     public Node getNode(Node node, K key) {
-        if (node == null || node.key == null)
+        if (node == null || node.key == null){
             return null;
-        if (node.key.compareTo(key) < 0)
-            return getNode(node.left, key);
-        else if (node.key.compareTo(key) > 0)
+        }
+        if (node.key.compareTo(key) < 0){
             return getNode(node.right, key);
-        else
+        }else if (node.key.compareTo(key) > 0){
+            return getNode(node.left, key);
+        }else{
             return node;
+        }
     }
 
     public List<T> find(K key) {
