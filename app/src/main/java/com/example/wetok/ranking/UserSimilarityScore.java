@@ -6,7 +6,7 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,7 +23,7 @@ public class UserSimilarityScore extends ScoreTemplate{
     // the weights of user similarity factor: subscriber similarity, post similarity, location similarity
     private final float[] weights;
 
-    public UserSimilarityScore(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts, float[] weights){
+    public UserSimilarityScore(User currentUser, List<String> query, List<Post> retrievedPosts, float[] weights){
         super(currentUser, query, retrievedPosts);
         this.weights = weights;
     }

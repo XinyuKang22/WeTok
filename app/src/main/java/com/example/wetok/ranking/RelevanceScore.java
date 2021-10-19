@@ -6,7 +6,6 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.PostDao;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +15,7 @@ import java.util.Map;
  */
 public class RelevanceScore extends ScoreTemplate{
 
-    public RelevanceScore(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts){
+    public RelevanceScore(User currentUser, List<String> query, List<Post> retrievedPosts){
         super(currentUser, query, retrievedPosts);
     }
 
@@ -46,8 +45,6 @@ public class RelevanceScore extends ScoreTemplate{
             }
             scores.put(post, score);
         }
-
-        // TODO: tf-idf scores need to be normalised
         return scores;
     }
 
@@ -68,7 +65,7 @@ public class RelevanceScore extends ScoreTemplate{
      * @return a map of query tokens and their corresponding document frequencies
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static Map<String, Integer> getDocumentFrequency(HashSet<String> query, List<Post> allPosts){
+    public static Map<String, Integer> getDocumentFrequency(List<String> query, List<Post> allPosts){
 
         Map<String, Integer> documentFrequencies = new HashMap<>();
         for (String s : query){

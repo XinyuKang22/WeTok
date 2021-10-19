@@ -5,7 +5,7 @@ import androidx.annotation.RequiresApi;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,16 +14,15 @@ import java.util.Map;
  */
 public abstract class ScoreTemplate {
     User currentUser;
-    HashSet<String> query;
-    HashSet<Post> retrievedPosts;
+    List<String> query;
+    List<Post> retrievedPosts;
 
     /**
-     *
-     * @param currentUser the user who made the query
+     *  @param currentUser the user who made the query
      * @param query a list of searched tags
      * @param retrievedPosts a map of the retrieved posts and their scores
      */
-    public ScoreTemplate(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts){
+    public ScoreTemplate(User currentUser, List<String> query, List<Post> retrievedPosts){
         this.currentUser = currentUser;
         this.query = query;
         this.retrievedPosts = retrievedPosts;

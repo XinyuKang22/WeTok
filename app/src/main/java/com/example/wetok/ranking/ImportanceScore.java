@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,7 +26,7 @@ public class ImportanceScore extends ScoreTemplate {
     // the weights of importance factor: time, followers, likes
     private final float[] weights;
 
-    public ImportanceScore(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts, float[] weights){
+    public ImportanceScore(User currentUser, List<String> query, List<Post> retrievedPosts, float[] weights){
         super(currentUser, query, retrievedPosts);
         this.weights = weights;
     }

@@ -7,7 +7,6 @@ import com.example.wetok.bean.User;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,8 +40,8 @@ public class RankPost {
     float[] weightsSim = {0.5f, 0.4f, 0.1f};
 
     private final User currentUser;
-    private final HashSet<String> query;
-    private final HashSet<Post> retrievedPosts;
+    private final List<String> query;
+    private final List<Post> retrievedPosts;
 
     /**
      *
@@ -51,7 +50,7 @@ public class RankPost {
      * @param retrievedPosts a map of the retrieved posts and their scores
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public RankPost(User currentUser, HashSet<String> query, HashSet<Post> retrievedPosts){
+    public RankPost(User currentUser, List<String> query, List<Post> retrievedPosts){
         this.currentUser = currentUser;
         this.query = query;
         this.retrievedPosts = retrievedPosts;
