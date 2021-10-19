@@ -64,9 +64,4 @@ public class Token {
         if (!(other instanceof Token)) return false;
         return this.type == ((Token) other).getType() && this.token.equals(((Token) other).getToken());
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(token, type);
-    }
 }
