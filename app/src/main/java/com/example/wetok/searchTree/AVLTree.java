@@ -90,24 +90,6 @@ public class AVLTree<K extends Comparable, T> implements Serializable {
         return getNode(key) != null;
     }
 
-    public Node minimum() {
-        if (size == 0 || root == null || root.key == null)
-            throw new IllegalArgumentException("The tree is empty");
-        return minimum(root);
-    }
-
-    public Node maximum() {
-        if (size == 0 || root == null || root.key == null)
-            throw new IllegalArgumentException("The tree is empty");
-        return maximum(root);
-    }
-
-    private Node minimum(Node node) {
-        if (node == null || node.key == null || node.left == null || node.left.key == null)
-            return node;
-        return minimum(node.left);
-    }
-
     private Node maximum(Node node) {
         if (node == null || node.key == null || node.right == null || node.right.key == null)
             return node;
