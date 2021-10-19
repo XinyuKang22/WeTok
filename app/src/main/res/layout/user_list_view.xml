@@ -23,7 +23,7 @@
             android:layout_weight="0.5"
             android:gravity="center_vertical"
             android:text="JJJ"
-            android:textColor="#0000CC"
+            android:textColor="#81D8D1"
             android:textSize="16sp" />
 
         <TextView
