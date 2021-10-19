@@ -57,7 +57,7 @@ public class SearchActivity extends AppCompatActivity {
             Toast.makeText(SearchActivity.this,"No tag!",Toast.LENGTH_LONG).show();
         }
 
-        PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, posts);
+        PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, plist);
         lv.setAdapter(adapter);
 
         ActionBar actionBar = getSupportActionBar();
