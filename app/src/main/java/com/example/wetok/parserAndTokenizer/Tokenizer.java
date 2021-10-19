@@ -21,7 +21,11 @@ public class Tokenizer {
      * save the token to {@code currentToken}.
      */
     public void next() {
-        buffer = buffer.trim();     // remove whitespace
+        buffer = buffer.replaceAll(" ","");     // remove whitespace
+        if (buffer.isEmpty()) {
+            currentToken = null;    // if there's no string left, set currentToken null and return
+            return;
+        }
         char firstChar = buffer.charAt(0);
         if (firstChar == '&')
             currentToken = new Token("&", Token.Type.AND);
