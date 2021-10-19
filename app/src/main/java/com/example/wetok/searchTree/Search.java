@@ -8,6 +8,7 @@ package com.example.wetok.searchTree;
 import com.example.wetok.bean.Post;
 import com.example.wetok.view.SearchActivity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -34,8 +35,8 @@ public class Search {
      * @param key String representing tag
      * @return
      */
-    public HashSet search(String key){
-        HashSet result = new HashSet<>();
+    public List<Post> search(String key){
+        List<Post> result = new ArrayList<>();
         if(tagIndexPostTree.find(key)!=null){
             result.addAll(tagIndexPostTree.find(key));
         }

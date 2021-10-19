@@ -15,7 +15,6 @@ import com.example.wetok.dao.PostDao;
 import com.example.wetok.parserAndTokenizer.Exp;
 import com.example.wetok.parserAndTokenizer.Parser;
 import com.example.wetok.parserAndTokenizer.Tokenizer;
-import com.example.wetok.searchTree.Query;
 import com.example.wetok.searchTree.Search;
 import com.example.wetok.view.fragment.PostAdapter;
 
@@ -39,6 +38,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = SearchActivity.this;
         tag = getIntent().getStringExtra("tag");
+        //Toast.makeText(SearchActivity.this,tag,Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_search);
 
@@ -49,10 +49,15 @@ public class SearchActivity extends AppCompatActivity {
 
         s = new Search();
         s.buildIndexTrees(posts);
-        // searching in different conditions.
-        searchConditions();
 
-        PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, plist);
+        // searching in different conditions.
+        if(tag.length()!=0) {
+            searchConditions();
+        }else{
+            Toast.makeText(SearchActivity.this,"No tag!",Toast.LENGTH_LONG).show();
+        }
+
+        PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, posts);
         lv.setAdapter(adapter);
 
         ActionBar actionBar = getSupportActionBar();
@@ -80,13 +85,11 @@ public class SearchActivity extends AppCompatActivity {
 
     /**
      * Integration method to get the input, parse it and search it.
-     * The default results list are ranked by promote value.
      */
     private void searchConditions(){
-        //TODO method not complete yet
-        Tokenizer = new Tokenizer(tag);
-        condition = new Parser(Tokenizer).parseExp();
-        plist = Query.query(posts,s,condition);
-
+        //plist.clear(); // clear last results.
+            Tokenizer = new Tokenizer(tag);
+            condition = new Parser(Tokenizer).parseExp();
+            plist = condition.evaluate(s);
     }
 }
