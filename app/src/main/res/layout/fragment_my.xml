@@ -34,7 +34,7 @@
                 android:layout_weight="0.5"
                 android:text="JJJ"
                 android:gravity="center_vertical"
-                android:textColor="#0000CC"
+                android:textColor="#81D8D1"
                 android:textSize="16sp" />
 
             <TextView
