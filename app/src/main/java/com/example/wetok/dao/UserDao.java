@@ -2,7 +2,6 @@ package com.example.wetok.dao;
 
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
-import com.example.wetok.resources.InformationResource;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,15 +28,6 @@ public class UserDao implements Serializable {
             }
         }
         return null;
-    }
-
-    public static User findUserById(String id){
-        int index = Integer.parseInt(id);
-        if (index < users_size) {
-            return users.get(index);
-        } else {
-            return null;
-        }
     }
 
     public static User findUserById(int id){

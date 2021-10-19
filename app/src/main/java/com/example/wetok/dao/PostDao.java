@@ -66,11 +66,6 @@ public class PostDao implements Serializable {
     }
 
 
-
-    public void deletePost(Post p){
-        posts.remove(p);
-    }
-
     public static int findInsertIndex(List<Post> posts ) {
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
         Post p;

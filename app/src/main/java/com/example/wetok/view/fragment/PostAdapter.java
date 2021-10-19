@@ -79,12 +79,12 @@ public class PostAdapter extends ArrayAdapter<Post> {
         viewHolder.username.setOnClickListener(e -> {
             Intent intent = new Intent(getContext(), ProfileActivity.class);
             Toast.makeText(getContext(), "post", Toast.LENGTH_SHORT).show();
-            CurrentUser.current_visitor = UserDao.findUserById(post.getUid());
+            CurrentUser.current_visitor = UserDao.findUserById(Integer.parseInt(post.getUid()));
             getContext().startActivity(intent);
         });
         viewHolder.photo.setOnClickListener(e -> {
             Intent intent = new Intent(getContext(), ProfileActivity.class);
-            CurrentUser.current_visitor = UserDao.findUserById(post.getEmail());
+            CurrentUser.current_visitor = UserDao.findUserById(Integer.parseInt(post.getUid()));
             getContext().startActivity(intent);
         });
         viewHolder.username.setText(post.getAuthor());

@@ -8,8 +8,7 @@ public class CurrentUser {
     public static User current_visitor = null;
 
 
-    private CurrentUser() {
-    }
+    private CurrentUser() {}
 
     public static CurrentUser getInstance() {
         if(instance == null) {

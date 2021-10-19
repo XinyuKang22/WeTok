@@ -13,12 +13,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.wetok.R;
-import com.example.wetok.bean.Post;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.PostDao;
 import com.example.wetok.dao.UserDao;
-import com.example.wetok.resources.InformationResource;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -45,7 +43,6 @@ public class LoginActivity extends AppCompatActivity{
     private EditText et_emailLogin;
     private EditText et_passwordLogin;
     private FirebaseAuth fbAuth;
-    public InformationResource info = null;
 
 
     public LoginActivity() throws IOException {
@@ -58,12 +55,11 @@ public class LoginActivity extends AppCompatActivity{
         context = LoginActivity.this;
 
         try {
-            info = getInformationResource();
+            UserDao.users = getUserData();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        UserDao.users = info.getUsers();
         UserDao.users_size = UserDao.users.size();
         for (User u : UserDao.users) {
             UserDao.setFriends(u);
@@ -171,7 +167,7 @@ public class LoginActivity extends AppCompatActivity{
         CurrentUser.current_user = null;
     }
 
-    public InformationResource getInformationResource() throws IOException {
+    public List<User> getUserData() throws IOException {
         List<User> users = new ArrayList<>();
         InputStream file;
 
@@ -208,6 +204,6 @@ public class LoginActivity extends AppCompatActivity{
         human.setEmail("1044159268@qq.com");
         human.setPassword("123456");
 
-        return new InformationResource(users);
+        return users;
     }
 }

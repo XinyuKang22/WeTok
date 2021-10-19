@@ -71,7 +71,7 @@ public class ImportanceScore extends ScoreTemplate {
      * @return the follower score of the post; range = [0,1], if the sender's followers >= 10000 then score = 1, if the sender's followers <= 10 then score = 0
      */
     public float followerScore(Post post){
-        User user = UserDao.findUserById(post.getUid());
+        User user = UserDao.findUserById(Integer.parseInt(post.getUid()));
 
         assert user != null;
         if (user.getFollowers().isEmpty()){
