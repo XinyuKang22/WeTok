@@ -7,6 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The user class
+ * @author Xinyue Hu
+ * @author Yuxin Hong
+ */
 public class User implements Serializable {
     private String id;
     private String name;
@@ -138,24 +143,11 @@ public class User implements Serializable {
         this.imgloc = imgloc;
     }
 
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("id", id);
-        result.put("name", name);
-        result.put("password", password);
-        result.put("gender", gender);
-        result.put("age", age);
-        result.put("followers", followers);
-        result.put("subscribers", subscribers);
-        result.put("posts",posts);
-        result.put("address",address);
-        result.put("email",email);
-        result.put("phone",phone);
-        result.put("imgloc",imgloc);
-
-        return result;
-    }
-
+    /**
+     * Show number of posts published by each user
+     * @param posts
+     * @return String
+     */
     public String toString(List<Post> posts) {
         String res = "size = " + posts.size() +"; content = {";
         for (Post p : posts) {
@@ -165,6 +157,10 @@ public class User implements Serializable {
         return res+="}";
     }
 
+    /**
+     * Show the information of each post
+     * @return String
+     */
     @Override
     public String toString() {
         return "User{" +

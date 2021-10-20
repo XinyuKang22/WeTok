@@ -37,6 +37,11 @@ public class Node<K extends Comparable, T> implements Serializable {
         this.value  = new ArrayList<>();
     }
 
+    /**
+     * Show the depth of each tree
+     * @param depthFromRoot
+     * @return String
+     */
     public String toString(int depthFromRoot){
         if (this.key == null){
             return "leaf";

@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The UserDao class is used to store the database operation of user.
+ * @author Yuxin Hong
+ * @author Xinyue Hu
+ */
 public class UserDao implements Serializable {
-//    public static InformationResource info = null;
+
     public static List<User> users = null;
     public static int users_size = 0;
 
@@ -17,10 +22,18 @@ public class UserDao implements Serializable {
         users = u;
     }
 
+    /**
+     * Add user to database
+     * @param u
+     */
     public static void addUser(User u){
         users.add(u);
     }
 
+    /**
+     * @param email
+     * @return user
+     */
     public static User findUserByEmail(String email) {
         for (User u: users) {
             if (u.getEmail().equals(email)) {
@@ -30,6 +43,10 @@ public class UserDao implements Serializable {
         return null;
     }
 
+    /**
+     * @param id
+     * @return User
+     */
     public static User findUserById(int id){
         if (id < users_size) {
             return users.get(id);
@@ -38,6 +55,10 @@ public class UserDao implements Serializable {
         }
     }
 
+    /**
+     * set friends for user
+     * @param u
+     */
     public static void setFriends(User u){
         int id = (int)(Math.random()*users_size);
         List<User> friends = new ArrayList<>();
@@ -48,6 +69,10 @@ public class UserDao implements Serializable {
         u.setFriends(friends);
     }
 
+    /**
+     * set followers for user
+     * @param u
+     */
     public static void setFollowers(User u){
         int id = (int)(Math.random()*users_size);
         List<User> followers = new ArrayList<>();
@@ -58,6 +83,10 @@ public class UserDao implements Serializable {
         u.setFollowers(followers);
     }
 
+    /**
+     * set subscribers for user
+     * @param u
+     */
     public static void setSubscribers(User u){
         int id = (int)(Math.random()*users_size);
         List<User> subscribers = new ArrayList<>();
@@ -68,6 +97,9 @@ public class UserDao implements Serializable {
         u.setSubscribers(subscribers);
     }
 
+    /**
+     * @return all the posts
+     */
     public static List<Post> getPosts() { 
         List<Post> posts = new ArrayList<>();
         for (User u : users) {
@@ -77,6 +109,10 @@ public class UserDao implements Serializable {
         return posts;
     }
 
+    /**
+     * Instantiate user's post
+     * @param u
+     */
     public static void setPostInfo(User u) {
         String author = u.getName();
         String email = u.getEmail();

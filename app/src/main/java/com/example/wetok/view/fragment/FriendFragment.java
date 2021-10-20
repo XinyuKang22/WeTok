@@ -28,6 +28,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ *
+ */
 public class FriendFragment extends Fragment {
     int pindex = 0;
 
@@ -106,8 +109,8 @@ public class FriendFragment extends Fragment {
 
     public void paddingPicture(EditText tv, int pic) {
         @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable1 = getResources().getDrawable(pic);
-        drawable1.setBounds(20, 0, 50, 50);//第一0是距左边距离，第二0是距上边距离，40分别是长宽
-        tv.setCompoundDrawables(drawable1, null, null, null);//只放左边
+        drawable1.setBounds(20, 0, 50, 50);
+        tv.setCompoundDrawables(drawable1, null, null, null);
     }
 
     @Override

@@ -33,6 +33,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The login class
+ * @author Xinyu Kang
+ * @author Yuxin Hong
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "EmailPassword";

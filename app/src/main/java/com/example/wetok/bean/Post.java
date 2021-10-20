@@ -8,6 +8,12 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * The Post class
+ * @author Xinyue Hu
+ * @author Yuxin Hong
+ * @author Xinyu Kang
+ */
 public class Post implements Comparable, Serializable {
     private String content;
     // user info
@@ -118,16 +124,11 @@ public class Post implements Comparable, Serializable {
         return content;
     }
 
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("uid", uid);
-        result.put("author", author);
-        result.put("uimg", u_img);
-        result.put("tag", tag);
-        result.put("likes", likes);
-        result.put("content", content);
-        return result;
-    }
+    /**
+     * Compare the publish time between two posts
+     * @param o
+     * @return int
+     */
 
     @Override
     public int compareTo(Object o) {
@@ -143,6 +144,11 @@ public class Post implements Comparable, Serializable {
         }
     }
 
+    /**
+     * Check if the content and uid of two posts are equal
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         Post p = (Post) o;

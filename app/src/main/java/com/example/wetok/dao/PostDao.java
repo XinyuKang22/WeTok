@@ -13,12 +13,15 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- *
+ * The PostDao class is used to store the database operation of post.
+ * @author Yuxin Hong
+ * @author Xinyu Kang
+ * @author Xinyue Hu
  */
 public class PostDao implements Serializable {
 
-    public static List<Post> posts = null;
-    public static int post_size = 0;
+    public static List<Post> posts = null; // Store all the posts
+    public static int post_size = 0; // Store the size of post list
 
     public PostDao(List<Post> p) {
         posts = p;
@@ -28,6 +31,11 @@ public class PostDao implements Serializable {
         return posts;
     }
 
+    /**
+     * Get tags from each post
+     * @param post
+     * @return all the tags
+     */
     public static List<String> getTagList(List<Post> post){
            List<String> tags = new ArrayList<>();
            for(Post p:post){
@@ -36,6 +44,10 @@ public class PostDao implements Serializable {
         return tags;
     }
 
+    /**
+     * Instantiate new post and add post to database
+     * @param content
+     */
     public static void addPost(String content) {
         User u = CurrentUser.current_user;
         // establish post class
@@ -65,7 +77,11 @@ public class PostDao implements Serializable {
         post_size += 1;
     }
 
-
+    /**
+     * Find the right place to show the post
+     * @param posts
+     * @return the index of post list
+     */
     public static int findInsertIndex(List<Post> posts ) {
         String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
         Post p;
@@ -79,6 +95,10 @@ public class PostDao implements Serializable {
         return post_size;
     }
 
+    /**
+     * Show the post content
+     * @return all the content of the post
+     */
     @Override
     public String toString() {
         String res = "";
