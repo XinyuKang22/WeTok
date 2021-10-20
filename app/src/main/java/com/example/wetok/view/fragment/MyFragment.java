@@ -67,7 +67,6 @@ public class MyFragment extends Fragment {
 
             tv_name.setText(CurrentUser.current_user.getName());
             tv_id.setText("User Id: " + CurrentUser.current_user.getId());
-            // TODO: 设置头像
 
             Button btnSub = view.findViewById(R.id.profile_subscriber);
 

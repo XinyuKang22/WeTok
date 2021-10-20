@@ -42,19 +42,10 @@ public class UserAdapter extends ArrayAdapter<User> {
         }
         viewHolder.username.setText(user.getName());
         viewHolder.userid.setText(user.getId());
-        //TODO: 如果不是default/null, 更新头像
         if (user.getImgloc() == "default" || user.getImgloc() == "null") {
             viewHolder.photo.setImageResource(R.drawable.photo);
         }
-//        暂时不用 更新了头像展示方式
-//        if(user.getImgloc().equals("default")){
-//            viewHolder.photo.setImageResource(R.mipmap.ic_launcher);
-//        }else{
-//            Glide.with(context)
-//                    .load(user.getImgloc())
-//                    .into(viewHolder.photo);
-//        }
-        //end
+
         view.setPadding(0,40,0,0);
         return view;
     }
