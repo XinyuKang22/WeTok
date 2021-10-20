@@ -56,6 +56,7 @@ public class UserSimilarityScore extends ScoreTemplate{
         }
 
         // process current user first to save runtime
+        // create hashmap for {subscriber id:-1} and {tag:-1}
         Map<Integer, Integer> subIDs = getSubIds(currentUser);
         Map<String, Integer> tags = getTags(currentUser);
         String city = currentUser.getAddress();
@@ -71,6 +72,7 @@ public class UserSimilarityScore extends ScoreTemplate{
             float score = weights[0] * subscriber_similarity + weights[1] * post_similarity + weights[2] * location_similarity;
             for (Post post : entry.getValue()){
                 postScoreMap.put(post, score);
+                System.out.println(post.getTag()+": "+score);
             }
         }
         return postScoreMap;
@@ -160,8 +162,10 @@ public class UserSimilarityScore extends ScoreTemplate{
 
         // check if they have same part
         if (max.toLowerCase().contains(min.toLowerCase())){
+            System.out.println("address: have same part");
             return 1;
         }else {
+            System.out.println("address: have no same part");
             return 0;
         }
     }

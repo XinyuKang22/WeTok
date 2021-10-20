@@ -71,7 +71,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         // time
         TextView Time = view.findViewById(R.id.list_post_time);
-        //String theDate = post.getTime().substring(8,10);
         String theYear = post.getTime().substring(2,4);
         String theTime = post.getTime().substring(11,16);
         LocalDate currentTime = LocalDate.now();
@@ -133,14 +132,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
                 getContext().startActivity(intent);
             });
             viewHolder.tags.addView(tv, layoutParams);
-//        }
-
         view.setPadding(0, 40, 0, 0);
-//    } else {
-//            view = convertView;
-//            viewHolder = (ViewHolder) view.getTag();
-//        }
-//
         return view;
     }
 

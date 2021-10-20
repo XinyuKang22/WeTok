@@ -29,18 +29,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 接收参数
+        // receive parameter
         Boolean isGuest = getIntent().getBooleanExtra("isGuest", true);
         if (!isGuest) {
             currentUser = (User) getIntent().getSerializableExtra("user");
         }
-
-        // check data size
-//        Toast.makeText(context, "Main pade: size of userDao is" + UserDao.users.size(),
-//                Toast.LENGTH_SHORT).show();
-//
-//        Toast.makeText(context, "Main pade: size of postDao is" + PostDao.posts.size(),
-//                Toast.LENGTH_SHORT).show();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -51,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
@@ -61,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
                 int resultCode = result.getResultCode();
             }
         });
-
     }
 
     @Override
@@ -78,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
                 return false;
@@ -92,13 +81,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         System.out.println("running onOptionsItemSelected");
         if (item.getItemId() == R.id.action_add) {
-//            User user = (User) getIntent().getSerializableExtra("user");
-
             Intent intent = new Intent(this, SendPostActivity.class);
             intent.putExtra("user", CurrentUser.current_user);
-
             launcher.launch(new Intent(this, SendPostActivity.class));
-
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -106,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        System.out.println("running onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
     }
 

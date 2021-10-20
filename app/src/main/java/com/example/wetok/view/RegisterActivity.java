@@ -152,10 +152,8 @@ public class RegisterActivity extends AppCompatActivity{
     }
 
     private void toRegisterNextPage(FirebaseUser currentUser) {
-        //TODO: 把新注册的用户登记为currerntUser(已完成待检验)
-        //新建一个CurrentUser, set Email & Password
+        //create CurrentUser, set Email & Password
         CurrentUser.register(email, password);
-        //end
         Intent intent = new Intent(context, RegisterNextActivity.class);
         startActivity(intent);
     }

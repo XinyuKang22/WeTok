@@ -55,7 +55,7 @@ public class PostDao implements Serializable {
         }
 
 
-        Post po = new Post(content, uid, author, email, u_img, time, tag, 0, 0);
+        Post po = new Post(content_list.get(0), uid, author, email, u_img, time, tag, 0, 0);
         // User: add new post to user
         List<Post> user_post = CurrentUser.current_user.getPosts();
         user_post.add(findInsertIndex(user_post), po);
@@ -64,7 +64,6 @@ public class PostDao implements Serializable {
         posts.add(findInsertIndex(posts), po);
         post_size += 1;
     }
-
 
 
     public static int findInsertIndex(List<Post> posts ) {
