@@ -4,6 +4,8 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -22,15 +24,15 @@ import java.util.Set;
  *   3. Chanlleging (user similarity)
  * using Template design pattern: ScoreTemplate(abstract class), RelevanceScore(concrete class), ImportanceScore(concrete class), UserSimilarityScore(concrete class).
  */
-public class RankPost {
+public class Rank {
 
     /*
     The ranked posts.
-    Calculated when create a RankPost object,
-    i.e. RankPost rankPost = new RankPost(...)
-         Set<Post> posts = rankPost.rankedPosts
+    Calculated when create a Rank object,
+    i.e. Rank rank = new Rank(...)
+         Set<Post> posts = rank.rankedPosts
      */
-    public final Set<Post> rankedPosts;
+    public final List<Post> rankedPosts;
 
     // the weights for relevancy, importance, user similarity
     float[] weights = {0.6f, 0.2f, 0.2f};
@@ -50,7 +52,7 @@ public class RankPost {
      * @param retrievedPosts a map of the retrieved posts and their scores
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public RankPost(User currentUser, List<String> query, List<Post> retrievedPosts){
+    public Rank(User currentUser, List<String> query, List<Post> retrievedPosts){
         this.currentUser = currentUser;
         this.query = query;
         this.retrievedPosts = retrievedPosts;
@@ -62,7 +64,7 @@ public class RankPost {
      * @return the posts ranked by their scores
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Set<Post> toRankedPosts(){
+    public List<Post> toRankedPosts(){
         ScoreTemplate relevanceScore = new RelevanceScore(currentUser, query, retrievedPosts);
         ScoreTemplate importanceScore = new ImportanceScore(currentUser, query, retrievedPosts, weightsImp);
         ScoreTemplate similarityScore = new UserSimilarityScore(currentUser, query, retrievedPosts, weightsSim);
@@ -79,7 +81,8 @@ public class RankPost {
             float score = weights[0] * rel_score + weights[1] * imp_score + weights[2] * sim_score;
             scores.put(post, score);
         }
-        return sortByValue(scores).keySet();
+        List<Post> returnList = new ArrayList<>(sortByValue(scores).keySet());
+        return returnList;
     }
 
     /**

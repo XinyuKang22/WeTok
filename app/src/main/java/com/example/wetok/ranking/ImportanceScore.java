@@ -59,7 +59,7 @@ public class ImportanceScore extends ScoreTemplate {
      */
     @RequiresApi(api = Build.VERSION_CODES.O)
     public float timeScore(Post post){
-        LocalDate postTime = LocalDate.parse(post.getTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        LocalDate postTime = LocalDate.parse(post.getTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         LocalDate currentTime = LocalDate.now();
         int days = (int) ChronoUnit.DAYS.between(postTime, currentTime);
         return 1f / (1 + days);

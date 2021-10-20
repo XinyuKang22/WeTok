@@ -37,6 +37,16 @@ public class UserSimilarityScore extends ScoreTemplate{
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public Map<Post, Float> getScore() {
+
+        // deal with guest login
+        if (currentUser == null){
+            Map<Post, Float> postScoreMap = new HashMap<>();
+            for (Post post:retrievedPosts){
+                postScoreMap.put(post, 0f);
+            }
+            return postScoreMap;
+        }
+
         // create a <user, post list> map
         Map<User, ArrayList<Post>> userPostMap = new HashMap<>();
         for (Post post: retrievedPosts){
