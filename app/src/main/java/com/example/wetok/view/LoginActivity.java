@@ -169,9 +169,7 @@ public class LoginActivity extends AppCompatActivity {
         List<User> users = new ArrayList<>();
         InputStream file;
 
-        System.out.println("trying to open infoResource.json");
         file = getAssets().open("infoResource.json");
-        System.out.println("file size: " + file.toString());
         final Type classType = new TypeToken<List<User>>() {
         }.getType();
         Gson gson = new Gson();
@@ -182,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
             System.out.println(e);
         }
 
-        // 把数据可里前几个数据改成真实邮箱密码
+        // change previous data to our group member
         int i = 0;
         User human = users.get(i);
         human.setEmail("u6684233@anu.edu.au");

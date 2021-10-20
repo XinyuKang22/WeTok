@@ -68,7 +68,7 @@ public class UserDao implements Serializable {
         u.setSubscribers(subscribers);
     }
 
-    public static List<Post> getPosts() { //
+    public static List<Post> getPosts() { 
         List<Post> posts = new ArrayList<>();
         for (User u : users) {
             setPostInfo(u);

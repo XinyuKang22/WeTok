@@ -6,6 +6,7 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.UserDao;
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -57,7 +58,12 @@ public class ImportanceScore extends ScoreTemplate {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public float timeScore(Post post){
         LocalDate postTime = LocalDate.parse(post.getTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        LocalDate currentTime = LocalDate.now();
+        LocalDate currentTime = LocalDate.of(2021, 10, 20);
+        try {
+            currentTime = LocalDate.now();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         int days = (int) ChronoUnit.DAYS.between(postTime, currentTime);
         return 1f / (1 + days);
     }
@@ -74,8 +80,8 @@ public class ImportanceScore extends ScoreTemplate {
         // return score_aft_scale in [0,1]
         int score_bf_scale = user.getFollowers().size();
         float score_aft_scale = (float) (Math.log10(score_bf_scale)/4);
-        if (score_aft_scale < 0)return 0f;
-        if (score_aft_scale > 1)return 1f;
+        if (score_aft_scale < 0) return 0f;
+        if (score_aft_scale > 1) return 1f;
         return score_aft_scale;
     }
 
@@ -90,6 +96,7 @@ public class ImportanceScore extends ScoreTemplate {
         // return score_aft_scale in [0,1]
         if (score_aft_scale < 0) return 0f;
         if (score_aft_scale > 1) return 1f;
+
         return score_aft_scale;
     }
 
