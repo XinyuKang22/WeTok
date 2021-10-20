@@ -34,6 +34,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the RegisterNextActivity page
+ * @author Xinyu Kang
+ * @author Yuxin Hong
+ */
 public class RegisterNextActivity extends AppCompatActivity {
     private static final String TAG = "RegisterNext";
     private static final String FILE_NAME = "location.json";

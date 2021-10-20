@@ -26,7 +26,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- *
+ * This is the CityFragment
+ * @author Zhaoting Jiang
  */
 public class CityFragment extends Fragment {
     int pindex = 0;

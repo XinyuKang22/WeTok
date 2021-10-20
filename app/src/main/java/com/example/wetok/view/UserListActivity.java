@@ -19,9 +19,13 @@ import com.example.wetok.view.fragment.UserAdapter;
 
 import java.util.ArrayList;
 
+/**
+ * This is the UserListActivity page
+ * @author Zhaoting Jiang
+ * @author Yuxin Hong
+ */
 public class UserListActivity extends AppCompatActivity {
 
-    //private static String TAG = null;
     private Context context;
 
     @Override

@@ -24,6 +24,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * This is the SendPostActivity page
+ * @author Zhaoting Jiang
+ * @author Yuxin Hong
+ * @author Xinyue Hu
+ */
 public class SendPostActivity extends AppCompatActivity {
     private Context context;
 

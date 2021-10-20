@@ -29,7 +29,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- *
+ * This is the FriendFragment
+ * @author Yuxin Hong
  */
 public class FriendFragment extends Fragment {
     int pindex = 0;

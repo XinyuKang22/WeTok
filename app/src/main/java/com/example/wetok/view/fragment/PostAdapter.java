@@ -30,6 +30,12 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * This is the postAdapter
+ * @author Zhaoting Jiang
+ * @author Xinyue Hu
+ * @author Yuxin Hong
+ */
 public class PostAdapter extends ArrayAdapter<Post> {
     private int resourceId;
 
@@ -38,7 +44,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
         resourceId = resource;
     }
 
-//    @SuppressLint("ViewHolder")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint({"SetTextI18n", "ViewHolder"})
     @Override

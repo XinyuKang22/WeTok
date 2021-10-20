@@ -23,16 +23,22 @@ import com.example.wetok.view.fragment.PostAdapter;
 
 import java.util.List;
 
+/**
+ * This is the profileActivity page
+ * @author Zhaoting Jiang
+ * @author Yuxin Hong
+ * @author Xinyue Hu
+ * @author Xinyu Kang
+ */
 public class ProfileActivity extends AppCompatActivity {
 
-    //private static final String TAG = "EmailPassword";
     private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = ProfileActivity.this;
-//        User user = (User) getIntent().getSerializableExtra("user");
+
         User user = CurrentUser.current_visitor;
         Toast.makeText(context, "user:" +user.getName(), Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_profile);
@@ -49,9 +55,6 @@ public class ProfileActivity extends AppCompatActivity {
         int index = PostDao.findInsertIndex(posts);
         List<Post> reposts = posts.subList(index, posts.size());
         reposts.addAll(posts.subList(0,index));
-
-//        Toast.makeText(context, "post: "+ posts, Toast.LENGTH_LONG).show();
-//        Toast.makeText(context, "repost: "+ reposts, Toast.LENGTH_LONG).show();
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, reposts);
         lv.setAdapter(adapter);

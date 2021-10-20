@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The login class
+ * This is the LoginActivity page
  * @author Xinyu Kang
  * @author Yuxin Hong
  */

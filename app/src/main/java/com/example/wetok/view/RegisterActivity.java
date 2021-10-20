@@ -19,6 +19,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * This is the RegisterActivity page
+ * @author Xinyu Kang
+ */
 public class RegisterActivity extends AppCompatActivity{
     private static final String TAG = "Register";
     private Context context;

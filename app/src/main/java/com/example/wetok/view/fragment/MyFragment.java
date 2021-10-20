@@ -22,7 +22,12 @@ import com.example.wetok.view.UserListActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * This is the MyFragment
+ * @author Zhaoting Jiang
+ * @author Yuxin Hong
+ * @author Xinyu Kang
+ */
 public class MyFragment extends Fragment {
 
 

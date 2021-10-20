@@ -25,6 +25,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * This is the HomeFragment
+ * @author Zhaoting Jiang
+ * @author Yuxin Hong
+ * @author Xinyue Hu
+ * @author Xinyu Kang
+ */
 public class HomeFragment extends Fragment {
     int pindex = 0;
 

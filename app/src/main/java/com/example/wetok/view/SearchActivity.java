@@ -25,6 +25,12 @@ import com.example.wetok.view.fragment.PostAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the SearchActivity page
+ * @author Zhaoting Jiang
+ * @author Xinyue Hu
+ * @author Xinyu Kang
+ */
 public class SearchActivity extends AppCompatActivity {
 
     private static final String TAG = "EmailPassword";

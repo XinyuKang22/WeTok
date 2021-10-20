@@ -7,6 +7,10 @@ import android.widget.LinearLayout;
 
 import java.util.Hashtable;
 
+/**
+ * This is the MyLinearLayout
+ * @author Zhaoting Jiang
+ */
 // reference: https://blog.csdn.net/u013836857/article/details/70885446
 public class MyLinearLayout extends LinearLayout {
     int mLeft, mRight, mTop, mBottom;

@@ -19,6 +19,12 @@ import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/**
+ * This is the MainActivity page
+ * @author Zhaoting Jiang
+ * @author Yuxin Hong
+ * @author Xinyue Hu
+ */
 
 public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcher;

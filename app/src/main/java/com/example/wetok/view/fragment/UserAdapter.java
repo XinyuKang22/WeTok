@@ -15,6 +15,10 @@ import com.example.wetok.bean.User;
 
 import java.util.List;
 
+/**
+ * This is the UserAdapter
+ * @author Zhaoting Jiang
+ */
 public class UserAdapter extends ArrayAdapter<User> {
     private int resourceId;
     private Context context;
