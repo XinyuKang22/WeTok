@@ -10,8 +10,8 @@ import java.util.List;
 /**
  * TagExp: it is extended from the abstract class Exp,
  * 		   This class is used to represented the expression of 32-bit unsigned integer
- *
  * @author Yuxin Hong
+ * @author Xinyue Hu
  */
 
 public class TagExp extends Exp {
@@ -30,10 +30,7 @@ public class TagExp extends Exp {
 	@Override
 	public List<Post> evaluate(Search s) {
 		List<Post> result = new ArrayList<>();
-
-//		if(SearchActivity.tags.contains(value)){
-			result.addAll(s.search(value));
-//		}
+		result.addAll(s.search(value));
 		System.out.println("tag is: " + value + "; result = " + result);
 		return result;
 	}

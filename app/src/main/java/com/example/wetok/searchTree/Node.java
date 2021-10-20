@@ -1,7 +1,8 @@
 package com.example.wetok.searchTree;
 /**
  * This is the node for AVL tree
- * @Auther Xinyue Hu, Xinyu Kang
+ * @author Xinyue Hu
+ * @author Xinyu Kang
  */
 
 import java.io.Serializable;
