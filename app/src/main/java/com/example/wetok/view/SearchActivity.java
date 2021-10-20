@@ -43,7 +43,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = SearchActivity.this;
         tag = getIntent().getStringExtra("tag");
-        Toast.makeText(SearchActivity.this,tag,Toast.LENGTH_LONG).show();
+        Toast.makeText(SearchActivity.this, tag, Toast.LENGTH_LONG).show();
 
         setContentView(R.layout.activity_search);
 
@@ -56,10 +56,10 @@ public class SearchActivity extends AppCompatActivity {
         s.buildIndexTrees(posts);
 
         // searching in different conditions.
-        if(tag.length()!=0) {
+        if (tag.length() != 0) {
             searchConditions();
-        }else{
-            Toast.makeText(SearchActivity.this,"No tag!",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(SearchActivity.this, "No tag!", Toast.LENGTH_LONG).show();
         }
 
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, plist);
@@ -92,24 +92,29 @@ public class SearchActivity extends AppCompatActivity {
      * Integration method to get the input, parse it and search it.
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void searchConditions(){
+    private void searchConditions() {
 
         //plist.clear(); // clear last results.
         Tokenizer = new Tokenizer(tag.toLowerCase());
         condition = new Parser(Tokenizer).parseExp();
         List<Post> retrievedPosts = condition.evaluate(s);
 
-            //rank the posts according to ranking algorithm
+        //rank the posts according to ranking algorithm
         String[] tag_list = tag.toLowerCase().split("[#& _|()]+");
         List<String> query = new ArrayList<>();
-        for (String s: tag_list){
+        for (String s : tag_list) {
             s = s.trim();
-            if (s.length() > 0){
+            if (s.length() > 0) {
                 query.add(s);
             }
         }
-
-        Rank rank = new Rank(CurrentUser.current_user, query,retrievedPosts);
-        plist = rank.rankedPosts;
+        if (retrievedPosts.size() != 0 && query.size() != 0) {
+            Rank rank = new Rank(CurrentUser.current_user, query, retrievedPosts);
+            plist = rank.rankedPosts;
+        } else {
+            plist = new ArrayList<>();
+            Toast.makeText(context, "Tag not exist!",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

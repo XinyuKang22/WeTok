@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "EmailPassword";
     private Context context;
@@ -84,15 +84,15 @@ public class LoginActivity extends AppCompatActivity{
             public void onClick(View view) {
                 String email = et_emailLogin.getText().toString().trim();
                 String password = et_passwordLogin.getText().toString().trim();
-                if (email.isEmpty()){
-                    Toast.makeText(context,"Please enter email", Toast.LENGTH_LONG).show();
+                if (email.isEmpty()) {
+                    Toast.makeText(context, "Please enter email", Toast.LENGTH_LONG).show();
                     return;
                 }
-                if (password.isEmpty()){
+                if (password.isEmpty()) {
                     Toast.makeText(context, "Please enter password", Toast.LENGTH_LONG).show();
                     return;
                 }
-                signIn(email,password);
+                signIn(email, password);
             }
         });
 
@@ -120,15 +120,13 @@ public class LoginActivity extends AppCompatActivity{
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //TODO: 如果邮箱密码验证正确, 找到User, set CurrentUser(已完成待测试)
                             User u = UserDao.findUserByEmail(email);
                             if (u == null) {
                                 Toast.makeText(context, "User not in database.",
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 CurrentUser.login(u);
-                                System.out.println("name:"+CurrentUser.current_user.getName());
-//                                FirebaseUser user = fbAuth.getCurrentUser();
+                                System.out.println("name:" + CurrentUser.current_user.getName());
                                 Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(context, "Successfully logged in.",
                                         Toast.LENGTH_SHORT).show();
@@ -147,15 +145,15 @@ public class LoginActivity extends AppCompatActivity{
     private void toMainPage(User u) {     //传递CurrentUser和info
 //        setView(u);
         Intent intent = new Intent(context, MainActivity.class);
-        if (u == null){
-            intent.putExtra("isGuest",true);
+        if (u == null) {
+            intent.putExtra("isGuest", true);
         } else {
-            intent.putExtra("isGuest",false);
+            intent.putExtra("isGuest", false);
         }
         startActivity(intent);
     }
 
-    private void toRegisterPage(){
+    private void toRegisterPage() {
         Intent intent = new Intent(context, RegisterActivity.class);
         startActivity(intent);
     }
@@ -173,13 +171,14 @@ public class LoginActivity extends AppCompatActivity{
 
         System.out.println("trying to open infoResource.json");
         file = getAssets().open("infoResource.json");
-        System.out.println("file size: "+file.toString());
-        final Type classType = new TypeToken<List<User>>(){}.getType();
+        System.out.println("file size: " + file.toString());
+        final Type classType = new TypeToken<List<User>>() {
+        }.getType();
         Gson gson = new Gson();
         try {
             JsonReader reader = new JsonReader(new InputStreamReader(file));
             users.addAll(gson.fromJson(reader, classType));
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 
