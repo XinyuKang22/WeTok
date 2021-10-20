@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author Xinyue Hu, Xinyu Kang
- *
  * This class implements AVL Tree data structure,
  * mainly includes find, insert, and delete operations.
+ * @author Xinyue Hu
+ * @author Xinyu Kang
  */
 public class AVLTree<K extends Comparable, T> implements Serializable {
     public Node root;

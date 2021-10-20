@@ -1,7 +1,7 @@
 package com.example.wetok.searchTree;
 /**
- * Search class is to search for the specific results
- * @Author Xinyue Hu
+ * This is the search class for building search tree and finding the specific results.
+ * @author Xinyue Hu
  */
 
 

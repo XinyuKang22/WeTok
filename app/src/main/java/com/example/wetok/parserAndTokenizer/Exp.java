@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Abstract class Exp to represent expressions
  * @author Yuxin Hong
+ * @author Xinyue Hu
  */
 public abstract class Exp {
 	public abstract String show();
