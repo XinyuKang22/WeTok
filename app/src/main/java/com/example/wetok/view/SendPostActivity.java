@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
+import com.example.wetok.bean.User;
 import com.example.wetok.dao.PostDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +25,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SendPostActivity extends AppCompatActivity {
-    private static final String TAG = "EmailPassword";
     private Context context;
 
 
@@ -32,7 +32,7 @@ public class SendPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = SendPostActivity.this;
-
+        User user = (User)getIntent().getSerializableExtra("user");
         setContentView(R.layout.activity_sendpost);
 
         setTitle("Send Post");
@@ -46,7 +46,12 @@ public class SendPostActivity extends AppCompatActivity {
                 String postContent = content.getText().toString();
                 Toast.makeText(context,"content is: " + postContent, Toast.LENGTH_LONG).show();
 
-                PostDao.addPost(postContent,context);
+                //Check user's mode
+                if(user != null) {
+                    PostDao.addPost(postContent);
+                }else{
+                    Toast.makeText(context,"Please login first!",Toast.LENGTH_LONG).show();
+                }
 
                 setResult(0, new Intent());
                 finish();

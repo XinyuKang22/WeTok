@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ *
+ */
 public class PostDao implements Serializable {
 
     public static List<Post> posts = null;
@@ -33,37 +36,35 @@ public class PostDao implements Serializable {
         return tags;
     }
 
-    public static void addPost(String content,Context activity) {
+    public static void addPost(String content) {
         User u = CurrentUser.current_user;
-        if(u == null) {
-            Toast.makeText(activity,"Please login first.",Toast.LENGTH_LONG).show();
-        }else {
-            String uid = u.getId();
-            String author = u.getName();
-            String email = u.getEmail();
-            String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
-            String u_img = u.getImgloc();
-            List<String> content_list = Arrays.asList(content.split("#"));
-            List<String> tag = new ArrayList<>();
-            if (content_list.size() > 1) {
-                for(int i=1;i<content_list.size();i++){
-                    tag.add("#"+content_list.get(i).trim());
-                }
-            } else {
-                tag.add("#no_tag");
+
+        String uid = u.getId();
+        String author = u.getName();
+        String email = u.getEmail();
+        String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+        String u_img = u.getImgloc();
+        List<String> content_list = Arrays.asList(content.split("#"));
+        List<String> tag = new ArrayList<>();
+        if (content_list.size() > 1) {
+            for(int i=1;i<content_list.size();i++){
+                tag.add("#"+content_list.get(i).trim());
             }
-
-
-            Post po = new Post(content, uid, author, email, u_img, time, tag, 0, 0);
-            // User: add new post to user
-            List<Post> user_post = CurrentUser.current_user.getPosts();
-            user_post.add(findInsertIndex(user_post), po);
-
-            // database: add new post, update post size
-            posts.add(findInsertIndex(posts), po);
-            post_size += 1;
+        } else {
+            tag.add("#no_tag");
         }
+
+
+        Post po = new Post(content, uid, author, email, u_img, time, tag, 0, 0);
+        // User: add new post to user
+        List<Post> user_post = CurrentUser.current_user.getPosts();
+        user_post.add(findInsertIndex(user_post), po);
+
+        // database: add new post, update post size
+        posts.add(findInsertIndex(posts), po);
+        post_size += 1;
     }
+
 
 
     public static int findInsertIndex(List<Post> posts ) {
