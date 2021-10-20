@@ -31,9 +31,6 @@ public class ImportanceScore extends ScoreTemplate {
         this.weights = weights;
     }
 
-    // the weights of importance factor: time, followers, likes
-    //final float[] weights = {0.7f, 0.2f, 0.1f};
-
     /**
      *
      * @return a map of the retrieved posts and their importance scores

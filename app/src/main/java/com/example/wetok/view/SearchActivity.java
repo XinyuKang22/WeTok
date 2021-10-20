@@ -95,12 +95,12 @@ public class SearchActivity extends AppCompatActivity {
     private void searchConditions(){
 
         //plist.clear(); // clear last results.
-        Tokenizer = new Tokenizer(tag);
+        Tokenizer = new Tokenizer(tag.toLowerCase());
         condition = new Parser(Tokenizer).parseExp();
         List<Post> retrievedPosts = condition.evaluate(s);
 
             //rank the posts according to ranking algorithm
-        String[] tag_list = tag.split("[#& _|()]+");
+        String[] tag_list = tag.toLowerCase().split("[#& _|()]+");
         List<String> query = new ArrayList<>();
         for (String s: tag_list){
             s = s.trim();

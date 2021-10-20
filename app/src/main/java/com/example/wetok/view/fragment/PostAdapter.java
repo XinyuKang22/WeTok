@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
@@ -22,7 +24,11 @@ import com.example.wetok.dao.UserDao;
 import com.example.wetok.view.ProfileActivity;
 import com.example.wetok.view.SearchActivity;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.Locale;
 
 public class PostAdapter extends ArrayAdapter<Post> {
     private int resourceId;
@@ -33,6 +39,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
     }
 
 //    @SuppressLint("ViewHolder")
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @SuppressLint({"SetTextI18n", "ViewHolder"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -64,10 +71,26 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         // time
         TextView Time = view.findViewById(R.id.list_post_time);
-        String theDate = post.getTime().substring(5,10);
+        //String theDate = post.getTime().substring(8,10);
         String theYear = post.getTime().substring(2,4);
         String theTime = post.getTime().substring(11,16);
-        Time.setText(theTime + " " + theDate);
+        LocalDate currentTime = LocalDate.now();
+        LocalDate postTime = LocalDate.parse(post.getTime(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        int days = (int) ChronoUnit.DAYS.between(postTime, currentTime);
+        String theMonth = postTime.getMonth().toString().toLowerCase();
+        theMonth = theMonth.substring(0,1).toUpperCase() + theMonth.substring(1,3);
+        if (days == 0){
+            Time.setText("Today " + theTime);
+        }else if (days == 1){
+            Time.setText("Yesterday " + theTime);
+        }else {
+            if (postTime.getYear() < currentTime.getYear()){
+                Time.setText("'" + theYear + "  " + theMonth + " " + postTime.getDayOfMonth() + "  " + theTime);
+            }else {
+                Time.setText(theMonth + " " + postTime.getDayOfMonth() + "  " + theTime);
+            }
+        }
+
 
         viewHolder = new ViewHolder();
         viewHolder.photo = view.findViewById(R.id.list_post_user_image);
