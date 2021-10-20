@@ -1,12 +1,9 @@
 package com.example.wetok.ranking;
 
 import android.os.Build;
-
 import androidx.annotation.RequiresApi;
-
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -17,22 +14,18 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *
  * @author Xinyu Kang
- * <p>
+ *
  * This class ranks the retrieved posts based on three criteria presented in the Pariser talk:
- * 1. Relevance
- * 2. Importance
- * 3. Chanlleging (user similarity)
+ *   1. Relevance
+ *   2. Importance
+ *   3. Chanlleging (user similarity)
  * using Template design pattern: ScoreTemplate(abstract class), RelevanceScore(concrete class), ImportanceScore(concrete class), UserSimilarityScore(concrete class).
  */
 public class Rank {
 
-    /*
-    The ranked posts.
-    Calculated when create a Rank object,
-    i.e. Rank rank = new Rank(...)
-         Set<Post> posts = rank.rankedPosts
-     */
+    //The ranked posts
     public final List<Post> rankedPosts;
 
     // the weights for relevancy, importance, user similarity
@@ -85,7 +78,7 @@ public class Rank {
     }
 
     /**
-     * Originally from: https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
+     * Reference: https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
      *
      * @param hm hashmap
      * @return sorted hashmap

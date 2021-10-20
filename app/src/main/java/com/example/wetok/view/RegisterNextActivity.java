@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
@@ -24,11 +23,9 @@ import com.example.wetok.dao.UserDao;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.hbb20.CountryCodePicker;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -70,14 +67,14 @@ public class RegisterNextActivity extends AppCompatActivity {
         et_userName = findViewById(R.id.et_userName);
         et_age = findViewById(R.id.et_age);
         btnG_gender = findViewById(R.id.btnG_gender);
-        ccp_code = (CountryCodePicker) findViewById(R.id.ccp_code);
-        et_phoneNumber = (EditText) findViewById(R.id.et_phoneNumber);
-        ccp_country = (CountryCodePicker) findViewById(R.id.ccp_country);
-        act_city =(AutoCompleteTextView) findViewById(R.id.act_city);
+        ccp_code = findViewById(R.id.ccp_code);
+        et_phoneNumber = findViewById(R.id.et_phoneNumber);
+        ccp_country = findViewById(R.id.ccp_country);
+        act_city =findViewById(R.id.act_city);
         btn_loginAftReg = findViewById(R.id.btn_loginAftReg);
 
         ccp_code.registerCarrierNumberEditText(et_phoneNumber);
-        initArrayAdapter("AU");
+        initArrayAdapter("AU"); // default country australia
         act_city.setAdapter(adapter);
 
 
@@ -213,7 +210,6 @@ public class RegisterNextActivity extends AppCompatActivity {
 
         //update UserDao
         UserDao.addUser(CurrentUser.current_user);
-        //end
     }
 
     public String loadJSONFromAsset() {

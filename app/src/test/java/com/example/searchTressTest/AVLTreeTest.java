@@ -4,16 +4,16 @@ import org.junit.Test;
 import org.junit.function.ThrowingRunnable;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
-
 import com.example.wetok.searchTree.AVLTree;
 
 /**
+ *
  * @author Xinyu Kang
  *
  * This class mainly tests Insertion, Deletion, and Search operations of AVLTree.
  * The expected output refers to the visualisation platform:
  * https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
- * (except for duplicates, we expect that duplicate insertions will give an exception)
+ * (except for duplicates, we accept duplicate insertion)
  *
  * This test has class coverage 100%, method coverage 94%, line coverage 91% for AVLTree.java,
  *           and class coverage 100%, method coverage 75%, line coverage 96% for Node.java.

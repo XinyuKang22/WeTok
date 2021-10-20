@@ -1,12 +1,7 @@
 package com.example.wetok.bean;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
 
 /**
  * The Post class
@@ -115,7 +110,7 @@ public class Post implements Comparable, Serializable {
     public int getLikes() {
         return likes;
     }
-    //add likes
+
     public void setLikes(int likes) {
         this.likes = likes;
     }
@@ -125,11 +120,10 @@ public class Post implements Comparable, Serializable {
     }
 
     /**
-     * Compare the publish time between two posts
-     * @param o
-     * @return int
+     * Compare the publish time between this post and o
+     * @param o another post
+     * @return an integer indicating the relationship
      */
-
     @Override
     public int compareTo(Object o) {
         String o_time = ((Post) o).getTime().replaceAll("[-: ]","");
@@ -146,7 +140,7 @@ public class Post implements Comparable, Serializable {
 
     /**
      * Check if the content and uid of two posts are equal
-     * @param o
+     * @param o another post
      * @return boolean
      */
     @Override

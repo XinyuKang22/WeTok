@@ -5,14 +5,15 @@ import androidx.annotation.RequiresApi;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.UserDao;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
+ *
  * @author Xinyu Kang
+ *
  * This class evaluate the similarity between the senders of retrieved posts and the current user who made the query from three aspects:
  *   1. users' subscribers
  *   2. users' posts

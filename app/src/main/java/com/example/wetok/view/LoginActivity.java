@@ -2,7 +2,6 @@ package com.example.wetok.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.wetok.R;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.bean.User;
@@ -24,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -48,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText et_emailLogin;
     private EditText et_passwordLogin;
     private FirebaseAuth fbAuth;
-
 
     public LoginActivity() throws IOException {
     }
@@ -115,8 +111,6 @@ public class LoginActivity extends AppCompatActivity {
                 toMainPage(null);
             }
         });
-        // upload data to Firebase
-
     }
 
     private void signIn(String email, String password) {
@@ -147,8 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void toMainPage(User u) {     //传递CurrentUser和info
-//        setView(u);
+    private void toMainPage(User u) {
         Intent intent = new Intent(context, MainActivity.class);
         if (u == null) {
             intent.putExtra("isGuest", true);

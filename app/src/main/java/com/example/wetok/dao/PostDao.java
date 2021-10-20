@@ -1,7 +1,5 @@
 package com.example.wetok.dao;
 
-import android.content.Context;
-import android.widget.Toast;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import java.io.Serializable;

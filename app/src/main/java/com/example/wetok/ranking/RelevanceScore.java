@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *
  * @author Xinyu Kang
+ *
  * This class evaluate the relecance of the retrieved posts and the query by calculating the tf-idf scores.
  */
 public class RelevanceScore extends ScoreTemplate{

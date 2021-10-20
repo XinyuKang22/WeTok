@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *
  * @author Xinyu Kang
- * This is the abstract class in Template design pattern
+ *
+ * This is an abstract class in Template design pattern, presenting the main structure of the scoring process
  */
 public abstract class ScoreTemplate {
     User currentUser;
@@ -18,7 +20,7 @@ public abstract class ScoreTemplate {
     List<Post> retrievedPosts;
 
     /**
-     *  @param currentUser the user who made the query
+     * @param currentUser the user who made the query
      * @param query a list of searched tags
      * @param retrievedPosts a map of the retrieved posts and their scores
      */

@@ -6,7 +6,6 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.UserDao;
 import java.time.LocalDate;
-import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
@@ -14,7 +13,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ *
  * @author Xinyu Kang
+ *
  * This class evaluate the importance of the retrieved posts from three aspects:
  *   1. post time
  *   2. post likes
@@ -77,7 +78,6 @@ public class ImportanceScore extends ScoreTemplate {
         User user = UserDao.findUserById(Integer.parseInt(post.getUid()));
         assert user != null;
         if (user.getFollowers().isEmpty()) return 0;
-        // return score_aft_scale in [0,1]
         int score_bf_scale = user.getFollowers().size();
         float score_aft_scale = (float) (Math.log10(score_bf_scale)/4);
         if (score_aft_scale < 0) return 0f;
@@ -93,7 +93,6 @@ public class ImportanceScore extends ScoreTemplate {
     public float likeScore(Post post){
         int score_bf_scale = post.getLikes();
         float score_aft_scale = (float) (Math.log10(score_bf_scale)/4);
-        // return score_aft_scale in [0,1]
         if (score_aft_scale < 0) return 0f;
         if (score_aft_scale > 1) return 1f;
 
