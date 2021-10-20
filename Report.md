@@ -173,22 +173,27 @@ How are they built Session
 
 ## Implemented Features
 
-*[What features have you implemented?]*
+*Improved Search*
 
-*Here is an example:*
+1. *Search functionality can handle partially valid and invalid search queries. (medium)*
 
-*User Privacy*
+*UI Design and Testing*
 
-1. *Friendship. Users may send friend requests which are then accepted or denied. (easy)*
-2. *Privacy I: A user must approve a friend's request based on privacy settings. (easy)*
-3. *Privacy II: A user can only see a profile that is Public (consider that there are at least two types of profiles: public and private). (easy)*
-4. *Privacy III: A user can only follow someone who shares at least one mutual friend based on privacy settings. (Medium)*
+1. *UI must have portrait and landscape layout variants as well as support for different screen sizes. Simply using Android studio's automated support for orientation and screen sizes and or creating support without effort to make them look reasonable will net you zero marks. (easy)*
 
-*Firebase Integration*
+*Greater Data Usage, Handling and Sophistication*
+
+1. *User profile activity containing a media file (image, animation (e.g. gif), video). (easy)*
+2. *Deletion method of either a Red-Black Tree and or AVL tree data structure. The deletion of nodes must serve a purpose within your application (e.g. deleting posts). (hard)*
+
+*User Interactivity*
+
+1. *The ability to micro-interact with 'posts' (e.g. like, report, etc.) [stored in-memory]. (easy)*
+2. *The ability for users to ‘follow’ other users. There must be an adjustment to either the user’s timeline in relation to their following users or a section specifically dedicated to posts by followed users. [stored in-memory] (medium)*
+
+*User Interactivity*
+
 1. *Use Firebase to implement user Authentication/Authorisation. (easy)*
-2. *Use Firebase to persist all data used in your app (this item replace the requirement to retrieve data from a local file) (medium)*
-
-*List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
 
 ## Team Meetings
 
