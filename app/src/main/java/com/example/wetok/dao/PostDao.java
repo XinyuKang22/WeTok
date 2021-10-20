@@ -38,7 +38,7 @@ public class PostDao implements Serializable {
 
     public static void addPost(String content) {
         User u = CurrentUser.current_user;
-
+        // establish post class
         String uid = u.getId();
         String author = u.getName();
         String email = u.getEmail();

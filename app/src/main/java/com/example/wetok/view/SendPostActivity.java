@@ -47,10 +47,10 @@ public class SendPostActivity extends AppCompatActivity {
                 Toast.makeText(context,"content is: " + postContent, Toast.LENGTH_LONG).show();
 
                 //Check user's mode
-                if(user != null) {
-                    PostDao.addPost(postContent);
-                }else{
+                if(user == null) {
                     Toast.makeText(context,"Please login first!",Toast.LENGTH_LONG).show();
+                }else{
+                    PostDao.addPost(postContent);
                 }
 
                 setResult(0, new Intent());
