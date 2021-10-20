@@ -118,10 +118,6 @@ public class Post implements Comparable, Serializable {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("uid", uid);
