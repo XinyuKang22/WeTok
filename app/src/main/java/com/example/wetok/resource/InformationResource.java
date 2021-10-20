@@ -11,9 +11,13 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 
+/**
+ * The InformationResource class is used to get user and post information from json file.
+ * @author Xinyue Hu
+ */
 public class InformationResource {
-    List<User> users = new ArrayList<>();
-    List<Post> posts = new ArrayList<>();
+    List<User> users = new ArrayList<>(); // Store users
+    List<Post> posts = new ArrayList<>(); // Store posts
 
 
     public InformationResource(){}

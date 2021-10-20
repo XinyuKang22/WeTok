@@ -11,12 +11,21 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+/**
+ * The DataGenerator class is used to generate all the users and posts data
+ * @author Xinyue Hu
+ */
 public class DataGenerator {
 
     public DataGenerator() throws Exception {
     }
 
+    /**
+     * Read data from raw data files
+     * @param path
+     * @return list
+     * @throws Exception
+     */
     public static List<String> readFromFile(String path) throws Exception {
         FileReader fileReader =new FileReader(path);
         BufferedReader bufferedReader =new BufferedReader(fileReader);
@@ -33,7 +42,10 @@ public class DataGenerator {
         return list;
     }
 
-
+    /**
+     * Generate password
+     * @return the password
+     */
     public static String Password(){
         final int maxNum = 36;
         int i; //generate random number
@@ -54,6 +66,11 @@ public class DataGenerator {
         return pwd.toString();
     }
 
+    /**
+     * Read user information from corresponding files
+     * @param size
+     * @return user information
+     */
     public static Map<String,String> generateUserInfo(int size){
         Map<String,String> userinfo = new HashMap<>();
         try {
@@ -68,8 +85,15 @@ public class DataGenerator {
        return userinfo;
     }
 
-
-    //generate user's name and sex
+    /**
+     * Generate user's name and sex
+     * @param firstName
+     * @param lastName
+     * @param gender
+     * @param size
+     * @return name and sex
+     * @throws Exception
+     */
     public static Map<String,String> generateNameSex(List<String> firstName, List<String> lastName, List<String> gender, int size) throws Exception {
             Map<String,String> info = new HashMap<>();
             for(int i=0;i<size;i++) {
@@ -82,13 +106,22 @@ public class DataGenerator {
             return info;
     }
 
-
+    /**
+     * Generate user age
+     * @return age
+     */
     public static int generateAge(){
         return (int)(Math.random()*55)+18;
     }
 
-
-    // generate posts
+    /**
+     * generate posts
+     * @param id
+     * @param name
+     * @param u_img
+     * @param statu
+     * @return post list
+     */
     public static List<Post> generatePosts(String id,String name,String u_img,List<String> statu){
         List<Post> pos = new ArrayList<>();
         String[] tags = {"#state","#mood","#scenery","#weekend","#time","#trip","#plan"};
@@ -127,6 +160,10 @@ public class DataGenerator {
         return pos;
     }
 
+    /**
+     * Generate the post publishing time
+     * @return String
+     */
     public static String timeGenerate() {
         int hour=(int)(Math.random()*23)+1;
         int minute= (int)(Math.random()*6);
@@ -135,6 +172,10 @@ public class DataGenerator {
         return month + "." + date + " " + hour + ":" + minute + "0";
     }
 
+    /**
+     * Generate Address
+     * @return address
+     */
     public static String generateAdress(){
         String[] location = {"Sydney","Melbourne","Brisbane",
                 "Perth","Adelaide","Canberra","Broome","Hobart",
@@ -145,6 +186,10 @@ public class DataGenerator {
         return location[i];
     }
 
+    /**
+     * Generate user email
+     * @return email
+     */
     public static String generateEmail(){
         String[] suffix = new String[]{"@qq.com", "@gmail.com", "@163.com", "@126.com",
                 "@yahoo.com","sina.com","hotmail.com"};
@@ -158,7 +203,10 @@ public class DataGenerator {
         return sb.toString();
     }
 
-
+    /**
+     * Generate user phone number
+     * @return phone number
+     */
     public static String generatePhone(){
         String first = "4";
         int count = 0;
@@ -172,6 +220,10 @@ public class DataGenerator {
         return sb.toString();
     }
 
+    /**
+     * Create Json file
+     * @throws Exception
+     */
     public static void createJsonFile() throws Exception {
         File file = new File("src/infoResource.json");
         file.delete();//Ensure the file is unique
