@@ -69,19 +69,13 @@ public class ImportanceScore extends ScoreTemplate {
      */
     public float followerScore(Post post){
         User user = UserDao.findUserById(Integer.parseInt(post.getUid()));
-
         assert user != null;
-        if (user.getFollowers().isEmpty()){
-            return 0;
-        }
+        if (user.getFollowers().isEmpty()) return 0;
+        // return score_aft_scale in [0,1]
         int score_bf_scale = user.getFollowers().size();
         float score_aft_scale = (float) (Math.log10(score_bf_scale)/4);
-        if (score_aft_scale < 0){
-            return 0f;
-        }
-        if (score_aft_scale > 1){
-            return 1f;
-        }
+        if (score_aft_scale < 0)return 0f;
+        if (score_aft_scale > 1)return 1f;
         return score_aft_scale;
     }
 
@@ -93,12 +87,9 @@ public class ImportanceScore extends ScoreTemplate {
     public float likeScore(Post post){
         int score_bf_scale = post.getLikes();
         float score_aft_scale = (float) (Math.log10(score_bf_scale)/4);
-        if (score_aft_scale < 0){
-            return 0f;
-        }
-        if (score_aft_scale > 1){
-            return 1f;
-        }
+        // return score_aft_scale in [0,1]
+        if (score_aft_scale < 0) return 0f;
+        if (score_aft_scale > 1) return 1f;
         return score_aft_scale;
     }
 

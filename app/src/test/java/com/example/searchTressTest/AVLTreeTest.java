@@ -1,4 +1,4 @@
-package com.example;
+package com.example.searchTressTest;
 
 import org.junit.Test;
 import org.junit.function.ThrowingRunnable;

@@ -1,4 +1,4 @@
-package com.example.wetok;
+package com.example;
 
 import org.junit.Test;
 

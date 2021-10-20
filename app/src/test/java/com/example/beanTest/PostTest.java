@@ -1,4 +1,4 @@
-package com.example.wetok.beanTest;
+package com.example.beanTest;
 
 import static org.junit.Assert.assertEquals;
 

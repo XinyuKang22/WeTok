@@ -1,7 +1,5 @@
-package com.example.wetok.parserAndTokenizerTest;
+package com.example.parserAndTokenizerTest;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
