@@ -134,7 +134,29 @@ Generally speaking, the advantages of our design is we to search multiple tags a
 How are they built Session
 
 **Surpise Item**
-
+**1. Ranking algorithm for search results**<br />
+Based on the *Pariser talk*, we decided to sort the posts by three criteria: relecvance; importance; user similarity.<br />
+* **Relevance**<br />
+  The class *RelevanceScore* evaluates the relecance of the query and the retrieved posts by calculating tf-idf scores. The score of post d given query q = (t_1, t_2, ..., t_m) is: <br />
+  ![RelevanceFormula](./images/RelevanceFormula.png)<br />
+  We expect the posts containing more "rare words" that appeared in the query to be more relevant. The rare word here refers to the word that does not exist in many posts. <br />
+ 
+* **Importance**<br />
+  The class *ImportanceScore* evaluates the importance of the retrieved posts by calculating the post time, post likes, and the user's followers:<br />
+  ![ImportanceFormula](./images/ImportanceFormula.png)<br />
+  We expect the posts with more likes, the posts sent by users with more followers, and the latest posts to be more important to society, and thus have higher ranking scores. <br />
+ 
+* **User Similarity**<br />
+  The class *UserSimilarityScore* evaluates the similarity of the current user and the senders of the posts by evaluating their subscribers, posts, and addresses:<br />
+  ![SimilarityFormula](./images/SimilarityFormula.png)  <br />
+  The post sent by the user who is considered as more 'similar' with the current user will have a lower ranking score.We expect to use this algotithm to offset some negative effects of the *'Filter Bubbles'*.  <br />
+ 
+* **Overall Score**<br />
+  
+  ![OverallFormula](./images/OverallFormula.png)<br />
+  All of the weights introduced in this algorithm were intuitively chose by our group members. In practice we should use machine learning techniques to train the best weights.<br />
+  We expect that the posts having strong relevance with the query, the posts which are important to society, and the posts sent by the users who are "different" with the user, to have better ranking in the search results presenting.<br />
+  The more and more intelligent recommendation systems create the *'Filter Bubbles'* for users. We intend to "break" the bubble by implenmenting the ranking algorithm from users similarity dimension. The score of the posts created by the users who are very "similar" with you will be scaled down. People will have more chances to receive different viewpoints. <br />
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
 
 **Other**
