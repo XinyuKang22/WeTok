@@ -1,7 +1,9 @@
 package com.example.wetok.ranking;
 
 import android.os.Build;
+
 import androidx.annotation.RequiresApi;
+
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 
@@ -13,15 +15,14 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * @author Xinyu Kang
- *
+ * <p>
  * This class ranks the retrieved posts based on three criteria presented in the Pariser talk:
- *   1. Relevance
- *   2. Importance
- *   3. Chanlleging (user similarity)
+ * 1. Relevance
+ * 2. Importance
+ * 3. Chanlleging (user similarity)
  * using Template design pattern: ScoreTemplate(abstract class), RelevanceScore(concrete class), ImportanceScore(concrete class), UserSimilarityScore(concrete class).
  */
 public class Rank {
@@ -46,13 +47,12 @@ public class Rank {
     private final List<Post> retrievedPosts;
 
     /**
-     *
-     * @param currentUser the user who made the query
-     * @param query a list of searched tags
+     * @param currentUser    the user who made the query
+     * @param query          a list of searched tags
      * @param retrievedPosts a map of the retrieved posts and their scores
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Rank(User currentUser, List<String> query, List<Post> retrievedPosts){
+    public Rank(User currentUser, List<String> query, List<Post> retrievedPosts) {
         this.currentUser = currentUser;
         this.query = query;
         this.retrievedPosts = retrievedPosts;
@@ -60,11 +60,10 @@ public class Rank {
     }
 
     /**
-     *
      * @return the posts ranked by their scores
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public List<Post> toRankedPosts(){
+    public List<Post> toRankedPosts() {
         ScoreTemplate relevanceScore = new RelevanceScore(currentUser, query, retrievedPosts);
         ScoreTemplate importanceScore = new ImportanceScore(currentUser, query, retrievedPosts, weightsImp);
         ScoreTemplate similarityScore = new UserSimilarityScore(currentUser, query, retrievedPosts, weightsSim);
@@ -73,7 +72,7 @@ public class Rank {
         Map<Post, Float> sim = similarityScore.getNormalizedScore();
 
         HashMap<Post, Float> scores = new HashMap<>();
-        for (Map.Entry<Post, Float> entry : rel.entrySet()){
+        for (Map.Entry<Post, Float> entry : rel.entrySet()) {
             Post post = entry.getKey();
             float rel_score = entry.getValue();
             float imp_score = imp.get(post);
@@ -87,17 +86,17 @@ public class Rank {
 
     /**
      * Originally from: https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
+     *
      * @param hm hashmap
      * @return sorted hashmap
      */
-    public LinkedHashMap<Post, Float> sortByValue(HashMap<Post, Float> hm)
-    {
+    public LinkedHashMap<Post, Float> sortByValue(HashMap<Post, Float> hm) {
         // Create a list from elements of HashMap
-        List<Map.Entry<Post, Float> > list = new LinkedList<>(hm.entrySet());
+        List<Map.Entry<Post, Float>> list = new LinkedList<>(hm.entrySet());
 
         // Sort the list
-        Collections.sort(list, new Comparator<Map.Entry<Post, Float> >() {
-            public int compare(Map.Entry<Post, Float> o1,Map.Entry<Post, Float> o2){
+        Collections.sort(list, new Comparator<Map.Entry<Post, Float>>() {
+            public int compare(Map.Entry<Post, Float> o1, Map.Entry<Post, Float> o2) {
                 return (o1.getValue()).compareTo(o2.getValue());
             }
         });

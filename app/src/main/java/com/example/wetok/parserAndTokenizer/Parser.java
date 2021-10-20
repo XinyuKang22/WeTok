@@ -7,11 +7,6 @@ package com.example.wetok.parserAndTokenizer;
  * <factor> ::=  <tag> | '(' <exp> ')'
  *
  * @author Yuxin Hong
-
-
- * Parsing, within the context of this lab, is the process of taking a bunch of tokens and
- * evaluating them. You will not need to 'evaluate' them within this class, instead, just
- * return an expression which can be evaluated.
  */
 public class Parser {
     /**

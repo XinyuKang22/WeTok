@@ -8,9 +8,6 @@ import java.util.List;
 /**
  * Abstract class Exp to represent expressions
  * @author Yuxin Hong
- *
- * You are not required to implement any function inside this class.
- * Please do not change anything inside this class as well.
  */
 public abstract class Exp {
 	public abstract String show();

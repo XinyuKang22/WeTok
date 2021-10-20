@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * SubExp: it is extended from the abstract class Exp,
+ * OrExp: it is extended from the abstract class Exp,
  * 		    This class is used to represent the expression of subtraction
  * @author Yuxin Hong
- * Please do not change anything else.
  */
 
 public class OrExp extends Exp {

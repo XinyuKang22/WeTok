@@ -8,13 +8,10 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * LitExp: it is extended from the abstract class Exp,
+ * TagExp: it is extended from the abstract class Exp,
  * 		   This class is used to represented the expression of 32-bit unsigned integer
  *
  * @author Yuxin Hong
- *
- * You are not required to implement any function inside this class.
- * Please do not change any thing inside this class as well.
  */
 
 public class TagExp extends Exp {

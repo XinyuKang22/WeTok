@@ -7,11 +7,9 @@ import java.util.ArrayList;
 import java.util.*;
 
 /**
- * AddExp: it is extended from the abstract class Exp.
+ * AndExp: it is extended from the abstract class Exp.
  *         This class is used to represent the expression of addition
  * @author Yuxin Hong
- * You are not required to implement any function inside this class.
- * Please do not change anything inside this class as well.
  */
 
 public class AndExp extends Exp {

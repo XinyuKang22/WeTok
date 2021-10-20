@@ -9,9 +9,7 @@ import java.util.Objects;
  * Each token has its surface form saved in {@code token}
  * and type saved in {@code type} which is one of the predefined type in Type enum.
  * The following are the different types of tokens:
- * HASH: #
- * WORD: plain english word
- * UNDERLINE: _
+ * Tag: #word_another_word
  * AND: &
  * OR: |
  * LBRA: (
