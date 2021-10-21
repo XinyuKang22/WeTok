@@ -9,6 +9,8 @@ import java.util.List;
  * @author Xinyue Hu
  * @author Xinyu Kang
  */
+ //reference https://quguai.cn/archives/j-a-v-a-di-ceng-shi-xian-a-v-l-ping-heng-er-cha-shu
+ //reference https://quguai.cn/archives/j-a-v-a-di-ceng-shi-xian-b-s-t-er-fen-sou-suo-shu
 public class AVLTree<K extends Comparable, T> implements Serializable {
     public Node root;
     public int size;
