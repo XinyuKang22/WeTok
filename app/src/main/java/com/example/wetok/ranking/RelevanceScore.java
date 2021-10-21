@@ -58,7 +58,7 @@ public class RelevanceScore extends ScoreTemplate{
      * @param post post content
      * @return term frequency of the tag in the post content
      */
-    public static int getTermFrequency(String tag, String post){
+    public int getTermFrequency(String tag, String post){
         // return tag length
         return post.length() - post.toLowerCase().replaceAll(tag,"").length();
     }
@@ -70,7 +70,7 @@ public class RelevanceScore extends ScoreTemplate{
      * @return a map of query tokens and their corresponding document frequencies
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static Map<String, Integer> getDocumentFrequency(List<String> query, List<Post> allPosts){
+    public Map<String, Integer> getDocumentFrequency(List<String> query, List<Post> allPosts){
 
         Map<String, Integer> documentFrequencies = new HashMap<>();
         for (String s : query){

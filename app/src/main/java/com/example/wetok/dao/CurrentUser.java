@@ -7,7 +7,7 @@ import com.example.wetok.bean.User;
  * @author Yuxin Hong
  */
 public class CurrentUser {
-    public static CurrentUser instance = null;
+    private static CurrentUser instance = null;
     public static User current_user = null;
     public static User current_visitor = null;
 
