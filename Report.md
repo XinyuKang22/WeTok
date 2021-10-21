@@ -46,7 +46,7 @@ The following is a report template to help your team successfully provide all th
 ## **Team Members and Roles**
 
 | UID | Name | Role |
-| :--- | :----: | ---: |
+| :--- | :----: | :--- |
 | u6120911 | Xinyu Kang | Integration engineer, Data structure designer, Ranking algorithm designer |
 | u7151386 | Xinyue Hu | Database Designer, Data structure designer, Integration engineer |
 | u6684233 | Yuxin Hong | Tokenizer and parser designer and tester, Ranking algorithm tester |
@@ -54,14 +54,11 @@ The following is a report template to help your team successfully provide all th
 
 ## **Conflict Resolution Protocol**
 
-1. Conflictors organize their views, list the pros and cons of their perspectives. 
+1. Conflictors organize their views, list the pros and cons of their choice.
 2. Initiate a zoom meeting with all team member.
-3. Conflictors presenting the confliction and why disagree with the other.
+3. Conflictors presenting the confliction and why disagree with the others.
 4. Team member do a vote and share the reason.
 5. As a result, merge conflictors's solutions or take more agreed solutions.
-
-
-
 
 ## **Application Description**
 
@@ -162,11 +159,11 @@ We used three design patterns: Singleton, Template, DAO
 ### **Grammars**
 
 <br> *Production Rules* <br>
-\<exp> ::= \<term> | \<term> '|' \<exp>
-<br>
-\<term> ::= \<factor> | \<factor> '&' \<term>
-<br>
-\<factor> ::= \<tag> | '(' \<exp> ')'
+\<exp> ::= \<term> | \<term> '|' \<exp> 
+
+\<term> ::= \<factor> | \<factor> '&' \<term> 
+
+\<factor> ::= \<tag> | '(' \<exp> ')' 
 
 According to this gramma, we can parse *AND* and *OR* operations. For example, suppose we have the expression **condition1 & condition2 | condition3**, human will process it as **(condition1 & condition2) | condition3**, so does our gramma will do. Another example is **condition1 & (condition2 | condition3 & condition4)**, human will process it as **condition1 & (condition2 | (condition3 & condition4))**, so does our gramma will do. In application, the advantages of our gramma is to filter tag of post with *AND* and *OR* operation. It takes tag as its condition and only return post that satified given condition in expression.
 
@@ -202,9 +199,6 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
 ##### **Simple personalisation**
 In order to create unique personalization features, we recorded the location of the user while recording the user login data. Based on the user's location, we added a search function, which is the city search function. The local search function searches for all posts in the same city based on the current user's location. This will make it easier for users to see what's going on around them.
 
-**Other**
-
-*[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
 
 ## **Summary of Known Errors and Bugs**
 
