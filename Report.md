@@ -262,6 +262,15 @@ Tests created for Parser:
 5. *testMidCase* : test whether search tag with *AND* and *OR* operations is correct.
 6. *testIllegalProductionException* :  test whether parser throw exceptions as expected.
 
+### **Parser and Tokenizer Tests**
+Number of test cases: 12 <br />
+  ![ParserAndTokenizerTest1](./images/RankingTest1.png)  <br />
+
+Code coverage: <br />
+  ![ParserAndTokenizerTest2](./images/PTTest2.png)  <br />
+
+Tests created for ImportanceScoreTest: 
+
 ## Implemented Features
 
 *Improved Search*

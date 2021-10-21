@@ -92,7 +92,7 @@ public class UserSimilarityScoreTest {
         List<String> q = Arrays.asList("useful");
         UserSimilarityScore i = new UserSimilarityScore(u4, q, PostDao.getPosts(),weight);
         Map<Post, Float> m = i.getScore();
-        assertTrue(m.get(p4) < m.get(p3));
+        assertTrue(m.get(p2) < m.get(p3));
     }
 
     @Test
