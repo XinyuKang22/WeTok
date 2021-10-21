@@ -44,7 +44,7 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [uid] | Xinyu Kang | [role] |
+| u6120911 | Xinyu Kang | Integration engineer, Data structure designer, Ranking algorithm designer|
 | [uid] | Xinyue Hu | [role] |
 | u6684233 | Yuxin Hong | [role] |
 | [uid] | Zhaoting Jiang | [role] |
@@ -194,7 +194,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
   ![OverallFormula](./images/OverallFormula.png)<br />
   All of the weights introduced in this algorithm were intuitively chose by our group members. In practice we should use machine learning techniques to train the best weights.<br />
   We expect that the posts having strong relevance with the query, the posts which are important to society, and the posts sent by the users who are "different" with the user, to have better ranking in the search results presenting.<br />
-  The more and more intelligent recommendation systems create the *'Filter Bubbles'* for users. We intend to "break" the bubble by implenmenting the ranking algorithm from users similarity dimension. The score of the posts created by the users who are very "similar" with you will be scaled down. People will have more chances to receive different viewpoints. <br />
+  More and more intelligent recommendation systems create the *'Filter Bubbles'* for users. We intend to "break" the bubble by implementing the ranking algorithm from users similarity dimension. The score of the posts created by the users who are very "similar" with you will be scaled down. People will have more chances to receive different viewpoints from social media. <br />
 
 ##### **Simple personalisation**
 

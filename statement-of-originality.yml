@@ -21,6 +21,10 @@ code:
     url: https://gitlab.cecs.anu.edu.au/u1064702/comp2100-6442-2021.s2/-/tree/master/Lab_07_Tok_Parser
     licence:
 
+  - comment: Several methods of AVLTree refer to the code on the website.
+    url: https://quguai.cn/archives/j-a-v-a-di-ceng-shi-xian-a-v-l-ping-heng-er-cha-shu
+    licence: fair use
+
 
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external assets)
@@ -33,11 +37,11 @@ assets:
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
-  - name:
+  - name: Xinyue Hu
+    uid: u7151386
+  - name:Yuxin Hong 
     uid:
-  - name:
+  - name:Xinyu Kang
     uid:
-  - name:
-    uid:
-  - name:
+  - name:Zhaoting Jiang
     uid:

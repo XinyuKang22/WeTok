@@ -30,7 +30,7 @@
 | Connect local data with UI | Xinyu Kang, Xinyue Hu, Yuxin Hong , Zhaoting Jiang |
 | Adjust UI details | Zhaoting Jiang |
 | Activity debug | Yuxin Hong |
-| Token & Parser + grammar connection | Xinyu Hu |
+| Token & Parser + grammar connection | Xinyue Hu |
 | Ranking algorithm | Xinyu Kang |
 | City function | Zhaoting Jiang |
 
