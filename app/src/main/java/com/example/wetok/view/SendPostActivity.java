@@ -50,7 +50,6 @@ public class SendPostActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // send post
                 String postContent = content.getText().toString();
-                Toast.makeText(context,"content is: " + postContent, Toast.LENGTH_LONG).show();
 
                 //Check user's mode
                 if(user == null) {

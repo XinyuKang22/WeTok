@@ -3,8 +3,8 @@
     <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>
     <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
     <string name="logo">Logo</string>
-    <string name="etEmail">Email</string>
-    <string name="etPassword">Password</string>
+    <string name="etEmail">Please enter email</string>
+    <string name="etPassword">Please enter password</string>
     <string name="btnLogin">Login</string>
     <string name="btnRegister">Register</string>
     <string name="btnGuestMode">Guest login</string>

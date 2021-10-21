@@ -49,7 +49,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
-        System.out.println(post.getAuthor());
+
         View view;
         ViewHolder viewHolder;
         // if (convertView == null) {
@@ -105,7 +105,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
         view.setTag(viewHolder);
         viewHolder.username.setOnClickListener(e -> {
             Intent intent = new Intent(getContext(), ProfileActivity.class);
-            Toast.makeText(getContext(), "post", Toast.LENGTH_SHORT).show();
             CurrentUser.current_visitor = UserDao.findUserById(Integer.parseInt(post.getUid()));
             getContext().startActivity(intent);
         });

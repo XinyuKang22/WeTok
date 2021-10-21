@@ -55,7 +55,6 @@ public class UserListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 User user = users.get(position);
-                Toast.makeText(context, "user: "+user.getName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, ProfileActivity.class);
                 CurrentUser.current_visitor = user;
                 startActivity(intent);
