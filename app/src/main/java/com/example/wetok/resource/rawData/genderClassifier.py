@@ -4,6 +4,7 @@ import random
 """
 This file use nlp algorithm to classify username's gender
 @author Xinyue Hu
+reference http://www.nltk.org/book/ch06.html
 """
 def gender_features(word):
     return {'last_letter': word[-1]}
