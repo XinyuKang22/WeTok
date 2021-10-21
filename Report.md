@@ -38,8 +38,8 @@ The following is a report template to help your team successfully provide all th
   - [Testing Summary](#testing-summary)
     - [AVL Tree Testings](#avl-tree-testings)
     - [Dao and Bean Testings](#dao-and-bean-testings)
-    - [Tokenizer and Parser Testings](#tokenizer-and-parser-testings)
-    - [Ranking Testings](#ranking-testings)
+    - [Parser and Tokenizer Tests](#tokenizer-and-parser-testings)
+    - [Ranking Tests](#ranking-testings)
   - [Implemented Features](#implemented-features)
   - [Team Meetings](#team-meetings)
 
