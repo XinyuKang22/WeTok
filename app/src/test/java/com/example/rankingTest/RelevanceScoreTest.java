@@ -29,7 +29,6 @@ public class RelevanceScoreTest {
         String content3 = "COMP2100 is hard";
         String content4 = "COMP3670 is useful";
 
-
         String uid = "0";
         String author = "Yuxin";
         String email = "u123456@anu.edu.au";
