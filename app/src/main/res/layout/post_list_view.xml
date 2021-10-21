@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EEEEEEEE"
-    android:paddingTop="20pt"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingTop="20pt">
 
     <LinearLayout
 
@@ -40,8 +41,8 @@
             android:id="@+id/list_post_btn_sub"
             android:layout_width="69dp"
             android:layout_height="37dp"
-            android:layout_marginRight="10dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
             android:background="#00000000"
             android:drawablePadding="10dp"
             android:paddingTop="5dp"
@@ -58,6 +59,7 @@
         android:layout_marginEnd="8dp"
         android:layout_weight="0.7"
         android:background="@drawable/round_corner5"
+        android:gravity="center"
         android:inputType="textMultiLine"
         android:maxLines="20"
         android:padding="10pt"
@@ -68,10 +70,10 @@
         android:id="@+id/list_post_tags"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.1"
         android:orientation="horizontal"
         android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:layout_weight="0.1" />
+        android:paddingRight="8dp" />
 
     <LinearLayout
 
@@ -89,8 +91,8 @@
             android:background="#00000000"
             android:drawablePadding="10dp"
             android:paddingTop="5dp"
-            android:textSize="16sp"
-            android:text="123" />
+            android:text="123"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/list_post_time"
@@ -103,6 +105,18 @@
             android:paddingTop="5dp"
             android:text="23"
             android:textSize="16sp" />
-</LinearLayout>
+
+        <Button
+            android:id="@+id/Delete"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.1"
+            android:gravity="center"
+            android:text="Delete"
+            android:visibility="visible"
+            tools:visibility="visible" />
+
+    </LinearLayout>
 
 </LinearLayout>
