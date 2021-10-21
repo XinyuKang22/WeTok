@@ -21,8 +21,19 @@ The following is a report template to help your team successfully provide all th
   - [Team Members and Roles](#team-members-and-roles)
   - [Conflict Resolution Protocol](#conflict-resolution-protocol)
   - [Application Description](#application-description)
+    - [Application Use Cases and or Examples](#application-use-cases-and-or-examples)
   - [Application UML](#application-uml)
   - [Application Design and Decisions](#application-design-and-decisions)
+    - [Data Structures](#data-structures)
+      - [AVL Tree](#avl-tree)
+    - [Design Patterns](#design-patterns)
+      - [Singleton](#singleton)
+      - [Template](#template)
+      - [DAO](#dao)
+    - [Grammars](#grammars)
+    - [Surpise Item](#surpise-item)
+      - [(i) Ranking algorithm](#ranking-algorithm)
+      - [(ii) Simple personalisation](#simple-personalisation)
   - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
   - [Testing Summary](#testing-summary)
   - [Implemented Features](#implemented-features)
@@ -49,7 +60,7 @@ The following is a report template to help your team successfully provide all th
 
 *PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
 
-**Application Use Cases and or Examples**
+### Application Use Cases and or Examples
 
 *[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
 
@@ -104,15 +115,30 @@ The following is a report template to help your team successfully provide all th
 
 3. ...
 
-**Data Structures**
+### Data Structures
 
-*[What data structures did your team utilise? Where and why?]*
+##### AVL Tree
 
-**Design Patterns**
+### Design Patterns
 
-*[What design patterns did your team utilise? Where and why?]*
+We used two design patterns: Singleton, Template
+##### Singleton
+   * Location: *CurrentUser.java*
+   * We used Singleton design pattern in CurrentUser to make sure there must be exactly one instance of the current user.<br /><br />
+   ![SingletonDiagram](./images/SingletonDiagram.png)<br />
 
-**Grammars**
+##### Template
+   *  Location: *ScoreTemplate.java* (abstract class), *RelevanceScore.java* (concrete class), *ImportanceScore.java* (concrete class), *UserSimilarity.java* (concrete class)
+   *  We want to sort the posts based on three criteria. There is a common process (i.e., calculate scores, normalize scores) to scoring the posts but each criterion has its own scoring logic. 
+   *  So, we used a score template to define the skeleton of the scoring algotirthm, and let subclasses redefine certain steps of the algotirthm without changing the main structure.<br /><br />
+   ![TemplateDiagram](./images/TemplateDiagram.png)<br />
+
+##### DAO
+   * Location: *UserDao.java*, *PostDao.java*
+   * We want to decouple domain logic from persistence mechanisms and avoid exposing details of the data storage. The two DAO classes provided convenient access to user data in whole project. <br /><br />
+   ![DaoDiagram](./images/DaoDiagram.png)<br />
+
+### Grammars
 
 *Search Engine*
 <br> *Production Rules* <br>
@@ -127,14 +153,14 @@ Generally speaking, the advantages of our design is we to search multiple tags a
 
 *[If there are several grammars, list them all under this section and what they relate to.]*
 
-**Tokenizer and Parsers**
+### Tokenizer and Parsers
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
 
 How are they built Session
 
-**Surpise Item**
-**1. Ranking algorithm for search results**<br />
+### Surpise Item
+##### Ranking algorithm
 Based on the *Pariser talk*, we decided to sort the posts by three criteria: relecvance; importance; user similarity.<br />
 * **Relevance**<br />
   The class *RelevanceScore* evaluates the relecance of the query and the retrieved posts by calculating tf-idf scores. The score of post d given query q = (t_1, t_2, ..., t_m) is: <br />
@@ -157,7 +183,9 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
   All of the weights introduced in this algorithm were intuitively chose by our group members. In practice we should use machine learning techniques to train the best weights.<br />
   We expect that the posts having strong relevance with the query, the posts which are important to society, and the posts sent by the users who are "different" with the user, to have better ranking in the search results presenting.<br />
   The more and more intelligent recommendation systems create the *'Filter Bubbles'* for users. We intend to "break" the bubble by implenmenting the ranking algorithm from users similarity dimension. The score of the posts created by the users who are very "similar" with you will be scaled down. People will have more chances to receive different viewpoints. <br />
-*[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
+
+##### Simple personalisation
+
 
 **Other**
 
