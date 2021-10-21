@@ -66,10 +66,16 @@ The following is a report template to help your team successfully provide all th
 
 ### **Application Use Cases and or Examples**
 
+*Targets Users: Everyone who is willing to use and learn about this app*
+
 *Jack wants to learn about skateboarding skills that interest him most*
 1. *Jack searched the tag about skateboarding and found that Kevin shared skateboarding skills every day*
 2. *He followed Kevin*
 3. *He learned new moves from Kevin's skateboard skills*
+
+*Andy wants to know about the good restaurants around him*
+1. *Andy turns on the City feature and finds that Clair shared a delicious restaurant nearby*
+2. *He followed Clair and hope Clair can share more delicious restaurants in the future*
 
 *Here is a map navigation application example*
 
