@@ -42,8 +42,6 @@ public class HomeFragment extends Fragment {
 
         List<Post> post_data = PostDao.posts;
 
-        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
-
         // indexing newest post according to current time
         pindex = PostDao.findInsertIndex(post_data);
         if (pindex != -1) {

@@ -91,7 +91,7 @@ public class PostDao implements Serializable {
                 return i;
             }
         }
-        return post_size;
+        return 0;
     }
 
     /**

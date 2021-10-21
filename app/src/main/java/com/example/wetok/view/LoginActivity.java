@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
             UserDao.setSubscribers(u);
         }
 
-        PostDao.posts = UserDao.getPosts();
+        PostDao.posts = UserDao.getPosts(UserDao.users);
         Collections.sort(PostDao.posts);
         PostDao.post_size = PostDao.posts.size();
 

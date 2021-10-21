@@ -17,16 +17,21 @@ import androidx.fragment.app.Fragment;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
+import com.example.wetok.bean.User;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
+import com.example.wetok.dao.UserDao;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 /**
  * This is the CityFragment
+ * @author Yuxin Hong
  * @author Zhaoting Jiang
  */
 public class CityFragment extends Fragment {
@@ -37,13 +42,15 @@ public class CityFragment extends Fragment {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_city, container, false);
 
-        List<Post> post_data = PostDao.posts;
 
-        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+
+        List<User> user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress());
+        List<Post> post_data = UserDao.getPosts(user_data);
+        Collections.sort(post_data);
 
         // indexing newest post according to current time
         pindex = PostDao.findInsertIndex(post_data);
-        if (pindex != -1) {
+        if (post_data.size() >= 3) {
             List<Post> posts = new ArrayList<>();
             posts.add(post_data.get(pindex));
             pindex++;
@@ -78,6 +85,12 @@ public class CityFragment extends Fragment {
 
                 }
             });
+        } else if (post_data.size() >= 0) {
+            ListView lv = view.findViewById(R.id.post_list_city);
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, post_data);
+        } else {
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, new ArrayList<>());
+            Toast.makeText(getContext(),"There's no user at the same city as you",Toast.LENGTH_LONG);
         }
         return view;
     }
