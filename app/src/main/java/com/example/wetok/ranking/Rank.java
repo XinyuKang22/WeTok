@@ -29,11 +29,11 @@ public class Rank {
     public final List<Post> rankedPosts;
 
     // the weights for relevancy, importance, user similarity
-    float[] weights = {0.6f, 0.2f, 0.2f};
+    public float[] weights = {0.6f, 0.2f, 0.2f};
     // the weights of importance factor: time, followers, likes
-    float[] weightsImp = {0.7f, 0.2f, 0.1f};
+    public float[] weightsImp = {0.7f, 0.2f, 0.1f};
     // the weights of user similarity factor: subscriber similarity, post similarity, location similarity
-    float[] weightsSim = {0.5f, 0.4f, 0.1f};
+    public float[] weightsSim = {0.5f, 0.4f, 0.1f};
 
     private final User currentUser;
     private final List<String> query;

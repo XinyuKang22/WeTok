@@ -15,9 +15,9 @@ import java.util.Map;
  * This is an abstract class in Template design pattern, presenting the main structure of the scoring process
  */
 public abstract class ScoreTemplate {
-    User currentUser;
-    List<String> query;
-    List<Post> retrievedPosts;
+    final User currentUser;
+    final List<String> query;
+    final List<Post> retrievedPosts;
 
     /**
      * @param currentUser the user who made the query
