@@ -194,7 +194,8 @@ public class LoginActivity extends AppCompatActivity {
         Post p1 = new Post("Illegal Token Exception:\nYou May Only Use: #tag, &, |", "0",
                 "System","u1234567@anu.edu.au","default","2000-01-01 00:00:00",
                 tag,0,0);
-        Post p2 = new Post("Try To Search With & And |\ne.g. #tag1 & #tag2 \ne.g. #tag1 | #tag2", "0",
+        Post p2 = new Post("Try To Search With & And |\ne.g. #tag1 & #tag2 " +
+                "\ne.g. #tag1 | #tag2 \n#tag1 & (#tag2 | #tag3)", "0",
                 "System","u1234567@anu.edu.au","default","2000-01-01 00:00:00",
                 tag,0,0);
         sys_post.addAll(Arrays.asList(p0,p1,p2));

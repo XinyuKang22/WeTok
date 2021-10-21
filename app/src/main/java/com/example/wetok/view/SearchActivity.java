@@ -123,23 +123,14 @@ public class SearchActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         } catch (Parser.IllegalProductionException e) {
-//            Toast.makeText(SearchActivity.this, "Illegal Production Exception, try search: #greeting", Toast.LENGTH_LONG).show();
-
-//            (String content, String uid, String author, String email, String u_img, String time,
-//                    List<String> tag, int likes, int star)
-
             plist = new ArrayList<>();
             plist.add(UserDao.findUserById(0).getPosts().get(0));
 
         } catch (Token.IllegalTokenException e){
-//            Toast.makeText(SearchActivity.this, "Illegal Token Exception: you may only use: #tag, &, |.", Toast.LENGTH_LONG).show();
             plist = new ArrayList<>();
             plist.add(UserDao.findUserById(0).getPosts().get(1));
 
         }finally {
-//            Toast.makeText(SearchActivity.this, "Try to search with & and |, e.g. #tag1 & #tag2", Toast.LENGTH_LONG).show();
-//            Post p2 = new Post(new ArrayList<>(), "Try to search with & and |, e.g. #tag1 & #tag2", "99999");
-
             plist.add(UserDao.findUserById(0).getPosts().get(2));
         }
     }
