@@ -47,7 +47,7 @@ public class UserAdapter extends ArrayAdapter<User> {
         viewHolder.username.setText(user.getName());
         viewHolder.userid.setText(user.getId());
         if (user.getImgloc() == "default" || user.getImgloc() == "null") {
-            viewHolder.photo.setImageResource(R.drawable.photo);
+            viewHolder.photo.setImageResource(R.drawable.avatar0);
         }
 
         view.setPadding(0,40,0,0);

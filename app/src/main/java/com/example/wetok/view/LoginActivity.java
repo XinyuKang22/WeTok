@@ -64,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         UserDao.users_size = UserDao.users.size();
+        UserDao.setImgInfo();
+        UserDao.findUserById(0).setImgloc("system");
         for (User u : UserDao.users) {
             UserDao.setFriends(u);
             UserDao.setFollowers(u);
@@ -179,6 +181,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println(e);
         }
+
         // add system user
         int i = 0;
         User system = users.get(i);

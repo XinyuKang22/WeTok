@@ -3,6 +3,7 @@ package com.example.wetok.view;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -46,7 +47,40 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView photo = findViewById(R.id.profile_photo);
         username.setText(user.getName());
         userid.setText(user.getId());
-
+        switch (user.getImgloc()) {
+            case "0":
+                photo.setImageResource(R.drawable.avatar0);
+                break;
+            case "1":
+                photo.setImageResource(R.drawable.avatar1);
+                break;
+            case "2":
+                photo.setImageResource(R.drawable.avatar2);
+                break;
+            case "3":
+                photo.setImageResource(R.drawable.avatar3);
+                break;
+            case "4":
+                photo.setImageResource(R.drawable.avatar4);
+                break;
+            case "5":
+                photo.setImageResource(R.drawable.avatar5);
+                break;
+            case "6":
+                photo.setImageResource(R.drawable.avatar6);
+                break;
+            case "7":
+                photo.setImageResource(R.drawable.avatar7);
+                break;
+            case "8":
+                photo.setImageResource(R.drawable.avatar8);
+                break;
+            case "9":
+                photo.setImageResource(R.drawable.avatar9);
+                break;
+            default:
+                photo.setImageResource(R.drawable.system);
+        }
         ListView lv = findViewById(R.id.profile_post_list);
         List<Post> posts = user.getPosts();
 

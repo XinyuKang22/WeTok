@@ -17,7 +17,7 @@
             android:id="@+id/profile_photo"
             android:layout_width="80dp"
             android:layout_height="90dp"
-            android:src="@drawable/photo" />
+            android:src="@drawable/avatar0" />
 
         <LinearLayout
             android:layout_width="match_parent"

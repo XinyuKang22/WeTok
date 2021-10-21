@@ -127,6 +127,15 @@ public class UserDao implements Serializable {
         }
     }
 
+    /**
+     * Instantiate user's image
+     */
+    public static void setImgInfo() {
+        for (User u : users) {
+            String id = u.getId();
+            u.setImgloc(id.charAt(id.length()-1)+"");
+        }
+    }
 }
 
 

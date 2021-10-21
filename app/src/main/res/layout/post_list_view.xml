@@ -21,7 +21,7 @@
             android:layout_width="90dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/photo" />
+            android:src="@drawable/avatar0" />
 
         <TextView
             android:id="@+id/list_post_user_name"
