@@ -37,6 +37,9 @@ The following is a report template to help your team successfully provide all th
   - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
   - [Testing Summary](#testing-summary)
     - [AVL Tree Testings](#avl-tree-testings)
+    - [Dao and Bean Testings](#dao-and-bean-testings)
+    - [Tokenizer and Parser Testings](#tokenizer-and-parser-testings)
+    - [Ranking Testings](#ranking-testings)
   - [Implemented Features](#implemented-features)
   - [Team Meetings](#team-meetings)
 
@@ -44,8 +47,8 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| u6120911 | Xinyu Kang | Integration engineer, Data structure designer, Ranking algorithm designer|
-| [uid] | Xinyue Hu | [role] |
+| u6120911 | Xinyu Kang | Integration engineer, Data structure designer, Ranking algorithm designer |
+| u7151386 | Xinyue Hu | Database Designer, Data structre designer, Integration engineer |
 | u6684233 | Yuxin Hong | [role] |
 | [uid] | Zhaoting Jiang | [role] |
 
@@ -242,6 +245,31 @@ Types of tests created:
 11. *deleteRootTest* : test whether the AVL tree can correctly delete the root node 
 12. *searchByKeyTest* : test whether the AVL tree can correctly find the node based on the key 
 13. *searchByNotExistKeyTest* : test whether the AVL tree returns null when searching a key that not exists 
+
+### **Dao and Bean Testings**
+Number of test cases: 14 <br />
+  ![DaoAndBeanTest1](./images/DaoBeanTest.png)  <br />
+
+Code coverage: <br />
+  ![DaoAndBeanTest2](./images/DaoBeanTestCoverage.png)  <br />
+
+Tests created for Bean:
+1. *userEmptyTest* : test whether all the setter and getter in User class are valid.
+2. *constructorTest* : test whether the constructor in User class is valid.
+
+Tests created for Dao:
+1. *getTagListTest* : test whether the PostDao can get all the tags in posts.
+2. *findInsertIndexTest* : test whether the PostDao can find the right place to insert post.
+3. *addPostTest* : test whether the PostDao can add a post to database.
+4. *getPostsTest* : test whether the PostDao can get all the posts in database.
+5. *findUserByEmailTest* : test whether the UserDao can find the right user by it's email.
+6. *findUserByIdTest* : test whether the UserDao can find the right user by it's user id.
+7. *setFriendsTest* : test whether the UserDao can set friends for corresponding user.
+8. *setFollowersTest* : test whether the UserDao can set followers for corresponding user.
+9. *setSubscribersTest* test whether the UserDao can set subscribers for corresponding user.
+10. *getPostsTest* : test whether the UserDao can get all the posts of each user.
+11. *setPostInfoTest* : test whether the UserDao can instantiate each user's post.
+12. *addUserTest* : test whether the UserDao can add user to database.
 
 ### **Parser and Tokenizer Tests**
 Number of test cases: 12 <br />
