@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.wetok.R;
+import com.example.wetok.bean.Post;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.PostDao;
@@ -27,6 +28,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -177,9 +179,29 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println(e);
         }
+        // add system user
+        int i = 0;
+        User system = users.get(i);
+        system.setName("System");
+        system.setEmail("u123456@anu.edu.au");
+        system.setPassword("123456");
+        List<Post> sys_post = new ArrayList<>();
+        List<String> tag = new ArrayList<>();
+        tag.add("#WARNING");
+        Post p0 = new Post("Illegal Production Exception:\nTry Search: #greeting", "0",
+                "System","u1234567@anu.edu.au","default","2000-01-01 00:00:00",
+                tag,0,0);
+        Post p1 = new Post("Illegal Token Exception:\nYou May Only Use: #tag, &, |", "0",
+                "System","u1234567@anu.edu.au","default","2000-01-01 00:00:00",
+                tag,0,0);
+        Post p2 = new Post("Try To Search With & And |\ne.g. #tag1 & #tag2 \ne.g. #tag1 | #tag2", "0",
+                "System","u1234567@anu.edu.au","default","2000-01-01 00:00:00",
+                tag,0,0);
+        sys_post.addAll(Arrays.asList(p0,p1,p2));
+        system.setPosts(sys_post);
+        i++;
 
         // change previous data to our group member
-        int i = 0;
         User human = users.get(i);
         human.setEmail("u6684233@anu.edu.au");
         human.setPassword("123456");
