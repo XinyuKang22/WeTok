@@ -58,14 +58,14 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         //delete post
         Button delete = view.findViewById(R.id.Delete);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                s.remove(post.getTime());
-                posts.remove(post);
-                notifyDataSetChanged();
-            }
-        });
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                s.remove(post.getTime());
+//                posts.remove(post);
+//                notifyDataSetChanged();
+//            }
+//        });
 
         // like
         TextView likeButton = view.findViewById(R.id.list_post_like);
