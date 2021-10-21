@@ -55,6 +55,7 @@ public class UserDao implements Serializable {
         }
     }
 
+
     /**
      * set friends for user
      * @param u
