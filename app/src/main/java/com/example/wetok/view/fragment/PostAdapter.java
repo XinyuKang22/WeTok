@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
+import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.UserDao;
 import com.example.wetok.view.ProfileActivity;
@@ -46,7 +47,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    @SuppressLint({"SetTextI18n", "ViewHolder"})
+    @SuppressLint({"SetTextI18n", "ViewHolder", "ResourceType"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
@@ -58,14 +59,14 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         //delete post
         Button delete = view.findViewById(R.id.Delete);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                s.remove(post.getTime());
-                posts.remove(post);
-                notifyDataSetChanged();
-            }
-        });
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                s.remove(post.getTime());
+//                posts.remove(post);
+//                notifyDataSetChanged();
+//            }
+//        });
 
         // like
         TextView likeButton = view.findViewById(R.id.list_post_like);
@@ -128,6 +129,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         });
         viewHolder.username.setText(post.getAuthor());
         viewHolder.content.setText(post.getContent());
+        User.setImage(UserDao.findUserById(Integer.parseInt(post.getUid())), viewHolder.photo);
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
