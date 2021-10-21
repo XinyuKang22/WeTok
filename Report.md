@@ -333,11 +333,7 @@ Tests created for Ranking Tests:
 
 ## Team Meetings
 
-*Here is an example:*
-
 - *[Team Meeting 1](./Meeting1.md)*
 - *[Team Meeting 2](./Meeting2.md)*
 - *[Team Meeting 3](./Meeting3.md)*
-- ...
-
-*Either write your meeting minutes here or link to documents that contain them. There must be at least 3 team meetings.*
+- *[Team Meeting 4](./Meeting4.md)*
