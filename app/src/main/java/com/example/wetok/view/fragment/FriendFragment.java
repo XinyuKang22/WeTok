@@ -43,10 +43,10 @@ public class FriendFragment extends Fragment {
                 post_data.addAll(friend.getPosts());
             }
             post_data.addAll(CurrentUser.current_user.getPosts());
+            Collections.sort(post_data);
             List<Post> posts = new ArrayList<>();
 
             if (!post_data.isEmpty()) {
-                Collections.sort(post_data);
                 if (post_data.size() < 3) {
                     PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, post_data);
                     ListView lv = view.findViewById(R.id.post_list_friend);
