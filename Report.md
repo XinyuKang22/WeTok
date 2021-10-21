@@ -44,14 +44,21 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
+| [uid] | Xinyu Kang | [role] |
+| [uid] | Xinyue Hu | [role] |
+| u6684233 | Yuxin Hong | [role] |
+| [uid] | Zhaoting Jiang | [role] |
 
 ## **Conflict Resolution Protocol**
 
-*[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
+1. Conflictors organize their views, list the pros and cons of their perspectives. 
+2. Initiate a zoom meeting with all team member.
+3. Conflictors presenting the confliction and why disagree with the other.
+4. Team member do a vote and share the reason.
+5. As a result, merge conflictors's solutions or take more agreed solutions.
+
+
+
 
 ## **Application Description**
 
