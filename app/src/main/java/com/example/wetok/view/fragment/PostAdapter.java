@@ -22,7 +22,6 @@ import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.UserDao;
-import com.example.wetok.searchTree.Search;
 import com.example.wetok.view.ProfileActivity;
 import com.example.wetok.view.SearchActivity;
 
@@ -40,15 +39,10 @@ import java.util.Locale;
  */
 public class PostAdapter extends ArrayAdapter<Post> {
     private int resourceId;
-    public Search s;
-    private List<Post> posts;
 
     public PostAdapter(@NonNull Context context, int resource, @NonNull List<Post> objects) {
         super(context, resource, objects);
         resourceId = resource;
-        posts = objects;
-        s = new Search();
-        s.buildIndexTrees(posts);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -57,7 +51,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
         System.out.println(post.getAuthor());
-
         View view;
         ViewHolder viewHolder;
         // if (convertView == null) {

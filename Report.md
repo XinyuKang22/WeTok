@@ -37,6 +37,9 @@ The following is a report template to help your team successfully provide all th
   - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
   - [Testing Summary](#testing-summary)
     - [AVL Tree Testings](#avl-tree-testings)
+    - [Dao and Bean Testings](#dao-and-bean-testings)
+    - [Parser and Tokenizer Tests](#tokenizer-and-parser-testings)
+    - [Ranking Tests](#ranking-testings)
   - [Implemented Features](#implemented-features)
   - [Team Meetings](#team-meetings)
 
@@ -44,10 +47,10 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| u6120911 | Xinyu Kang | Integration engineer, Data structure designer, Ranking algorithm designer|
-| [uid] | Xinyue Hu | [role] |
-| u6684233 | Yuxin Hong | [role] |
-| [uid] | Zhaoting Jiang | [role] |
+| u6120911 | Xinyu Kang | Integration engineer, Data structure designer, Ranking algorithm designer |
+| u7151386 | Xinyue Hu | Database Designer, Data structure designer, Integration engineer |
+| u6684233 | Yuxin Hong | Tokenizer and parser designer and tester, Ranking algorithm tester |
+| u6111569 | Zhaoting Jiang | UI Designer, Fragment designer |
 
 ## **Conflict Resolution Protocol**
 
@@ -197,7 +200,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
   More and more intelligent recommendation systems create the *'Filter Bubbles'* for users. We intend to "break" the bubble by implementing the ranking algorithm from users similarity dimension. The score of the posts created by the users who are very "similar" with you will be scaled down. People will have more chances to receive different viewpoints from social media. <br />
 
 ##### **Simple personalisation**
-
+In order to create unique personalization features, we recorded the location of the user while recording the user login data. Based on the user's location, we added a search function, which is the city search function. The local search function searches for all posts in the same city based on the current user's location. This will make it easier for users to see what's going on around them.
 
 **Other**
 
@@ -242,6 +245,31 @@ Types of tests created:
 11. *deleteRootTest* : test whether the AVL tree can correctly delete the root node 
 12. *searchByKeyTest* : test whether the AVL tree can correctly find the node based on the key 
 13. *searchByNotExistKeyTest* : test whether the AVL tree returns null when searching a key that not exists 
+
+### **Dao and Bean Testings**
+Number of test cases: 14 <br />
+  ![DaoAndBeanTest1](./images/DaoBeanTest.png)  <br />
+
+Code coverage: <br />
+  ![DaoAndBeanTest2](./images/DaoBeanTestCoverage.png)  <br />
+
+Tests created for Bean:
+1. *userEmptyTest* : test whether all the setter and getter in User class are valid.
+2. *constructorTest* : test whether the constructor in User class is valid.
+
+Tests created for Dao:
+1. *getTagListTest* : test whether the PostDao can get all the tags in posts.
+2. *findInsertIndexTest* : test whether the PostDao can find the right place to insert post.
+3. *addPostTest* : test whether the PostDao can add a post to database.
+4. *getPostsTest* : test whether the PostDao can get all the posts in database.
+5. *findUserByEmailTest* : test whether the UserDao can find the right user by it's email.
+6. *findUserByIdTest* : test whether the UserDao can find the right user by it's user id.
+7. *setFriendsTest* : test whether the UserDao can set friends for corresponding user.
+8. *setFollowersTest* : test whether the UserDao can set followers for corresponding user.
+9. *setSubscribersTest* test whether the UserDao can set subscribers for corresponding user.
+10. *getPostsTest* : test whether the UserDao can get all the posts of each user.
+11. *setPostInfoTest* : test whether the UserDao can instantiate each user's post.
+12. *addUserTest* : test whether the UserDao can add user to database.
 
 ### **Parser and Tokenizer Tests**
 Number of test cases: 12 <br />
@@ -305,11 +333,7 @@ Tests created for Ranking Tests:
 
 ## Team Meetings
 
-*Here is an example:*
-
 - *[Team Meeting 1](./Meeting1.md)*
 - *[Team Meeting 2](./Meeting2.md)*
 - *[Team Meeting 3](./Meeting3.md)*
-- ...
-
-*Either write your meeting minutes here or link to documents that contain them. There must be at least 3 team meetings.*
+- *[Team Meeting 4](./Meeting4.md)*

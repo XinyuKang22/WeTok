@@ -40,7 +40,6 @@ public class ProfileActivity extends AppCompatActivity {
         context = ProfileActivity.this;
 
         User user = CurrentUser.current_visitor;
-        Toast.makeText(context, "user:" +user.getName(), Toast.LENGTH_SHORT).show();
         setContentView(R.layout.activity_profile);
         TextView username = findViewById(R.id.profile_username);
         TextView userid = findViewById(R.id.profile_userid);

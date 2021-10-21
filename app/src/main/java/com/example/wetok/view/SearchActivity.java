@@ -17,6 +17,7 @@ import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
 import com.example.wetok.parserAndTokenizer.Exp;
 import com.example.wetok.parserAndTokenizer.Parser;
+import com.example.wetok.parserAndTokenizer.Token;
 import com.example.wetok.parserAndTokenizer.Tokenizer;
 import com.example.wetok.ranking.Rank;
 import com.example.wetok.searchTree.Search;
@@ -28,14 +29,14 @@ import java.util.List;
 /**
  * This is the SearchActivity page
  * @author Zhaoting Jiang
+ * @author Yuxin Hong
  * @author Xinyue Hu
  * @author Xinyu Kang
  */
 public class SearchActivity extends AppCompatActivity {
 
-    private static final String TAG = "EmailPassword";
     private Context context;
-    private Tokenizer Tokenizer;
+    private Tokenizer tokenizer;
     private Exp condition; // store search condition
     public Search s;
     public static List<Post> posts; // store posts
@@ -98,28 +99,36 @@ public class SearchActivity extends AppCompatActivity {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void searchConditions() {
+        try {
+            tokenizer = new Tokenizer(tag.toLowerCase());
+            condition = new Parser(tokenizer).parseExp();
+            List<Post> retrievedPosts = condition.evaluate(s);
 
-        //plist.clear(); // clear last results.
-        Tokenizer = new Tokenizer(tag.toLowerCase());
-        condition = new Parser(Tokenizer).parseExp();
-        List<Post> retrievedPosts = condition.evaluate(s);
-
-        //rank the posts according to ranking algorithm
-        String[] tag_list = tag.toLowerCase().split("[#& _|()]+");
-        List<String> query = new ArrayList<>();
-        for (String s : tag_list) {
-            s = s.trim();
-            if (s.length() > 0) {
-                query.add(s);
+            //rank the posts according to ranking algorithm
+            String[] tag_list = tag.toLowerCase().split("[#& _|()]+");
+            List<String> query = new ArrayList<>();
+            for (String s : tag_list) {
+                s = s.trim();
+                if (s.length() > 0) {
+                    query.add(s);
+                }
             }
-        }
-        if (retrievedPosts.size() != 0 && query.size() != 0) {
-            Rank rank = new Rank(CurrentUser.current_user, query, retrievedPosts);
-            plist = rank.rankedPosts;
-        } else {
+            if (retrievedPosts.size() != 0 && query.size() != 0) {
+                Rank rank = new Rank(CurrentUser.current_user, query, retrievedPosts);
+                plist = rank.rankedPosts;
+            } else {
+                plist = new ArrayList<>();
+                Toast.makeText(context, "Tag not exist!",
+                        Toast.LENGTH_SHORT).show();
+            }
+        } catch (Parser.IllegalProductionException e) {
+            Toast.makeText(SearchActivity.this, "Illegal Production Exception, try search: #greeting", Toast.LENGTH_LONG).show();
             plist = new ArrayList<>();
-            Toast.makeText(context, "Tag not exist!",
-                    Toast.LENGTH_SHORT).show();
+        } catch (Token.IllegalTokenException e){
+            Toast.makeText(SearchActivity.this, "Illegal Token Exception: you may only use: #tag, &, | ", Toast.LENGTH_LONG).show();
+            plist = new ArrayList<>();
+        }finally {
+            Toast.makeText(SearchActivity.this, "Try to search with & and |, e.g. #tag1 & #tag2", Toast.LENGTH_LONG).show();
         }
     }
 }
