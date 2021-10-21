@@ -120,6 +120,16 @@ The following is a report template to help your team successfully provide all th
 
 ##### **AVL Tree**
 
+We selected AVL tree as the data structure of posts operations. AVL tree is a self-balancing binary search tree. It controls the height of the tree and prevents it from becoming skewed. For operations considered they have time complexity:
+- Rotations to achieve balanced tree *O(1)*
+- Insertion *O(log(n))*
+- Deletion *O(log(n))*
+- Search *O(log(n))*
+- Max/Min *O(log(n))*
+
+It is an efficient data structure and here is the UML of our implementation:<br />
+   ![AVLDiagram](./images/AVLDiagram.png)<br />
+
 ### **Design Patterns**
 
 We used three design patterns: Singleton, Template, DAO
