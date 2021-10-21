@@ -36,10 +36,11 @@ The following is a report template to help your team successfully provide all th
       - [(ii) Simple personalisation](#simple-personalisation)
   - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
   - [Testing Summary](#testing-summary)
+    - [AVL Tree Testings](#avl-tree-testings)
   - [Implemented Features](#implemented-features)
   - [Team Meetings](#team-meetings)
 
-## Team Members and Roles
+## **Team Members and Roles**
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
@@ -48,11 +49,11 @@ The following is a report template to help your team successfully provide all th
 | [uid] | [name] | [role] |
 | [uid] | [name] | [role] |
 
-## Conflict Resolution Protocol
+## **Conflict Resolution Protocol**
 
 *[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
 
-## Application Description
+## **Application Description**
 
 *[What is your application, what does it do? Include photos or diagrams if necessary]*
 
@@ -60,7 +61,7 @@ The following is a report template to help your team successfully provide all th
 
 *PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
 
-### Application Use Cases and or Examples
+### **Application Use Cases and or Examples**
 
 *[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
 
@@ -88,12 +89,12 @@ The following is a report template to help your team successfully provide all th
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 
-## Application UML
+## **Application UML**
 
 ![ClassDiagramExample](./images/ClassDiagramExample.png)
 *[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 
-## Application Design and Decisions
+## **Application Design and Decisions**
 
 *Please give clear and concise descriptions for each subsections of this part. It would be better to list all the concrete items for each subsection and give no more than `5` concise, crucial reasons of your design. Here is an example for the subsection `Data Structures`:*
 
@@ -115,32 +116,31 @@ The following is a report template to help your team successfully provide all th
 
 3. ...
 
-### Data Structures
+### **Data Structures**
 
-##### AVL Tree
+##### **AVL Tree**
 
-### Design Patterns
+### **Design Patterns**
 
-We used two design patterns: Singleton, Template
-##### Singleton
+We used three design patterns: Singleton, Template, DAO
+##### **Singleton**
    * Location: *CurrentUser.java*
    * We used Singleton design pattern in CurrentUser to make sure there must be exactly one instance of the current user.<br /><br />
    ![SingletonDiagram](./images/SingletonDiagram.png)<br />
 
-##### Template
+##### **Template**
    *  Location: *ScoreTemplate.java* (abstract class), *RelevanceScore.java* (concrete class), *ImportanceScore.java* (concrete class), *UserSimilarity.java* (concrete class)
    *  We want to sort the posts based on three criteria. There is a common process (i.e., calculate scores, normalize scores) to scoring the posts but each criterion has its own scoring logic. 
    *  So, we used a score template to define the skeleton of the scoring algotirthm, and let subclasses redefine certain steps of the algotirthm without changing the main structure.<br /><br />
    ![TemplateDiagram](./images/TemplateDiagram.png)<br />
 
-##### DAO
+##### **DAO**
    * Location: *UserDao.java*, *PostDao.java*
    * We want to decouple domain logic from persistence mechanisms and avoid exposing details of the data storage. The two DAO classes provided convenient access to user data in whole project. <br /><br />
    ![DaoDiagram](./images/DaoDiagram.png)<br />
 
-### Grammars
+### **Grammars**
 
-*Search Engine*
 <br> *Production Rules* <br>
 \<exp> ::= \<term> | \<term> '|' \<exp>
 <br>
@@ -148,19 +148,17 @@ We used two design patterns: Singleton, Template
 <br>
 \<factor> ::= \<tag> | '(' \<exp> ')'
 
-*[How do you design the grammar? What are the advantages of your designs?]*
 Generally speaking, the advantages of our design is we to search multiple tags at once and this is also the design approach of our gramma. Operations *AND* and *OR* can be aplied on multiple tags search, that is, the intersection and union of single search result. By search *#tag1&#tag2*, the intersection of individual search result of *#tag1* and *#tag2* will be returned. By search *#tag1|#tag2*, the union of of individual search result of *#tag1* and *#tag2* will be returned. And of course the operators can be freely used to create more expressions. By default, and  precedence of *AND* operation is greater then *OR* operation. And precedence can be changed parentheses.
 
-*[If there are several grammars, list them all under this section and what they relate to.]*
 
-### Tokenizer and Parsers
+### **Tokenizer and Parsers**
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
 
 How are they built Session
 
-### Surpise Item
-##### Ranking algorithm
+### **Surpise Item**
+##### **Ranking algorithm**
 Based on the *Pariser talk*, we decided to sort the posts by three criteria: relecvance; importance; user similarity.<br />
 * **Relevance**<br />
   The class *RelevanceScore* evaluates the relecance of the query and the retrieved posts by calculating tf-idf scores. The score of post d given query q = (t_1, t_2, ..., t_m) is: <br />
@@ -184,14 +182,14 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
   We expect that the posts having strong relevance with the query, the posts which are important to society, and the posts sent by the users who are "different" with the user, to have better ranking in the search results presenting.<br />
   The more and more intelligent recommendation systems create the *'Filter Bubbles'* for users. We intend to "break" the bubble by implenmenting the ranking algorithm from users similarity dimension. The score of the posts created by the users who are very "similar" with you will be scaled down. People will have more chances to receive different viewpoints. <br />
 
-##### Simple personalisation
+##### **Simple personalisation**
 
 
 **Other**
 
 *[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
 
-## Summary of Known Errors and Bugs
+## **Summary of Known Errors and Bugs**
 
 *[Where are the known errors and bugs? What consequences might they lead to?]*
 
@@ -207,19 +205,30 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
 
 *List all the known errors and bugs here. If we find bugs/errors that your team do not know of, it shows that your testing is not through.*
 
-## Testing Summary
+## **Testing Summary**
 
-*[What features have you tested? What is your testing coverage?]*
+##### **AVL Tree Testings**
+Number of test cases: 13 <br />
+  ![AVLTest](./images/AVLTest.png)  <br />
 
-*Here is an example:*
+Code coverage: <br />
+  ![AVLTest2](./images/AVLTest2.png)  <br />
 
-*Number of test cases: ...*
+Types of tests created: 
+1. *sameKeyInsertTest* : test whether the AVL tree can insert multiple values into one nodes
+2. *insertInOrderTest* : test whether the AVL tree can correctly insert nodes in order
+3. *leftRotateTest* : test whether the AVL tree can correctly left rotate
+4. *rightRotateTest* : test whether the AVL tree can correctly right rotate
+5. *balanceFactorTest* : test whether the class can generate correct balance factors
+6. *advancedRotationsTest* :  test whether the AVL tree can handle complex rotations
+7. *deleteNotExistException* : test whether the AVL tree can throw an exception when deleting a node that not exists
+8. *deleteLeafTest* : test whether the AVL tree can delete a leaf node
+9. *deleteSingleChildNodeTest* : test whether the AVL tree can correctly delete a node with one child
+10. *deleteTwoChildrenNodeTest* : test whether the AVL tree can correctly delete a node with two children 
+11. *deleteRootTest* : test whether the AVL tree can correctly delete the root node 
+12. *searchByKeyTest* : test whether the AVL tree can correctly find the node based on the key 
+13. *searchByNotExistKeyTest* : test whether the AVL tree returns null when searching a key that not exists 
 
-*Code coverage: ...*
-
-*Types of tests created: ...*
-
-*Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
 
 ## Implemented Features
 
