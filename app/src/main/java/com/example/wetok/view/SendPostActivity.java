@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,7 +39,7 @@ public class SendPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = SendPostActivity.this;
-        User user = (User)getIntent().getSerializableExtra("user");
+        User user = CurrentUser.current_user;
         setContentView(R.layout.activity_sendpost);
 
         setTitle("Send Post");
