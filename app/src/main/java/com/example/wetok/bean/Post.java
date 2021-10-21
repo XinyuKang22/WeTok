@@ -23,7 +23,7 @@ public class Post implements Comparable, Serializable {
 
     // post property
     private int likes;
-    private int star = 0;
+    private int dislikes = 0;
 
     public Post(List<String> tag, String content, String id) {
         this.tag = tag;
@@ -48,15 +48,15 @@ public class Post implements Comparable, Serializable {
         this.time = time;
         this.tag = tag;
         this.likes = likes;
-        this.star = star;
+        this.dislikes = star;
     }
 
-    public int getStar() {
-        return star;
+    public int getDislikes() {
+        return dislikes;
     }
 
-    public void setStar(int star) {
-        this.star = star;
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
     }
 
     public String getTime() {
