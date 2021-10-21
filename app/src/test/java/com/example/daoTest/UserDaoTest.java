@@ -8,6 +8,7 @@ import com.example.wetok.dao.UserDao;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,11 +53,34 @@ public class UserDaoTest {
 
 
     //put users in UserDao
-    UserDao.users = Arrays.asList(u1,u2);
+    UserDao.users = new ArrayList<>();
+    UserDao.users.addAll(Arrays.asList(u1,u2));
     UserDao.users_size = UserDao.users.size();
 
     }
 
+   @Test(timeout = 1000)
+   public void addUserTest(){
+
+       String author3 = "a3";
+       String content3 = "COMP2100 is hard";
+       String email3 = "u3@anu.edu.au";
+       String u_img = "default";
+       String time = "2021-10-20 14:44:00";
+       List<String> tag3 = Arrays.asList("#COMP2100", "#hard");
+       int like = 50;
+       int star = 0;
+       Post p3 = new Post(content3, "2", author3, email3, u_img, time, tag3, like, star);
+       User u3 = new User("3", author3, "123456", "female", 21,
+               null, null, Arrays.asList(p3), "Canberra", email3,
+               "123", u_img);
+
+
+        UserDao.addUser(u3);
+        UserDao.users_size = 3;
+
+       assertEquals(3,UserDao.users.size());
+   }
 
    @Test(timeout = 1000)
    public void findUserByEmailTest(){
@@ -95,7 +119,7 @@ public class UserDaoTest {
 
    @Test(timeout = 1000)
    public void getPostsTest(){
-        assertEquals(2,UserDao.getPosts().size());
+        assertEquals(3,UserDao.getPosts().size());
    }
 
    @Test(timeout = 1000)

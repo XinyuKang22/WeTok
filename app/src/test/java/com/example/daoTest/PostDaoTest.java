@@ -73,10 +73,6 @@ public class PostDaoTest {
         PostDao.post_size = 4;
     }
 
-    @Test(timeout = 1000)
-    public void getPostsTest(){
-        assertEquals(4,PostDao.getPosts().size());
-    }
 
     @Test(timeout = 1000)
     public void getTagListTest(){
@@ -94,6 +90,11 @@ public class PostDaoTest {
         CurrentUser.current_user = UserDao.users.get(0);
         PostDao.addPost("Hello #nice");
         assertEquals(5,PostDao.post_size);
+    }
+
+    @Test(timeout = 1000)
+    public void getPostsTest(){
+        assertEquals(5,PostDao.getPosts().size());
     }
 
 }
