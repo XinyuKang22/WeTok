@@ -68,6 +68,7 @@ public class PostDao implements Serializable {
         Post po = new Post(content_list.get(0), uid, author, email, u_img, time, tag, 0, 0);
         // User: add new post to user
         List<Post> user_post = CurrentUser.current_user.getPosts();
+        System.out.println(user_post.size());
         user_post.add(findInsertIndex(user_post), po);
 
         // database: add new post, update post size

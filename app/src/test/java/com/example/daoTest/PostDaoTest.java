@@ -9,6 +9,7 @@ import com.example.wetok.dao.UserDao;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,22 +51,25 @@ public class PostDaoTest {
         Post p1 = new Post(content1, uid, author, email, u_img, time1, tag1, like1, star);
         Post p2 = new Post(content2, uid, author, email, u_img, time2, tag2, like1, star);
         Post p3 = new Post(content3, uid, author, email, u_img, time2, tag3, like2, star);
-
-        List<Post> lp1 = Arrays.asList(p1, p2, p3);
+        List<Post> lp1 = new ArrayList<>();
+        lp1.addAll(Arrays.asList(p1,p2,p3));
 
         // u2's post
         Post p4 = new Post(content4, "1", author, email, u_img, time2, tag4, like2, star);
+        List<Post> lp4 = new ArrayList<>();
+        lp4.add(p4);
 
         // create user
         User u1 = new User(uid, author, "123456", "female", 21,
                 followers1, subscribers, lp1, "Canberra", email, "123", u_img);
 
         User u2 = new User("2", author, "123456", "female", 21,
-                followers2, subscribers, Arrays.asList(p4), "Canberra", email, "123", u_img);
+                followers2, subscribers, lp4, "Canberra", email, "123", u_img);
         // put in UserDao and PostDao
         UserDao.users = Arrays.asList(u1, u2);
         UserDao.users_size = 2;
-        PostDao.posts = Arrays.asList(p1, p2, p3, p4);
+        PostDao.posts = new ArrayList<>();
+        PostDao.posts.addAll(Arrays.asList(p1,p2,p3,p4));
         PostDao.post_size = 4;
     }
 
@@ -83,6 +87,13 @@ public class PostDaoTest {
     @Test(timeout = 1000)
     public void findInsertIndexTest(){
         assertEquals(0,PostDao.findInsertIndex(UserDao.users.get(0).getPosts()));
+    }
+
+    @Test
+    public void addPostTest(){
+        CurrentUser.current_user = UserDao.users.get(0);
+        PostDao.addPost("Hello #nice");
+        assertEquals(5,PostDao.post_size);
     }
 
 }
