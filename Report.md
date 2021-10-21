@@ -62,11 +62,7 @@ The following is a report template to help your team successfully provide all th
 
 ## **Application Description**
 
-*[What is your application, what does it do? Include photos or diagrams if necessary]*
-
-*Here is a pet specific social media application example*
-
-*PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
+*Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can learn more about what's going on in the world through Wetok. Welcome to Wetok.*
 
 ### **Application Use Cases and or Examples**
 
@@ -197,7 +193,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
   More and more intelligent recommendation systems create the *'Filter Bubbles'* for users. We intend to "break" the bubble by implementing the ranking algorithm from users similarity dimension. The score of the posts created by the users who are very "similar" with you will be scaled down. People will have more chances to receive different viewpoints from social media. <br />
 
 ##### **Simple personalisation**
-In order to create unique personalization features, we recorded the location of the user while recording the user login data. Based on the user's location, we added a search function, which is the city search function. The local search function searches for all posts in the same city based on the current user's location. This will make it easier for users to see what's going on around them.
+*In order to create unique personalization features, we recorded the location of the user while recording the user login data. Based on the user's location, we added a search function, which is the city search function. The local search function searches for all posts in the same city based on the current user's location. This will make it easier for users to see what's going on around them.*
 
 
 ## **Summary of Known Errors and Bugs**
