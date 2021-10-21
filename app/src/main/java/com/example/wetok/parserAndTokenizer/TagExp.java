@@ -31,7 +31,6 @@ public class TagExp extends Exp {
 	public List<Post> evaluate(Search s) {
 		List<Post> result = new ArrayList<>();
 		result.addAll(s.search(value));
-		System.out.println("tag is: " + value + "; result = " + result);
 		return result;
 	}
 }
