@@ -66,16 +66,10 @@ The following is a report template to help your team successfully provide all th
 
 ### **Application Use Cases and or Examples**
 
-*[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
-
-*Here is a pet training application example*
-
-*Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
-1. *Molly notices that McPurr has been hostile since...*
-2. *She makes a post about... with the tag...*
-3. *Lachlan, a vet, writes a reply to Molly's post...*
-4. ...
-5. *Molly gives Lachlan's reply a 'tick' response*
+*Jack wants to learn about skateboarding skills that interest him most*
+1. *Jack searched the tag about skateboarding and found that Kevin shared skateboarding skills every day*
+2. *He followed Kevin*
+3. *He learned new moves from Kevin's skateboard skills*
 
 *Here is a map navigation application example*
 
