@@ -62,24 +62,20 @@ The following is a report template to help your team successfully provide all th
 
 ## **Application Description**
 
-*[What is your application, what does it do? Include photos or diagrams if necessary]*
-
-*Here is a pet specific social media application example*
-
-*PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
+*Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.*
 
 ### **Application Use Cases and or Examples**
 
-*[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
+*Targets Users: Everyone who is willing to use and learn about this app*
 
-*Here is a pet training application example*
+*Jack wants to learn about skateboarding skills that interest him most*
+1. *Jack searched the tag about skateboarding and found that Kevin shared skateboarding skills every day*
+2. *He followed Kevin*
+3. *He learned new moves from Kevin's skateboard skills*
 
-*Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
-1. *Molly notices that McPurr has been hostile since...*
-2. *She makes a post about... with the tag...*
-3. *Lachlan, a vet, writes a reply to Molly's post...*
-4. ...
-5. *Molly gives Lachlan's reply a 'tick' response*
+*Andy wants to know about the good restaurants around him*
+1. *Andy turns on the City feature and finds that Clair shared a delicious restaurant nearby*
+2. *He followed Clair and hope Clair can share more delicious restaurants in the future*
 
 *Here is a map navigation application example*
 
@@ -197,7 +193,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
   More and more intelligent recommendation systems create the *'Filter Bubbles'* for users. We intend to "break" the bubble by implementing the ranking algorithm from users similarity dimension. The score of the posts created by the users who are very "similar" with you will be scaled down. People will have more chances to receive different viewpoints from social media. <br />
 
 ##### **Simple personalisation**
-In order to create unique personalization features, we recorded the location of the user while recording the user login data. Based on the user's location, we added a search function, which is the city search function. The local search function searches for all posts in the same city based on the current user's location. This will make it easier for users to see what's going on around them.
+*In order to create unique personalization features, we recorded the location of the user while recording the user login data. Based on the user's location, we added a search function, which is the city search function. The local search function searches for all posts in the same city based on the current user's location. This will make it easier for users to see what's going on around them.*
 
 
 ## **Summary of Known Errors and Bugs**
