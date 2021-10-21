@@ -51,7 +51,7 @@ public class ParserTest {
     }
 
     @Test(timeout=1000)
-    public void testSimleAnd() {
+    public void testSimpleAnd() {
         s.buildIndexTrees(posts);
         Tokenizer searchTokenizer = new Tokenizer(testExample[0]);
         Exp t1 = new Parser(searchTokenizer).parseExp();
@@ -60,7 +60,7 @@ public class ParserTest {
     }
 
     @Test(timeout=1000)
-    public void testSimleMul() {
+    public void testSimpleOr() {
         s.buildIndexTrees(posts);
         Tokenizer searchTokenizer = new Tokenizer(testExample[1]);
         Exp t1 = new Parser(searchTokenizer).parseExp();

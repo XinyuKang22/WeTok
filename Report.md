@@ -217,7 +217,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
 
 ## **Testing Summary**
 
-##### **AVL Tree Testings**
+### **AVL Tree Testings**
 Number of test cases: 13 <br />
   ![AVLTest](./images/AVLTest.png)  <br />
 
@@ -239,6 +239,28 @@ Types of tests created:
 12. *searchByKeyTest* : test whether the AVL tree can correctly find the node based on the key 
 13. *searchByNotExistKeyTest* : test whether the AVL tree returns null when searching a key that not exists 
 
+### **Parser and Tokenizer Tests**
+Number of test cases: 12 <br />
+  ![ParserAndTokenizerTest1](./images/PTTest1.png)  <br />
+
+Code coverage: <br />
+  ![ParserAndTokenizerTest2](./images/PTTest2.png)  <br />
+
+Tests created for Tokenizer: 
+1. *testAndToken* : test whether *AND* token can be recogize.
+2. *testOrToken* : test whether *OR* token can be recogize.
+3. *testFirstToken* : test whether first *LBRA* token can be recogize.
+4. *testMidTokenResult* : test whether *TAG* and *OR* token at middle can be recogize.
+5. *testAdvancedTokenResult* : test whether tokens from *(#weekend | #mood) & #time* can be tokenized.
+6. *testExceptionToken* :  test whether tokenizer throw exceptions as expected.
+
+Tests created for Parser: 
+1. *testSingleTag* : test whether single-tag-search is correct.
+2. *testSimpleAnd* : test whether search tag with *AND* operation is correct.
+3. *testSimpleOr* : test whether search tag with *OR* operation is correct.
+4. *testSimpleCase* : test whether search tag with multiple *AND* operations is correct.
+5. *testMidCase* : test whether search tag with *AND* and *OR* operations is correct.
+6. *testIllegalProductionException* :  test whether parser throw exceptions as expected.
 
 ## Implemented Features
 
