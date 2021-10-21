@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,11 +50,22 @@ public class PostAdapter extends ArrayAdapter<Post> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
-
+        System.out.println(post.getAuthor());
         View view;
         ViewHolder viewHolder;
         // if (convertView == null) {
         view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
+
+        //delete post
+        Button delete = view.findViewById(R.id.Delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                s.remove(post.getTime());
+                posts.remove(post);
+                notifyDataSetChanged();
+            }
+        });
 
         // like
         TextView likeButton = view.findViewById(R.id.list_post_like);
@@ -105,6 +117,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         view.setTag(viewHolder);
         viewHolder.username.setOnClickListener(e -> {
             Intent intent = new Intent(getContext(), ProfileActivity.class);
+            Toast.makeText(getContext(), "post", Toast.LENGTH_SHORT).show();
             CurrentUser.current_visitor = UserDao.findUserById(Integer.parseInt(post.getUid()));
             getContext().startActivity(intent);
         });

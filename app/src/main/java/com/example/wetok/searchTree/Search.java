@@ -16,6 +16,7 @@ public class Search {
     public Search(){}
 
     private AVLTree<String, Post> tagIndexPostTree = new AVLTree<>();
+    private AVLTree<String, Post> timeIndexPostTree = new AVLTree<>();
 
     /**
      * Build the search tree
@@ -27,6 +28,7 @@ public class Search {
             for(String tag: tags){
                 tagIndexPostTree.insert(tag,post);
             }
+            timeIndexPostTree.insert(post.getTime(),post);
         }
     }
 
@@ -41,6 +43,16 @@ public class Search {
             result.addAll(tagIndexPostTree.find(key));
         }
         return result;
+    }
+
+    /**
+     * Delete specific post
+     * @param key
+     */
+    public void remove(String key){
+        if(timeIndexPostTree.find(key)!=null) {
+            timeIndexPostTree.delete(key);
+        }
     }
 
 
