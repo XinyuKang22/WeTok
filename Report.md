@@ -84,9 +84,14 @@ Jack wants to learn about skateboarding skills that interest him most
 
 Andy wants to know about the good restaurants around him
 1. Andy turns on the City feature and finds that Claire shared a delicious restaurant nearby
-2. He followed Claire and hope Claire can share more delicious restaurants in the future
+2. He press the like button for that post.
+3. He followed Claire and hope Claire can share more delicious restaurants in the future
 
-*List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
+Stan wants to delete his post
+1. Stan post his relationship with his girlfriend a few weeks ago
+2. He broken up with his girlfriend yesterday
+3. He found his previous post in the user session
+4. He deleted his post
 
 #### **New User Register**
 1. Click *REGISTER* in the login page, go to register page:  <br /><br />
