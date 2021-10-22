@@ -136,6 +136,8 @@ To search for posts with certain tags, click the magnifying glass icon at the to
 
 ## **Application UML**
 
+Since the UML of the whole project is too huge, we created the UMLs for the 8 packages inside *com.exmaple.wetok* : package *bean*, package *dao*,package *searchTree*,package *parserAndTokenizer*,package *ranking*,package *fragment*,package *view*,package *resource*:
+<br />
 ![beanUML](./images/beanUML.png)
 ![DAOUML](./images/DAOUML.png)
 ![searchTreeUML](./images/searchTreeUML.png)
