@@ -82,14 +82,14 @@ public class PostAdapter extends ArrayAdapter<Post> {
         // subscript
         TextView subButton = view.findViewById(R.id.list_post_btn_sub);
         subButton.setOnClickListener(e -> {
-            paddingPicture(subButton, R.drawable.ic_dislike,100);
+            paddingPicture(subButton, R.drawable.ic_dislike,60);
             post.setDislikes(post.getDislikes()+1);
             subButton.setText(String.valueOf(post.getDislikes()));
         });
         subButton.setText(""+post.getDislikes());
         likeButton.setText(""+post.getLikes());
         paddingPicture(likeButton, R.drawable.ic_like_gray,60);
-        paddingPicture(subButton, R.drawable.ic_dislike_gray,100);
+        paddingPicture(subButton, R.drawable.ic_dislike_gray,60);
 
         // time
         TextView Time = view.findViewById(R.id.list_post_time);
