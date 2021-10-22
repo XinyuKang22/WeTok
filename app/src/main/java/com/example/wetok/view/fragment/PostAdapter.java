@@ -23,6 +23,7 @@ import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.UserDao;
+import com.example.wetok.searchTree.Search;
 import com.example.wetok.view.ProfileActivity;
 import com.example.wetok.view.SearchActivity;
 
@@ -40,10 +41,12 @@ import java.util.Locale;
  */
 public class PostAdapter extends ArrayAdapter<Post> {
     private int resourceId;
+    private List<Post> posts;
 
     public PostAdapter(@NonNull Context context, int resource, @NonNull List<Post> objects) {
         super(context, resource, objects);
         resourceId = resource;
+        posts = objects;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -59,14 +62,15 @@ public class PostAdapter extends ArrayAdapter<Post> {
 
         //delete post
         Button delete = view.findViewById(R.id.Delete);
-//        delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                s.remove(post.getTime());
-//                posts.remove(post);
-//                notifyDataSetChanged();
-//            }
-//        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                posts.remove(post);
+                //remove data from search tree
+                Search.instance.remove(post.getTime());
+                notifyDataSetChanged();
+            }
+        });
 
         // like
         TextView likeButton = view.findViewById(R.id.list_post_like);
@@ -76,16 +80,16 @@ public class PostAdapter extends ArrayAdapter<Post> {
             likeButton.setText(String.valueOf(post.getLikes()));
         });
         // subscript
-        TextView dislikeButton = view.findViewById(R.id.list_post_btn_sub);
-        dislikeButton.setOnClickListener(e -> {
-            paddingPicture(dislikeButton, R.drawable.ic_dislike,60);
+        TextView subButton = view.findViewById(R.id.list_post_btn_sub);
+        subButton.setOnClickListener(e -> {
+            paddingPicture(subButton, R.drawable.ic_dislike,100);
             post.setDislikes(post.getDislikes()+1);
-            dislikeButton.setText(String.valueOf(post.getDislikes()));
+            subButton.setText(String.valueOf(post.getDislikes()));
         });
-        dislikeButton.setText(""+post.getDislikes());
+        subButton.setText(""+post.getDislikes());
         likeButton.setText(""+post.getLikes());
         paddingPicture(likeButton, R.drawable.ic_like_gray,60);
-        paddingPicture(dislikeButton, R.drawable.ic_dislike_gray,60);
+        paddingPicture(subButton, R.drawable.ic_dislike_gray,100);
 
         // time
         TextView Time = view.findViewById(R.id.list_post_time);
@@ -129,10 +133,8 @@ public class PostAdapter extends ArrayAdapter<Post> {
         });
         viewHolder.username.setText(post.getAuthor());
         viewHolder.content.setText(post.getContent());
-        User.setImage(UserDao.findUserById(Integer.parseInt(post.getUid())), viewHolder.photo);
-        User.setImage(UserDao.findUserById(Integer.parseInt(post.getUid())), viewHolder.photo);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
             TextView tv = new TextView(getContext(), null);
             tv.setPadding(28, 0, 28, 5);

@@ -6,17 +6,42 @@ package com.example.wetok.searchTree;
 
 
 import com.example.wetok.bean.Post;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.view.SearchActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class Search {
+public class Search implements Serializable {
     public Search(){}
-
+    public static Search instance = null;
     private AVLTree<String, Post> tagIndexPostTree = new AVLTree<>();
     private AVLTree<String, Post> timeIndexPostTree = new AVLTree<>();
+
+    /**
+     * Get Search engine
+     * @return
+     */
+    public static Search getInstance(List<Post> posts) {
+        if(instance == null) {
+            instance = new Search();
+            instance.buildIndexTrees(posts);
+        }
+        return instance;
+    }
+
+    /**
+     * Record search engine
+     * @return
+     */
+    public static void recordSearch(Search s){
+        if(instance == null){
+            instance = new Search();
+            instance = s;
+        }
+    }
 
     /**
      * Build the search tree

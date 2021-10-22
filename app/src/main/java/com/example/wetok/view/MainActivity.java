@@ -1,12 +1,10 @@
 package com.example.wetok.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -23,6 +21,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.wetok.R;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
+import com.example.wetok.dao.PostDao;
+import com.example.wetok.searchTree.Search;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
@@ -35,6 +35,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
     ActivityResultLauncher<Intent> launcher;
     User currentUser = null;
+    Search search1 = Search.getInstance(PostDao.posts);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         if (!isGuest) {
             currentUser = (User) getIntent().getSerializableExtra("user");
         }
+
+        //record search engine
+        Search.recordSearch(search1);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -72,14 +76,15 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("running onCreateOptionsMenu");
         getMenuInflater().inflate(R.menu.main_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        androidx.appcompat.widget.SearchView  search = (androidx.appcompat.widget.SearchView )searchItem.getActionView();
-        search.setOnQueryTextListener(new androidx.appcompat.widget.SearchView .OnQueryTextListener() {
+        final SearchView[] search = {(SearchView) searchItem.getActionView()};
+        search[0].setOnQueryTextListener(new androidx.appcompat.widget.SearchView .OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                intent.putExtra("tag", s);
-                startActivity(intent);
-                return true;
+
+                    Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                    intent.putExtra("tag", s);
+                    startActivity(intent);
+                    return true;
             }
             @Override
             public boolean onQueryTextChange(String s) {
