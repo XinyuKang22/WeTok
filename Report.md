@@ -101,17 +101,19 @@ Stan wants to delete his post
 
 3. After successfully varified your email, click *NEXT* and go to user information register page. All the fields are optional except for the username. You can select the country for your phone number and address. <br /><br />
    ![registerFinish](./images/registerFinish.png) <br />
-   You can only enter several characters of your city's name, then you can choose your city from the system's recommendations.
+   You can enter only several characters of your city's name, then you may choose your city from the system's recommendations.
 
 4. The final step is to click *START YOUR JOURNEY* and you will go to the main page.
 
 #### **Existing User Login**
-1. Here we provide an example user: email = [exampleuser.gmail.com], password = [123456] <br />  
+1. Here we'll show to how to login as an existing user. We provided an example user: 
+   email = [exampleuser.gmail.com], password = [123456] . Feel free to login as this example user for testing and exploring :-)
+   <br />  
    ![exmapleUser](./images/exmapleUser.png) <br />
-2. After you logged in, you've entered the home page of the app:  <br />  
+2. After you signed in, you will to go the home page of WeTok, which lists all the posts sent recently:  <br />  
    ![Home](./images/Home.png) <br />
    <br />
-   You can view the posts from the users living in your city by clicking the second icon *City* in the navigation bar, or, view the posts from your subscribers by clicking the third icon *Focus* in the navigation bar.<br />  <br />
+   You can view the posts in your city by clicking the second icon *City* in the navigation bar, or, view the posts sent by your subscribers by clicking the third icon *Focus* in the navigation bar.<br />  <br />
    Moreover, you can click the right-most icon *Profile* in the navigation bar to view your username, user id, posts history, subscribers, and followers: <br />  <br />
    ![profile](./images/profile.png) <br />
 
@@ -121,15 +123,15 @@ Stan wants to delete his post
    ![post](./images/post.png)   ![homeNewPost](./images/homeNewPost.png) <br />
 
 #### **Interaction activities**
-For each post, the user can have following interaction activities: like, dislike, delete, follow the sender. <br />
+For each post, the user can have following interaction activities: like, dislike, delete, follow, etc. <br />
 ![interaction](./images/interaction.png) <br />
 
 #### **Subscribe a user**
-To subscribe another user, you need to first go to his/her profile page, and click *SUBSCRIBE HIM/HER NOW*:<br /><br />
+To subscribe a user, you need to first go to his/her profile page, and click the button *SUBSCRIBE HIM/HER NOW*. <br /><br />
 ![follow](./images/follow.png) <br />
 
 #### **Search**
-To search for the posts wit certain tags, click the magnifying glass icon at the top right corner, and write down your query with correct grammar. The retrieved posts will be ranked by the algorithm and presented to you. Entering query with invalid grammar will return the warning and hint from the Wetok group. <br /><br />
+To search for posts with certain tags, click the magnifying glass icon at the top right corner, and write down your query in correct grammar. The retrieved posts will be ranked by our ranking algorithm and presented to you. Entering query with invalid grammar will return the warning and hint from the Wetok group. <br /><br />
 ![search](./images/search.png)  ![illegalSearch](./images/illegalSearch.png) <br />
 
 ## **Application UML**
@@ -149,21 +151,18 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
 
 * Reasons:
 
-    * Compared to Binary Search Tree, AVLTree and RBTree query efficiency is more consistent;the best and worst time complexity of queries are    
-          both O. (logN).
+    * Compared to Binary Search Tree, AVLTree and RBTree query efficiency is more consistent;the best and worst time complexity of queries are both O. (logN).
 
-    * AVLTree outperforms RBTree in terms of query efficiency. Take the user behavior into account.Many users like search topics of their       
-          interests.Clearly, AVLTree is better in tune with user requirements.
+    * AVLTree outperforms RBTree in terms of query efficiency. Take the user behavior into account.Many users like search topics of their interests.Clearly, AVLTree is better in tune with user requirements.
 
-    * The cost difference between AVLTree and RBTree when inserting nodes is not significant, and the time complexity is O. (1). Futher more, It
-          is more efficient than Arraylist for insertion with a time complexity O(1),We don't need to access the item by index for this feature.
+    * The cost difference between AVLTree and RBTree when inserting nodes is not significant, and the time complexity is O. (1). Futher more, It is more efficient than Arraylist for insertion with a time complexity O(1),We don't need to access the item by index for this feature.
 
-    * RBTree has a lower time and space cost than AVLTree when it comes to removing nodes.Since the amount of data is relatively small, user  
-          behaviors in WeTok (such as like, follow, view, dislike, etc) are considerably more common than the behavior of deleting post. In this
-          senario, we decided to choose AVLTree as our datastructure.
+    * RBTree has a lower time and space cost than AVLTree when it comes to removing nodes.Since the amount of data is relatively small, user behaviors in WeTok (such as like, follow, view, dislike, etc) are considerably more common than the behavior of deleting post. In this senario, we decided to choose AVLTree as our datastructure.
 
 
 ##### 2. Design Patterns
+ <br />
+
 2.1 Singleton
 * Objective: It is used for making sure of that there is exactly one instance of the current user
 
@@ -209,6 +208,8 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
 * Reasons: Process multiple-tag search.
 
 ##### 5. Surpise Item
+ <br />
+
 5.1 Ranking algorithm
 * Objective: It is used for ranking the retrieved posts
 
