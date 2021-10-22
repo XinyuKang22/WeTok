@@ -31,7 +31,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * This is the postAdapter
@@ -60,7 +59,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
 
         //delete post
-        Button delete = view.findViewById(R.id.Delete);
+        Button delete = view.findViewById(R.id.btn_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

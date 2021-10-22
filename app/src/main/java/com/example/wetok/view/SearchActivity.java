@@ -4,8 +4,6 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -60,7 +58,6 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         ListView lv = findViewById(R.id.profile_post_list);
-        Button delete = lv.findViewById(R.id.Delete);
 
         posts = new ArrayList<>(PostDao.posts);
         tags = PostDao.getTagList(posts);

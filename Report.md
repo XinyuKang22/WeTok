@@ -336,7 +336,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
     1. Problem
        - *Posts cannot be deleted in other user's personal profile.*
     2. Possible Reason and Solution:
-       - **
+       - *Originnally it will break the app, so we disable the function in other's profile page. You may subscribe him/her, then delete their posts in Focus page.*
 6. *Problem:*
     1. Problem
        - **
