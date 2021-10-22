@@ -30,7 +30,7 @@
 | Connect local data with UI | Xinyu Kang, Xinyue Hu, Yuxin Hong , Zhaoting Jiang|
 | Adjust UI logic based on features| Xinyu Kang, Xinyue Hu, Yuxin Hong , Zhaoting Jiang|
 | Adjust DAO| Yuxin Hong |
-| Search grammar implementation | Xinyu Hu |
+| Search grammar implementation | Xinyue Hu |
 | Data Structure implementation | Xinyu Kang, Xinyue Hu |
 
 ## Scribe Rotation
