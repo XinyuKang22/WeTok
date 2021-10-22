@@ -48,9 +48,9 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | :--- |
-| u6120911 | Xinyu Kang | Integration engineer, Data structure designer, Ranking algorithm designer |
-| u7151386 | Xinyue Hu | Database Designer, Data structure designer, Integration engineer |
-| u6684233 | Yuxin Hong | Tokenizer and parser designer and tester, Ranking algorithm tester |
+| u6120911 | Xinyu Kang | Integration Engineer, Data Structure Designer, Ranking Algorithm Designer |
+| u7151386 | Xinyue Hu | Database Designer, Data Structure Designer, Integration Engineer |
+| u6684233 | Yuxin Hong | Tokenizer and Parser Designer, Bug Killer |
 | u6111569 | Zhaoting Jiang | UI Designer, Fragment designer |
 
 ## **Conflict Resolution Protocol**
