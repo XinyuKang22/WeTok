@@ -139,16 +139,26 @@ You can only enter several characters of your city's name, then you can choose y
 
 ### Data Structures
 #### AVL Tree
+   * Objective: It is used for storing posts for valid and invalid search feature.
 
-   * *Objective: It is used for storing xxxx for xxx feature.*
+   * Locations: AVLTree.java*, Node.java*, Search.java*
 
-   * *Locations: line xxx in XXX.java, ..., etc.*
+   * Reasons:
 
-   * *Reasons:*
+     * Compared to Binary Search Tree, AVLTree and RBTree query efficiency is more consistent;the best and worst time complexity of queries are    
+       both O. (logN), BTSTree search has the worst time complexity of O. (N). We initially look at AVLTree and RBTree these two well balanced 
+       tree in order to increase search efficiency.
 
-     * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
+     * As for structure, AVLTree has a better balance than RBTree. As a result, AVLTree outperforms RBTree in terms of query efficiency.As a   
+       result, AVLTree outperforms RBTree in terms of query efficiency.Take the user behavior into account.Many users like search topics of their   
+       interests,in this case an efficient search engine are in need. Clearly, AVLTree is better in tune with user requirements.
 
-     * *We don't need to access the item by index for this feature*
+     * The cost difference between AVLTree and RBTree when inserting nodes is not significant, and the time complexity is O. (1). Futher more, It
+       is more efficient than Arraylist for insertion with a time complexity O(1),We don't need to access the item by index for this feature.
+     
+     * RBTree has a lower time and space cost than AVLTree when it comes to removing nodes.Since the amount of data is relatively small, user  
+       behaviors in WeTok (such as like, follow, view, dislike, etc) are considerably more common than the behavior of deleting post. In this 
+       
 
 ##### Design Patterns
 1. Singleton
