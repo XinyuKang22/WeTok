@@ -215,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
         i++;
 
         human = users.get(i);
-        human.setEmail("bikinikang@gmail.com");
+        human.setEmail("exampleuser@gmail.com");
         human.setPassword("123456");
         i++;
 
