@@ -1,17 +1,7 @@
-# for information & examples on how to fill this out correctly, see
-# https://cs.anu.edu.au/courses/comp1720/resources/faq/#statement-of-originality
-# this document has been modified for the purpose of the COMP2100/6442 group assignment.
 
 declaration: >-
   I declare that everything I have submitted in this assignment is entirely our
   own work, with the following exceptions:
-
-
-# add as many "name+comment" entries as necessary
-# (or remove it altogether if you haven't collaborated with anyone outside your group)
-collaboration:
-  - name:
-    comment: >-
 
 
 # add as many "url+licence+comment" entries as necessary
@@ -19,29 +9,24 @@ collaboration:
 code:
   - comment: Tokenizer and Parser part is based on lab07's file, but with our own explaination of token and method.
     url: https://gitlab.cecs.anu.edu.au/u1064702/comp2100-6442-2021.s2/-/tree/master/Lab_07_Tok_Parser
-    licence:
 
-  - comment: Several methods of AVLTree refer to the code on the website.
+  - comment: Several methods of AVLTree.java refers to the code on the website.
     url: https://quguai.cn/archives/j-a-v-a-di-ceng-shi-xian-a-v-l-ping-heng-er-cha-shu
     licence: fair use
-
-
-# add as many "url+licence+comment" entries as necessary
-# (or remove it altogether if you haven't used any external assets)
-assets:
-  # NOTE: "Bliss" is just here as an example, you should remove it
-  - comment: "_Bliss_ by Charles O'Rear"
-    url: https://en.wikipedia.org/wiki/Bliss_(image)
+  
+  - comment: sortByValue method of Rank.java refers to the code on the website.
+    url: https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
     licence: fair use
+
 
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
   - name: Xinyue Hu
     uid: u7151386
-  - name:Yuxin Hong 
+  - name: Yuxin Hong
     uid: u6684233
-  - name:Xinyu Kang
-    uid:
-  - name:Zhaoting Jiang
-    uid:
+  - name: Xinyu Kang
+    uid: u6120911
+  - name: Zhaoting Jiang
+    uid: u6111569
