@@ -30,15 +30,7 @@ The following is a report template to help your team successfully provide all th
       - [Search](#search)
   - [Application UML](#application-uml)
   - [Application Design and Decisions](#application-design-and-decisions)
-    - [Data Structures](#data-structures)
-      - [AVL Tree](#avl-tree)
-        - [Design Patterns](#design-patterns)
-      - [Template](#template)
-      - [DAO](#dao)
-    - [Grammars](#grammars)
-    - [Tokenizer and Parsers](#tokenizer-and-parsers)
-    - [Surpise Item](#surpise-item)
-      - [Ranking algorithm](#ranking-algorithm)
+    - [Design Reasons](#design-reasons)
     - [Data Structures](#data-structures-1)
         - [AVL Tree](#avl-tree-1)
     - [Design Patterns](#design-patterns-1)
@@ -157,25 +149,21 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
 
 ## **Application Design and Decisions**
 
-*Please give clear and concise descriptions for each subsections of this part. It would be better to list all the concrete items for each subsection and give no more than `5` concise, crucial reasons of your design. Here is an example for the subsection `Data Structures`:*
+### **Design Reasons**
 
-*I used the following data structures in my project:*
+##### 1. Data Structures
+   1.1 AVL Tree
+   * Objective: It is used for storing the retrieved posts. 
 
-### Data Structures
-#### AVL Tree
+   * Locations: Package: *searchTree* : *AVLTree.java*, *Node.java*
 
-   * *Objective: It is used for storing xxxx for xxx feature.*
+   * Reasons:
 
-   * *Locations: line xxx in XXX.java, ..., etc.*
+     * We...
 
-   * *Reasons:*
 
-     * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
-
-     * *We don't need to access the item by index for this feature*
-
-##### Design Patterns
-1. Singleton
+##### 2. Design Patterns
+  2.1 Singleton
    * Objective: It is used for making sure of that there is exactly one instance of the current user
 
    * Locations: *CurrentUser.java*
@@ -185,7 +173,7 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
      * It can effectively avoid the case of multiple-current-users error
      * We need a class storing the current user instance that can be access from the whole project
 
-#### Template
+  2.2 Template
    * Objective: It is used for computing the ranking scores of the retrieved posts from different dimensions.
 
    * Locations: *ScoreTemplate.java* (abstract class), *RelevanceScore.java* (concrete class), *ImportanceScore.java* (concrete class), *UserSimilarity.java* (concrete class)
@@ -195,7 +183,7 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
      * We want to sort the posts based on three criteria. There is a common process (i.e., calculate scores, normalize scores) to scoring the posts but each criterion has its own scoring logic. 
      * The template method can clearly define the structure and make the code more readable and reuseable. 
 
-#### DAO
+  2.3 DAO
    * Objective: It is used for storing the users and posts data read from persistent files.
 
    * Locations: *UserDao.java*, *PostDao.java*
@@ -205,22 +193,22 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
      * We want to decouple domain logic from persistence mechanisms and avoid exposing details of the data storage.
      * The DAO method allows JUnit test to run faster as it allows to create Mock and avoid connecting to database to run tests.
 
-### Grammars
+##### 3. Grammars
    * Objective: Process multiple condition at once with *AND* and *OR* operator.
 
    * Locations: *Parser.java*.
 
    * Reasons: Process multiple-tag search.
 
-### Tokenizer and Parsers
+##### 4. Tokenizer and Parsers
    * Objective: Parse expression in tokens: *TAG, AND, OR, LBRA, RBRA*. Search multiple tag at once with *AND* and *OR* operator.  
 
    * Locations: *Tokenizer.java*, *Parser.java*. 
 
    * Reasons: Process multiple-tag search.
 
-### Surpise Item
-#### Ranking algorithm
+##### 5. Surpise Item
+  5.1 Ranking algorithm
    * Objective: It is used for ranking the retrieved posts
 
    * Locations: Package *ranking* : *Rank.java*, *ScoreTemplate.java*, *RelevanceScore.java*, *ImportanceScore.java*, *UserSimilarityScore.java*
@@ -230,7 +218,7 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
      * We want to rank the retrieved posts based on more than the post time
      * There are members in our group who have learned information retrieval
 
-2. Simple personalisation
+  5.2 Simple personalisation
    * Objective: It is used for logging users' addresses to improve the timeline creation
 
    * Locations: Package *view* : Package *fragment* : "CityFragment.java*
@@ -240,6 +228,8 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
      * We have thought about maximising the chances of  accurately providing search results or information in a timeline by using user posts, user interactions and so on. 
      * However, in the ranking algorithm we considered the similarity between the current user of the sender of the posts as a negative factor of search ranking to break *Filter Bubbles*. We do not want to "offset" the effect of the ranking algorithm.
      * So, in our app the users can choose to enable (by click on *city* in the navigation bar) or unable the simple location personalisation according to their preferences . 
+
+
 ### **Data Structures**
 
 ##### **AVL Tree**
