@@ -40,10 +40,10 @@ public class CityFragment extends Fragment {
         if (CurrentUser.current_user == null){
             // guest user default location is Canberra
             user_data = UserDao.filterLocation("Canberra");
-            Toast.makeText(getContext(), "Default city: Canberra", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Default City: Canberra", Toast.LENGTH_LONG).show();
         }else {
             user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress());
-            Toast.makeText(getContext(), "Current city: "+CurrentUser.current_user.getAddress(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Current City: "+CurrentUser.current_user.getAddress(), Toast.LENGTH_LONG).show();
         }
 
         List<Post> post_data = UserDao.getPosts(user_data);

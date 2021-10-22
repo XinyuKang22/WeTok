@@ -299,8 +299,8 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
     1. Problem
        - *A space bar (' ') in the sign in email will result in authentication failure.*
        - *Incorrect email/password will result in authentication failure.*
-    2. Possible Reason:
-       - *Unmatched email and password from firebase* 
+    2. Possible Reason and Solution:
+       - *Unmatched email and password from firebase. You should input correct email and password.* 
 2. *Scroll Down Problem:*
     1. Problem
        - *Click like/dislike button will make it color, but scroll down posts will make button back to gray.*
@@ -308,12 +308,27 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
     2. Possible Reason:
        - *By default the like/dislike button are gray until user click, but scroll down will refresh the view with more posts.* 
        - *After delete all posts, the area of ListView become almost zero, user is not able to interact with the component.* 
-3. *Open App:*
+3. *Initialize App Problem:*
     1. Problem
        - *When a simulator is used for long time, WeTok app may fail to open, the error message is: Fatal signal 11 (SIGSEGV)...*
     2. Possible Reason and Solution:
-       - *It might because the memory or storage usage. You may try to wipe data or use another simulator.*
-4. *Open App:*
+       - *It might because the memory or storage usage.You may try to wipe data or use another simulator.*
+4. *Search Problem:*
+    1. Problem
+       - *After search post by tags, it need to click twice back arrow to return previous page.*
+    2. Possible Reason and Solution:
+       - *It's because the page when you're typing tags is a individual page. You may just click twice to go back.*
+5. *Problem:*
+    1. Problem
+       - **
+    2. Possible Reason and Solution:
+       - **
+6. *Problem:*
+    1. Problem
+       - **
+    2. Possible Reason and Solution:
+       - **
+
 
 ## **Testing Summary**
 
