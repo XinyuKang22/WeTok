@@ -1,4 +1,4 @@
-# [WeTok] Report
+# WeTok Report
 
 The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
 
@@ -27,20 +27,19 @@ The following is a report template to help your team successfully provide all th
     - [Data Structures](#data-structures)
       - [AVL Tree](#avl-tree)
     - [Design Patterns](#design-patterns)
-      - [(i) Singleton](#singleton)
-      - [(ii) Template](#template)
-      - [(iii) DAO](#dao)
+      - [Singleton](#singleton)
+      - [Template](#template)
+      - [DAO](#dao)
     - [Grammars](#grammars)
-    - [Tokenizer and Parsers](#tokenizer-and-parsers)
     - [Surpise Item](#surpise-item)
       - [(i) Ranking algorithm](#ranking-algorithm)
       - [(ii) Simple personalisation](#simple-personalisation)
   - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
   - [Testing Summary](#testing-summary)
-    - [(i) AVL Tree Testings](#avl-tree-testings)
-    - [(ii) Dao and Bean Testings](#dao-and-bean-testings)
-    - [(iii) Parser and Tokenizer Tests](#tokenizer-and-parser-testings)
-    - [(iv) Ranking Tests](#ranking-testings)
+    - [AVL Tree Testings](#avl-tree-testings)
+    - [Dao and Bean Testings](#dao-and-bean-testings)
+    - [Parser and Tokenizer Tests](#tokenizer-and-parser-testings)
+    - [Ranking Tests](#ranking-testings)
   - [Implemented Features](#implemented-features)
   - [Team Meetings](#team-meetings)
 
@@ -63,9 +62,9 @@ The following is a report template to help your team successfully provide all th
 
 ## **Application Description**
 
-**Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.** 
-<br />
-<br />
+* **Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.** 
+
+![logo](./images/logo.png)
 
 ### **Application Use Cases and or Examples**
 
@@ -89,6 +88,27 @@ Andy wants to know about the good restaurants around him
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 
+#### **New User Register**
+1. Click *REGISTER* in the login page, go to register page:  <br /><br />
+![registerPage](./images/registerPage.png)  
+
+
+2. Enter a valid email (gmail is recommended) and your password, click *VERIFY EMAIL* and the system will remind you that "Verification email sent. Please verify your email to continue". Then check your mailbox and click the varification link:  <br /><br />
+![email](./images/email.png) ![link](./images/link.png)
+
+3. After successfully varified your email, click *NEXT* and go to user information register page. All the fields are optional except for the username. You can select the country for your phone number and address. <br /><br />
+![registerFinish](./images/registerFinish.png) <br />
+You can only enter several characters of your city's name, then you can choose your city from the system's recommendations. 
+
+4. The final step is to click *START YOUR JOURNEY* and you will go to the main page. 
+
+#### **Existing User Login and Other Operations**
+1. Here we provide an example user: email = [exampleuser.gmail.com], password = [123456] <br />  
+![exmapleUser](./images/exmapleUser.png) <br />
+2. After you logged in, there've entered the home page of the app:  <br />  
+![Home](./images/Home.png) <br />
+
+
 ## **Application UML**
 
 ![ClassDiagramExample](./images/ClassDiagramExample.png)
@@ -100,8 +120,9 @@ Andy wants to know about the good restaurants around him
 
 *I used the following data structures in my project:*
 
-### Data Structures
-#### AVL Tree
+
+##### Data Structures
+1. AVL Tree
 
    * *Objective: It is used for storing xxxx for xxx feature.*
 
@@ -124,7 +145,7 @@ Andy wants to know about the good restaurants around him
      * It can effectively avoid the case of multiple-current-users error
      * We need a class storing the current user instance that can be access from the whole project
 
-#### Template
+2. Template
    * Objective: It is used for computing the ranking scores of the retrieved posts from different dimensions.
 
    * Locations: *ScoreTemplate.java* (abstract class), *RelevanceScore.java* (concrete class), *ImportanceScore.java* (concrete class), *UserSimilarity.java* (concrete class)
@@ -134,32 +155,32 @@ Andy wants to know about the good restaurants around him
      * We want to sort the posts based on three criteria. There is a common process (i.e., calculate scores, normalize scores) to scoring the posts but each criterion has its own scoring logic. 
      * The template method can clearly define the structure and make the code more readable and reuseable. 
 
-#### DAO
-   * Objective: It is used for storing the users and posts data read from persistent files.
+3. DAO
+   * Objective: It is used for storing the users and posts data read from persistent files. 
 
-   * Locations: *UserDao.java*, *PostDao.java*.
+   * Locations: *UserDao.java*, *PostDao.java*
 
    * Reasons:
 
      * We want to decouple domain logic from persistence mechanisms and avoid exposing details of the data storage.
      * The DAO method allows JUnit test to run faster as it allows to create Mock and avoid connecting to database to run tests.
 
-### Grammars
-   * Objective: Process multiple condition at once with *AND* and *OR* operator.
+##### Grammars
+   * Objective: 
 
-   * Locations: *Parser.java*.
+   * Locations: 
 
-   * Reasons: Process multiple-tag search.
+   * Reasons:
 
-### Tokenizer and Parsers
-   * Objective: Parse expression in tokens: *TAG, AND, OR, LBRA, RBRA*. Search multiple tag at once with *AND* and *OR* operator.  
+##### Tokenizer and Parsers
+   * Objective: 
 
-   * Locations: *Tokenizer.java*, *Parser.java*. 
+   * Locations: 
 
-   * Reasons: Process multiple-tag search.
+   * Reasons:
 
-### Surpise Item
-#### Ranking algorithm
+##### Surpise Item
+1. Ranking algorithm
    * Objective: It is used for ranking the retrieved posts
 
    * Locations: Package *ranking* : *Rank.java*, *ScoreTemplate.java*, *RelevanceScore.java*, *ImportanceScore.java*, *UserSimilarityScore.java*
