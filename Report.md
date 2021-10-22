@@ -3,39 +3,48 @@
 ## Table of Contents
 
 - [WeTok Report](#wetok-report)
-    - [Table of Contents](#table-of-contents)
-    - [Application Description](#application-description)
-    - [Team Members and Roles](#team-members-and-roles)
-    - [Conflict Resolution Protocol](#conflict-resolution-protocol)
-    - [Application Use Cases and or Examples](#application-use-cases-and-or-examples)
-        - [New User Register](#new-user-register)
-        - [Existing User Login and Other Operations](#existing-user-login-and-other-operations)
-        - [Add a post](#add-a-post)
-        - [Interaction activities](#interaction-activities)
-        - [Subscribe a user](#subscribe-a-user)
-        - [Search](#search)
-    - [Application UML](#application-uml)
-    - [Application Design and Decisions](#application-design-and-decisions)
-        - [Design Reasons](#design-reasons)
-        - [Data Structures](#data-structures)
-            - [AVL Tree](#avl-tree)
-        - [Design Patterns](#design-patterns)
-            - [Singleton](#singleton)
-            - [Template](#template)
-            - [DAO](#dao)
-        - [Grammars](#grammars)
-        - [Tokenizer and Parsers](#tokenizer-and-parsers)
-        - [Surpise Item](#surpise-item)
-            - [Ranking algorithm](#ranking-algorithm)
-            - [Simple personalisation](#simple-personalisation)
-    - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
-    - [Testing Summary](#testing-summary)
-        - [AVL Tree Testings](#avl-tree-testings)
-        - [Dao and Bean Testings](#dao-and-bean-testings)
-        - [Parser and Tokenizer Tests](#parser-and-tokenizer-tests)
-        - [Ranking Tests](#ranking-tests)
-    - [Implemented Features](#implemented-features)
-    - [Team Meetings](#team-meetings)
+- [](#)
+  - [Table of Contents](#table-of-contents)
+  - [**Application Description**](#application-description)
+    - [Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.](#wetok-is-a-social-media-app-specifically-aimed-at-person-with-a-strong-personality-you-can-share-your-status-and-mood-with-your-friends-people-in-the-same-city-and-even-strangers-anytime-anywhere-in-here-you-do-not-have-to-worry-about-cyber-violence-and-personal-abuse-we-only-provide-you-with-a-pure-sharing-platform-as-our-logo-shows-we-talk-but-we-dont-comment-furthermore-you-can-search-for-tags-youre-interested-in-and-subscribe-people-that-youre-interested-in-you-can-understand-what-is-happening-in-this-world-through-wetok-welcome-to-wetok)
+  - [**Team Members and Roles**](#team-members-and-roles)
+  - [**Conflict Resolution Protocol**](#conflict-resolution-protocol)
+  - [**Application Use Cases and or Examples**](#application-use-cases-and-or-examples)
+      - [**New User Register**](#new-user-register)
+      - [**Existing User Login**](#existing-user-login)
+      - [**Add a post**](#add-a-post)
+      - [**Interaction activities**](#interaction-activities)
+        - [**Like/Dislike Button**](#likedislike-button)
+        - [**Delete Post**](#delete-post)
+      - [**Subscribe a user**](#subscribe-a-user)
+      - [**Search**](#search)
+  - [**Application UML**](#application-uml)
+  - [**Application Design and Decisions**](#application-design-and-decisions)
+    - [**Design Reasons**](#design-reasons)
+        - [1. Data Structures](#1-data-structures)
+        - [2. Design Patterns](#2-design-patterns)
+        - [3. Grammars](#3-grammars)
+        - [4. Tokenizer and Parsers](#4-tokenizer-and-parsers)
+        - [5. Surpise Item](#5-surpise-item)
+    - [**Data Structures**](#data-structures)
+        - [**AVL Tree**](#avl-tree)
+    - [**Design Patterns**](#design-patterns)
+        - [**Singleton**](#singleton)
+        - [**Template**](#template)
+        - [**DAO**](#dao)
+    - [**Grammars**](#grammars)
+    - [**Tokenizer and Parsers**](#tokenizer-and-parsers)
+    - [**Surpise Item**](#surpise-item)
+        - [**Ranking algorithm**](#ranking-algorithm)
+        - [**Simple personalisation**](#simple-personalisation)
+  - [**Summary of Known Errors and Bugs**](#summary-of-known-errors-and-bugs)
+  - [**Testing Summary**](#testing-summary)
+    - [**AVL Tree Testings**](#avl-tree-testings)
+    - [**Dao and Bean Testings**](#dao-and-bean-testings)
+    - [**Parser and Tokenizer Tests**](#parser-and-tokenizer-tests)
+    - [**Ranking Tests**](#ranking-tests)
+  - [Implemented Features](#implemented-features)
+  - [Team Meetings](#team-meetings)
 
 <br /><br />
 
@@ -124,13 +133,21 @@ Stan wants to delete his post
 For each post, the user can have following interaction activities: like, dislike, delete, follow the sender. <br />
 ![interaction](./images/interaction.png) <br />
 
+##### **Like/Dislike Button**
+Both of them are grey by default, but will be colored after user click, and the number will also increase by the number of click. Like and dislike can't cancel after click.
+
+##### **Delete Post**
+Posts cannot be deleted in database based on deletion operation in Home page. Deleted posts in Home page will appear after refresh. But delete posts on other pages will change database and those posts will be removed from City, Focus, Profile page, but will not be removed from Home page.
+
 #### **Subscribe a user**
-To subscribe another user, you need to first go to his/her profile page, and click *SUBSCRIBE HIM/HER NOW*:<br /><br />
-![follow](./images/follow.png) <br />
+To subscribe another user, you need to first go to his/her profile page, and click *SUBSCRIBE HIM/HER NOW*. If you have subcribed the user, that button will trun gray and show "SUBSCRIBE!"<br /><br />
+![follow](./images/follow.png) ![follow](./images/subscribed.png) <br />
 
 #### **Search**
 To search for the posts wit certain tags, click the magnifying glass icon at the top right corner, and write down your query with correct grammar. The retrieved posts will be ranked by the algorithm and presented to you. Entering query with invalid grammar will return the warning and hint from the Wetok group. <br /><br />
 ![search](./images/search.png)  ![illegalSearch](./images/illegalSearch.png) <br />
+
+
 
 ## **Application UML**
 
