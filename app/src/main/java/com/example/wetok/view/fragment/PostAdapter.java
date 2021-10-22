@@ -65,6 +65,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UserDao.findUserById(Integer.parseInt(post.getUid())).getPosts().remove(post);
                 posts.remove(post);
                 //remove data from search tree
                 Search.instance.remove(post.getTime());
