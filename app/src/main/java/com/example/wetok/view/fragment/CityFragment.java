@@ -43,7 +43,8 @@ public class CityFragment extends Fragment {
             Toast.makeText(getContext(), "Default City: Canberra", Toast.LENGTH_LONG).show();
         }else {
             user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress());
-            Toast.makeText(getContext(), "Current City: "+CurrentUser.current_user.getAddress(), Toast.LENGTH_LONG).show();
+            String[] address = CurrentUser.current_user.getAddress().split(" ");
+            Toast.makeText(getContext(), "Current City: "+address[0], Toast.LENGTH_LONG).show();
         }
 
         List<Post> post_data = UserDao.getPosts(user_data);
