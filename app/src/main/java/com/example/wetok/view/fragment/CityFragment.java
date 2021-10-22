@@ -10,24 +10,18 @@ import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
 import com.example.wetok.dao.UserDao;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * This is the CityFragment
@@ -42,9 +36,14 @@ public class CityFragment extends Fragment {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_city, container, false);
 
+        List<User> user_data;
+        if (CurrentUser.current_user == null){
+            // guest user default location is Canberra
+            user_data = UserDao.filterLocation("Canberra");
+        }else {
+            user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress());
+        }
 
-
-        List<User> user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress());
         List<Post> post_data = UserDao.getPosts(user_data);
         Collections.sort(post_data);
 
