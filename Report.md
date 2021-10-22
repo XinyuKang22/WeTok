@@ -153,7 +153,7 @@ Since the UML of the whole project is too huge, we created the UMLs for the 8 pa
 
 ##### 1. Data Structures
 1.1 AVL Tree
-* Objective: It is used for storing posts for valid and invalid search feature.
+* Objective: It is used for storing posts for valid and invalid search feature and removing disliked post.
 
 * Locations: *AVLTree.java*, *Node.java*, *Search.java*
 
