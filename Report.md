@@ -71,6 +71,13 @@ The following is a report template to help your team successfully provide all th
 
 Targets Users: Everyone who is willing to use and learn about this app
 
+* *Users can use it to post whatever they want to say.*
+* *Users can use it to find the post nearby them.*
+* *Users can use it to delete their post whenever they want to.*
+* *Users can use it to like others' post.*
+* *Users can use it to dislike others' post.*
+* *Users can use it to follow the person that they are interested in.*
+
 Jack wants to learn about skateboarding skills that interest him most
 1. Jack searched the tag about skateboarding and found that Kevin shared skateboarding skills every day
 2. He followed Kevin
@@ -79,19 +86,6 @@ Jack wants to learn about skateboarding skills that interest him most
 Andy wants to know about the good restaurants around him
 1. Andy turns on the City feature and finds that Claire shared a delicious restaurant nearby
 2. He followed Claire and hope Claire can share more delicious restaurants in the future
-
-*Here is a map navigation application example*
-
-*Targets Users: Drivers*
-
-* *Users can use it to navigate in order to reach the destinations.*
-* *Users can learn the traffic conditions*
-* ...
-
-*Target Users: Those who want to find some good restaurants*
-
-* *Users can find nearby restaurants and the application can give recommendations*
-* ...
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 
