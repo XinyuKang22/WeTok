@@ -318,9 +318,9 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
        - *After search post by tags, it need to click twice back arrow to return previous page.*
     2. Possible Reason and Solution:
        - *It's because the page when you're typing tags is a individual page. You may just click twice to go back.*
-5. *Problem:*
+5. *Delete Post Problem:*
     1. Problem
-       - **
+       - *Posts cannot be deleted in other user's personal profile.*
     2. Possible Reason and Solution:
        - **
 6. *Problem:*

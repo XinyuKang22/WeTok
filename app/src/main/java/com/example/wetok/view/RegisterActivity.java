@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Locale;
+
 /**
  * This is the RegisterActivity page
  * @author Xinyu Kang
@@ -52,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity{
         btn_verifyEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = et_emailReg.getText().toString().trim();
+                String email = et_emailReg.getText().toString().trim().toLowerCase(Locale.ROOT);
                 String password = et_passwordReg.getText().toString().trim();
                 String rePassword = et_rePassword.getText().toString().trim();
                 if (email.isEmpty()){
