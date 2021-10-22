@@ -140,8 +140,14 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
 
 ## **Application UML**
 
-![ClassDiagramExample](./images/ClassDiagramExample.png)
-*[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
+![beanUML](./images/beanUML.png)
+![DAOUML](./images/DAOUML.png)
+![searchTreeUML](./images/searchTreeUML.png)
+![parserAndTokenizerUML](./images/parserAndTokenizerUML.png)
+![RankingUML](./images/RankingUML.png)
+![fragmentUML](./images/fragmentUML.png)
+![viewUML](./images/viewUML.png)
+![resourceUML](./images/resourceUML.png)
 
 ## **Application Design and Decisions**
 
