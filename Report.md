@@ -159,10 +159,13 @@ You can only enter several characters of your city's name, then you can choose y
      
      * RBTree has a lower time and space cost than AVLTree when it comes to removing nodes.Since the amount of data is relatively small, user  
        behaviors in WeTok (such as like, follow, view, dislike, etc) are considerably more common than the behavior of deleting post. In this 
+       senario, we decided to choose AVLTree as our datastructure.  
+
        
 
-##### Design Patterns
-1. Singleton
+#### Design Patterns
+
+#### Singleton
    * Objective: It is used for making sure of that there is exactly one instance of the current user
 
    * Locations: *CurrentUser.java*
