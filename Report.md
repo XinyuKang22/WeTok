@@ -16,44 +16,45 @@ The following is a report template to help your team successfully provide all th
 
 ## Table of Contents
 
-- [WeTok Report](#wetok-report)
-  - [Table of Contents](#table-of-contents)
+- [***WeTok Report***](#wetok-report)
+  - [**Table of Contents**](#table-of-contents)
   - [**Team Members and Roles**](#team-members-and-roles)
   - [**Conflict Resolution Protocol**](#conflict-resolution-protocol)
   - [**Application Description**](#application-description)
-    - [**Application Use Cases and or Examples**](#application-use-cases-and-or-examples)
-      - [**New User Register**](#new-user-register)
-      - [**Existing User Login and Other Operations**](#existing-user-login-and-other-operations)
+    - [Application Use Cases and or Examples](#application-use-cases-and-or-examples)
+      - [New User Register](#new-user-register)
+      - [Existing User Login and Other Operations](#existing-user-login-and-other-operations)
   - [**Application UML**](#application-uml)
   - [**Application Design and Decisions**](#application-design-and-decisions)
     - [Data Structures](#data-structures)
       - [AVL Tree](#avl-tree)
-        - [Design Patterns](#design-patterns)
+    - [Design Patterns](#design-patterns)
       - [Template](#template)
       - [DAO](#dao)
     - [Grammars](#grammars)
     - [Tokenizer and Parsers](#tokenizer-and-parsers)
     - [Surpise Item](#surpise-item)
       - [Ranking algorithm](#ranking-algorithm)
-    - [**Data Structures**](#data-structures-1)
-        - [**AVL Tree**](#avl-tree-1)
-    - [**Design Patterns**](#design-patterns-1)
-        - [**Singleton**](#singleton)
-        - [**Template**](#template-1)
-        - [**DAO**](#dao-1)
-    - [**Grammars**](#grammars-1)
-    - [**Tokenizer and Parsers**](#tokenizer-and-parsers-1)
-    - [**Surpise Item**](#surpise-item-1)
-        - [**Ranking algorithm**](#ranking-algorithm-1)
-        - [**Simple personalisation**](#simple-personalisation)
+  - [**Data Structures**](#data-structures-1)
+    - [AVL Tree](#avl-tree-1)
+  - [**Design Patterns**](#design-patterns-1)
+    - [Singleton](#singleton)
+    - [Template](#template-1)
+    - [DAO](#dao-1)
+  - [**Grammars**](#grammars-1)
+  - [**Tokenizer and Parsers**](#tokenizer-and-parsers-1)
+  - [**Surpise Item**](#surpise-item-1)
+    - [Ranking algorithm](#ranking-algorithm-1)
+    - [Simple personalisation](#simple-personalisation)
   - [**Summary of Known Errors and Bugs**](#summary-of-known-errors-and-bugs)
+    - [Problems](#problems)
   - [**Testing Summary**](#testing-summary)
-    - [**AVL Tree Testings**](#avl-tree-testings)
-    - [**Dao and Bean Testings**](#dao-and-bean-testings)
-    - [**Parser and Tokenizer Tests**](#parser-and-tokenizer-tests)
-    - [**Ranking Tests**](#ranking-tests)
-  - [Implemented Features](#implemented-features)
-  - [Team Meetings](#team-meetings)
+    - [AVL Tree Testings](#avl-tree-testings)
+    - [Dao and Bean Testings](#dao-and-bean-testings)
+    - [Parser and Tokenizer Tests](#parser-and-tokenizer-tests)
+    - [Ranking Tests](#ranking-tests)
+  - [**Implemented Features**](#implemented-features)
+  - [**Team Meetings**](#team-meetings)
 
 ## **Team Members and Roles**
 
@@ -138,20 +139,31 @@ You can only enter several characters of your city's name, then you can choose y
 *I used the following data structures in my project:*
 
 ### Data Structures
+
 #### AVL Tree
+   * Objective: It is used for storing posts for valid and invalid search feature.
 
-   * *Objective: It is used for storing xxxx for xxx feature.*
+   * Locations: *AVLTree.java*, *Node.java*, *Search.java*
 
-   * *Locations: line xxx in XXX.java, ..., etc.*
+   * Reasons:
 
-   * *Reasons:*
+     * Compared to Binary Search Tree, AVLTree and RBTree query efficiency is more consistent;the best and worst time complexity of queries are    
+       both O. (logN).
 
-     * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
+     * AVLTree outperforms RBTree in terms of query efficiency. Take the user behavior into account.Many users like search topics of their       
+       interests.Clearly, AVLTree is better in tune with user requirements.
 
-     * *We don't need to access the item by index for this feature*
+     * The cost difference between AVLTree and RBTree when inserting nodes is not significant, and the time complexity is O. (1). Futher more, It
+       is more efficient than Arraylist for insertion with a time complexity O(1),We don't need to access the item by index for this feature.
+     
+     * RBTree has a lower time and space cost than AVLTree when it comes to removing nodes.Since the amount of data is relatively small, user  
+       behaviors in WeTok (such as like, follow, view, dislike, etc) are considerably more common than the behavior of deleting post. In this 
+       senario, we decided to choose AVLTree as our datastructure.  
 
-##### Design Patterns
-1. Singleton
+       
+#### Design Patterns
+
+#### Singleton
    * Objective: It is used for making sure of that there is exactly one instance of the current user
 
    * Locations: *CurrentUser.java*
@@ -294,7 +306,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
 
 
 ## **Summary of Known Errors and Bugs**
-
+### Problems
 1. *Authentication Failure Problem:*
     1. Problem
        - *A space bar (' ') in the sign in email will result in authentication failure.*
@@ -319,10 +331,10 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
     2. Possible Reason and Solution:
        - *It's because the page when you're typing tags is a individual page. You may just click twice to go back.*
 5. *Delete Post Problem:*
-    1. Problem
-       - *Posts cannot be deleted in other user's personal profile.*
-    2. Possible Reason and Solution:
-       - **
+    1. Bug
+       - *Delete post function in other user's personal profile is not working.*
+    2. Possible Reason:
+       - *Originnally it crach the app, then we just disabled it.*
 6. *Problem:*
     1. Problem
        - **
