@@ -43,11 +43,9 @@ public class RelevanceScore extends ScoreTemplate{
                 int tf = getTermFrequency(tag, post.getContent());
                 // modified tf-idf, added 1 in document frequency to avoid invalid denominator problem, will NOT affect the ranking result
                 float tf_idf = (float) (tf * Math.log(N / (1.0 + df_map.get(tag))));
-                System.out.println("tag: " + tag + "; score: " + score);
                 score = score + tf_idf;
             }
             scores.put(post, score);
-            System.out.println(post.getTag() + ":" + score);
         }
         return scores;
     }

@@ -54,7 +54,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
-        System.out.println(post.getAuthor());
         View view;
         ViewHolder viewHolder;
         // if (convertView == null) {

@@ -129,8 +129,6 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 CurrentUser.login(u);
-                                System.out.println("name:" + CurrentUser.current_user.getName());
-                                Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(context, "Successfully logged in.",
                                         Toast.LENGTH_SHORT).show();
                                 toMainPage(u);
@@ -181,7 +179,6 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println(e);
         }
-        file.close();
 
         // add system user
         int i = 0;

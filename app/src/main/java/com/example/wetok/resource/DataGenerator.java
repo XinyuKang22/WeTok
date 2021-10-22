@@ -264,7 +264,7 @@ public class DataGenerator {
         }
         try(FileWriter fileWriter = new FileWriter(file)){
             gson.toJson(userlist,fileWriter);
-            System.out.println("Successfully create json file !");
+            System.out.println("Successfully create json file!");
         }catch(Exception e){
             System.out.println("cannot write json file!");
         }

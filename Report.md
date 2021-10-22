@@ -308,11 +308,12 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
     2. Possible Reason:
        - *By default the like/dislike button are gray until user click, but scroll down will refresh the view with more posts.* 
        - *After delete all posts, the area of ListView become almost zero, user is not able to interact with the component.* 
-3. *Guest Logout*:
+3. *Open App:*
     1. Problem
-       - *Guest Logout will break the app.*
-    2. Possible Reason:
-       - *Code for guest logout is just jump current page to login activity
+       - *When a simulator is used for long time, WeTok app may fail to open, the error message is: Fatal signal 11 (SIGSEGV)...*
+    2. Possible Reason and Solution:
+       - *It might because the memory or storage usage. You may try to wipe data or use another simulator.*
+4. *Open App:*
 
 ## **Testing Summary**
 
