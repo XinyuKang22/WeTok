@@ -452,6 +452,12 @@ Tests created for Ranking Tests:
 
 1. *Use Firebase to implement user Authentication/Authorisation. (easy)*
 
+
+*Suprise Features*
+1. *how to sort items returned for a given search and/or in your timeline (ranking algorithm)*
+
+2. *logging user activity to improve search results and/or timeline creation (simple personalisation)*
+
 ## Team Meetings
 
 - *[Team Meeting 1](./Meeting1.md)*
