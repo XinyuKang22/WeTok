@@ -141,7 +141,7 @@ You can only enter several characters of your city's name, then you can choose y
 #### AVL Tree
    * Objective: It is used for storing posts for valid and invalid search feature.
 
-   * Locations: AVLTree.java*, Node.java*, Search.java*
+   * Locations: *AVLTree.java*, *Node.java*, *Search.java*
 
    * Reasons:
 
