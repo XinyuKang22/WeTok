@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
         launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult result) {
-                System.out.println("running launcher");
                 Intent data = result.getData();
                 int resultCode = result.getResultCode();
             }
@@ -73,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        System.out.println("running onCreateOptionsMenu");
         getMenuInflater().inflate(R.menu.main_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView[] search = {(SearchView) searchItem.getActionView()};
@@ -97,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println("running onOptionsItemSelected");
         if (item.getItemId() == R.id.action_add) {
             Intent intent = new Intent(this, SendPostActivity.class);
             intent.putExtra("user", CurrentUser.current_user);

@@ -54,7 +54,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);
-        System.out.println(post.getAuthor());
         View view;
         ViewHolder viewHolder;
         // if (convertView == null) {
@@ -66,10 +65,18 @@ public class PostAdapter extends ArrayAdapter<Post> {
             @Override
             public void onClick(View view) {
                 UserDao.findUserById(Integer.parseInt(post.getUid())).getPosts().remove(post);
-                posts.remove(post);
-                //remove data from search tree
-                Search.instance.remove(post.getTime());
-                notifyDataSetChanged();
+                Boolean succ = false;
+                try {
+                    succ = posts.remove(post);
+                    //remove data from search tree
+                    Search.instance.remove(post.getTime());
+                } catch (Exception e) {
+
+                } finally {
+                    if (!succ) Toast.makeText(getContext(), "Delete Failed", Toast.LENGTH_LONG);
+                    notifyDataSetChanged();
+                }
+
             }
         });
 

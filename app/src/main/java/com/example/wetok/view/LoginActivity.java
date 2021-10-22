@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * This is the LoginActivity page
@@ -123,14 +124,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            User u = UserDao.findUserByEmail(email);
+                            User u = UserDao.findUserByEmail(email.toLowerCase(Locale.ROOT));
                             if (u == null) {
                                 Toast.makeText(context, "User not in database.",
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 CurrentUser.login(u);
-                                System.out.println("name:" + CurrentUser.current_user.getName());
-                                Log.d(TAG, "signInWithEmail:success");
                                 Toast.makeText(context, "Successfully logged in.",
                                         Toast.LENGTH_SHORT).show();
                                 toMainPage(u);

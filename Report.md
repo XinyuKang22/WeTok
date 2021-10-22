@@ -16,31 +16,42 @@ The following is a report template to help your team successfully provide all th
 
 ## Table of Contents
 
-- [[WeTok] Report](#we-report)
+- [WeTok Report](#wetok-report)
   - [Table of Contents](#table-of-contents)
-  - [Team Members and Roles](#team-members-and-roles)
-  - [Conflict Resolution Protocol](#conflict-resolution-protocol)
-  - [Application Description](#application-description)
-    - [Application Use Cases and or Examples](#application-use-cases-and-or-examples)
-  - [Application UML](#application-uml)
-  - [Application Design and Decisions](#application-design-and-decisions)
+  - [**Team Members and Roles**](#team-members-and-roles)
+  - [**Conflict Resolution Protocol**](#conflict-resolution-protocol)
+  - [**Application Description**](#application-description)
+    - [**Application Use Cases and or Examples**](#application-use-cases-and-or-examples)
+      - [**New User Register**](#new-user-register)
+      - [**Existing User Login and Other Operations**](#existing-user-login-and-other-operations)
+  - [**Application UML**](#application-uml)
+  - [**Application Design and Decisions**](#application-design-and-decisions)
     - [Data Structures](#data-structures)
       - [AVL Tree](#avl-tree)
-    - [Design Patterns](#design-patterns)
-      - [(i) Singleton](#singleton)
-      - [(ii) Template](#template)
-      - [(iii) DAO](#dao)
+        - [Design Patterns](#design-patterns)
+      - [Template](#template)
+      - [DAO](#dao)
     - [Grammars](#grammars)
     - [Tokenizer and Parsers](#tokenizer-and-parsers)
     - [Surpise Item](#surpise-item)
-      - [(i) Ranking algorithm](#ranking-algorithm)
-      - [(ii) Simple personalisation](#simple-personalisation)
-  - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
-  - [Testing Summary](#testing-summary)
-    - [(i) AVL Tree Testings](#avl-tree-testings)
-    - [(ii) Dao and Bean Testings](#dao-and-bean-testings)
-    - [(iii) Parser and Tokenizer Tests](#tokenizer-and-parser-testings)
-    - [(iv) Ranking Tests](#ranking-testings)
+      - [Ranking algorithm](#ranking-algorithm)
+    - [**Data Structures**](#data-structures-1)
+        - [**AVL Tree**](#avl-tree-1)
+    - [**Design Patterns**](#design-patterns-1)
+        - [**Singleton**](#singleton)
+        - [**Template**](#template-1)
+        - [**DAO**](#dao-1)
+    - [**Grammars**](#grammars-1)
+    - [**Tokenizer and Parsers**](#tokenizer-and-parsers-1)
+    - [**Surpise Item**](#surpise-item-1)
+        - [**Ranking algorithm**](#ranking-algorithm-1)
+        - [**Simple personalisation**](#simple-personalisation)
+  - [**Summary of Known Errors and Bugs**](#summary-of-known-errors-and-bugs)
+  - [**Testing Summary**](#testing-summary)
+    - [**AVL Tree Testings**](#avl-tree-testings)
+    - [**Dao and Bean Testings**](#dao-and-bean-testings)
+    - [**Parser and Tokenizer Tests**](#parser-and-tokenizer-tests)
+    - [**Ranking Tests**](#ranking-tests)
   - [Implemented Features](#implemented-features)
   - [Team Meetings](#team-meetings)
 
@@ -284,19 +295,40 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
 
 ## **Summary of Known Errors and Bugs**
 
-*[Where are the known errors and bugs? What consequences might they lead to?]*
+1. *Authentication Failure Problem:*
+    1. Problem
+       - *A space bar (' ') in the sign in email will result in authentication failure.*
+       - *Incorrect email/password will result in authentication failure.*
+    2. Possible Reason and Solution:
+       - *Unmatched email and password from firebase. You should input correct email and password.* 
+2. *Scroll Down Problem:*
+    1. Problem
+       - *Click like/dislike button will make it color, but scroll down posts will make button back to gray.*
+       - *After delete all posts in a page, this page can not scroll down any more, util refresh to load new posts.*
+    2. Possible Reason:
+       - *By default the like/dislike button are gray until user click, but scroll down will refresh the view with more posts.* 
+       - *After delete all posts, the area of ListView become almost zero, user is not able to interact with the component.* 
+3. *Initialize App Problem:*
+    1. Problem
+       - *When a simulator is used for long time, WeTok app may fail to open, the error message is: Fatal signal 11 (SIGSEGV)...*
+    2. Possible Reason and Solution:
+       - *It might because the memory or storage usage.You may try to wipe data or use another simulator.*
+4. *Search Problem:*
+    1. Problem
+       - *After search post by tags, it need to click twice back arrow to return previous page.*
+    2. Possible Reason and Solution:
+       - *It's because the page when you're typing tags is a individual page. You may just click twice to go back.*
+5. *Delete Post Problem:*
+    1. Problem
+       - *Posts cannot be deleted in other user's personal profile.*
+    2. Possible Reason and Solution:
+       - **
+6. *Problem:*
+    1. Problem
+       - **
+    2. Possible Reason and Solution:
+       - **
 
-*Here is an example:*
-
-1. *Bug 1:*
-
-- *A space bar (' ') in the sign in email will crash the application.*
-- ... 
-
-2. *Bug 2:*
-3. ...
-
-*List all the known errors and bugs here. If we find bugs/errors that your team do not know of, it shows that your testing is not through.*
 
 ## **Testing Summary**
 

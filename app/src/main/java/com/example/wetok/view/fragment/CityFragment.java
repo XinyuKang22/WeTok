@@ -35,13 +35,15 @@ public class CityFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_city, container, false);
-
+        View city = view.findViewById(R.id.navigation_city);
         List<User> user_data;
         if (CurrentUser.current_user == null){
             // guest user default location is Canberra
             user_data = UserDao.filterLocation("Canberra");
+            Toast.makeText(getContext(), "Default City: Canberra", Toast.LENGTH_LONG).show();
         }else {
-            user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress().split(",")[0]);
+            user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress());
+            Toast.makeText(getContext(), "Current City: "+CurrentUser.current_user.getAddress(), Toast.LENGTH_LONG).show();
         }
 
         List<Post> post_data = UserDao.getPosts(user_data);

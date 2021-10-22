@@ -144,9 +144,7 @@ public class UserDao implements Serializable {
      */
     public static List<User> filterLocation(String location) {
         List<User> user_list = new ArrayList<>();
-        System.out.println("current address: "+location);
         for (User u : users) {
-            System.out.println(u.getAddress());
             if (u.getAddress().trim().equals(location.trim())) user_list.add(u);
         }
         return user_list;
