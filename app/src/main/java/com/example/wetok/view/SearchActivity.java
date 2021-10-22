@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,7 +42,8 @@ public class SearchActivity extends AppCompatActivity {
     private Context context;
     private Tokenizer tokenizer;
     private Exp condition; // store search condition
-    public Search s;
+    public Search s ;
+    public int passtimes;
     public static List<Post> posts; // store posts
     public static List<String> tags;// store all post tags
     public String tag; // store search information
@@ -51,16 +55,17 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         context = SearchActivity.this;
         tag = getIntent().getStringExtra("tag");
+        passtimes = getIntent().getIntExtra("passtimes",0);
 
         setContentView(R.layout.activity_search);
 
         ListView lv = findViewById(R.id.profile_post_list);
+        Button delete = lv.findViewById(R.id.Delete);
 
         posts = new ArrayList<>(PostDao.posts);
         tags = PostDao.getTagList(posts);
 
-        s = new Search();
-        s.buildIndexTrees(posts);
+        s = Search.instance;
 
         // searching in different conditions.
         if (tag.length() != 0) {
@@ -69,8 +74,10 @@ public class SearchActivity extends AppCompatActivity {
             Toast.makeText(SearchActivity.this, "No tag!", Toast.LENGTH_LONG).show();
         }
 
+
         PostAdapter adapter = new PostAdapter(this, R.layout.post_list_view, plist);
         lv.setAdapter(adapter);
+
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

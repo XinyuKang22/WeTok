@@ -22,6 +22,7 @@ import com.example.wetok.R;
 import com.example.wetok.bean.Post;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.UserDao;
+import com.example.wetok.searchTree.Search;
 import com.example.wetok.view.ProfileActivity;
 import com.example.wetok.view.SearchActivity;
 
@@ -39,10 +40,12 @@ import java.util.Locale;
  */
 public class PostAdapter extends ArrayAdapter<Post> {
     private int resourceId;
+    private List<Post> posts;
 
     public PostAdapter(@NonNull Context context, int resource, @NonNull List<Post> objects) {
         super(context, resource, objects);
         resourceId = resource;
+        posts = objects;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -61,8 +64,9 @@ public class PostAdapter extends ArrayAdapter<Post> {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                s.remove(post.getTime());
                 posts.remove(post);
+                //remove data from search tree
+                Search.instance.remove(post.getTime());
                 notifyDataSetChanged();
             }
         });
