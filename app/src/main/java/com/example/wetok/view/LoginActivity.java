@@ -125,17 +125,11 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             User u = UserDao.findUserByEmail(email.toLowerCase(Locale.ROOT));
-                            if (u == null) {
-                                // new-registered user
-                                u = UserDao.findUserById(UserDao.users_size-1);
-                                u.setEmail(email);
-                                u.setPassword(password);
-                            } else {
-                                CurrentUser.login(u);
-                                Toast.makeText(context, "Successfully logged in.",
+                            if (u == null) u = setNewUser(email,password);
+                            CurrentUser.login(u);
+                            Toast.makeText(context, "Successfully logged in.",
                                         Toast.LENGTH_SHORT).show();
-                                toMainPage(u);
-                            }
+                            toMainPage(u);
 
                         } else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -166,6 +160,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onDestroy();
         fbAuth.signOut();
         CurrentUser.current_user = null;
+    }
+
+    private User setNewUser(String email, String password) {
+        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        User u;
+        u = UserDao.findUserById(UserDao.users_size-1);
+        u.setEmail(email);
+        u.setPassword(password);
+        u.setName(name);
+        u.setPosts(new ArrayList<>());
+        u.setSubscribers(new ArrayList<>());
+        u.setFollowers(new ArrayList<>());
+        return u;
     }
 
     public List<User> getUserData() throws IOException {

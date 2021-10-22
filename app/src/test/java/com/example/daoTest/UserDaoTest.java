@@ -118,11 +118,6 @@ public class UserDaoTest {
    }
 
    @Test(timeout = 1000)
-   public void getPostsTest(){
-        assertEquals(3,UserDao.getPosts().size());
-   }
-
-   @Test(timeout = 1000)
    public void setPostInfoTest(){
        User u = UserDao.users.get(0);
        UserDao.setPostInfo(u);

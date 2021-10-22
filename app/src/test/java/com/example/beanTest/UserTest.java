@@ -23,13 +23,13 @@ public class UserTest {
 
     // post property
     int likes = 999;
-    int star = 99999;
+    int dislikes = 99999;
 
     @Test
     public void userEmptyTest() {
         Post p = new Post();
-        p.setStar(star);
-        assertEquals(star,p.getStar());
+        p.setDislikes(dislikes);
+        assertEquals(dislikes,p.getDislikes());
         p.setTime(time);
         assertEquals(time,p.getTime());
         p.setEmail(email);
@@ -47,7 +47,7 @@ public class UserTest {
 
     @Test
     public void constructorTest() {
-        Post p = new Post(content, uid, author, email, u_img, time, tag, likes, star);
+        Post p = new Post(content, uid, author, email, u_img, time, tag, likes, dislikes);
 
     }
 }

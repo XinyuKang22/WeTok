@@ -9,6 +9,7 @@ declaration: >-
 code:
   - comment: Tokenizer and Parser part is based on lab07's file, but with our own explaination of token and method.
     url: https://gitlab.cecs.anu.edu.au/u1064702/comp2100-6442-2021.s2/-/tree/master/Lab_07_Tok_Parser
+    licence: fair use
 
   - comment: Several methods of AVLTree.java refers to the code on the website.
     url: https://quguai.cn/archives/j-a-v-a-di-ceng-shi-xian-a-v-l-ping-heng-er-cha-shu
@@ -18,6 +19,9 @@ code:
     url: https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
     licence: fair use
 
+  - comment: RegisterNextActivity update username in firebase
+    url: https://firebase.google.com/docs/auth/android/manage-users
+    licence: fair use
 
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
