@@ -41,7 +41,7 @@ public class CityFragment extends Fragment {
             // guest user default location is Canberra
             user_data = UserDao.filterLocation("Canberra");
         }else {
-            user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress());
+            user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress().split(",")[0]);
         }
 
         List<Post> post_data = UserDao.getPosts(user_data);

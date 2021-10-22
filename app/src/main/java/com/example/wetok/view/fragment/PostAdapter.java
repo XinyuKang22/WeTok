@@ -134,7 +134,11 @@ public class PostAdapter extends ArrayAdapter<Post> {
         });
         viewHolder.username.setText(post.getAuthor());
         viewHolder.content.setText(post.getContent());
-        User.setImage(UserDao.findUserById(Integer.parseInt(post.getUid())), viewHolder.photo);
+        User sender = UserDao.findUserById(Integer.parseInt(post.getUid()));
+        if (sender == null){
+            sender = CurrentUser.current_user;
+        }
+        User.setImage(sender, viewHolder.photo);
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 

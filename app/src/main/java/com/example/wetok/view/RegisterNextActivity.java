@@ -206,7 +206,7 @@ public class RegisterNextActivity extends AppCompatActivity {
 
         CurrentUser.current_user.setAddress(location);
         CurrentUser.current_user.setPhone(phoneNumber);
-        CurrentUser.current_user.setImgloc("default");
+        CurrentUser.current_user.setImgloc("1");
 
         //update UserDao
         UserDao.addUser(CurrentUser.current_user);
