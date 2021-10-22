@@ -52,7 +52,7 @@
 | :--- | :----: | :--- |
 | u6120911 | Xinyu Kang | Integration Engineer, Data Structure Designer, Ranking Algorithm Designer |
 | u7151386 | Xinyue Hu | Database Designer, Data Structure Designer, Integration Engineer |
-| u6684233 | Yuxin Hong | Tokenizer and Parser Designer, Bug Killer |
+| u6684233 | Yuxin Hong | Tokenizer and Parser Designer, Bug Killer， Logo Designer |
 | u6111569 | Zhaoting Jiang | UI Designer, Fragment designer |
 
 ## **Conflict Resolution Protocol**
