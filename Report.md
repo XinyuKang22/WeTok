@@ -1,4 +1,4 @@
-# [WeTok] Report
+# WeTok Report
 
 The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
 
@@ -63,13 +63,20 @@ The following is a report template to help your team successfully provide all th
 
 ## **Application Description**
 
-**Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.** 
-<br />
-<br />
+* **Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.** 
+
+![logo](./images/logo.png)
 
 ### **Application Use Cases and or Examples**
 
 Targets Users: Everyone who is willing to use and learn about this app
+
+* *Users can use it to post whatever they want to say.*
+* *Users can use it to find the post nearby them.*
+* *Users can use it to delete their post whenever they want to.*
+* *Users can use it to like others' post.*
+* *Users can use it to dislike others' post.*
+* *Users can use it to follow the person that they are interested in.*
 
 Jack wants to learn about skateboarding skills that interest him most
 1. Jack searched the tag about skateboarding and found that Kevin shared skateboarding skills every day
@@ -78,22 +85,35 @@ Jack wants to learn about skateboarding skills that interest him most
 
 Andy wants to know about the good restaurants around him
 1. Andy turns on the City feature and finds that Claire shared a delicious restaurant nearby
-2. He followed Claire and hope Claire can share more delicious restaurants in the future
+2. He press the like button for that post.
+3. He followed Claire and hope Claire can share more delicious restaurants in the future
 
-*Here is a map navigation application example*
+Stan wants to delete his post
+1. Stan post his relationship with his girlfriend a few weeks ago
+2. He broken up with his girlfriend yesterday
+3. He found his previous post in the user session
+4. He deleted his post
 
-*Targets Users: Drivers*
+#### **New User Register**
+1. Click *REGISTER* in the login page, go to register page:  <br /><br />
+![registerPage](./images/registerPage.png)  
 
-* *Users can use it to navigate in order to reach the destinations.*
-* *Users can learn the traffic conditions*
-* ...
 
-*Target Users: Those who want to find some good restaurants*
+2. Enter a valid email (gmail is recommended) and your password, click *VERIFY EMAIL* and the system will remind you that "Verification email sent. Please verify your email to continue". Then check your mailbox and click the varification link:  <br /><br />
+![email](./images/email.png) ![link](./images/link.png)
 
-* *Users can find nearby restaurants and the application can give recommendations*
-* ...
+3. After successfully varified your email, click *NEXT* and go to user information register page. All the fields are optional except for the username. You can select the country for your phone number and address. <br /><br />
+![registerFinish](./images/registerFinish.png) <br />
+You can only enter several characters of your city's name, then you can choose your city from the system's recommendations. 
 
-*List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
+4. The final step is to click *START YOUR JOURNEY* and you will go to the main page. 
+
+#### **Existing User Login and Other Operations**
+1. Here we provide an example user: email = [exampleuser.gmail.com], password = [123456] <br />  
+![exmapleUser](./images/exmapleUser.png) <br />
+2. After you logged in, there've entered the home page of the app:  <br />  
+![Home](./images/Home.png) <br />
+
 
 ## **Application UML**
 
@@ -119,21 +139,8 @@ Andy wants to know about the good restaurants around him
 
      * *We don't need to access the item by index for this feature*
 
-##### *Explaination*
-We selected AVL tree as the data structure of posts operations. AVL tree is a self-balancing binary search tree. It controls the height of the tree and prevents it from becoming skewed. For operations considered they have time complexity:
-- Rotations to achieve balanced tree *O(1)*
-- Insertion *O(log(n))*
-- Deletion *O(log(n))*
-- Search *O(log(n))*
-- Max/Min *O(log(n))*
-
-It is an efficient data structure and here is the UML of our implementation:<br />
-   ![AVLDiagram](./images/AVLDiagram.png)<br />
-
-### Design Patterns
-We used three design patterns: Singleton, Template, DAO
-
-#### Singleton
+##### Design Patterns
+1. Singleton
    * Objective: It is used for making sure of that there is exactly one instance of the current user
 
    * Locations: *CurrentUser.java*
@@ -156,10 +163,11 @@ We used three design patterns: Singleton, Template, DAO
 #### DAO
    * Objective: It is used for storing the users and posts data read from persistent files.
 
-   * Locations: *UserDao.java*, *PostDao.java*.
+   * Locations: *UserDao.java*, *PostDao.java*
 
    * Reasons:
 
+     * We want to decouple domain logic from persistence mechanisms and avoid exposing details of the data storage.
      * The DAO method allows JUnit test to run faster as it allows to create Mock and avoid connecting to database to run tests.
 
 ### Grammars
@@ -168,12 +176,6 @@ We used three design patterns: Singleton, Template, DAO
    * Locations: *Parser.java*.
 
    * Reasons: Process multiple-tag search.
-#### *Production Rules*
-\<exp> ::= \<term> | \<term> '|' \<exp> 
-\<term> ::= \<factor> | \<factor> '&' \<term> 
-\<factor> ::= \<tag> | '(' \<exp> ')' 
-#### *Explaination*
-According to this gramma, we can parse *AND* and *OR* operations. For example, suppose we have the expression **condition1 & condition2 | condition3**, human will process it as **(condition1 & condition2) | condition3**, so does our gramma will do. Another example is **condition1 & (condition2 | condition3 & condition4)**, human will process it as **condition1 & (condition2 | (condition3 & condition4))**, so does our gramma will do. In application, the advantages of our gramma is to filter tag of post with *AND* and *OR* operation. It takes tag as its condition and only return post that satified given condition in expression.
 
 ### Tokenizer and Parsers
    * Objective: Parse expression in tokens: *TAG, AND, OR, LBRA, RBRA*. Search multiple tag at once with *AND* and *OR* operator.  
@@ -181,8 +183,6 @@ According to this gramma, we can parse *AND* and *OR* operations. For example, s
    * Locations: *Tokenizer.java*, *Parser.java*. 
 
    * Reasons: Process multiple-tag search.
-#### *Explaination*
-Generally speaking, the advantages of our design is we to search multiple tags at once and this is also the design approach of our gramma. Operations *AND* and *OR* can be aplied on multiple tags search, that is, the intersection and union of single search result. By search *#tag1&#tag2*, the intersection of individual search result of *#tag1* and *#tag2* will be returned. By search *#tag1|#tag2*, the union of of individual search result of *#tag1* and *#tag2* will be returned. And of course the operators can be freely used to create more expressions. By default, the precedence of *AND* operation is greater then *OR* operation. And precedence can be changed parentheses *LBRA* and *RBRA*.
 
 ### Surpise Item
 #### Ranking algorithm
