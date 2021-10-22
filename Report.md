@@ -6,7 +6,6 @@
 - [](#)
   - [Table of Contents](#table-of-contents)
   - [**Application Description**](#application-description)
-    - [Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.](#wetok-is-a-social-media-app-specifically-aimed-at-person-with-a-strong-personality-you-can-share-your-status-and-mood-with-your-friends-people-in-the-same-city-and-even-strangers-anytime-anywhere-in-here-you-do-not-have-to-worry-about-cyber-violence-and-personal-abuse-we-only-provide-you-with-a-pure-sharing-platform-as-our-logo-shows-we-talk-but-we-dont-comment-furthermore-you-can-search-for-tags-youre-interested-in-and-subscribe-people-that-youre-interested-in-you-can-understand-what-is-happening-in-this-world-through-wetok-welcome-to-wetok)
   - [**Team Members and Roles**](#team-members-and-roles)
   - [**Conflict Resolution Protocol**](#conflict-resolution-protocol)
   - [**Application Use Cases and or Examples**](#application-use-cases-and-or-examples)
@@ -50,7 +49,7 @@
 
 
 ## **Application Description**
-### Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.
+Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.
 
 ![logo](./images/logo.png)
 
