@@ -49,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //record search engine
-        Search.recordSearch(search1);
+        if (search1 != null) {
+            Search.recordSearch(search1);
+        }
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

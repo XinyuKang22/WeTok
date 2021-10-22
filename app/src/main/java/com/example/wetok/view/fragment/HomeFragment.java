@@ -44,7 +44,11 @@ public class HomeFragment extends Fragment {
 
         // indexing newest post according to current time
         pindex = PostDao.findInsertIndex(post_data);
-        if (pindex != -1) {
+        ListView lv = view.findViewById(R.id.post_list_home);
+        if (post_data == null) {
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, new ArrayList<>());
+            lv.setAdapter(adapter);
+        } else if (post_data.size() >= 3) {
             List<Post> posts = new ArrayList<>();
             posts.add(post_data.get(pindex));
             pindex++;
@@ -52,8 +56,6 @@ public class HomeFragment extends Fragment {
             pindex++;
             posts.add(post_data.get(pindex));
             pindex++;
-
-            ListView lv = view.findViewById(R.id.post_list_home);
 
             PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, posts);
             lv.setAdapter(adapter);
@@ -79,6 +81,9 @@ public class HomeFragment extends Fragment {
 
                 }
             });
+        } else {
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, post_data);
+            lv.setAdapter(adapter);
         }
         return view;
     }

@@ -93,7 +93,7 @@ public class MyFragment extends Fragment {
             Button btnOut = view.findViewById(R.id.profile_logout);
             btnOut.setOnClickListener(e -> {
                 CurrentUser.logout();
-                getContext().getAssets().close();
+//                getContext().getAssets().close();
                 Intent intent = new Intent(getContext(), LoginActivity.class);
                 startActivity(intent);
             });

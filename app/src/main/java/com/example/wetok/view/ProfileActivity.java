@@ -62,16 +62,23 @@ public class ProfileActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
 
         Button btnSub = findViewById(R.id.profile_subscribe);
-        Boolean isSub = CurrentUser.current_user.isSubscriber(user);
+        Boolean isSub = false;
+        if (CurrentUser.current_user != null) isSub = CurrentUser.current_user.isSubscriber(user);
+
         if (isSub) {
             btnSub.setBackgroundColor(Color.GRAY);
             btnSub.setText("subscribe!");
             btnSub.invalidate();
         } else {
             btnSub.setOnClickListener(e -> {
-                CurrentUser.current_user.addSubscribers(user);
-                btnSub.setBackgroundColor(Color.GRAY);
-                btnSub.setText("subscribe!");
+                if (CurrentUser.current_user != null) {
+                    CurrentUser.current_user.addSubscribers(user);
+                    btnSub.setBackgroundColor(Color.GRAY);
+                    btnSub.setText("subscribe!");
+                } else  {
+                    Toast.makeText(getBaseContext(),"Please login first!",Toast.LENGTH_LONG);
+                }
+
             });
         }
 

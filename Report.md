@@ -47,6 +47,7 @@ The following is a report template to help your team successfully provide all th
         - [**Ranking algorithm**](#ranking-algorithm-1)
         - [**Simple personalisation**](#simple-personalisation)
   - [**Summary of Known Errors and Bugs**](#summary-of-known-errors-and-bugs)
+    - [Problems](#problems)
   - [**Testing Summary**](#testing-summary)
     - [**AVL Tree Testings**](#avl-tree-testings)
     - [**Dao and Bean Testings**](#dao-and-bean-testings)
@@ -294,7 +295,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
 
 
 ## **Summary of Known Errors and Bugs**
-
+### Problems
 1. *Authentication Failure Problem:*
     1. Problem
        - *A space bar (' ') in the sign in email will result in authentication failure.*
@@ -319,10 +320,10 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
     2. Possible Reason and Solution:
        - *It's because the page when you're typing tags is a individual page. You may just click twice to go back.*
 5. *Delete Post Problem:*
-    1. Problem
-       - *Posts cannot be deleted in other user's personal profile.*
-    2. Possible Reason and Solution:
-       - **
+    1. Bug
+       - *Delete post function in other user's personal profile is not working.*
+    2. Possible Reason:
+       - *Originnally it crach the app, then we just disabled it.*
 6. *Problem:*
     1. Problem
        - **

@@ -70,11 +70,12 @@ public class PostAdapter extends ArrayAdapter<Post> {
                     succ = posts.remove(post);
                     //remove data from search tree
                     Search.instance.remove(post.getTime());
+                    notifyDataSetChanged();
+
                 } catch (Exception e) {
 
                 } finally {
                     if (!succ) Toast.makeText(getContext(), "Delete Failed", Toast.LENGTH_LONG);
-                    notifyDataSetChanged();
                 }
 
             }
@@ -130,7 +131,6 @@ public class PostAdapter extends ArrayAdapter<Post> {
         view.setTag(viewHolder);
         viewHolder.username.setOnClickListener(e -> {
             Intent intent = new Intent(getContext(), ProfileActivity.class);
-            Toast.makeText(getContext(), "post", Toast.LENGTH_SHORT).show();
             CurrentUser.current_visitor = UserDao.findUserById(Integer.parseInt(post.getUid()));
             getContext().startActivity(intent);
         });

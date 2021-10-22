@@ -48,6 +48,7 @@ public class Search implements Serializable {
      * @param posts
      */
     public void buildIndexTrees(List<Post> posts){
+        if (posts == null)  return;
         for(Post post:posts){
             List<String> tags= post.getTag();
             for(String tag: tags){
