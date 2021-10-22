@@ -48,11 +48,11 @@ The following is a report template to help your team successfully provide all th
     - [Simple personalisation](#simple-personalisation)
   - [**Summary of Known Errors and Bugs**](#summary-of-known-errors-and-bugs)
     - [Problems](#problems)
-  - [**Testing Summary](#testing-summary)
+  - [**Testing Summary**](#testing-summary)
     - [AVL Tree Testings](#avl-tree-testings)
     - [Dao and Bean Testings](#dao-and-bean-testings)
     - [Parser and Tokenizer Tests](#parser-and-tokenizer-tests)
-    - [Ranking Tests**](#ranking-tests)
+    - [Ranking Tests](#ranking-tests)
   - [**Implemented Features**](#implemented-features)
   - [**Team Meetings**](#team-meetings)
 
@@ -139,6 +139,7 @@ You can only enter several characters of your city's name, then you can choose y
 *I used the following data structures in my project:*
 
 ### Data Structures
+
 #### AVL Tree
    * Objective: It is used for storing posts for valid and invalid search feature.
 
@@ -160,7 +161,6 @@ You can only enter several characters of your city's name, then you can choose y
        senario, we decided to choose AVLTree as our datastructure.  
 
        
-
 #### Design Patterns
 
 #### Singleton
