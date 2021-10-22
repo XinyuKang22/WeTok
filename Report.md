@@ -143,13 +143,24 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
 
 ##### 1. Data Structures
 1.1 AVL Tree
-* Objective: It is used for storing the retrieved posts.
+* Objective: It is used for storing posts for valid and invalid search feature.
 
-* Locations: Package: *searchTree* : *AVLTree.java*, *Node.java*
+* Locations: *AVLTree.java*, *Node.java*, *Search.java*
 
 * Reasons:
 
-    * We...
+    * Compared to Binary Search Tree, AVLTree and RBTree query efficiency is more consistent;the best and worst time complexity of queries are    
+          both O. (logN).
+
+    * AVLTree outperforms RBTree in terms of query efficiency. Take the user behavior into account.Many users like search topics of their       
+          interests.Clearly, AVLTree is better in tune with user requirements.
+
+    * The cost difference between AVLTree and RBTree when inserting nodes is not significant, and the time complexity is O. (1). Futher more, It
+          is more efficient than Arraylist for insertion with a time complexity O(1),We don't need to access the item by index for this feature.
+
+    * RBTree has a lower time and space cost than AVLTree when it comes to removing nodes.Since the amount of data is relatively small, user  
+          behaviors in WeTok (such as like, follow, view, dislike, etc) are considerably more common than the behavior of deleting post. In this
+          senario, we decided to choose AVLTree as our datastructure.
 
 
 ##### 2. Design Patterns
