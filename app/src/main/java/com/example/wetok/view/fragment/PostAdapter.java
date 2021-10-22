@@ -83,10 +83,10 @@ public class PostAdapter extends ArrayAdapter<Post> {
         TextView subButton = view.findViewById(R.id.list_post_btn_sub);
         subButton.setOnClickListener(e -> {
             paddingPicture(subButton, R.drawable.ic_subscribe,100);
-            post.setStar(post.getStar()+1);
-            subButton.setText(String.valueOf(post.getStar()));
+            post.setDislikes(post.getDislikes()+1);
+            subButton.setText(String.valueOf(post.getDislikes()));
         });
-        subButton.setText(""+post.getStar());
+        subButton.setText(""+post.getDislikes());
         likeButton.setText(""+post.getLikes());
         paddingPicture(likeButton, R.drawable.ic_like_gray,60);
         paddingPicture(subButton, R.drawable.ic_subscribe_gray,100);

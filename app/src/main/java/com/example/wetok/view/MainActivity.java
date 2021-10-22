@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         search[0].setOnQueryTextListener(new androidx.appcompat.widget.SearchView .OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                    // record search engine
+
                     Intent intent = new Intent(MainActivity.this, SearchActivity.class);
                     intent.putExtra("tag", s);
                     startActivity(intent);
