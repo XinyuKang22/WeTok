@@ -27,19 +27,20 @@ The following is a report template to help your team successfully provide all th
     - [Data Structures](#data-structures)
       - [AVL Tree](#avl-tree)
     - [Design Patterns](#design-patterns)
-      - [Singleton](#singleton)
-      - [Template](#template)
-      - [DAO](#dao)
+      - [(i) Singleton](#singleton)
+      - [(ii) Template](#template)
+      - [(iii) DAO](#dao)
     - [Grammars](#grammars)
+    - [Tokenizer and Parsers](#tokenizer-and-parsers)
     - [Surpise Item](#surpise-item)
       - [(i) Ranking algorithm](#ranking-algorithm)
       - [(ii) Simple personalisation](#simple-personalisation)
   - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
   - [Testing Summary](#testing-summary)
-    - [AVL Tree Testings](#avl-tree-testings)
-    - [Dao and Bean Testings](#dao-and-bean-testings)
-    - [Parser and Tokenizer Tests](#tokenizer-and-parser-testings)
-    - [Ranking Tests](#ranking-testings)
+    - [(i) AVL Tree Testings](#avl-tree-testings)
+    - [(ii) Dao and Bean Testings](#dao-and-bean-testings)
+    - [(iii) Parser and Tokenizer Tests](#tokenizer-and-parser-testings)
+    - [(iv) Ranking Tests](#ranking-testings)
   - [Implemented Features](#implemented-features)
   - [Team Meetings](#team-meetings)
 
@@ -105,9 +106,8 @@ Andy wants to know about the good restaurants around him
 
 *I used the following data structures in my project:*
 
-
-##### Data Structures
-1. AVL Tree
+### Data Structures
+#### AVL Tree
 
    * *Objective: It is used for storing xxxx for xxx feature.*
 
@@ -130,7 +130,7 @@ Andy wants to know about the good restaurants around him
      * It can effectively avoid the case of multiple-current-users error
      * We need a class storing the current user instance that can be access from the whole project
 
-2. Template
+#### Template
    * Objective: It is used for computing the ranking scores of the retrieved posts from different dimensions.
 
    * Locations: *ScoreTemplate.java* (abstract class), *RelevanceScore.java* (concrete class), *ImportanceScore.java* (concrete class), *UserSimilarity.java* (concrete class)
@@ -140,32 +140,32 @@ Andy wants to know about the good restaurants around him
      * We want to sort the posts based on three criteria. There is a common process (i.e., calculate scores, normalize scores) to scoring the posts but each criterion has its own scoring logic. 
      * The template method can clearly define the structure and make the code more readable and reuseable. 
 
-3. DAO
-   * Objective: It is used for storing the users and posts data read from persistent files. 
+#### DAO
+   * Objective: It is used for storing the users and posts data read from persistent files.
 
-   * Locations: *UserDao.java*, *PostDao.java*
+   * Locations: *UserDao.java*, *PostDao.java*.
 
    * Reasons:
 
      * We want to decouple domain logic from persistence mechanisms and avoid exposing details of the data storage.
      * The DAO method allows JUnit test to run faster as it allows to create Mock and avoid connecting to database to run tests.
 
-##### Grammars
-   * Objective: 
+### Grammars
+   * Objective: Process multiple condition at once with *AND* and *OR* operator.
 
-   * Locations: 
+   * Locations: *Parser.java*.
 
-   * Reasons:
+   * Reasons: Process multiple-tag search.
 
-##### Tokenizer and Parsers
-   * Objective: 
+### Tokenizer and Parsers
+   * Objective: Parse expression in tokens: *TAG, AND, OR, LBRA, RBRA*. Search multiple tag at once with *AND* and *OR* operator.  
 
-   * Locations: 
+   * Locations: *Tokenizer.java*, *Parser.java*. 
 
-   * Reasons:
+   * Reasons: Process multiple-tag search.
 
-##### Surpise Item
-1. Ranking algorithm
+### Surpise Item
+#### Ranking algorithm
    * Objective: It is used for ranking the retrieved posts
 
    * Locations: Package *ranking* : *Rank.java*, *ScoreTemplate.java*, *RelevanceScore.java*, *ImportanceScore.java*, *UserSimilarityScore.java*
