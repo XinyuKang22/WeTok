@@ -18,14 +18,18 @@ The following is a report template to help your team successfully provide all th
 
 - [WeTok Report](#wetok-report)
   - [Table of Contents](#table-of-contents)
-  - [**Team Members and Roles**](#team-members-and-roles)
-  - [**Conflict Resolution Protocol**](#conflict-resolution-protocol)
-  - [**Application Description**](#application-description)
-    - [**Application Use Cases and or Examples**](#application-use-cases-and-or-examples)
-      - [**New User Register**](#new-user-register)
-      - [**Existing User Login and Other Operations**](#existing-user-login-and-other-operations)
-  - [**Application UML**](#application-uml)
-  - [**Application Design and Decisions**](#application-design-and-decisions)
+  - [Team Members and Roles](#team-members-and-roles)
+  - [Conflict Resolution Protocol](#conflict-resolution-protocol)
+  - [Application Description](#application-description)
+    - [Application Use Cases and or Examples](#application-use-cases-and-or-examples)
+      - [New User Register](#new-user-register)
+      - [Existing User Login and Other Operations](#existing-user-login-and-other-operations)
+      - [Add a post](#add-a-post)
+      - [Interaction activities](#interaction-activities)
+      - [Subscribe a user](#subscribe-a-user)
+      - [Search](#search)
+  - [Application UML](#application-uml)
+  - [Application Design and Decisions](#application-design-and-decisions)
     - [Data Structures](#data-structures)
       - [AVL Tree](#avl-tree)
         - [Design Patterns](#design-patterns)
@@ -35,24 +39,23 @@ The following is a report template to help your team successfully provide all th
     - [Tokenizer and Parsers](#tokenizer-and-parsers)
     - [Surpise Item](#surpise-item)
       - [Ranking algorithm](#ranking-algorithm)
-    - [**Data Structures**](#data-structures-1)
-        - [**AVL Tree**](#avl-tree-1)
-    - [**Design Patterns**](#design-patterns-1)
-        - [**Singleton**](#singleton)
-        - [**Template**](#template-1)
-        - [**DAO**](#dao-1)
-    - [**Grammars**](#grammars-1)
-    - [**Tokenizer and Parsers**](#tokenizer-and-parsers-1)
-    - [**Surpise Item**](#surpise-item-1)
-        - [**Ranking algorithm**](#ranking-algorithm-1)
-        - [**Simple personalisation**](#simple-personalisation)
-  - [**Summary of Known Errors and Bugs**](#summary-of-known-errors-and-bugs)
-    - [Problems](#problems)
-  - [**Testing Summary**](#testing-summary)
-    - [**AVL Tree Testings**](#avl-tree-testings)
-    - [**Dao and Bean Testings**](#dao-and-bean-testings)
-    - [**Parser and Tokenizer Tests**](#parser-and-tokenizer-tests)
-    - [**Ranking Tests**](#ranking-tests)
+    - [Data Structures](#data-structures-1)
+        - [AVL Tree](#avl-tree-1)
+    - [Design Patterns](#design-patterns-1)
+        - [Singleton](#singleton)
+        - [Template](#template-1)
+        - [DAO](#dao-1)
+    - [Grammars](#grammars-1)
+    - [Tokenizer and Parsers](#tokenizer-and-parsers-1)
+    - [Surpise Item](#surpise-item-1)
+        - [Ranking algorithm](#ranking-algorithm-1)
+        - [Simple personalisation](#simple-personalisation)
+  - [Summary of Known Errors and Bugs](#summary-of-known-errors-and-bugs)
+  - [Testing Summary](#testing-summary)
+    - [AVL Tree Testings](#avl-tree-testings)
+    - [Dao and Bean Testings](#dao-and-bean-testings)
+    - [Parser and Tokenizer Tests](#parser-and-tokenizer-tests)
+    - [Ranking Tests](#ranking-tests)
   - [Implemented Features](#implemented-features)
   - [Team Meetings](#team-meetings)
 
@@ -120,12 +123,32 @@ You can only enter several characters of your city's name, then you can choose y
 
 4. The final step is to click *START YOUR JOURNEY* and you will go to the main page. 
 
-#### **Existing User Login and Other Operations**
+#### **Existing User Login**
 1. Here we provide an example user: email = [exampleuser.gmail.com], password = [123456] <br />  
 ![exmapleUser](./images/exmapleUser.png) <br />
-2. After you logged in, there've entered the home page of the app:  <br />  
+2. After you logged in, you've entered the home page of the app:  <br />  
 ![Home](./images/Home.png) <br />
+<br />
+You can view the posts from the users living in your city by clicking the second icon *City* in the navigation bar, or, view the posts from your subscribers by clicking the third icon *Focus* in the navigation bar.<br />  <br />
+Moreover, you can click the right-most icon *Profile* in the navigation bar to view your username, user id, posts history, subscribers, and followers: <br />  <br />
+![profile](./images/profile.png) <br />
 
+#### **Add a post**
+1. Click the "+" at the top right corner. Write your post and add tags if you want. <br />
+2. Click the *Send* button, then you can view your new post at home page and your profile page:<br /><br />
+![post](./images/post.png)   ![homeNewPost](./images/homeNewPost.png) <br />
+
+#### **Interaction activities**
+For each post, the user can have following interaction activities: like, dislike, delete, follow the sender. <br />
+![interaction](./images/interaction.png) <br />
+
+#### **Subscribe a user**
+To subscribe another user, you need to first go to his/her profile page, and click *SUBSCRIBE HIM/HER NOW*:<br /><br />
+![follow](./images/follow.png) <br />
+
+#### **Search**
+To search for the posts wit certain tags, click the magnifying glass icon at the top right corner, and write down your query with correct grammar. The retrieved posts will be ranked by the algorithm and presented to you. Entering query with invalid grammar will return the warning and hint from the Wetok group. <br /><br />
+![search](./images/search.png)  ![illegalSearch](./images/illegalSearch.png) <br />
 
 ## **Application UML**
 
@@ -140,26 +163,16 @@ You can only enter several characters of your city's name, then you can choose y
 
 ### Data Structures
 #### AVL Tree
-   * Objective: It is used for storing posts for valid and invalid search feature.
 
-   * Locations: *AVLTree.java*, *Node.java*, *Search.java*
+   * *Objective: It is used for storing xxxx for xxx feature.*
 
-   * Reasons:
+   * *Locations: line xxx in XXX.java, ..., etc.*
 
-     * Compared to Binary Search Tree, AVLTree and RBTree query efficiency is more consistent;the best and worst time complexity of queries are    
-       both O. (logN), BTSTree search has the worst time complexity of O. (N). We initially look at AVLTree and RBTree these two well balanced 
-       tree in order to increase search efficiency.
+   * *Reasons:*
 
-     * As for structure, AVLTree has a better balance than RBTree. As a result, AVLTree outperforms RBTree in terms of query efficiency.As a   
-       result, AVLTree outperforms RBTree in terms of query efficiency.Take the user behavior into account.Many users like search topics of their   
-       interests,in this case an efficient search engine are in need. Clearly, AVLTree is better in tune with user requirements.
+     * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
 
-     * The cost difference between AVLTree and RBTree when inserting nodes is not significant, and the time complexity is O. (1). Futher more, It
-       is more efficient than Arraylist for insertion with a time complexity O(1),We don't need to access the item by index for this feature.
-     
-     * RBTree has a lower time and space cost than AVLTree when it comes to removing nodes.Since the amount of data is relatively small, user  
-       behaviors in WeTok (such as like, follow, view, dislike, etc) are considerably more common than the behavior of deleting post. In this 
-       
+     * *We don't need to access the item by index for this feature*
 
 ##### Design Patterns
 1. Singleton
@@ -305,7 +318,7 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
 
 
 ## **Summary of Known Errors and Bugs**
-### Problems
+
 1. *Authentication Failure Problem:*
     1. Problem
        - *A space bar (' ') in the sign in email will result in authentication failure.*
@@ -330,10 +343,10 @@ Based on the *Pariser talk*, we decided to sort the posts by three criteria: rel
     2. Possible Reason and Solution:
        - *It's because the page when you're typing tags is a individual page. You may just click twice to go back.*
 5. *Delete Post Problem:*
-    1. Bug
-       - *Delete post function in other user's personal profile is not working.*
-    2. Possible Reason:
-       - *Originnally it crach the app, then we just disabled it.*
+    1. Problem
+       - *Posts cannot be deleted in other user's personal profile.*
+    2. Possible Reason and Solution:
+       - **
 6. *Problem:*
     1. Problem
        - **
