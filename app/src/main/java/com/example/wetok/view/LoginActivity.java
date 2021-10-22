@@ -181,6 +181,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println(e);
         }
+        file.close();
 
         // add system user
         int i = 0;
