@@ -1,19 +1,5 @@
 # WeTok Report
 
-The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
-
-*Here are some tips to write a good report:*
-
-* *Try to summarise and list the `bullet points` of your project as much as possible rather than give long, tedious paragraphs that mix up everything together.*
-
-* *Try to create `diagrams` instead of text descriptions, which are more straightforward and explanatory.*
-
-* *Try to make your report `well structured`, which is easier for the reviewers to capture the necessary information.*
-
-*We give instructions enclosed in square brackets [...] and examples for each sections to demonstrate what are expected for your project report.*
-
-*Please remove the instructions or examples in `italic` in your final report.*
-
 ## Table of Contents
 
 - [WeTok Report](#wetok-report)
@@ -144,8 +130,8 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
 
 ## **Application UML**
 
-![ClassDiagramExample](./images/ClassDiagramExample.png)
-*[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
+![WeTok UML](./images/AppDesign.png)
+
 
 ## **Application Design and Decisions**
 
@@ -153,13 +139,24 @@ To search for the posts wit certain tags, click the magnifying glass icon at the
 
 ##### 1. Data Structures
    1.1 AVL Tree
-   * Objective: It is used for storing the retrieved posts. 
+   * Objective: It is used for storing posts for valid and invalid search feature.
 
-   * Locations: Package: *searchTree* : *AVLTree.java*, *Node.java*
+   * Locations: *AVLTree.java*, *Node.java*, *Search.java*
 
    * Reasons:
 
-     * We...
+     * Compared to Binary Search Tree, AVLTree and RBTree query efficiency is more consistent;the best and worst time complexity of queries are    
+       both O. (logN).
+
+     * AVLTree outperforms RBTree in terms of query efficiency. Take the user behavior into account.Many users like search topics of their       
+       interests.Clearly, AVLTree is better in tune with user requirements.
+
+     * The cost difference between AVLTree and RBTree when inserting nodes is not significant, and the time complexity is O. (1). Futher more, It
+       is more efficient than Arraylist for insertion with a time complexity O(1),We don't need to access the item by index for this feature.
+     
+     * RBTree has a lower time and space cost than AVLTree when it comes to removing nodes.Since the amount of data is relatively small, user  
+       behaviors in WeTok (such as like, follow, view, dislike, etc) are considerably more common than the behavior of deleting post. In this 
+       senario, we decided to choose AVLTree as our datastructure.  
 
 
 ##### 2. Design Patterns
