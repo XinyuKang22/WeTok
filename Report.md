@@ -119,8 +119,21 @@ Andy wants to know about the good restaurants around him
 
      * *We don't need to access the item by index for this feature*
 
-##### Design Patterns
-1. Singleton
+##### *Explaination*
+We selected AVL tree as the data structure of posts operations. AVL tree is a self-balancing binary search tree. It controls the height of the tree and prevents it from becoming skewed. For operations considered they have time complexity:
+- Rotations to achieve balanced tree *O(1)*
+- Insertion *O(log(n))*
+- Deletion *O(log(n))*
+- Search *O(log(n))*
+- Max/Min *O(log(n))*
+
+It is an efficient data structure and here is the UML of our implementation:<br />
+   ![AVLDiagram](./images/AVLDiagram.png)<br />
+
+### Design Patterns
+We used three design patterns: Singleton, Template, DAO
+
+#### Singleton
    * Objective: It is used for making sure of that there is exactly one instance of the current user
 
    * Locations: *CurrentUser.java*
@@ -147,7 +160,6 @@ Andy wants to know about the good restaurants around him
 
    * Reasons:
 
-     * We want to decouple domain logic from persistence mechanisms and avoid exposing details of the data storage.
      * The DAO method allows JUnit test to run faster as it allows to create Mock and avoid connecting to database to run tests.
 
 ### Grammars
@@ -156,6 +168,12 @@ Andy wants to know about the good restaurants around him
    * Locations: *Parser.java*.
 
    * Reasons: Process multiple-tag search.
+#### *Production Rules*
+\<exp> ::= \<term> | \<term> '|' \<exp> 
+\<term> ::= \<factor> | \<factor> '&' \<term> 
+\<factor> ::= \<tag> | '(' \<exp> ')' 
+#### *Explaination*
+According to this gramma, we can parse *AND* and *OR* operations. For example, suppose we have the expression **condition1 & condition2 | condition3**, human will process it as **(condition1 & condition2) | condition3**, so does our gramma will do. Another example is **condition1 & (condition2 | condition3 & condition4)**, human will process it as **condition1 & (condition2 | (condition3 & condition4))**, so does our gramma will do. In application, the advantages of our gramma is to filter tag of post with *AND* and *OR* operation. It takes tag as its condition and only return post that satified given condition in expression.
 
 ### Tokenizer and Parsers
    * Objective: Parse expression in tokens: *TAG, AND, OR, LBRA, RBRA*. Search multiple tag at once with *AND* and *OR* operator.  
@@ -163,6 +181,8 @@ Andy wants to know about the good restaurants around him
    * Locations: *Tokenizer.java*, *Parser.java*. 
 
    * Reasons: Process multiple-tag search.
+#### *Explaination*
+Generally speaking, the advantages of our design is we to search multiple tags at once and this is also the design approach of our gramma. Operations *AND* and *OR* can be aplied on multiple tags search, that is, the intersection and union of single search result. By search *#tag1&#tag2*, the intersection of individual search result of *#tag1* and *#tag2* will be returned. By search *#tag1|#tag2*, the union of of individual search result of *#tag1* and *#tag2* will be returned. And of course the operators can be freely used to create more expressions. By default, the precedence of *AND* operation is greater then *OR* operation. And precedence can be changed parentheses *LBRA* and *RBRA*.
 
 ### Surpise Item
 #### Ranking algorithm
