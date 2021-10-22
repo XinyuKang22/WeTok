@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
             UserDao.setSubscribers(u);
         }
 
-        PostDao.posts = UserDao.getPosts();
+        PostDao.posts = UserDao.getPosts(UserDao.users);
         Collections.sort(PostDao.posts);
         PostDao.post_size = PostDao.posts.size();
 
@@ -185,22 +185,25 @@ public class LoginActivity extends AppCompatActivity {
         // add system user
         int i = 0;
         User system = users.get(i);
-        system.setName("System");
+        String name = "WeTok Team";
+        system.setName(name);
         system.setEmail("u123456@anu.edu.au");
         system.setPassword("123456");
         List<Post> sys_post = new ArrayList<>();
         List<String> tag = new ArrayList<>();
         tag.add("#WARNING");
         Post p0 = new Post("Illegal Production Exception:\nTry Search: #greeting", "0",
-                "System","u1234567@anu.edu.au","default","2000-01-01 00:00:00",
+                name,"u1234567@anu.edu.au","default","2021-01-01 00:00:00",
                 tag,0,0);
         Post p1 = new Post("Illegal Token Exception:\nYou May Only Use: #tag, &, |", "0",
-                "System","u1234567@anu.edu.au","default","2000-01-01 00:00:00",
+                name,"u1234567@anu.edu.au","default","2021-01-01 00:00:00",
                 tag,0,0);
+        List<String> tag2 = new ArrayList<>();
+        tag2.add("Hint");
         Post p2 = new Post("Try To Search With & And |\ne.g. #tag1 & #tag2 " +
                 "\ne.g. #tag1 | #tag2 \n#tag1 & (#tag2 | #tag3)", "0",
-                "System","u1234567@anu.edu.au","default","2000-01-01 00:00:00",
-                tag,0,0);
+                name,"u1234567@anu.edu.au","default","2021-01-01 00:00:00",
+                tag2,0,0);
         sys_post.addAll(Arrays.asList(p0,p1,p2));
         system.setPosts(sys_post);
         i++;

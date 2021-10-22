@@ -10,23 +10,22 @@ import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
+import com.example.wetok.bean.User;
+import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
-
-import java.text.SimpleDateFormat;
+import com.example.wetok.dao.UserDao;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * This is the CityFragment
+ * @author Yuxin Hong
  * @author Zhaoting Jiang
  */
 public class CityFragment extends Fragment {
@@ -37,13 +36,20 @@ public class CityFragment extends Fragment {
 
         View view = getLayoutInflater().inflate(R.layout.fragment_city, container, false);
 
-        List<Post> post_data = PostDao.posts;
+        List<User> user_data;
+        if (CurrentUser.current_user == null){
+            // guest user default location is Canberra
+            user_data = UserDao.filterLocation("Canberra");
+        }else {
+            user_data = UserDao.filterLocation(CurrentUser.current_user.getAddress());
+        }
 
-        String time = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
+        List<Post> post_data = UserDao.getPosts(user_data);
+        Collections.sort(post_data);
 
         // indexing newest post according to current time
         pindex = PostDao.findInsertIndex(post_data);
-        if (pindex != -1) {
+        if (post_data.size() >= 3) {
             List<Post> posts = new ArrayList<>();
             posts.add(post_data.get(pindex));
             pindex++;
@@ -78,6 +84,12 @@ public class CityFragment extends Fragment {
 
                 }
             });
+        } else if (post_data.size() >= 0) {
+            ListView lv = view.findViewById(R.id.post_list_city);
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, post_data);
+        } else {
+            PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, new ArrayList<>());
+            Toast.makeText(getContext(),"There's no user at the same city as you",Toast.LENGTH_LONG);
         }
         return view;
     }

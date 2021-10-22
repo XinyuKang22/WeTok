@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
+import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.UserDao;
 import com.example.wetok.searchTree.Search;
@@ -49,7 +50,7 @@ public class PostAdapter extends ArrayAdapter<Post> {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    @SuppressLint({"SetTextI18n", "ViewHolder"})
+    @SuppressLint({"SetTextI18n", "ViewHolder", "ResourceType"})
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Post post = getItem(position);

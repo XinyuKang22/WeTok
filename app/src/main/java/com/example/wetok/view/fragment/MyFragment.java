@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.wetok.R;
 import com.example.wetok.bean.Post;
+import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
 import com.example.wetok.view.LoginActivity;
@@ -39,6 +41,7 @@ public class MyFragment extends Fragment {
         // set username and id
         TextView tv_name = view.findViewById(R.id.profile_username);
         TextView tv_id = view.findViewById(R.id.profile_userid);
+        ImageView tv_img = view.findViewById(R.id.profile_photo);
         if (CurrentUser.current_user == null) {
             Button sub = view.findViewById(R.id.profile_subscriber);
             Button follower = view.findViewById(R.id.profile_follower);
@@ -55,7 +58,6 @@ public class MyFragment extends Fragment {
             tv_name.setText("Guest");
             tv_id.setText("no id");
         } else {
-
             ArrayList<Post> posts = new ArrayList<>(CurrentUser.current_user.getPosts());
             // resort post by current time
             if (! posts.isEmpty()) {
@@ -72,7 +74,7 @@ public class MyFragment extends Fragment {
 
             tv_name.setText(CurrentUser.current_user.getName());
             tv_id.setText("User Id: " + CurrentUser.current_user.getId());
-
+            User.setImage(CurrentUser.current_user, tv_img);
             Button btnSub = view.findViewById(R.id.profile_subscriber);
 
             btnSub.setOnClickListener(e -> {

@@ -17,21 +17,24 @@
             android:orientation="vertical">
 
             <ImageView
-                android:contentDescription="@string/logo"
-                android:layout_width="271dp"
-                android:layout_height="158dp"
+                android:layout_width="155dp"
+                android:layout_height="145dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
-                android:scaleType="centerCrop"
+                android:adjustViewBounds="false"
+                android:contentDescription="@string/logo"
+                android:cropToPadding="false"
+                android:rotationX="-19"
+                android:scaleType="centerInside"
                 android:src="@drawable/logo2" />
 
             <EditText
-                android:autofillHints="Email"
                 android:id="@+id/et_emailLogin"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
+                android:autofillHints="Email"
                 android:ems="10"
                 android:hint="@string/etEmail"
                 android:inputType="textEmailAddress"
@@ -39,12 +42,12 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:autofillHints="Password"
                 android:id="@+id/et_passwordLogin"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:autofillHints="Password"
                 android:hint="@string/etPassword"
                 android:inputType="textPassword"
                 android:maxLines="1"

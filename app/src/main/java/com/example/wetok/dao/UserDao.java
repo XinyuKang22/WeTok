@@ -101,7 +101,7 @@ public class UserDao implements Serializable {
     /**
      * @return all the posts
      */
-    public static List<Post> getPosts() { 
+    public static List<Post> getPosts(List<User> users) {
         List<Post> posts = new ArrayList<>();
         for (User u : users) {
             setPostInfo(u);
@@ -136,6 +136,22 @@ public class UserDao implements Serializable {
             u.setImgloc(id.charAt(id.length()-1)+"");
         }
     }
+
+    /**
+     * Filter users in the same location
+     * @param location
+     * @return users in the same location
+     */
+    public static List<User> filterLocation(String location) {
+        List<User> user_list = new ArrayList<>();
+        System.out.println("current address: "+location);
+        for (User u : users) {
+            System.out.println(u.getAddress());
+            if (u.getAddress().trim().equals(location.trim())) user_list.add(u);
+        }
+        return user_list;
+    }
+
 }
 
 

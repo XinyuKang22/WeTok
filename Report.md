@@ -62,20 +62,22 @@ The following is a report template to help your team successfully provide all th
 
 ## **Application Description**
 
-*Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.*
+**Wetok is a social media app specifically aimed at person with a strong personality. You can share your status and mood with your friends, people in the same city, and even strangers anytime, anywhere. In here, you do not have to worry about cyber-violence and personal abuse, we only provide you with a pure sharing platform. As our logo shows, we talk, but we don't comment. Furthermore, you can search for tags you're interested in and subscribe people that you're interested in. You can understand what is happening in this world through wetok. Welcome to Wetok.** 
+<br />
+<br />
 
 ### **Application Use Cases and or Examples**
 
-*Targets Users: Everyone who is willing to use and learn about this app*
+Targets Users: Everyone who is willing to use and learn about this app
 
-*Jack wants to learn about skateboarding skills that interest him most*
-1. *Jack searched the tag about skateboarding and found that Kevin shared skateboarding skills every day*
-2. *He followed Kevin*
-3. *He learned new moves from Kevin's skateboard skills*
+Jack wants to learn about skateboarding skills that interest him most
+1. Jack searched the tag about skateboarding and found that Kevin shared skateboarding skills every day
+2. He followed Kevin
+3. He learned new moves from Kevin's skateboard skills
 
-*Andy wants to know about the good restaurants around him*
-1. *Andy turns on the City feature and finds that Clair shared a delicious restaurant nearby*
-2. *He followed Clair and hope Clair can share more delicious restaurants in the future*
+Andy wants to know about the good restaurants around him
+1. Andy turns on the City feature and finds that Claire shared a delicious restaurant nearby
+2. He followed Claire and hope Claire can share more delicious restaurants in the future
 
 *Here is a map navigation application example*
 
@@ -103,7 +105,9 @@ The following is a report template to help your team successfully provide all th
 
 *I used the following data structures in my project:*
 
-1. *LinkedList*
+
+##### Data Structures
+1. AVL Tree
 
    * *Objective: It is used for storing xxxx for xxx feature.*
 
@@ -115,10 +119,72 @@ The following is a report template to help your team successfully provide all th
 
      * *We don't need to access the item by index for this feature*
 
-2. ...
+##### Design Patterns
+1. Singleton
+   * Objective: It is used for making sure of that there is exactly one instance of the current user
 
-3. ...
+   * Locations: *CurrentUser.java*
 
+   * Reasons:
+
+     * It can effectively avoid the case of multiple-current-users error
+     * We need a class storing the current user instance that can be access from the whole project
+
+2. Template
+   * Objective: It is used for computing the ranking scores of the retrieved posts from different dimensions.
+
+   * Locations: *ScoreTemplate.java* (abstract class), *RelevanceScore.java* (concrete class), *ImportanceScore.java* (concrete class), *UserSimilarity.java* (concrete class)
+
+   * Reasons:
+
+     * We want to sort the posts based on three criteria. There is a common process (i.e., calculate scores, normalize scores) to scoring the posts but each criterion has its own scoring logic. 
+     * The template method can clearly define the structure and make the code more readable and reuseable. 
+
+3. DAO
+   * Objective: It is used for storing the users and posts data read from persistent files. 
+
+   * Locations: *UserDao.java*, *PostDao.java*
+
+   * Reasons:
+
+     * We want to decouple domain logic from persistence mechanisms and avoid exposing details of the data storage.
+     * The DAO method allows JUnit test to run faster as it allows to create Mock and avoid connecting to database to run tests.
+
+##### Grammars
+   * Objective: 
+
+   * Locations: 
+
+   * Reasons:
+
+##### Tokenizer and Parsers
+   * Objective: 
+
+   * Locations: 
+
+   * Reasons:
+
+##### Surpise Item
+1. Ranking algorithm
+   * Objective: It is used for ranking the retrieved posts
+
+   * Locations: Package *ranking* : *Rank.java*, *ScoreTemplate.java*, *RelevanceScore.java*, *ImportanceScore.java*, *UserSimilarityScore.java*
+
+   * Reasons:
+     * This is an interesting feature and closely related to society
+     * We want to rank the retrieved posts based on more than the post time
+     * There are members in our group who have learned information retrieval
+
+2. Simple personalisation
+   * Objective: It is used for logging users' addresses to improve the timeline creation
+
+   * Locations: Package *view* : Package *fragment* : "CityFragment.java*
+
+   * Reasons:
+     * This is the simplest way to personalise the timeline creation.
+     * We have thought about maximising the chances of  accurately providing search results or information in a timeline by using user posts, user interactions and so on. 
+     * However, in the ranking algorithm we considered the similarity between the current user of the sender of the posts as a negative factor of search ranking to break *Filter Bubbles*. We do not want to "offset" the effect of the ranking algorithm.
+     * So, in our app the users can choose to enable (by click on *city* in the navigation bar) or unable the simple location personalisation according to their preferences . 
 ### **Data Structures**
 
 ##### **AVL Tree**

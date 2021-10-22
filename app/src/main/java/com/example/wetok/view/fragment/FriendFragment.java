@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,15 +20,13 @@ import com.example.wetok.bean.User;
 import com.example.wetok.dao.CurrentUser;
 import com.example.wetok.dao.PostDao;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * This is the FriendFragment
+ *
  * @author Yuxin Hong
  */
 public class FriendFragment extends Fragment {
@@ -46,10 +43,10 @@ public class FriendFragment extends Fragment {
                 post_data.addAll(friend.getPosts());
             }
             post_data.addAll(CurrentUser.current_user.getPosts());
+            Collections.sort(post_data);
             List<Post> posts = new ArrayList<>();
 
             if (!post_data.isEmpty()) {
-                Collections.sort(post_data);
                 if (post_data.size() < 3) {
                     PostAdapter adapter = new PostAdapter(getContext(), R.layout.post_list_view, post_data);
                     ListView lv = view.findViewById(R.id.post_list_friend);
