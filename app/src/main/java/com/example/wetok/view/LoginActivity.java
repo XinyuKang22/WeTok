@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = et_emailLogin.getText().toString().trim();
-                String password = et_passwordLogin.getText().toString().trim();
+                String email = et_emailLogin.getText().toString().trim().toLowerCase();
+                String password = et_passwordLogin.getText().toString().trim().toLowerCase();
                 if (email.isEmpty()) {
                     Toast.makeText(context, "Please enter email", Toast.LENGTH_LONG).show();
                     return;
