@@ -126,8 +126,10 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             User u = UserDao.findUserByEmail(email.toLowerCase(Locale.ROOT));
                             if (u == null) {
-                                Toast.makeText(context, "User not in database.",
-                                        Toast.LENGTH_SHORT).show();
+                                // new-registered user
+                                u = UserDao.findUserById(UserDao.users_size-1);
+                                u.setEmail(email);
+                                u.setPassword(password);
                             } else {
                                 CurrentUser.login(u);
                                 Toast.makeText(context, "Successfully logged in.",
@@ -198,9 +200,9 @@ public class LoginActivity extends AppCompatActivity {
                 name,"u1234567@anu.edu.au","default","2021-01-01 00:00:00",
                 tag,0,0);
         List<String> tag2 = new ArrayList<>();
-        tag2.add("Hint");
+        tag2.add("#Hint");
         Post p2 = new Post("Try To Search With & And |\ne.g. #tag1 & #tag2 " +
-                "\ne.g. #tag1 | #tag2 \n#tag1 & (#tag2 | #tag3)", "0",
+                "\ne.g. #tag1 | #tag2 \ne.g.#tag1 & (#tag2 | #tag3)", "0",
                 name,"u1234567@anu.edu.au","default","2021-01-01 00:00:00",
                 tag2,0,0);
         sys_post.addAll(Arrays.asList(p0,p1,p2));
